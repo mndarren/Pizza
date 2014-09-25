@@ -7,6 +7,7 @@ int main(){
 	int god;
 	cin >> god;
 	cout << "This is the test for pizza project!" << endl;
+	cout << "And this is another line" << endl;
 	
 	return 0;
 }
