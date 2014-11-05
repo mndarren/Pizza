@@ -16,6 +16,16 @@ namespace PizzaModels.Models
         private string _comments;
 
         public ServiceRecord(){}
+        
+        public ServiceRecord(int serviceCode, int serviceRecordID, DateTime timeStamp, DateTime dateProvided, int providerNumber, int memberNumber, string comments){
+            _serviceCode = serviceCode;
+            _serviceRecordID = serviceRecordID;
+            _timeStamp = timeStamp;
+            _dateProvided = dateProvided;
+            _providerNumber = providerNumber;
+            _memberNumber = memberNumber;
+            _comments = comments;
+        }
 
         public int ServiceCode { get { return _serviceCode; } set { _serviceCode = value; } }
         public int ServiceRecordID { get { return _serviceRecordID; } set { _serviceRecordID = value; } }
