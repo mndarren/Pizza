@@ -1,4 +1,5 @@
-﻿using PizzaRepository.ListInterface;
+﻿using PizzaModels.Models;
+using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,28 @@ namespace PizzaRepository.ListClass
 
         private static MemberList memberList;
 
-        public static MemberList instance(){
-            if (memberList == null)
-            {
+        //create a member list instance
+        public static MemberList Instance(){
+            if (memberList == null){
                 return (memberList = new MemberList());
             }
-            else
-            {
+            else{
                 return memberList;
             }
         }
 
+        public MemberList() { }
 
-        public MemberList(){}
+        //add member into list
+        public Boolean InsertMember(Member member){
+            members.AddLast(member);
+            return true;
+        }
+
+        /*
+        public Boolean DeleteMember(int memberID) { 
+        }
+        */
 
     }
 }

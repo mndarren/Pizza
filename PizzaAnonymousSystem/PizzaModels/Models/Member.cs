@@ -7,9 +7,9 @@ namespace PizzaModels.Models
 {
     public class Member:Person
     {
-        private int _statues;
+        private int _status;
         public Member(){}
-        public int Statues { get { return _statues;} set{_statues = value;} }
+        public int Status { get { return _status;} set{_status = value;} }
 
     }
 }
