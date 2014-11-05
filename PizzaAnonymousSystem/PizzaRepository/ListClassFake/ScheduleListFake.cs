@@ -6,11 +6,7 @@ using System.Web;
 
 namespace PizzaRepository.ListClassFake
 {
-    public class MemberListFake : IMemberList
+    public class ScheduleListFake : IScheduleList
     {
-        public bool DeleteMember(int memberID)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

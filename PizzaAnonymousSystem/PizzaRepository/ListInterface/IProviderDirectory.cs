@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaRepository.ListInterface
 {
-    interface IMemberList
+    interface IProviderDirectory
     {
-        bool DeleteMember(int memberID);
     }
 }
