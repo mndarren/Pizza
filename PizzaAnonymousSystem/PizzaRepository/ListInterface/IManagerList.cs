@@ -7,7 +7,7 @@ usri
 
 namespace PizzaRepository.ListInterface
 {
-    interface IManagerList
+    public interface IManagerList
     {
         public bool add(Manager)
     }
