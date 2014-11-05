@@ -12,9 +12,9 @@ namespace PizzaModels.Models
         private float _serviceFee;
 
         public Service ()
-	   {
-          _serviceCode = 0; _serviceName = null; _serviceFee = 0.0;
-	   }
+	    {
+          _serviceCode = 0; _serviceName = null; _serviceFee = 0.0F;
+	    }
         public Service(int code,string name,float fee)
         {
             _serviceCode = code; _serviceName = name; _serviceFee = fee;
