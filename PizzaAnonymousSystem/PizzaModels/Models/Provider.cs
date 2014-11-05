@@ -7,6 +7,9 @@ namespace PizzaModels.Models
 {
     public class Provider
     {
+        public Provider()
+        {
 
+        }
     }
 }
