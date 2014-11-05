@@ -6,13 +6,14 @@ using System.Web.Mvc;
 
 namespace PizzaGUI.Controllers
 {
-    public class PizzaAnoymousApplicationController : Controller
+    public class PizzaAnonymousApplicationController : Controller
     {
         //
         // GET: /PizzaAnoymousApplication/
-        public ActionResult Index()
+        public ActionResult PizzaAnonymousApplication()
         {
-            return View();
+            return View("Hello World");
+
         }
 	}
 }
