@@ -5,8 +5,11 @@ using System.Web;
 
 namespace PizzaModels.Models
 {
-    public class Member
+    public class Member:Person
     {
+        private int _statues;
+
+        public int Statues { get { return _statues;} set{_statues = value;} }
 
     }
 }
