@@ -7,13 +7,16 @@ namespace PizzaModels.Models
 {
     public class Service
     {
-        private int serviceCode;
-        private string serviceName;
-        private float serviceFee;
+        private int _serviceCode;
+        private string _serviceName;
+        private float _serviceFee;
 
-        public int GetServiceCode( ){return serviceCode;}
-        public string GetServiceName() { return serviceNmae; }
-        public float GetServiceFee() { return serviceFee; }
-        public int Set
+        public Service ()
+	{
+
+	}
+        public int ServiceCode { get {return _serviceCode;} set {_serviceCode = value;}}
+        public string ServiceName { get { return _serviceName; } set { _serviceName = value; } }
+        public float ServiceFee { get { return _serviceFee; } set { _serviceFee = value; } }
     }
 }
