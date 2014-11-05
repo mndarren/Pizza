@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PizzaRepository.ListInterface
 {
-    interface IManagerList
+    public interface IManagerList
     {
     }
 }
