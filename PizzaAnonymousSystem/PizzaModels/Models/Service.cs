@@ -17,7 +17,7 @@ namespace PizzaModels.Models
 	    }
         public Service(int code,string name,decimal fee)
         {
-            _serviceCode = code; _serviceName = name; _serviceFee = fee;
+            _serviceCode = code; _serviceName = name; _serviceFee = (decimal)fee;
         }
         public int ServiceCode { get {return _serviceCode;} set {_serviceCode = value;}}
         public string ServiceName { get { return _serviceName; } set { _serviceName = value; } }
