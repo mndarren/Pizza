@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
+
 namespace PizzaRepository.ListClass
 {
     public class ManagerList : IManagerList
     {
+
     }
 }

@@ -82,7 +82,12 @@
     <Compile Include="Report\MemberReport.cs" />
     <Compile Include="Report\ProviderReport.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PizzaRepository\PizzaRepository.csproj">
+      <Project>{2a8cb478-ac0b-4e85-a0a3-5372ce5a3ab1}</Project>
+      <Name>PizzaRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
