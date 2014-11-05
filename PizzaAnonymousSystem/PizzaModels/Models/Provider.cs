@@ -16,6 +16,6 @@ namespace PizzaModels.Models
         {
             _bankAccount = num;
         }
-        public BankAccount{get {return _bankAccount;} set {_bankAccount = value;}}
+        public long BankAccount{get {return _bankAccount;} set {_bankAccount = value;}}
     }
 }
