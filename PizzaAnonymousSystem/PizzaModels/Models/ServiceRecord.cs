@@ -7,5 +7,6 @@ namespace PizzaModels.Models
 {
     public class ServiceRecord
     {
+        private int 
     }
 }
