@@ -68,18 +68,21 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListClassFake\AdminListFake.cs" />
     <Compile Include="ListClassFake\ManagerListFake.cs" />
     <Compile Include="ListClassFake\MemberListFake.cs" />
     <Compile Include="ListClassFake\ProviderDirectoryFake.cs" />
     <Compile Include="ListClassFake\ProviderListFake.cs" />
     <Compile Include="ListClassFake\ScheduleListFake.cs" />
     <Compile Include="ListClassFake\ServiceRecordListFake.cs" />
+    <Compile Include="ListClass\AdminList.cs" />
     <Compile Include="ListClass\ManagerList.cs" />
     <Compile Include="ListClass\MemberList.cs" />
     <Compile Include="ListClass\ProviderDirectory.cs" />
     <Compile Include="ListClass\ProviderList.cs" />
     <Compile Include="ListClass\ScheduleList.cs" />
     <Compile Include="ListClass\ServiceRecordList.cs" />
+    <Compile Include="ListInterface\IAdminList.cs" />
     <Compile Include="ListInterface\IManagerList.cs" />
     <Compile Include="ListInterface\IMemberList.cs" />
     <Compile Include="ListInterface\IProviderDirectory.cs" />
