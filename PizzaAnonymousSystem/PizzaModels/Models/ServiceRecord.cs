@@ -11,14 +11,18 @@ namespace PizzaModels.Models
         private int _serviceRecordID;
         private DateTime _timeStamp;
         private DateTime _dateProvided;
-        private int providerNumber;
-        private int memberNumber;
-        private string comments;
+        private int _providerNumber;
+        private int _memberNumber;
+        private string _comments;
 
-        public ServiceRecord()
-        {
+        public ServiceRecord(){}
 
-        }
-
+        public int ServiceCode { get { return _serviceCode; } set { _serviceCode = value; } }
+        public int ServiceRecordID { get { return _serviceRecordID; } set { _serviceRecordID = value; } }
+        public DateTime TimeStamp { get { return _timeStamp; } set { _timeStamp = value; } }
+        public DateTime DateProvided { get { return _dateProvided; } set { _dateProvided = value; } }
+        public int ProviderNumber { get { return _providerNumber; } set { _providerNumber = value; } }
+        public int MemberNumber { get { return _memberNumber; } set { _memberNumber = value; } }
+        public string Comments { get { return _comments; } set { _comments = value; } }
     }
 }
