@@ -8,5 +8,6 @@ namespace PizzaRepository.ListClass
 {
     public class ServiceRecordList : IServiceRecordList
     {
+        public ServiceRecordList(){}
     }
 }

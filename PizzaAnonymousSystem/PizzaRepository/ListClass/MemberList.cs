@@ -8,9 +8,7 @@ namespace PizzaRepository.ListClass
 {
     public class MemberList : IMemberList
     {
-        public bool DeleteMember(int memberID)
-        {
-            throw new NotImplementedException();
-        }
+        public MemberList(){}
+
     }
 }
