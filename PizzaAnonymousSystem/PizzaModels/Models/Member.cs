@@ -8,7 +8,8 @@ namespace PizzaModels.Models
     public class Member:Person
     {
         private int _status;
-        public Member(){}
+        public Member() { _status = -1; }
+        public Member(int _newStatus) { _status = _newStatus; }
         public int Status { get { return _status;} set{_status = value;} }
 
     }
