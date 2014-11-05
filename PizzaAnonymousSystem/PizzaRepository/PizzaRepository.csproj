@@ -91,6 +91,12 @@
     <Compile Include="ListInterface\IServiceRecordList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PizzaModels\PizzaModels.csproj">
+      <Project>{cb5f6f8a-dcb0-4f95-82de-af4391bbaaff}</Project>
+      <Name>PizzaModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
