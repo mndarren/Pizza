@@ -19,7 +19,5 @@ namespace PizzaModels.Report
         public Member SelectMember(String name) { return null; }
         public void runSchedule() { }
 
-
-
     }
 }
