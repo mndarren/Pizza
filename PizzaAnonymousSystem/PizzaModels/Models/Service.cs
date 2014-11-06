@@ -23,10 +23,9 @@ namespace PizzaModels.Models
         public string ServiceName { get { return _serviceName; } set { _serviceName = value; } }
         public decimal ServiceFee { get { return _serviceFee; } set { _serviceFee = value; } }
 
-        public string ToString()
+        public override string ToString()
         { 
-           string msg = _serviceCode+ " " + _serviceName + " " + _serviceFee;
-           return msg;
+           return "ServiceCode: "+_serviceCode+ "ServiceName: " + _serviceName + "ServiceFee: " + _serviceFee;
         }
     }
 }

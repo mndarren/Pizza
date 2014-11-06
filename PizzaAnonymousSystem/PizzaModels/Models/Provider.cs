@@ -11,5 +11,9 @@ namespace PizzaModels.Models
         public Provider(){}
         public Provider(long num){_bankAccount = num;}
         public long BankAccount{get {return _bankAccount;} set {_bankAccount = value;}}
+        public override string ToString()
+        {
+            return base.ToString() + "BankAccount: " + _bankAccount;
+        }
     }
 }
