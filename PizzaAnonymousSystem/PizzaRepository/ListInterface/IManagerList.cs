@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-usri
+//usri
 
 namespace PizzaRepository.ListInterface
 {
     public interface IManagerList
     {
-        public bool add(Manager)
+        //public bool add(Manager)
     }
 }
