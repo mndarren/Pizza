@@ -21,7 +21,7 @@ namespace PizzaModels.Models
         }
         public int ServiceCode { get {return _serviceCode;} set {_serviceCode = value;}}
         public string ServiceName { get { return _serviceName; } set { _serviceName = value; } }
-        public float ServiceFee { get { return _serviceFee; } set { _serviceFee = value; } }
+        public decimal ServiceFee { get { return _serviceFee; } set { _serviceFee = value; } }
         public string ToString()
         { 
            string msg = _serviceCode+ " " + _serviceName + " " + _serviceFee;
