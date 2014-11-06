@@ -28,5 +28,8 @@ namespace PizzaRepository.ListClass
             _serviceRecords.AddLast(_serviceRecord); 
             return true; 
         }
+
+        public LinkedList<ServiceRecord> GetServiceRecord() { return _serviceRecords; }
+        
     }
 }
