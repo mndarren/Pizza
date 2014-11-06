@@ -15,7 +15,7 @@ namespace PizzaRepository.ListClass
 {
     public class ProviderList : IProviderList
     {
-        private List<Provider> providers;
+        private List<Provider> providers = new List<Provider>();
         
         public ProviderList(){}
         public List<Provider> Providers{get {return providers;}}

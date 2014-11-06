@@ -16,7 +16,7 @@ namespace PizzaRepository.ListClass
 {
     public class ProviderDirectory : IProviderDirectory
     {
-        private List<Service> serviceItems;
+        private List<Service> serviceItems = new List<Service>();
         public ProviderDirectory(){}
         public List<Service> ServiceItems{get {return serviceItems;}}
         public Boolean AddServiceItem(Service newItem)
