@@ -8,14 +8,8 @@ namespace PizzaModels.Models
     public class Provider
     {
         private long _bankAccount;
-        public Provider()
-        {
-            _bankAccount = 0;
-        }
-        public Provider(long num)
-        {
-            _bankAccount = num;
-        }
+        public Provider(){}
+        public Provider(long num){_bankAccount = num;}
         public long BankAccount{get {return _bankAccount;} set {_bankAccount = value;}}
     }
 }
