@@ -1,4 +1,10 @@
-﻿using PizzaModels.Models;
+﻿/*@Class: CSCU531
+ *@Author: Zhao Xie
+ *@Date:11/6/2014
+ *@File: Service.cs
+ *@Description: this class contains Provider objects
+ */
+using PizzaModels.Models;
 using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;

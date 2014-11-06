@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*@Class: CSCU531
+ *@Author: Zhao Xie
+ *@Date:11/6/2014
+ *@File: Service.cs
+ *@Description: this class contains Provider's info
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
