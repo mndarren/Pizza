@@ -8,6 +8,6 @@ namespace PizzaRepository.ListInterface
 {
     public interface IMemberList
     {
-        bool DeleteMember(int memberID);
+        
     }
 }
