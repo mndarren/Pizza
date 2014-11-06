@@ -26,6 +26,10 @@ namespace PizzaController.Controllers
             this.serviceRecordList = serviceRecordList;
         }
 
+        /// <summary>
+        /// Get all services
+        /// </summary>
+        /// <returns>returns all services</returns>
         [GET("/servicemanager/services/")]
         public List<Service> GetAllServices()
         {
@@ -42,5 +46,6 @@ namespace PizzaController.Controllers
 
             return services;
         }
+
     }
 }
