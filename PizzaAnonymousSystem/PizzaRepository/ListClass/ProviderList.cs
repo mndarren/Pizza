@@ -29,7 +29,7 @@ namespace PizzaRepository.ListClass
             return false;
         }
         public Boolean UpdateProvider(string name, int ID, string streetAddress,
-                                     string city, string state, int ZIPcode, long bankAccount)
+                                     string city, string state, string ZIPcode, long bankAccount)
         {
             Provider temp = providers.Where(p => p.ID == ID).FirstOrDefault();
             if (temp != null)

@@ -10,25 +10,17 @@ namespace PizzaRepository.ListClass
 {
     public class ProviderDirectory : IProviderDirectory
     {
-        private LinkedList<Service> serviceItems;
-        private Service SearchService(int serviceID)
-        {
-            LinkedListNode<Service> temp = serviceItems.First;
-            for (; temp != serviceItems.Last; temp = temp.Next)
-                if (temp.Value.ServiceCode == serviceID)
-                    return temp;
-            return null;
-        }
+        private List<Service> serviceItems;
         public ProviderDirectory(){}
-        public LinkedList<Service> ServiceItems{get {return serviceItems;}}
+        public List<Service> ServiceItems{get {return serviceItems;}}
         public Boolean AddServiceItem(Service newItem)
         {
-            serviceItems.AddLast(newItem);
+            serviceItems.Add(newItem);
             return true;
         }
         public Boolean DeleteServiceItem(int serviceID)
-        { 
-            LinkedListNode<Service> temp = SearchService(serviceID);
+        {
+            Service temp = serviceItems.Where(s => s.ServiceCode == serviceID).FirstOrDefault();
             if(temp != null)
             {
                   serviceItems.Remove(temp);
@@ -38,11 +30,11 @@ namespace PizzaRepository.ListClass
         }
         public Boolean UpdateService(int id,string name,decimal money)
         {
-            LinkedListNode<Service> temp = SearchService(serviceID);
+            Service temp = serviceItems.Where(s => s.ServiceCode == id).FirstOrDefault();
             if (temp != null)
             {
-                    temp.Value.ServiceName = name;
-                    temp.Value.ServiceFee = (decimal)money;
+                    temp.ServiceName = name;
+                    temp.ServiceFee = (decimal)money;
                     return true;
             }
             return false;
