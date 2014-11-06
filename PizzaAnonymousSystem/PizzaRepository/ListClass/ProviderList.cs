@@ -1,4 +1,5 @@
-﻿using PizzaRepository.ListInterface;
+﻿using PizzaModels.Models;
+using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,25 +9,18 @@ namespace PizzaRepository.ListClass
 {
     public class ProviderList : IProviderList
     {
-        private LinkedList<Provider> providers;
-        private Provider SearchProvider(int providerID)
-        {
-            LinkedListNode<Provider> temp = providers.First;
-            for (; temp != providers.Last; temp = temp.Next)
-                if (temp.Value.ID == providerID)
-                    return temp;
-            return null;
-        }
+        private List<Provider> providers;
+        
         public ProviderList(){}
-        public LinkedList<Provider> Providers{get {return providers;}}
+        public List<Provider> Providers{get {return providers;}}
         public Boolean AddProvider(Provider newItem)
         {
-            providers.AddLast(newItem);
+            providers.Add(newItem);
             return true;
         }
         public Boolean Deleteprovider(int providerID)
         {
-            LinkedListNode<Provider> temp = SearchProvider(providerID);
+            Provider temp = providers.Where(p => p.ID == providerID).FirstOrDefault() ;
             if(temp != null)
             {
                   providers.Remove(temp);
@@ -37,16 +31,16 @@ namespace PizzaRepository.ListClass
         public Boolean UpdateProvider(string name, int ID, string streetAddress,
                                      string city, string state, int ZIPcode, long bankAccount)
         {
-            LinkedListNode<Provider> temp = SearchProvider(ID);
+            Provider temp = providers.Where(p => p.ID == ID).FirstOrDefault();
             if (temp != null)
             {
-                 temp.Value.Name = name;
-                 temp.Value.ID = ID;
-                 temp.Value.StreetAddress = streetAddress;
-                 temp.Value.City = city;
-                 temp.Value.State = state;
-                 temp.Value.ZipCode = ZIPcode;
-                 temp.Value.BankAccount = bankAccount;
+                 temp.Name = name;
+                 temp.ID = ID;
+                 temp.StreetAddress = streetAddress;
+                 temp.City = city;
+                 temp.State = state;
+                 temp.ZipCode = ZIPcode;
+                 temp.BankAccount = bankAccount;
                  return true;
             }
             return false;

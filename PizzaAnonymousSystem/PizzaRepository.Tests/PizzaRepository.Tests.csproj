@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="ListClass\MemberListTests.cs" />
     <Compile Include="ListClass\ScheduleListTests.cs" />
+    <Compile Include="ListClass\ProviderListTests.cs" />
+    <Compile Include="ListClass\ProviderDirectory.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +64,9 @@
       <Project>{2A8CB478-AC0B-4E85-A0A3-5372CE5A3AB1}</Project>
       <Name>PizzaRepository</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
