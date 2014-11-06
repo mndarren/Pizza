@@ -1,0 +1,86 @@
+/* Admins */
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Steve Rogers", "1000 12 Ave E", "Washington D.C", "WA", "00001");
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Tony Stark", "200 14th St", "New York", "NY", "10001");
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Bruce Banner", "121 20th St South", "Washington D.C", "WA", "00002");
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Natalia Romanova", "300 10th Ave N", "New York", "NY", "10002");
+
+/* Managers */
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Reed Richards", "121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Susan Storm Richards", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Jonathan Richards", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ("Ben Grimm", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+
+/* Providers */
+
+INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
+VALUES ("Stark Industries", "121 20th St South", "Washington D.C", "WA", "00002", 1231231231);
+
+INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
+VALUES ("Avengers Tower", "300 10th Ave N", "New York", "NY", "10002", 3213213211);
+
+INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
+VALUES ("Fours Freedom Inc.", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122", 1112223334);
+
+/* Members */
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ("Peter 'StarLord' Quill", "21 Jump Street", "Chicago", "IL", "25322", 0);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ("Gamora", "21 Jump Street", "Chicago", "IL", "25322", 0);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ("Rocket Racoon", "21 Jump Street", "Chicago", "IL", "25322", 0);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ("Drax The Destroyer", "21 Jump Street", "Chicago", "IL", "25322", 0);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ("Groot", "21 Jump Street", "Chicago", "IL", "25322", 0);
+
+/* Report Schedules */
+
+INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
+VALUES (0, 5, "11:59:59 AM");
+
+INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
+VALUES (1, 5, "11:59:59 AM");
+
+INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
+VALUES (2, 5, "11:59:59 AM");
+
+INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
+VALUES (3, 5, "11:59:59 AM");
+
+/* Services */
+
+INSERT INTO Services (ServiceCode, Name, Fee)
+VALUES (100001, "1 On 1 Consultation", 150.00);
+
+INSERT INTO Services (ServiceCode, Name, Fee)
+VALUES (100002, "Group Consultation", 50.00);
+
+INSERT INTO Services (ServiceCode, Name, Fee)
+VALUES (100003, "Cheese Resupply", 200.99);
+
+INSERT INTO Services (ServiceCode, Name, Fee)
+VALUES (100004, "0Cal Pizza Resupply", 45.99);
+
+INSERT INTO Services (ServiceCode, Name, Fee)
+VALUES (100005, "Self Help Books Lib", 39.99);
