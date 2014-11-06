@@ -8,5 +8,6 @@ namespace PizzaRepository.ListClass
 {
     public class ScheduleList : IScheduleList
     {
+
     }
 }
