@@ -30,8 +30,11 @@ namespace PizzaRepository.ListClass
 
         //add member into list
         public Boolean InsertMember(Member member){
-            members.AddLast(member);
-            return true;
+            if (member != null){
+                members.AddLast(member);
+                return true;
+            }
+            else { return false; }
         }
 
         public LinkedList<Member> GetMembers() { return members; }
