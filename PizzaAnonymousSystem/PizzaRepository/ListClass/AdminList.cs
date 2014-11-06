@@ -9,22 +9,22 @@ namespace PizzaRepository.ListClass
 {
     public class AdminList : IAdminList
     {
-        private LinkedList<Admin> listOfAdmin = new LinkedList<Admin>();
+        private List<Admin> listOfAdmin = new List<Admin>();
 
         private static AdminList adminList;
 
         //create an admin list instance
-        public static AdminList Instance()
-        {
-            if (adminList == null)
-            {
-                return (adminList = new AdminList());
-            }
-            else
-            {
-                return adminList;
-            }
-        }
+        //public static AdminList Instance()
+        //{
+        //    if (adminList == null)
+        //    {
+        //        return (adminList = new AdminList());
+        //    }
+        //    else
+        //    {
+        //        return adminList;
+        //    }
+        //}
 
         public AdminList() { }
 
