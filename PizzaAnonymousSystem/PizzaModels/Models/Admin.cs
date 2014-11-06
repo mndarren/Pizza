@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PizzaModels.Models
 {
-    public class Admin
+    public class Admin:Person
     {
     }
 }

@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*@Class: CSCU531
+ *@Author: Zhao Xie
+ *@Date:11/6/2014
+ *@File: Service.cs
+ *@Description: this class contains service info
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,11 +28,9 @@ namespace PizzaModels.Models
         public int ServiceCode { get {return _serviceCode;} set {_serviceCode = value;}}
         public string ServiceName { get { return _serviceName; } set { _serviceName = value; } }
         public decimal ServiceFee { get { return _serviceFee; } set { _serviceFee = value; } }
-
-        public string ToString()
+        public override string ToString()
         { 
-           string msg = _serviceCode+ " " + _serviceName + " " + _serviceFee;
-           return msg;
+           return "ServiceCode: "+_serviceCode+ "ServiceName: " + _serviceName + "ServiceFee: " + _serviceFee;
         }
     }
 }
