@@ -10,26 +10,42 @@ namespace PizzaRepository.ListClass
 {
     public class ProviderDirectory : IProviderDirectory
     {
-        private List<Service> serviceItems;
-        private const int OK = 1;
+        private LinkedList<Service> serviceItems;
+        private Service SearchService(int serviceID)
+        {
+            LinkedListNode<Service> temp = serviceItems.First;
+            for (; temp != serviceItems.Last; temp = temp.Next)
+                if (temp.Value.ServiceCode == serviceID)
+                    return temp;
+            return null;
+        }
         public ProviderDirectory(){}
-        public ProviderDirectory()
+        public LinkedList<Service> ServiceItems{get {return serviceItems;}}
+        public Boolean AddServiceItem(Service newItem)
         {
-
+            serviceItems.AddLast(newItem);
+            return true;
         }
-        public List<Service> ServiceItems{get {return serviceItems;}}
-        public int AddServiceItem(Service newItem)
-        {
-            serviceItems.Add(newItem);
-            return OK;
-        }
-        public int deleteServiceItem(int serviceID)
+        public Boolean DeleteServiceItem(int serviceID)
         { 
-           if(serviceItems._serviceID == serviceID)
-           serviceItems.Remove(serviceItem);
-            return OK;
+            LinkedListNode<Service> temp = SearchService(serviceID);
+            if(temp != null)
+            {
+                  serviceItems.Remove(temp);
+                  return true;
+            }
+            return false;
         }
-        public List get
-        public int updateService()
+        public Boolean UpdateService(int id,string name,decimal money)
+        {
+            LinkedListNode<Service> temp = SearchService(serviceID);
+            if (temp != null)
+            {
+                    temp.Value.ServiceName = name;
+                    temp.Value.ServiceFee = (decimal)money;
+                    return true;
+            }
+            return false;
+        }
     }
 }
