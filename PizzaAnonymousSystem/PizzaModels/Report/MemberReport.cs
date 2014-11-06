@@ -17,7 +17,17 @@ namespace PizzaModels.Report
         public MemberReport() { }
         public MemberReport(Schedule _sch, Member _m) { }
         public Member SelectMember(String name) { return null; }
-        public void runSchedule() { }
+        public void runSchedule() {
+            //compare the current time with the time set
+            while (true) { 
+                String _nowTime = DateTime.Now.ToString("hh:mm:ss") ;
+                String _schTime =_schedule.Time.ToString();
+                if (_nowTime.Equals(_schTime))
+                {
+
+                }
+            }
+        }
 
 
 
