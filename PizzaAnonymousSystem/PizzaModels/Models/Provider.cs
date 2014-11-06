@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PizzaModels.Models
 {
-    public class Provider
+    public class Provider:Person
     {
         private long _bankAccount;
         public Provider(){}
