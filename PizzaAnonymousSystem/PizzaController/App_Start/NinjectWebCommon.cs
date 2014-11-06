@@ -66,6 +66,7 @@ namespace PizzaController.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IMemberList>().To<MemberListFake>();
+            kernel.Bind<IProviderDirectory>().To<ProviderDirectoryFake>().InSingletonScope();
         }        
     }
 }
