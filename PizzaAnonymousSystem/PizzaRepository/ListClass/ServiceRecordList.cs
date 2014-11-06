@@ -12,7 +12,7 @@ namespace PizzaRepository.ListClass
 {
     public class ServiceRecordList : IServiceRecordList
     {
-        private LinkedList<ServiceRecord> _serviceRecords = new LinkedList<ServiceRecord>();
+        private List<ServiceRecord> _serviceRecords = new List<ServiceRecord>();
         private static ServiceRecordList _serviceRecordList;
 
         public ServiceRecordList(){}
@@ -24,12 +24,16 @@ namespace PizzaRepository.ListClass
         }
 
         //add service record into list
-        public Boolean InsertServiceRecord(ServiceRecord _serviceRecord) { 
-            _serviceRecords.AddLast(_serviceRecord); 
-            return true; 
+        public Boolean InsertServiceRecord(ServiceRecord _serviceRecord) {
+            if (_serviceRecord != null)
+            {
+                _serviceRecords.Add(_serviceRecord);
+                return true;
+            }
+            else { return false; }
         }
 
-        public LinkedList<ServiceRecord> GetServiceRecords() { return _serviceRecords; }
+        public List<ServiceRecord> GetServiceRecords() { return _serviceRecords; }
         
     }
 }

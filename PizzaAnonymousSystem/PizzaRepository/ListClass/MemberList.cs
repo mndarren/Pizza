@@ -12,7 +12,7 @@ namespace PizzaRepository.ListClass
 {
     public class MemberList : IMemberList
     {
-        private LinkedList<Member> members = new LinkedList<Member>();
+        private List<Member> members = new List<Member>();
 
         private static MemberList memberList;
 
@@ -31,41 +31,34 @@ namespace PizzaRepository.ListClass
         //add member into list
         public Boolean InsertMember(Member member){
             if (member != null){
-                members.AddLast(member);
+                members.Add(member);
                 return true;
             }
             else { return false; }
         }
 
-        public LinkedList<Member> GetMembers() { return members; }
+        public List<Member> GetMembers() { return members; }
 
         //delete member from link list
         public Boolean DeleteMember(int memberID) {
-            LinkedListNode<Member> member = members.First;
-            while (member != members.Last) {
-                if (memberID == member.Value.ID)
-                {
-                    members.Remove(member);
-                    return true;
-                }
-                else { member = member.Next; }
+            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+            if (member != null)
+            {
+                members.Remove(member);
+                return true;
             }
-            return false;
+            else { return false; }
         }
              
         //Update member status
         public Boolean UpdateMember(int memberID, int _status){
-            LinkedListNode<Member> member = members.First;
-            while (member != members.Last)
-            {
-                if (member.Value.ID == memberID)
-                {
-                    member.Value.Status = _status;
-                    return true;
-                }
-                else { member = member.Next; }
-            }
-            return false;
+           Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+           if (member != null)
+           {
+               member.Status = _status;
+               return true;
+           }
+           else { return false; }
         }
     }
 }
