@@ -65,8 +65,13 @@ namespace PizzaController.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IMemberList>().To<MemberListFake>();
-            kernel.Bind<IProviderDirectory>().To<ProviderDirectoryFake>().InSingletonScope();
+            kernel.Bind<IAdminList>().To<AdminListFake>().InSingletonScope();                 //Remove .InSingletonScope for real class
+            kernel.Bind<IManagerList>().To<ManagerListFake>().InSingletonScope();             //Remove .InSingletonScope for real class
+            kernel.Bind<IMemberList>().To<MemberListFake>().InSingletonScope();               //Remove .InSingletonScope for real class
+            kernel.Bind<IProviderDirectory>().To<ProviderDirectoryFake>().InSingletonScope(); //Remove .InSingletonScope for real class
+            kernel.Bind<IProviderList>().To<ProviderListFake>().InSingletonScope();           //Remove .InSingletonScope for real class
+            kernel.Bind<IScheduleList>().To<ScheduleListFake>().InSingletonScope();           //Remove .InSingletonScope for real class
+            kernel.Bind<IServiceRecordList>().To<ServiceRecordListFake>().InSingletonScope(); //Remove .InSingletonScope for real class
         }        
     }
 }

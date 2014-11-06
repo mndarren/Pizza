@@ -9,6 +9,7 @@ namespace PizzaRepository.Tests.ListClass
     public class MemberListTests
     {
         [TestMethod]
+        [TestCategory("MemberList")]
         public void InsertMember()
         {
             var list = new MemberList();
@@ -17,8 +18,6 @@ namespace PizzaRepository.Tests.ListClass
             var result = list.InsertMember(member);
 
             Assert.IsTrue(result);
-
-
         }
     }
 }

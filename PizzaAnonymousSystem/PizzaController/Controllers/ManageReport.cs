@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace PizzaController.Controllers
 {
-    public class ManagerReport : ApiController
+    public class ManageReport : ApiController
     {
     }
 }
