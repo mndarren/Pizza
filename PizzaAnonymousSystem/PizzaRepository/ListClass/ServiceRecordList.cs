@@ -29,7 +29,7 @@ namespace PizzaRepository.ListClass
             return true; 
         }
 
-        public LinkedList<ServiceRecord> GetServiceRecord() { return _serviceRecords; }
+        public LinkedList<ServiceRecord> GetServiceRecords() { return _serviceRecords; }
         
     }
 }

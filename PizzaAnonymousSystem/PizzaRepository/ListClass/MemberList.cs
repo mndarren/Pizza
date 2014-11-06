@@ -34,10 +34,35 @@ namespace PizzaRepository.ListClass
             return true;
         }
 
-        /*
-        public Boolean DeleteMember(int memberID) { 
-        }
-        */
+        public LinkedList<Member> GetMembers() { return members; }
 
+        //delete member from link list
+        public Boolean DeleteMember(int memberID) {
+            LinkedListNode<Member> member = members.First;
+            while (member != members.Last) {
+                if (memberID == member.Value.ID)
+                {
+                    members.Remove(member);
+                    return true;
+                }
+                else { member = member.Next; }
+            }
+            return false;
+        }
+             
+        //Update member status
+        public Boolean UpdateMember(int memberID, int _status){
+            LinkedListNode<Member> member = members.First;
+            while (member != members.Last)
+            {
+                if (member.Value.ID == memberID)
+                {
+                    member.Value.Status = _status;
+                    return true;
+                }
+                else { member = member.Next; }
+            }
+            return false;
+        }
     }
 }

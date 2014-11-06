@@ -14,5 +14,9 @@ namespace PizzaModels.Models
         public Member() { _status = -1; }
         public Member(int _newStatus) { _status = _newStatus; }
         public int Status { get { return _status;} set{_status = value;} }
+        public override string ToString()
+        {
+            return base.ToString() + "Member Status : "+ _status;
+        }
     }
 }
