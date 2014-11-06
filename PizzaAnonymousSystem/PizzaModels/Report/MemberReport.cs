@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PizzaModels.Models;
-using PizzaRepository.ListClass;
+//using PizzaRepository.ListClass;
 
 namespace PizzaModels.Report
 {
@@ -11,8 +11,8 @@ namespace PizzaModels.Report
     {
         private Member _member;
         private Schedule _schedule;
-        private ProviderDirectory _pd;
-        private MemberList _ml;
+        //private ProviderDirectory _pd;
+        //private MemberList _ml;
 
         public MemberReport() { }
         public MemberReport(Schedule _sch, Member _m) { }
