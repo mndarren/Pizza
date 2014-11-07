@@ -1,4 +1,5 @@
-﻿using PizzaRepository.ListInterface;
+﻿using PizzaModels.Models;
+using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,24 +9,161 @@ namespace PizzaRepository.ListClass
 {
     public class ScheduleList : IScheduleList
     {
-        public bool AddSchedule(PizzaModels.Models.Schedule newSchedule)
+        public bool AddSchedule(Schedule newSchedule)
         {
-            throw new NotImplementedException();
+            var success = false;
+
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+
+                if (null != newSchedule)
+                {
+                    var eSchedule = pizzaDB.ReportSchedules
+                        .Where(es => es.ReportType == newSchedule.ReportType).FirstOrDefault();
+
+                    var newWeek = new byte();
+                    if (null == eSchedule
+                        && byte.TryParse(newSchedule.Week.ToString(), out newWeek))
+                    {
+                        pizzaDB.ReportSchedules.Add(MapScheduleToEntity(newSchedule));
+                        success = true;
+                    }
+                    else success = false;
+                }
+                else success = false;
+            }
+            catch (Exception e)
+            {
+                success = false;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return success;
         }
 
-        public PizzaModels.Models.Schedule GetSchedule(int reportType)
+        public Schedule GetSchedule(int reportType)
         {
-            throw new NotImplementedException();
+            var schedule = new Schedule();
+
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+
+                var eSchedule = pizzaDB.ReportSchedules
+                    .Where(es => es.ReportType == reportType).FirstOrDefault();
+
+                if (null != eSchedule)
+                    schedule = MapEntityToSchedule(eSchedule);
+                else schedule = null;
+            }
+            catch (Exception e)
+            {
+                schedule = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return schedule;
         }
 
-        public PizzaModels.Models.Schedule UpdateSchedule(PizzaModels.Models.Schedule updatedSchedule)
+        public Schedule UpdateSchedule(Schedule updatedSchedule)
         {
-            throw new NotImplementedException();
+            var schedule = new Schedule();
+
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+
+                if (null != updatedSchedule)
+                {
+                    var eSchedule = pizzaDB.ReportSchedules
+                        .Where(es => es.ReportType == updatedSchedule.ReportType).FirstOrDefault();
+                    
+                    var updatedWeek = new byte();
+                    if (null != eSchedule 
+                        && byte.TryParse(updatedSchedule.Week.ToString(), out updatedWeek))
+                    {
+                        foreach (var es in pizzaDB.ReportSchedules
+                            .Where(es => es.ReportType == updatedSchedule.ReportType))
+                        {
+                            es.WeekDay = updatedWeek;
+                            es.Time = updatedSchedule.Time.Ticks;
+                        }
+
+                        schedule = GetSchedule(updatedSchedule.ReportType);
+                    }
+                    else schedule = null;
+                }
+                else schedule = null;
+            }
+            catch (Exception e)
+            {
+                schedule = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return schedule;
         }
 
         public bool DeleteSchedule(int reportType)
         {
-            throw new NotImplementedException();
+            var success = false;
+
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+
+                var eSchedule = pizzaDB.ReportSchedules
+                    .Where(es => es.ReportType == reportType).FirstOrDefault();
+
+                if (null != eSchedule)
+                    pizzaDB.ReportSchedules.Remove(eSchedule);
+                else success = false;
+            }
+            catch (Exception e)
+            {
+                success = false;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return success;
         }
+
+
+        #region Entity DataType Mapping
+
+        private Entity.ReportSchedule MapScheduleToEntity(Schedule schedule)
+        {
+            var eSchedule = new Entity.ReportSchedule();
+
+            if (null != schedule)
+            {
+                eSchedule.ReportType = schedule.ReportType;
+                eSchedule.WeekDay = byte.Parse(schedule.Week.ToString());
+                eSchedule.Time = null != schedule.Time ? schedule.Time.Ticks : 0;
+            }
+
+            return eSchedule;
+        }
+
+        private Schedule MapEntityToSchedule(Entity.ReportSchedule eSchedule)
+        {
+            var schedule = new Schedule();
+
+            if (null != eSchedule)
+            {
+                schedule.ReportType = eSchedule.ReportType;
+                schedule.Week = eSchedule.WeekDay;
+                schedule.Time = new TimeSpan(eSchedule.Time);
+            }
+
+            return schedule;
+        }
+
+        #endregion
     }
 }
