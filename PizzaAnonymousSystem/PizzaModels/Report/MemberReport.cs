@@ -16,7 +16,7 @@ namespace PizzaModels.Report
 
         public MemberReport() { }
         public MemberReport(Schedule _sch, Member _m) { }
-        public Member SelectMember(String name) { return null; }
+        public void SetMemberInformation(Member m) { this._member = m; }
         public void runSchedule() {
             //compare the current time with the time set
             while (true) { 

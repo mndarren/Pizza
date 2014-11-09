@@ -37,7 +37,11 @@ namespace PizzaRepository.ListClass
             else { return false; }
         }
 
-        public List<Member> GetMembers() { return members; }
+        public Member GetMember(int memberID) {
+            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+            return member; 
+        
+        }
 
         //delete member from link list
         public Boolean DeleteMember(int memberID) {
@@ -51,11 +55,18 @@ namespace PizzaRepository.ListClass
         }
              
         //Update member status
-        public Boolean UpdateMember(int memberID, int _status){
+        public Boolean UpdateMember(string name, int memberID, string streetAddress,
+                                     string city, string state, string ZIPcode, int status)
+        {
            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
            if (member != null)
            {
-               member.Status = _status;
+               member.Name = name;
+               member.StreetAddress = streetAddress;
+               member.City = city;
+               member.State = state;
+               member.ZipCode = ZIPcode;
+               member.Status = status;
                return true;
            }
            else { return false; }

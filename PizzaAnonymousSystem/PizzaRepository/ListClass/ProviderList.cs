@@ -18,13 +18,13 @@ namespace PizzaRepository.ListClass
         private List<Provider> providers = new List<Provider>();
         
         public ProviderList(){}
-        public List<Provider> Providers{get {return providers;}}
-        public Boolean AddProvider(Provider newItem)
+        public List<Provider> GetProviders() {return providers;}
+        public bool AddProvider(Provider newItem)
         {
             providers.Add(newItem);
             return true;
         }
-        public Boolean Deleteprovider(int providerID)
+        public bool DeleteProvider(int providerID)
         {
             Provider temp = providers.Where(p => p.ID == providerID).FirstOrDefault() ;
             if(temp != null)
@@ -34,7 +34,7 @@ namespace PizzaRepository.ListClass
             }
             return false;
         }
-        public Boolean UpdateProvider(string name, int ID, string streetAddress,
+        public bool UpdateProvider(string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, long bankAccount)
         {
             Provider temp = providers.Where(p => p.ID == ID).FirstOrDefault();

@@ -33,7 +33,10 @@ namespace PizzaRepository.ListClass
             else { return false; }
         }
 
-        public List<ServiceRecord> GetServiceRecords() { return _serviceRecords; }
+        public ServiceRecord GetServiceRecord(int serviceRecordID) {
+            ServiceRecord serviceRecord = _serviceRecords.Where(node => node.ServiceRecordID == serviceRecordID).FirstOrDefault();
+            return serviceRecord;
+        }
         
     }
 }

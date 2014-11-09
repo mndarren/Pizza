@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PizzaDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PizzaDBModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="PizzaDBModel.Store.Admins" store:Type="Tables" />
+          <EntitySet Name="Managers" EntityType="PizzaDBModel.Store.Managers" store:Type="Tables" />
+          <EntitySet Name="Members" EntityType="PizzaDBModel.Store.Members" store:Type="Tables" />
+          <EntitySet Name="Providers" EntityType="PizzaDBModel.Store.Providers" store:Type="Tables" />
+          <EntitySet Name="ReportSchedules" EntityType="PizzaDBModel.Store.ReportSchedules" store:Type="Tables" />
+          <EntitySet Name="ServiceRecords" EntityType="PizzaDBModel.Store.ServiceRecords" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="PizzaDBModel.Store.Services" store:Type="Tables" />
+          <AssociationSet Name="Service Provider" Association="PizzaDBModel.Store.Service Provider">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="ServiceRecords" EntitySet="ServiceRecords" />
+          </AssociationSet>
+          <AssociationSet Name="Subscribing Member" Association="PizzaDBModel.Store.Subscribing Member">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="ServiceRecords" EntitySet="ServiceRecords" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="25" />
+          <Property Name="City" Type="nvarchar" MaxLength="14" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Managers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="25" />
+          <Property Name="City" Type="nvarchar" MaxLength="14" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="25" />
+          <Property Name="City" Type="nvarchar" MaxLength="14" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="Status" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Providers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="25" />
+          <Property Name="City" Type="nvarchar" MaxLength="14" />
+          <Property Name="State" Type="nvarchar" MaxLength="2" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="BankAccount" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ReportSchedules">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReportType" Type="int" Nullable="false" />
+          <Property Name="WeekDay" Type="tinyint" Nullable="false" />
+          <Property Name="Time" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceRecords">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceCode" Type="int" Nullable="false" />
+          <Property Name="ProviderID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateProvided" Type="datetime" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceCode" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="Fee" Type="numeric" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <Association Name="Service Provider">
+          <End Role="Providers" Type="PizzaDBModel.Store.Providers" Multiplicity="1" />
+          <End Role="ServiceRecords" Type="PizzaDBModel.Store.ServiceRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceRecords">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Subscribing Member">
+          <End Role="Members" Type="PizzaDBModel.Store.Members" Multiplicity="1" />
+          <End Role="ServiceRecords" Type="PizzaDBModel.Store.ServiceRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceRecords">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PizzaDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PizzaDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="PizzaDBModel.Admin" />
+          <EntitySet Name="Managers" EntityType="PizzaDBModel.Manager" />
+          <EntitySet Name="Members" EntityType="PizzaDBModel.Member" />
+          <EntitySet Name="Providers" EntityType="PizzaDBModel.Provider" />
+          <EntitySet Name="ReportSchedules" EntityType="PizzaDBModel.ReportSchedule" />
+          <EntitySet Name="ServiceRecords" EntityType="PizzaDBModel.ServiceRecord" />
+          <EntitySet Name="Services" EntityType="PizzaDBModel.Service" />
+          <AssociationSet Name="Subscribing_Member" Association="PizzaDBModel.Subscribing_Member">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="ServiceRecords" EntitySet="ServiceRecords" />
+          </AssociationSet>
+          <AssociationSet Name="Service_Provider" Association="PizzaDBModel.Service_Provider">
+            <End Role="Providers" EntitySet="Providers" />
+            <End Role="ServiceRecords" EntitySet="ServiceRecords" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="Int16" />
+          <NavigationProperty Name="ServiceRecords" Relationship="PizzaDBModel.Subscribing_Member" FromRole="Members" ToRole="ServiceRecords" />
+        </EntityType>
+        <EntityType Name="Provider">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="StreetAddress" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="BankAccount" Type="Int64" />
+          <NavigationProperty Name="ServiceRecords" Relationship="PizzaDBModel.Service_Provider" FromRole="Providers" ToRole="ServiceRecords" />
+        </EntityType>
+        <EntityType Name="ReportSchedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportType" Type="Int32" Nullable="false" />
+          <Property Name="WeekDay" Type="Byte" Nullable="false" />
+          <Property Name="Time" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceRecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceCode" Type="Int32" Nullable="false" />
+          <Property Name="ProviderID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="DateProvided" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Member" Relationship="PizzaDBModel.Subscribing_Member" FromRole="ServiceRecords" ToRole="Members" />
+          <NavigationProperty Name="Provider" Relationship="PizzaDBModel.Service_Provider" FromRole="ServiceRecords" ToRole="Providers" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceCode" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Fee" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+        </EntityType>
+        <Association Name="Subscribing_Member">
+          <End Role="Members" Type="PizzaDBModel.Member" Multiplicity="1" />
+          <End Role="ServiceRecords" Type="PizzaDBModel.ServiceRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceRecords">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Service_Provider">
+          <End Role="Providers" Type="PizzaDBModel.Provider" Multiplicity="1" />
+          <End Role="ServiceRecords" Type="PizzaDBModel.ServiceRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Providers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ServiceRecords">
+              <PropertyRef Name="ProviderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PizzaDBModelStoreContainer" CdmEntityContainer="PizzaDBEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="PizzaDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admins">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="PizzaDBModel.Manager">
+              <MappingFragment StoreEntitySet="Managers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="PizzaDBModel.Member">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="PizzaDBModel.Provider">
+              <MappingFragment StoreEntitySet="Providers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportSchedules">
+            <EntityTypeMapping TypeName="PizzaDBModel.ReportSchedule">
+              <MappingFragment StoreEntitySet="ReportSchedules">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ReportType" ColumnName="ReportType" />
+                <ScalarProperty Name="WeekDay" ColumnName="WeekDay" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceRecords">
+            <EntityTypeMapping TypeName="PizzaDBModel.ServiceRecord">
+              <MappingFragment StoreEntitySet="ServiceRecords">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
+                <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DateProvided" ColumnName="DateProvided" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="PizzaDBModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
