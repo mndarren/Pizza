@@ -90,11 +90,11 @@ namespace PizzaController.Controllers
         [GET("/account manager/account/")]
         public List<Provider> GetAllProviders()
         {
-            var members = new List<Member>();
+            var providers = new List<Provider>();
 
             try
             {
-                members = memberList.GetMembers();
+                providers = providerList.GetProviders();
             }
             catch (Exception e)
             {

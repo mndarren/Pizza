@@ -18,7 +18,9 @@ namespace PizzaRepository.ListClass
         private List<Provider> providers = new List<Provider>();
         
         public ProviderList(){}
-        public List<Provider> Providers{get {return providers;}}
+
+        public List<Provider> GetProviders{get {return providers;}}
+
         public Boolean AddProvider(Provider newItem)
         {
             providers.Add(newItem);
