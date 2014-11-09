@@ -7,6 +7,6 @@ namespace PizzaModels.Models
 {
     public class Admin:Person
     {
-        public Admin() { }
+        public Admin() {}
     }
 }
