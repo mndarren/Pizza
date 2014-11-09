@@ -46,24 +46,23 @@ namespace PizzaController.Controllers
         public Boolean UpdateMember([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
-            return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, bankAccount);
+            return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
         }
 
-        [GET("/accountmanager/account/")]
-        public List<Member> GetAllMembers()
-        {
-            var members = new List<Member>();
-
-            try
-            {
-                members = memberList.GetMembers();
-            }
-            catch(Exception e){
-                throw new HttpRequestException(e.Message);
-            }
-
-            return members;
-        }
+        //[GET("/accountmanager/account")]
+        //public List<Member> GetAllMembers()
+        //{
+        //    var members = new List<Member>();
+        //    try
+        //    {
+        //
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new HttpRequestException(e.Message);
+        //    }
+        //    return members;
+        //}
 
         /********************************************
          * Provider
@@ -87,41 +86,61 @@ namespace PizzaController.Controllers
             return providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
         }
 
-        [GET("/accountmanager/account/")]
-        public List<Provider> GetAllProviders()
-        {
-            var providers = new List<Provider>();
-
-            try
-            {
-                providers = providerList.GetProviders();
-            }
-            catch (Exception e)
-            {
-                throw new HttpRequestException(e.Message);
-            }
-
-            return providers;
-        }
-
         /********************************
          * Manager
          * ************************************/
+        [POST("/accountmamnager/account")]
+        public Boolean AddManager([FromBody]Manager manager)
+        {
+            return managerList.AddManager(manager);
+        }
         
-        
+        [DELETE("/accountmanager/account")]
+        public Boolean DeleteManager([FromBody]int managerID)
+        {
+            return managerList.DeleteManager(managerID);
+        }
+
+        [POST("/accountmanager/account")]
+        public Boolean UpdateManager([FromBody]string name, int ID, string streetAddress,
+                                     string city, string state, string ZIPcode)
+        {
+            return managerList.UpdateManager(name, ID, streetAddress,
+                                     city, state, ZIPcode);
+        }
+
         /**********************
          * admin
          * *******************/
- 
+        [POST("/accountmanager/account")]
+        public Boolean addAdmin([FromBody] Admin admin)
+        {
+            return adminList.AddAdmin(admin);
+        }
+
+        [DELETE("/accountmanager/account")]
+        public Boolean DeleteAdmin([FromBody]int adminID)
+        {
+            return adminList.DeleteAdmin(adminID);
+        }
+
+        [POST("/accountmanager/account")]
+        public Boolean UpdateAdmin([FromBody]string name, int ID, string streetAddress,
+                                     string city, string state, string ZIPcode)
+        {
+            return adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
+        }
         
         /*************************************
          * validate member
-         * **********************************/.
+         * **********************************/
         [PUT("/accountmanager/account")]
-        public int ValidateMember(int memberID){
-            var members = memberList.GetMembers();
-            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
-            return member.Status;
+        public string ValidateMember(int memberID){
+            var member = memberList.GetMember(memberID);
+            if (member.Status == 0) { return "Validate!"; }
+            else if (member.Status == 1) { return "invalid!"; }
+            else if (member.Status == 2) { return "Suspend!"; }
+            else return null;
         }
         
     }

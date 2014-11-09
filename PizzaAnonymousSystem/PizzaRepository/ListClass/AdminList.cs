@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PizzaRepository.ListClass;
+using PizzaModels.Models;
 
 namespace PizzaRepository.ListClass
 {
@@ -11,7 +11,7 @@ namespace PizzaRepository.ListClass
     {
         private List<Admin> listOfAdmin = new List<Admin>();
 
-        private static AdminList adminList;
+        //private static AdminList adminList;
 
         //create an admin list instance
         //public static AdminList Instance()
@@ -31,14 +31,14 @@ namespace PizzaRepository.ListClass
         //add admin into list
         public Boolean addAdmin(Admin admin)
         {
-            listOfAdmin.AddLast(admin);
+            listOfAdmin.Add(admin);
             return true;
         }
 
         //delete admin from link list
         public Boolean deleteAdmin(int adminID) 
         {
-            LinkedListNode<Admin> admin = listOfAdmin.First;
+            Admin admin = listOfAdmin.First;
             while (admin != listOfAdmin.Last) 
             {
                 if (adminID == admin.Value.ID)

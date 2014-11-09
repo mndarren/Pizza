@@ -10,6 +10,6 @@ namespace PizzaRepository.ListInterface
     public interface IServiceRecordList
     {
         Boolean InsertServiceRecord(ServiceRecord _serviceRecord);
-        List<ServiceRecord> GetServiceRecords();
+        ServiceRecord GetServiceRecord(int serviceCodeID);
     }
 }

@@ -37,7 +37,11 @@ namespace PizzaRepository.ListClass
             else { return false; }
         }
 
-        public List<Member> GetMembers() { return members; }
+        public Member GetMember(int memberID) {
+            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+            return member; 
+        
+        }
 
         //delete member from link list
         public Boolean DeleteMember(int memberID) {
