@@ -49,6 +49,21 @@ namespace PizzaController.Controllers
             return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
         }
 
+        //[GET("/accountmanager/account")]
+        //public List<Member> GetAllMembers()
+        //{
+        //    var members = new List<Member>();
+        //    try
+        //    {
+        //
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new HttpRequestException(e.Message);
+        //    }
+        //    return members;
+        //}
+
         /********************************************
          * Provider
          * *****************************************/
@@ -69,23 +84,6 @@ namespace PizzaController.Controllers
                                      string city, string state, string ZIPcode, long bankAccount)
         {
             return providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
-        }
-
-        [GET("/accountmanager/account/")]
-        public List<Provider> GetAllProviders()
-        {
-            var providers = new List<Provider>();
-
-            try
-            {
-                providers = providerList.GetProviders();
-            }
-            catch (Exception e)
-            {
-                throw new HttpRequestException(e.Message);
-            }
-
-            return providers;
         }
 
         /********************************
