@@ -60,7 +60,7 @@ namespace PizzaRepository.ListClass
 
         //Update manager status
         public Boolean UpdateManager(string name, int managerID, string streetAddress,
-                                     string city, string state, string ZIPcode, int status)
+                                     string city, string state, string ZIPcode)
         {
             Manager manager = managers.Where(node => node.ID == managerID).FirstOrDefault();
             if (manager != null)

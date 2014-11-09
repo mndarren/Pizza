@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//usri
+using PizzaModels.Models;
 
 namespace PizzaRepository.ListInterface
 {
     public interface IManagerList
     {
-        //public bool add(Manager)
+
+        Boolean InsertManager(Manager manager);
+        Member GetManager(int managerID);
+        Boolean DeleteManager(int managerID);
+        Boolean UpdateManager(string name, int managerID, string streetAddress,
+                                     string city, string state, string ZIPcode);
     }
+    
 }

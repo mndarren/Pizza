@@ -74,7 +74,7 @@ namespace PizzaModels.Report
 			
 			    foreach (Service service in ServiceList.GetServicesByProviderID
 				    (provider.ID)
-				    .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate)
+				    .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
 			    {
 				    providerReport.AddService(service,
 					    ProviderList.GetProvider(service.GetMemberID()));
