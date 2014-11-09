@@ -46,23 +46,7 @@ namespace PizzaController.Controllers
         public Boolean UpdateMember([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
-            return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, bankAccount);
-        }
-
-        [GET("/accountmanager/account/")]
-        public List<Member> GetAllMembers()
-        {
-            var members = new List<Member>();
-
-            try
-            {
-                members = memberList.GetMembers();
-            }
-            catch(Exception e){
-                throw new HttpRequestException(e.Message);
-            }
-
-            return members;
+            return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
         }
 
         /********************************************
@@ -116,12 +100,14 @@ namespace PizzaController.Controllers
         
         /*************************************
          * validate member
-         * **********************************/.
+         * **********************************/
         [PUT("/accountmanager/account")]
-        public int ValidateMember(int memberID){
-            var members = memberList.GetMembers();
-            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
-            return member.Status;
+        public string ValidateMember(int memberID){
+            var member = memberList.GetMember(memberID);
+            if (member.Status == 0) { return "Validate!"; }
+            else if (member.Status == 1) { return "invalid!"; }
+            else if (member.Status == 2) { return "Suspend!"; }
+            else return null;
         }
         
     }
