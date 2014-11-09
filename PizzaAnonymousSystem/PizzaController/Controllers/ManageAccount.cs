@@ -87,7 +87,7 @@ namespace PizzaController.Controllers
             return providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
         }
 
-        [GET("/account manager/account/")]
+        [GET("/accountmanager/account/")]
         public List<Provider> GetAllProviders()
         {
             var providers = new List<Provider>();
@@ -101,9 +101,28 @@ namespace PizzaController.Controllers
                 throw new HttpRequestException(e.Message);
             }
 
-            return members;
+            return providers;
         }
 
-
+        /********************************
+         * Manager
+         * ************************************/
+        
+        
+        /**********************
+         * admin
+         * *******************/
+ 
+        
+        /*************************************
+         * validate member
+         * **********************************/.
+        [PUT("/accountmanager/account")]
+        public int ValidateMember(int memberID){
+            var members = memberList.GetMembers();
+            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+            return member.Status;
+        }
+        
     }
 }
