@@ -1,7 +1,7 @@
 ﻿/*@Class: CSCU531
  *@Author: Zhao Xie
  *@Date:11/6/2014
- *@File: Service.cs
+ *@File: ProviderDirectory.cs
  *@Description: this class contains Service objects
  */
 using PizzaRepository.ListInterface;
@@ -32,6 +32,7 @@ namespace PizzaRepository.ListClass
                     if (null == eService)
                     {
                         pizzaDB.Services.Add(MapServiceToEntity(newService));
+                        pizzaDB.SaveChanges(); //Apply changes to DB
                         success = true;
                     }
                     else success = false;
@@ -56,8 +57,10 @@ namespace PizzaRepository.ListClass
                 var eService = pizzaDB.Services
                     .Where(es => es.ServiceCode == serviceID).FirstOrDefault();
 
-                if (null != eService)
+                if (null != eService){
                     pizzaDB.Services.Remove(eService);
+                    pizzaDB.SaveChanges(); //Apply changes to DB
+                 }
                 else success = false;
             }
             catch (Exception e)
@@ -69,42 +72,95 @@ namespace PizzaRepository.ListClass
 
             return success;
         }
-        public bool UpdateService(Service newService)
+        public Service UpdateService(Service newService)
         {
-            var schedule = new Schedule();
+            var service = new Service();
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                if (null != updatedSchedule)
+                if (null != newService)
                 {
-                    var eSchedule = pizzaDB.ReportSchedules
-                        .Where(es => es.ReportType == updatedSchedule.ReportType).FirstOrDefault();
+                    var eService = pizzaDB.Services
+                        .Where(es => es.ServiceCode == newService.ServiceCode).FirstOrDefault();
 
-                    var updatedWeek = new byte();
-                    if (null != eSchedule
-                        && byte.TryParse(updatedSchedule.Week.ToString(), out updatedWeek))
+                    if (null != eService)
                     {
-                        foreach (var es in pizzaDB.ReportSchedules
-                            .Where(es => es.ReportType == updatedSchedule.ReportType))
+                        foreach (var es in pizzaDB.Services
+                            .Where(es => es.ServiceCode == newService.ServiceCode))
                         {
-                            es.WeekDay = updatedWeek;
-                            es.Time = updatedSchedule.Time.Ticks;
+                            es.ServiceName = newService.ServiceName;
+                            es.ServiceFee = newService.ServiceFee;
                         }
-
-                        schedule = GetSchedule(updatedSchedule.ReportType);
+                        pizzaDB.SaveChanges(); //Apply changes to DB
+                        service = GetService(newService.ServiceName);
                     }
-                    else schedule = null;
+                    else service = null;
                 }
-                else schedule = null;
+                else service = null;
             }
             catch (Exception e)
             {
-                schedule = null;
+                service = null;
                 //If we have time, record the exception
                 throw new Exception(e.Message);
             }
 
-            return schedule;
+            return service;
         }
+        public Service GetService(string serviceName)
+        {
+            var service = new Service();
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                var eService = pizzaDB.Services
+                    .Where(es => es.ServiceName == serviceName).FirstOrDefault();
+
+                if (null != eService)
+                   service = MapEntityToService(eService);
+                else service = null;
+            }
+            catch (Exception e)
+            {
+                service = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return service;
+        }
+
+        #region Entity DataType Mapping
+
+        private Entity.Service MapServiceToEntity(Service service)
+        {
+            var eService = new Entity.Service();
+
+            if (null != service)
+            {
+                eService.ServiceCode = service.ServiceCode;
+                eService.ServiceName = service.ServiceName;
+                eService.ServiceFee = service.ServiceFee;
+            }
+
+            return eService;
+        }
+
+        private Service MapEntityToService(Entity.Service eService)
+        {
+            var service = new Service();
+
+            if (null != eService)
+            {
+                service.ServiceCode = eService.ServiceCode;
+                service.ServiceName = eService.ServiceName;
+                service.ServiceFee = eService.ServiceFee;
+            }
+
+            return service;
+        }
+
+        #endregion
     }
 }
+    
