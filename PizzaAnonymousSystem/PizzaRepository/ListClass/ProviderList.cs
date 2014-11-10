@@ -15,7 +15,7 @@ namespace PizzaRepository.ListClass
 {
     public class ProviderList : IProviderList
     {
-        public List<Provider> GetProviders() 
+        public List<Provider> GetAllProviders() 
         {
             List<Provider> providers = new List<Provider>();
             var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
@@ -178,11 +178,5 @@ namespace PizzaRepository.ListClass
         }
 
         #endregion
-
-
-        public List<Provider> GetAllProviders()
-        {
-            return providers;
-        }
     }
 }

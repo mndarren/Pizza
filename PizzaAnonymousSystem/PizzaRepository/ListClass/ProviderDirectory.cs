@@ -17,9 +17,9 @@ namespace PizzaRepository.ListClass
     {
         public List<Service> GetServices()
         {
-            List<Provider> services = new List<Provider>();
+            List<Service> services = new List<Service>();
             var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-            foreach (var es in pizzaDB.Providers)
+            foreach (var es in pizzaDB.Services)
             {
                 services.Add(MapEntityToService(es));
             }
