@@ -65,12 +65,12 @@ namespace PizzaController.Controllers
             return providerDirectory.AddService(newService);
         }
         [GET("/servicemanager/services/")]
-        public UpdateService([FromBody]Service newService)
+        public Service UpdateService([FromBody]Service newService)
         {
             providerDirectory.UpdateService(newService);
         }
         [GET("/servicemanager/services/")]
-        public DeleteService([FromBody]int serviceCode)
+        public bool DeleteService([FromBody]int serviceCode)
         {
             providerDirectory.DeleteService(serviceCode);
         }
