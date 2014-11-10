@@ -1,7 +1,7 @@
 ﻿/*@Class: CSCU531
  *@Author: Zhao Xie
  *@Date:11/6/2014
- *@File: Service.cs
+ *@File: Provider.cs
  *@Description: this class contains Provider's info
  */
 using System;

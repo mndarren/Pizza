@@ -221,8 +221,8 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="ServiceCode" Type="Int32" Nullable="false" />
-          <Property Name="ServiceName" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
-          <Property Name="ServiceFee" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Fee" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
         <Association Name="Subscribing_Member">
           <End Role="Members" Type="PizzaDBModel.Member" Multiplicity="1" />
@@ -332,8 +332,8 @@
               <MappingFragment StoreEntitySet="Services">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
-                <ScalarProperty Name="ServiceName" ColumnName="Name" />
-                <ScalarProperty Name="ServiceFee" ColumnName="Fee" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Fee" ColumnName="Fee" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

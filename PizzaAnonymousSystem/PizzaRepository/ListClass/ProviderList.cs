@@ -75,30 +75,30 @@ namespace PizzaRepository.ListClass
             return success;
         }
 
-        public Provider UpdateProvider(Provider newProvider)
+        public Provider UpdateProvider(string name, int providerID, string streetAddress,
+                                     string city, string state, string ZIPcode,long bankAccount)
         {
             var Provider = new Provider();
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                if (null != newProvider)
+                var eProvider = pizzaDB.Providers
+                        .Where(es => es.ID == providerID).FirstOrDefault();
+
+                if (null != eProvider)
                 {
-                    var eProvider = pizzaDB.Providers
-                        .Where(es => es.ID == newProvider.ID).FirstOrDefault();
-
-                    if (null != eProvider)
+                    foreach (var es in pizzaDB.Providers
+                        .Where(es => es.ID == providerID))
                     {
-                        foreach (var es in pizzaDB.Providers
-                            .Where(es => es.ID == newProvider.ID))
-                        {
-                            es.Name = newProvider.Name;
-                            es.StreetAddress = newProvider.StreetAddress;
-
-                        }
-                        pizzaDB.SaveChanges(); //Apply changes to DB
-                        Provider = GetProvider(newProvider.ID);
+                        es.Name = name;
+                        es.StreetAddress = streetAddress;
+                        es.City = city;
+                        es.State = state;
+                        es.ZipCode = ZIPcode;
+                        es.BankAccount = bankAccount;
                     }
-                    else Provider = null;
+                    pizzaDB.SaveChanges(); //Apply changes to DB
+                    Provider = GetProvider(providerID);
                 }
                 else Provider = null;
             }
@@ -111,8 +111,6 @@ namespace PizzaRepository.ListClass
 
             return Provider;
         }
-
-
         public Provider GetProvider(int providerID)
         {
             var Provider = new Provider();
@@ -147,23 +145,30 @@ namespace PizzaRepository.ListClass
                 eProvider.ID = provider.ID;
                 eProvider.Name = provider.Name;
                 eProvider.StreetAddress = provider.StreetAddress;
+                eProvider.State = provider.State;
+                eProvider.City = provider.City;
+                eProvider.ZipCode = provider.ZipCode;
+                eProvider.BankAccount = provider.BankAccount;
             }
-
             return eProvider;
         }
 
         private Provider MapEntityToProvider(Entity.Provider eProvider)
         {
-            var Provider = new Provider();
+            var provider = new Provider();
 
             if (null != eProvider)
             {
-                Provider.ID = eProvider.ID;
-                Provider.Name = eProvider.Name;
-                Provider.StreetAddress = eProvider.StreetAddress;
+                provider.ID = eProvider.ID;
+                provider.Name = eProvider.Name;
+                provider.StreetAddress = eProvider.StreetAddress;
+                provider.State = eProvider.State;
+                provider.City = eProvider.City;
+                provider.ZipCode = eProvider.ZipCode;
+                provider.BankAccount = (long)eProvider.BankAccount;
             }
 
-            return Provider;
+            return provider;
         }
 
         #endregion

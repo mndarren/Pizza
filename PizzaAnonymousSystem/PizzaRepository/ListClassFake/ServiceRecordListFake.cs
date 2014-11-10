@@ -9,19 +9,13 @@ namespace PizzaRepository.ListClassFake
 {
     public class ServiceRecordListFake : IServiceRecordList
     {
-        private bool _returnError;
 
-        public ServiceRecordListFake(bool returnError = false){
-            this._returnError = returnError;
-        }
-
-        public bool ReturnError { get { return _returnError; } set { _returnError = value; } }
-
-        public Boolean InsertServiceRecord(ServiceRecord _serviceRecord)
+        public bool InsertServiceRecord(ServiceRecord _serviceRecord)
         {
-            return _returnError;
+            throw new NotImplementedException();
         }
-        //public List<ServiceRecord> GetServiceRecords();
+
+
 
         public ServiceRecord GetServiceRecord(int serviceCodeID)
         {

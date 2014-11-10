@@ -74,5 +74,11 @@ namespace PizzaRepository.ListClass
             }
             else { return false; }
         }
+
+
+        Member IManagerList.GetManager(int managerID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
