@@ -113,7 +113,7 @@ namespace PizzaRepository.ListClass
            {
                var pizzDB = new Entity.PizzaDBEntities();
               
-               Member eMember = members.Where(node => node.ID == memberID).FirstOrDefault();
+               var eMember = pizzDB.Members.Where(node => node.ID == memberID).FirstOrDefault();
 
                if (eMember != null)
                {
@@ -172,9 +172,16 @@ namespace PizzaRepository.ListClass
 
         #endregion
 
-
         public List<Member> GetAllMembers()
         {
+            var member = new Member();
+            var pizzDB = new Entity.PizzaDBEntities();
+
+            foreach (var result in pizzDB.Members)
+            {
+                member = MapEntityToMember(result);
+                members.Add(member);
+            }
             return members;
         }
     }
