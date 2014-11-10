@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PizzaModels.Models;
 
 namespace PizzaRepository.Tests.ListClass
 {
@@ -10,7 +11,7 @@ namespace PizzaRepository.Tests.ListClass
         [TestCategory("ScheduleList")]
         public void AddSchedule()
         {
-            Assert.Fail("not implemented yet");
+            //var newSchedule = new Schedule(3, 
         }
 
         [TestMethod]
