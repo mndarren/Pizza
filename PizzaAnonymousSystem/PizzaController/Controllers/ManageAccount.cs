@@ -29,19 +29,19 @@ namespace PizzaController.Controllers
         /************************************
          * member
          ***********************************/
-        [POST("/accountmanager/account/")]
+        [POST("api/accountmanager/account/member")]
         public Boolean AddMember([FromBody]Member member)
         {   
            return memberList.InsertMember(member);
         }
 
-        [DELETE("/accountmanager/account/")]
-        public Boolean DeleteMember([FromBody]int memberID)
+        [DELETE("api/accountmanager/account/member/{memberID}")]
+        public Boolean DeleteMember([FromUri]int memberID)
         {
             return memberList.DeleteMember(memberID);
         }
 
-        [POST("/accountmanager/account")]
+        [POST("api/accountmanager/account/member")]
         public Member UpdateMember([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
@@ -66,19 +66,19 @@ namespace PizzaController.Controllers
         /********************************************
          * Provider
          * *****************************************/
-        [POST("/accountmanager/account/")]
+        [POST("api/accountmanager/account/provider")]
         public Boolean AddProvider([FromBody]Provider provider)
         {
             return providerList.AddProvider(provider);
         }
 
-        [DELETE("/accountmanager/account/")]
-        public Boolean DeleteProvider([FromBody]int providerID)
+        [DELETE("api/accountmanager/account/provider/{providerID}")]
+        public Boolean DeleteProvider([FromUri]int providerID)
         {
             return providerList.DeleteProvider(providerID);
         }
 
-        [POST("/accountmanager/account")]
+        [POST("api/accountmanager/account/provider")]
         public Provider UpdateProvider([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, long bankAccount)
         {
@@ -89,19 +89,19 @@ namespace PizzaController.Controllers
         /********************************
          * Manager
          * ************************************/
-        [POST("/accountmamnager/account")]
+        [POST("api/accountmamnager/account/manager")]
         public Boolean AddManager([FromBody]Manager manager)
         {
             return managerList.InsertManager(manager);
         }
         
-        [DELETE("/accountmanager/account")]
-        public Boolean DeleteManager([FromBody]int managerID)
+        [DELETE("api/accountmanager/account/manager/{managerID}")]
+        public Boolean DeleteManager([FromUri]int managerID)
         {
             return managerList.DeleteManager(managerID);
         }
 
-        [POST("/accountmanager/account")]
+        [POST("api/accountmanager/account/manager")]
         public Boolean UpdateManager([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode)
         {
@@ -112,19 +112,19 @@ namespace PizzaController.Controllers
         /**********************
          * admin
          * *******************/
-        [POST("/accountmanager/account")]
+        [POST("api/accountmanager/account/admin")]
         public Boolean addAdmin([FromBody] Admin admin)
         {
             return adminList.addAdmin(admin);
         }
 
-        [DELETE("/accountmanager/account")]
-        public Boolean DeleteAdmin([FromBody]int adminID)
+        [DELETE("api/accountmanager/account/admin/{adminID}")]
+        public Boolean DeleteAdmin([FromUri]int adminID)
         {
             return adminList.DeleteAdmin(adminID);
         }
 
-        [POST("/accountmanager/account")]
+        [POST("api/accountmanager/account/admin")]
         public Admin UpdateAdmin([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode)
         {
@@ -134,8 +134,8 @@ namespace PizzaController.Controllers
         /*************************************
          * validate member
          * **********************************/
-        [PUT("/accountmanager/account")]
-        public string ValidateMember(int memberID){
+        [GET("api/accountmanager/validation/member/{memberID}")]
+        public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
             if (member.Status == 0) { return "Validate!"; }
             else if (member.Status == 1) { return "invalid!"; }
