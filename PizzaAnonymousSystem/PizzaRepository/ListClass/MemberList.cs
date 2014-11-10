@@ -12,43 +12,41 @@ namespace PizzaRepository.ListClass
 {
     public class MemberList : IMemberList
     {
-        private List<Member> members = new List<Member>();
+        private static List<Member> memberList;// = new List<Member>();
 
-        private static MemberList memberList;
+        //private static MemberList memberList;
 
         //create a member list instance
-        public static MemberList Instance(){
-            if (memberList == null){
-                return (memberList = new MemberList());
-            }
-            else{
-                return memberList;
+
+
+        public MemberList() {
+            if (memberList == null)
+            {
+                memberList = new List<Member>();
             }
         }
-
-        public MemberList() { }
 
         //add member into list
         public Boolean InsertMember(Member member){
             if (member != null){
-                members.Add(member);
+                memberList.Add(member);
                 return true;
             }
             else { return false; }
         }
 
         public Member GetMember(int memberID) {
-            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+            Member member = memberList.Where(node => node.ID == memberID).FirstOrDefault();
             return member; 
         
         }
 
         //delete member from link list
         public Boolean DeleteMember(int memberID) {
-            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+            Member member = memberList.Where(node => node.ID == memberID).FirstOrDefault();
             if (member != null)
             {
-                members.Remove(member);
+                memberList.Remove(member);
                 return true;
             }
             else { return false; }
@@ -58,7 +56,7 @@ namespace PizzaRepository.ListClass
         public Boolean UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
-           Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
+            Member member = memberList.Where(node => node.ID == memberID).FirstOrDefault();
            if (member != null)
            {
                member.Name = name;
@@ -70,6 +68,11 @@ namespace PizzaRepository.ListClass
                return true;
            }
            else { return false; }
+        }
+
+        public List<Member> GetAllMembers()
+        {
+            return memberList;
         }
     }
 }

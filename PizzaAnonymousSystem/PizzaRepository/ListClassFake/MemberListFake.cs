@@ -22,10 +22,7 @@ namespace PizzaRepository.ListClassFake
             return !_returnError;
         }
 
-       // public List<Member> GetMembers()
-       // {
-       //
-       // }
+
 
         public Boolean DeleteMember(int memberID)
         {
@@ -36,5 +33,39 @@ namespace PizzaRepository.ListClassFake
             return !_returnError;
         }
 
+        public bool UpdateMember(string name, int memberID, string streetAddress, string city, string state, string ZIPcode, int status)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Member> GetAllMembers()
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IMemberList.InsertMember(Member member)
+        {
+            throw new NotImplementedException();
+        }
+
+        Member IMemberList.GetMember(int memberID)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IMemberList.DeleteMember(int memberID)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IMemberList.UpdateMember(string name, int memberID, string streetAddress, string city, string state, string ZIPcode, int status)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Member> IMemberList.GetAllMembers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

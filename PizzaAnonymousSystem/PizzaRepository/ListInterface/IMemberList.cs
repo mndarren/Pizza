@@ -14,5 +14,7 @@ namespace PizzaRepository.ListInterface
         Boolean DeleteMember(int memberID);
         Boolean UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status);
+        List<Member> GetAllMembers();
+
     }
 }
