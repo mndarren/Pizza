@@ -172,5 +172,11 @@ namespace PizzaRepository.ListClass
         }
 
         #endregion
+
+
+        public List<Provider> GetAllProviders()
+        {
+            return providers;
+        }
     }
 }

@@ -48,5 +48,11 @@ namespace PizzaRepository.ListClassFake
         {
             return !_returnError;
         }
+
+
+        public List<Provider> GetAllProviders()
+        {
+            return new List<Provider>();
+        }
     }
 }
