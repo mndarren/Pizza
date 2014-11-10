@@ -56,42 +56,88 @@ namespace PizzaRepository.ListClass
             return success;
         }
 
-
+        //need to fix this
         public Member GetMember(int memberID) {
-            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
-            return member; 
-        
+            var member = new Member();
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                var tempMember = pizzaDB.Members
+                    .Where(es => es.ID == memberID).FirstOrDefault();
+
+                if (null != tempMember)
+                    member = MapEntityToMember(tempMember);
+                else member = null;
+            }
+            catch (Exception e)
+            {
+                member = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return member;
         }
 
         //delete member from link list
-        public Boolean DeleteMember(int memberID) {
-            Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
-            if (member != null)
+        public Boolean DeleteMember(int memberID) { 
+            var success = false;
+            try
             {
-                members.Remove(member);
-                return true;
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                var tempMember = pizzaDB.Members
+                    .Where(es => es.ID == memberID).FirstOrDefault();
+
+                if (null != tempMember)
+                {
+                    pizzaDB.Members.Remove(tempMember);
+                    pizzaDB.SaveChanges(); //Apply changes to DB
+                }
+                else success = false;
             }
-            else { return false; }
+            catch (Exception e)
+            {
+                success = false;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+            return success;
         }
              
         //Update member status
-        public Boolean UpdateMember(string name, int memberID, string streetAddress,
+        public Member UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
-           Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
-           if (member != null)
+           var member = new Member();
+           try
            {
-               member.Name = name;
-               member.StreetAddress = streetAddress;
-               member.City = city;
-               member.State = state;
-               member.ZipCode = ZIPcode;
-               member.Status = status;
-               return true;
-           }
-           else { return false; }
-        }
+               var pizzDB = new Entity.PizzaDBEntities();
+              
+               Member eMember = members.Where(node => node.ID == memberID).FirstOrDefault();
 
+               if (eMember != null)
+               {
+                   foreach (var es in pizzDB.Members.Where(es => es.ID == memberID))
+                   {
+                       es.Name = name;
+                       es.StreetAddress = streetAddress;
+                       es.City = city;
+                       es.State = state;
+                       es.ZipCode = ZIPcode;
+                       es.Status = status;
+                   }
+                   pizzDB.SaveChanges();
+                   member = GetMember(memberID);
+               }
+               else member = null;
+           }
+           catch (Exception e)
+           {
+               member = null;
+               throw new Exception(e.Message);
+           }
+           return member;
+         }
 
         #region Entity DataType Mapping
 
@@ -109,7 +155,7 @@ namespace PizzaRepository.ListClass
             return tempMember;
         }
 
-        private Member MapEntityToProvider(Entity.Provider tempMember)
+        private Member MapEntityToMember(Entity.Member tempMember)
         {
             var Member = new Member();
 

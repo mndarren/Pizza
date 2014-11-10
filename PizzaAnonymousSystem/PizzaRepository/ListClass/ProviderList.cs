@@ -74,6 +74,7 @@ namespace PizzaRepository.ListClass
 
             return success;
         }
+
         public Provider UpdateProvider(Provider newProvider)
         {
             var Provider = new Provider();
@@ -110,6 +111,8 @@ namespace PizzaRepository.ListClass
 
             return Provider;
         }
+
+
         public Provider GetProvider(int providerID)
         {
             var Provider = new Provider();
