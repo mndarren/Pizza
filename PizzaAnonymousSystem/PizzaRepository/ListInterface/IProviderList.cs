@@ -14,5 +14,7 @@ namespace PizzaRepository.ListInterface
         Provider UpdateProvider(string name, int providerID, string streetAddress,
                                 string city, string state, string ZIPcode, long bankAccount);
         Provider GetProvider(int providerID);
+
+        List<Provider> GetAllProviders();
     }
 }
