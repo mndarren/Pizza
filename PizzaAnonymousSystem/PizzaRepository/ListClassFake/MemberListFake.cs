@@ -9,29 +9,18 @@ namespace PizzaRepository.ListClassFake
 {
     public class MemberListFake : IMemberList
     {
-        private bool _returnError;
 
-        public MemberListFake(bool returnError = false){
-            this._returnError = returnError;
-        }
-
-        public bool ReturnError { get { return _returnError; } set { _returnError = value; } }
-
-        public Boolean InsertMember(Member member)
+        public bool InsertMember(Member member)
         {
-            return !_returnError;
-        }
-
-        public Boolean DeleteMember(int memberID)
-        {
-            return !_returnError;
-        }
-        public Boolean UpdateMember(int memberID, int _status)
-        {
-            return !_returnError;
+            throw new NotImplementedException();
         }
 
         public Member GetMember(int memberID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteMember(int memberID)
         {
             throw new NotImplementedException();
         }

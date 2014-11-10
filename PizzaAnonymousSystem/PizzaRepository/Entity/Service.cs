@@ -16,7 +16,7 @@ namespace PizzaRepository.Entity
     {
         public int ID { get; set; }
         public int ServiceCode { get; set; }
-        public string ServiceName { get; set; }
-        public decimal ServiceFee { get; set; }
+        public string Name { get; set; }
+        public decimal Fee { get; set; }
     }
 }

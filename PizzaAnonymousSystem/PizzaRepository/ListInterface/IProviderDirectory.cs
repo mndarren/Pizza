@@ -10,7 +10,7 @@ namespace PizzaRepository.ListInterface
     public interface IProviderDirectory
     {
         bool AddService(Service newService);
-        bool DeleteServiceItem(int serviceID);
+        bool DeleteService(int serviceID);
         Service UpdateService(Service newService);
         Service GetService(string serviceName);
     }
