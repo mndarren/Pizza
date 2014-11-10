@@ -32,7 +32,7 @@ namespace PizzaController.Controllers
         /// </summary>
         /// <returns>a list of member reports</returns>
         [GET("/reportmanager/weeklymemberreports/")]
-        public List<MemberReport> GetWeeklyMemberReports()
+        public List<MemberReport> GetWeeklyMemberReports1()
         {
             var memberReports = new List<MemberReport>();
 
@@ -48,7 +48,7 @@ namespace PizzaController.Controllers
             return memberReports;
         }
 
-                public ManageReport() { }
+       public ManageReport() { }
 
         public List<MemberReport> GetWeeklyMemberReports()
         {
@@ -56,7 +56,7 @@ namespace PizzaController.Controllers
 
             try
             {
-                Schedule schedule = ScheduleList.GetSchedule(
+                Schedule schedule = scheduleList.GetSchedule(
                     ReportType.MemberReportType);
                 TimeSpan startDate;//calculate start date from schedule;
                 TimeSpan endDate; //calculate end date from schedule;
@@ -93,7 +93,7 @@ namespace PizzaController.Controllers
 
 	    try
 	    {
-		    Schedule schedule = ScheduleList.GetSchedule(
+            Schedule schedule = scheduleList.GetSchedule(
 			    ReportType.ProviderReportType);
 		    TimeSpan startDate;//calculate start date from schedule;
 		    TimeSpan endDate;//calculate end date from schedule;
@@ -130,7 +130,7 @@ namespace PizzaController.Controllers
 
             try
             {
-                Schedule schedule = ScheduleList.GetSchedule(
+                Schedule schedule = scheduleList.GetSchedule(
                     ReportType.EFTReportType);
                 TimeSpan startDate; //calculate start date from schedule;
                 TimeSpan endDate; //calculate end date from schedule;
@@ -143,7 +143,7 @@ namespace PizzaController.Controllers
                     eftReport.providerName = provider.Name;
 
                     double totalFee = 0.0;
-                    foreach (Service service in ServiceList.GetServicesByProviderID
+                    foreach (Service service in providerDirectory.GetServicesByProviderID
                         (provider.ID)
                         .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
                     {
@@ -170,7 +170,7 @@ namespace PizzaController.Controllers
 
             try
             {
-                Member member = MemberList.GetMember(memberID);
+                Member member = memberList.GetMember(memberID);
 
                 if (null != member)
                 {
@@ -208,7 +208,7 @@ namespace PizzaController.Controllers
                 updatedSchedule.Week = weekday;
                 updatedSchedule.Time = time;
 
-                success = ScheduleList.UpdateSchedule(updatedSchedule);
+                success = scheduleList.UpdateSchedule(updatedSchedule);
             }
             catch (Exception e)
             {
@@ -233,7 +233,7 @@ namespace PizzaController.Controllers
                 updatedSchedule.Week = weekday;
                 updatedSchedule.Time = time;
 
-                success = ScheduleList.UpdateSchedule(updatedSchedule);
+                success = scheduleList.UpdateSchedule(updatedSchedule);
             }
             catch (Exception e)
             {
@@ -257,7 +257,7 @@ namespace PizzaController.Controllers
                 updatedSchedule.Week = weekday;
                 updatedSchedule.Time = time;
 
-                success = ScheduleList.UpdateSchedule(updatedSchedule);
+                success = scheduleList.UpdateSchedule(updatedSchedule);
             }
             catch (Exception e)
             {
@@ -278,7 +278,7 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
-                    var services = serviceList.GetServicesByProviderID(providerID)
+                    var services = providerDirectory.GetServicesByProviderID(providerID)
                         .Where(s => s.GetDate() <= endDate
                             && s.GetDate() > startDate);
 
@@ -309,7 +309,7 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
-                    var services = serviceList.GetServicesByProviderID(providerID)
+                    var services = providerDirectory.GetServicesByProviderID(providerID)
                         .Where(s => s.GetDate() <= endDate
                             && s.GetDate() > startDate);
 
