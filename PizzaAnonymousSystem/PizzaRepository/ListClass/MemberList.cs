@@ -104,7 +104,7 @@ namespace PizzaRepository.ListClass
             return success;
         }
              
-        //Update member status
+        //Update member
         public Member UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
@@ -124,7 +124,7 @@ namespace PizzaRepository.ListClass
                        es.City = city;
                        es.State = state;
                        es.ZipCode = ZIPcode;
-                       es.Status = status;
+                       es.Status = (short)status;
                    }
                    pizzDB.SaveChanges();
                    member = GetMember(memberID);
@@ -138,6 +138,7 @@ namespace PizzaRepository.ListClass
            }
            return member;
          }
+
 
         #region Entity DataType Mapping
 
