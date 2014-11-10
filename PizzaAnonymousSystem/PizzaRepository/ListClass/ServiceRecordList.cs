@@ -25,12 +25,15 @@ namespace PizzaRepository.ListClass
 
         //add service record into list
         public Boolean InsertServiceRecord(ServiceRecord _serviceRecord) {
-            if (_serviceRecord != null)
+            var success = false;
+            try
             {
-                _serviceRecords.Add(_serviceRecord);
-                return true;
+                var pizzDB = new Entity.PizzaDBEntities();
+                if (_serviceRecord != null)
+                {
+                    var tempRecord = pizzDB.Members.Where()
+                }
             }
-            else { return false; }
         }
 
         public ServiceRecord GetServiceRecord(int serviceRecordID) {

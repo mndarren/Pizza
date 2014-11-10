@@ -23,5 +23,9 @@ namespace PizzaRepository.ListClassFake
         }
         //public List<ServiceRecord> GetServiceRecords();
 
+        public ServiceRecord GetServiceRecord(int serviceCodeID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

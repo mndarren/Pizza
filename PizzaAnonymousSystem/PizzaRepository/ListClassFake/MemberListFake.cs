@@ -31,5 +31,14 @@ namespace PizzaRepository.ListClassFake
             return !_returnError;
         }
 
+        public Member GetMember(int memberID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Member UpdateMember(string name, int memberID, string streetAddress, string city, string state, string ZIPcode, int status)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
