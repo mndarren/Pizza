@@ -41,18 +41,16 @@ namespace PizzaController.Controllers
         [GET("/servicemanager/services/")]
         public List<Service> GetAllServices()
         {
-            var services = new List<Service>();
+            //var services = new List<Service>();
 
             try
             {
-
+                return providerDirectory.GetServices();
             }
             catch (Exception e)
             {
                 throw new HttpRequestException(e.Message);
             }
-
-            return services;
         }
         [GET("/servicemanager/services/")]
         public bool AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 

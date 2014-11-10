@@ -17,7 +17,7 @@ namespace PizzaRepository.ListClass
     {
         private List<Service> services = new List<Service>();
         public ProviderDirectory(){}
-        public List<Service> Services{get {return services;}}
+        public List<Service> GetServices(){return services;}
         public bool AddService(Service newService)
         {
             var success = false;

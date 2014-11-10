@@ -47,5 +47,9 @@ namespace PizzaRepository.ListClassFake
         {
             return !_returnError;
         }
+        public List<Service> GetServices()
+        {
+            return new List<Service>();
+        }
     }
 }

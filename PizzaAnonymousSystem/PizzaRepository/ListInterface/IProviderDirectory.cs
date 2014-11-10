@@ -13,5 +13,6 @@ namespace PizzaRepository.ListInterface
         bool DeleteService(int serviceID);
         Service UpdateService(Service newService);
         Service GetService(string serviceName);
+        List<Service> GetServices();
     }
 }

@@ -19,7 +19,12 @@ namespace PizzaRepository.Tests.ListClass
         {
             Assert.Fail("not implemented yet");
         }
-
+        [TestMethod]
+        [TestCategory("ProviderDirectory")]
+        public void GetServices()
+        {
+            Assert.Fail("not implemented yet");
+        }
         [TestMethod]
         [TestCategory("ProviderDirectory")]
         public void UpdateService()
