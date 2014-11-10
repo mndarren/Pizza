@@ -13,15 +13,15 @@ namespace PizzaController.Controllers
 {
     public class ManageReport : ApiController
     {
-        private readonly IMemberList memberList;
+        private readonly IMemberList ml;
         private readonly IProviderList providerList;
         private readonly IProviderDirectory providerDirectory;
         private readonly IScheduleList scheduleList;
 
-        public ManageReport(IMemberList memberList, IProviderList providerList,
+        public ManageReport(IMemberList ml, IProviderList providerList,
             IProviderDirectory providerDirectory, IScheduleList scheduleList)
         {
-            this.memberList = memberList;
+            this.ml = ml;
             this.providerList = providerList;
             this.providerDirectory = providerDirectory;
             this.scheduleList = scheduleList;
@@ -61,17 +61,17 @@ namespace PizzaController.Controllers
                 TimeSpan startDate;//calculate start date from schedule;
                 TimeSpan endDate; //calculate end date from schedule;
 
-                memberList = memberList.GetAllMembers();
+                List<Member> memberList = ml.GetAllMembers();
                 foreach (Member member in memberList)
                 {
                     MemberReport memberReport = new MemberReport();
                     memberReport.SetMemberInformation(member);
 
-                    foreach (Service s in member.GetServices()
-                        .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
+                    foreach (Service s in member.GetServices())
+                       // .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
                     {
-                        memberReport.AddService(service,
-                            ProviderList.GetProvider(service.GetProviderID()));
+                       // memberReport.AddService(service,
+                       //     ProviderList.GetProvider(service.GetProviderID()));
                     }
 
                     memberReports.Add(memberReport);
@@ -98,19 +98,20 @@ namespace PizzaController.Controllers
 		    TimeSpan startDate;//calculate start date from schedule;
 		    TimeSpan endDate;//calculate end date from schedule;
 		
-		    Provider providers = providerList.GetAllProviders();
+		    List<Provider> providers = providerList.GetAllProviders();
 		    foreach (Provider provider in providers)
 		    {
 			    ProviderReport providerReport = new ProviderReport();
 			    providerReport.Provider = provider;//SetProviderInformation(provider);
 			
+                /*
 			    foreach (Service service in ServiceList.GetServicesByProviderID
 				    (provider.ID)
 				    .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
 			    {
 				    providerReport.AddService(service,
 					    ProviderList.GetProvider(service.GetMemberID()));
-			    }
+			    }*/
 
 			    providerReports.Add(providerReport);
 		    }
@@ -135,7 +136,7 @@ namespace PizzaController.Controllers
                 TimeSpan startDate; //calculate start date from schedule;
                 TimeSpan endDate; //calculate end date from schedule;
 
-                Provider providers = providerList.GetAllProviders();
+                List<Provider> providers = providerList.GetAllProviders();
                 foreach (Provider provider in providers)
                 {
                     var eftReport = new EFTReport();
@@ -143,12 +144,13 @@ namespace PizzaController.Controllers
                     eftReport.providerName = provider.Name;
 
                     double totalFee = 0.0;
+                    /*
                     foreach (Service service in providerDirectory.GetServicesByProviderID
                         (provider.ID)
                         .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
                     {
                         totalFee += service.GetFee();
-                    }
+                    }*/
 
                     eftReports.Add(eftReport);
                 }
@@ -170,17 +172,18 @@ namespace PizzaController.Controllers
 
             try
             {
-                Member member = memberList.GetMember(memberID);
+                Member member = ml.GetMember(memberID);
 
                 if (null != member)
                 {
                     memberReport.SetMemberInformation(member);
 
-                    foreach (Service s in member.GetServices()
-                        .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
+                    foreach (Service s in member.GetServices())
+                     //   .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
                     {
-                        memberReport.AddService(service,
-                            ProviderList.GetProvider(service.GetProviderID()));
+
+                   //     memberReport.AddService(service,
+                   //         ProviderList.GetProvider(service.GetProviderID()));
                     }
                 }
                 else throw new Exception("member not found");
@@ -208,7 +211,7 @@ namespace PizzaController.Controllers
                 updatedSchedule.Week = weekday;
                 updatedSchedule.Time = time;
 
-                success = scheduleList.UpdateSchedule(updatedSchedule);
+                updatedSchedule = scheduleList.UpdateSchedule(updatedSchedule);
             }
             catch (Exception e)
             {
@@ -233,7 +236,7 @@ namespace PizzaController.Controllers
                 updatedSchedule.Week = weekday;
                 updatedSchedule.Time = time;
 
-                success = scheduleList.UpdateSchedule(updatedSchedule);
+               updatedSchedule = scheduleList.UpdateSchedule(updatedSchedule);
             }
             catch (Exception e)
             {
@@ -257,7 +260,7 @@ namespace PizzaController.Controllers
                 updatedSchedule.Week = weekday;
                 updatedSchedule.Time = time;
 
-                success = scheduleList.UpdateSchedule(updatedSchedule);
+                updatedSchedule = scheduleList.UpdateSchedule(updatedSchedule);
             }
             catch (Exception e)
             {
@@ -278,15 +281,15 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
-                    var services = providerDirectory.GetServicesByProviderID(providerID)
-                        .Where(s => s.GetDate() <= endDate
-                            && s.GetDate() > startDate);
-
+                    //var services = providerDirectory.GetServicesByProviderID(providerID)
+                     //   .Where(s => s.GetDate() <= endDate
+                    //        && s.GetDate() > startDate);
+                    /*
                     foreach (var service in services)
                     {
                         service.SetServiceVerified(true);
                         ServiceList.UpdateService(service);
-                    }
+                    }*/
                 }
                 else throw new Exception("invalid provider");
             }
@@ -309,6 +312,7 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
+                    /*
                     var services = providerDirectory.GetServicesByProviderID(providerID)
                         .Where(s => s.GetDate() <= endDate
                             && s.GetDate() > startDate);
@@ -317,7 +321,7 @@ namespace PizzaController.Controllers
                     {
                         service.SetFeeVerified(true);
                         ServiceList.UpdateService(service);
-                    }
+                    }*/
                 }
                 else throw new Exception("invalid provider");
             }
