@@ -25,7 +25,8 @@ namespace PizzaRepository.Tests.ListClass
         public void GetMember()
         {
             var list = new MemberList();
-            var result = list.GetMembers();
+            int memberID = 0;
+            var result = list.GetMember(memberID);
 
             Assert.IsNotNull(result);
 
@@ -47,7 +48,7 @@ namespace PizzaRepository.Tests.ListClass
         {
             var list = new MemberList();
             int memberID = 1, status = 0;
-            string name = cheng;
+            string name = "cheng";
             string streetAddress = "379 4th Ave S";
             string city = "Saint Cloud";
             string state = "MN";
