@@ -171,5 +171,11 @@ namespace PizzaRepository.ListClass
         }
 
         #endregion
+
+
+        public List<Member> GetAllMembers()
+        {
+            return members;
+        }
     }
 }

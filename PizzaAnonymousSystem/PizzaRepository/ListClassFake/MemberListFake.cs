@@ -29,5 +29,10 @@ namespace PizzaRepository.ListClassFake
         {
             throw new NotImplementedException();
         }
+
+        public List<Member> GetAllMembers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
