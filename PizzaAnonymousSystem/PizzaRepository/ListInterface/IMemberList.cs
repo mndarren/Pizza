@@ -12,7 +12,7 @@ namespace PizzaRepository.ListInterface
         Boolean InsertMember(Member member);
         Member GetMember(int memberID);
         Boolean DeleteMember(int memberID);
-        Boolean UpdateMember(string name, int memberID, string streetAddress,
+        Member UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status);
         List<Member> GetAllMembers();
 

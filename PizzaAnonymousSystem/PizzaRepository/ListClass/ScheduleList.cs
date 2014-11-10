@@ -27,6 +27,7 @@ namespace PizzaRepository.ListClass
                         && byte.TryParse(newSchedule.Week.ToString(), out newWeek))
                     {
                         pizzaDB.ReportSchedules.Add(MapScheduleToEntity(newSchedule));
+                        pizzaDB.SaveChanges(); //Apply changes to DB
                         success = true;
                     }
                     else success = false;
@@ -92,6 +93,7 @@ namespace PizzaRepository.ListClass
                             es.Time = updatedSchedule.Time.Ticks;
                         }
 
+                        pizzaDB.SaveChanges(); //Apply changes to DB
                         schedule = GetSchedule(updatedSchedule.ReportType);
                     }
                     else schedule = null;
@@ -120,7 +122,10 @@ namespace PizzaRepository.ListClass
                     .Where(es => es.ReportType == reportType).FirstOrDefault();
 
                 if (null != eSchedule)
+                {
                     pizzaDB.ReportSchedules.Remove(eSchedule);
+                    pizzaDB.SaveChanges(); //Apply changes to DB
+                }
                 else success = false;
             }
             catch (Exception e)

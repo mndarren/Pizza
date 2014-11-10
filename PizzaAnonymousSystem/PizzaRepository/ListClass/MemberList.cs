@@ -12,67 +12,164 @@ namespace PizzaRepository.ListClass
 {
     public class MemberList : IMemberList
     {
-        private static List<Member> memberList;// = new List<Member>();
+        private List<Member> members = new List<Member>();
 
-        //private static MemberList memberList;
+        private static MemberList memberList;
 
         //create a member list instance
-
-
-        public MemberList() {
-            if (memberList == null)
-            {
-                memberList = new List<Member>();
+        public static MemberList Instance(){
+            if (memberList == null){
+                return (memberList = new MemberList());
+            }
+            else{
+                return memberList;
             }
         }
+
+        public MemberList() { }
 
         //add member into list
         public Boolean InsertMember(Member member){
-            if (member != null){
-                memberList.Add(member);
-                return true;
+            var success = false;
+
+            try
+            {
+                var pizzDB = new Entity.PizzaDBEntities();
+                if (member != null)
+                {
+                    var tempmember = pizzDB.Members.Where(node => node.ID == member.ID).FirstOrDefault();
+                    if (tempmember == null)
+                    {
+                        pizzDB.Members.Add(MapMemberToEntity(member));
+                        pizzDB.SaveChanges();
+                        success = true;
+                    }
+                    else success = false;
+                }
+                else success = false;
             }
-            else { return false; }
+            catch (Exception e)
+            {
+                success = false;
+                throw new Exception(e.Message);
+            }
+            return success;
         }
 
+        //need to fix this
         public Member GetMember(int memberID) {
-            Member member = memberList.Where(node => node.ID == memberID).FirstOrDefault();
-            return member; 
-        
+            var member = new Member();
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                var tempMember = pizzaDB.Members
+                    .Where(es => es.ID == memberID).FirstOrDefault();
+
+                if (null != tempMember)
+                    member = MapEntityToMember(tempMember);
+                else member = null;
+            }
+            catch (Exception e)
+            {
+                member = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return member;
         }
 
         //delete member from link list
-        public Boolean DeleteMember(int memberID) {
-            Member member = memberList.Where(node => node.ID == memberID).FirstOrDefault();
-            if (member != null)
+        public Boolean DeleteMember(int memberID) { 
+            var success = false;
+            try
             {
-                memberList.Remove(member);
-                return true;
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                var tempMember = pizzaDB.Members
+                    .Where(es => es.ID == memberID).FirstOrDefault();
+
+                if (null != tempMember)
+                {
+                    pizzaDB.Members.Remove(tempMember);
+                    pizzaDB.SaveChanges(); //Apply changes to DB
+                }
+                else success = false;
             }
-            else { return false; }
+            catch (Exception e)
+            {
+                success = false;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+            return success;
         }
              
-        //Update member status
-        public Boolean UpdateMember(string name, int memberID, string streetAddress,
+        //Update member
+        public Member UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
-            Member member = memberList.Where(node => node.ID == memberID).FirstOrDefault();
-           if (member != null)
+           var member = new Member();
+           try
            {
-               member.Name = name;
-               member.StreetAddress = streetAddress;
-               member.City = city;
-               member.State = state;
-               member.ZipCode = ZIPcode;
-               member.Status = status;
-               return true;
+               var pizzDB = new Entity.PizzaDBEntities();
+              
+               Member eMember = members.Where(node => node.ID == memberID).FirstOrDefault();
+
+               if (eMember != null)
+               {
+                   foreach (var es in pizzDB.Members.Where(es => es.ID == memberID))
+                   {
+                       es.Name = name;
+                       es.StreetAddress = streetAddress;
+                       es.City = city;
+                       es.State = state;
+                       es.ZipCode = ZIPcode;
+                       es.Status = (short)status;
+                   }
+                   pizzDB.SaveChanges();
+                   member = GetMember(memberID);
+               }
+               else member = null;
            }
-           else { return false; }
+           catch (Exception e)
+           {
+               member = null;
+               throw new Exception(e.Message);
+           }
+           return member;
+         }
+
+
+        #region Entity DataType Mapping
+
+        private Entity.Member MapMemberToEntity(Member member)
+        {
+            var tempMember = new Entity.Member();
+
+            if (null != member)
+            {
+                tempMember.ID = member.ID;
+                tempMember.Name = member.Name;
+                tempMember.StreetAddress = member.StreetAddress;
+            }
+
+            return tempMember;
         }
 
-        public List<Member> GetAllMembers()
+        private Member MapEntityToMember(Entity.Member tempMember)
         {
-            return memberList;
+            var Member = new Member();
+
+            if (null != tempMember)
+            {
+                Member.ID = tempMember.ID;
+                Member.Name = tempMember.Name;
+                Member.StreetAddress = tempMember.StreetAddress;
+            }
+
+            return Member;
         }
+
+        #endregion
     }
 }

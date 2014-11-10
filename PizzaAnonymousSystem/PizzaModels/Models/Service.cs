@@ -13,14 +13,14 @@ namespace PizzaModels.Models
 {
     public class Service
     {
+        #region Private Members
         private int _serviceCode;
         private string _serviceName;
         private decimal _serviceFee;
+        #endregion
 
-        public Service ()
-	    {
-          _serviceCode = 0; _serviceName = null; _serviceFee = 0.0m;
-	    }
+        public Service (){}
+	    
         public Service(int code,string name,decimal fee)
         {
             _serviceCode = code; _serviceName = name; _serviceFee = (decimal)fee;

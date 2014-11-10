@@ -92,7 +92,7 @@ namespace PizzaController.Controllers
         [POST("/accountmamnager/account")]
         public Boolean AddManager([FromBody]Manager manager)
         {
-            return managerList.AddManager(manager);
+            return managerList.InsertManager(manager);
         }
         
         [DELETE("/accountmanager/account")]

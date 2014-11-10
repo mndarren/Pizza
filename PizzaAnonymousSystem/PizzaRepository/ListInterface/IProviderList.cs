@@ -9,10 +9,9 @@ namespace PizzaRepository.ListInterface
 {
     public interface IProviderList
     {
-        bool AddProvider(Provider newItem);
-        List<Provider> GetProviders();
-        bool DeleteProvider(int providerID);
-        bool UpdateProvider(string name, int ID, string streetAddress,
-                            string city, string state, string ZIPcode, long bankAccount);
+        bool AddProvider(Provider newProvider);
+        bool DeleteProvider(int ProviderID);
+        Provider UpdateProvider(Provider newProvider);
+        Provider GetProvider(int providerID);
     }
 }

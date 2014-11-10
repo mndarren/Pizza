@@ -7,8 +7,31 @@ namespace PizzaRepository.Tests.ListClass
     public class ProviderDirectory
     {
         [TestMethod]
-        public void TestMethod1()
+        [TestCategory("ProviderDirectory")]
+        public void AddService()
         {
+            Assert.Fail("not implemented yet");
+        }
+
+        [TestMethod]
+        [TestCategory("ProviderDirectory")]
+        public void GetService()
+        {
+            Assert.Fail("not implemented yet");
+        }
+
+        [TestMethod]
+        [TestCategory("ProviderDirectory")]
+        public void UpdateService()
+        {
+            Assert.Fail("not implemented yet");
+        }
+
+        [TestMethod]
+        [TestCategory("ProviderDirectory")]
+        public void DeleteService()
+        {
+            Assert.Fail("not implemented yet");
         }
     }
 }

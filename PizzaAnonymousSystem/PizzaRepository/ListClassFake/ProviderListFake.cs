@@ -3,29 +3,49 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PizzaModels.Models;
 
 namespace PizzaRepository.ListClassFake
 {
     public class ProviderListFake : IProviderList
     {
-        public bool AddProvider(PizzaModels.Models.Provider newItem)
+         private bool _returnError;
+
+         public ProviderListFake(bool returnError = false)
         {
-            throw new NotImplementedException();
+            this._returnError = returnError;
         }
 
-        public List<PizzaModels.Models.Provider> GetProviders()
+
+        public bool ReturnError { get { return _returnError; } set { _returnError = value; } }
+
+
+        public bool AddProvider(Provider newProvider)
         {
-            throw new NotImplementedException();
+            return !_returnError;
+        }
+
+        public Provider GetProvider(int providerID)
+        {
+            if (!_returnError)
+            {
+                return new Provider();
+            }
+            else return null;
+        }
+
+        public Provider UpdateProvider(Provider newProvider)
+        {
+            if (!_returnError)
+            {
+                return newProvider;
+            }
+            else return null;
         }
 
         public bool DeleteProvider(int providerID)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateProvider(string name, int ID, string streetAddress, string city, string state, string ZIPcode, long bankAccount)
-        {
-            throw new NotImplementedException();
+            return !_returnError;
         }
     }
 }
