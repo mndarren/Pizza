@@ -31,15 +31,81 @@ namespace PizzaRepository.ListClass
                 var pizzDB = new Entity.PizzaDBEntities();
                 if (_serviceRecord != null)
                 {
-                    var tempRecord = pizzDB.Members.Where()
+                    var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == _serviceRecord.ID).FirstOrDefault();
+                    if (tempRecord == null)
+                    {
+                        pizzDB.ServiceRecords.Add(MapRecordToEntity(_serviceRecord));
+                        pizzDB.SaveChanges();
+                        success = true;
+                    }
+                    else success = false;
                 }
+                else success = false;
             }
+            catch (Exception e)
+            {
+                success = false;
+                throw new Exception(e.Message);
+            } return success;
         }
 
         public ServiceRecord GetServiceRecord(int serviceRecordID) {
-            ServiceRecord serviceRecord = _serviceRecords.Where(node => node.ServiceRecordID == serviceRecordID).FirstOrDefault();
+            var serviceRecord = new ServiceRecord();
+            try
+            {
+                var pizzDB = new Entity.PizzaDBEntities();
+                var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == serviceRecordID).FirstOrDefault();
+
+                if (null != tempRecord) serviceRecord = MapEntityToRecord(tempRecord);
+                else serviceRecord = null;
+            }
+            catch (Exception e)
+            {
+                serviceRecord = null;
+                throw new Exception(e.Message);
+            }
             return serviceRecord;
         }
+
+        #region Entity DataType Mapping
+
+        private Entity.ServiceRecord MapRecordToEntity(ServiceRecord serviceRecord)
+        {
+            var tempRecord = new Entity.ServiceRecord();
+
+            if (null != serviceRecord)
+            {
+                tempRecord.ID = serviceRecord.ID;
+                tempRecord.ServiceCode = serviceRecord.ServiceCode;
+                tempRecord.MemberID = serviceRecord.MemberNumber;
+                tempRecord.ProviderID = serviceRecord.ProviderNumber;
+                tempRecord.TimeStamp = serviceRecord.TimeStamp;
+                tempRecord.Comments = serviceRecord.Comments;
+                tempRecord.DateProvided = serviceRecord.DateProvided;
+            }
+
+            return tempRecord;
+        }
+
+        private ServiceRecord MapEntityToRecord(Entity.ServiceRecord tempRecord)
+        {
+            var serviceRecord = new ServiceRecord();
+
+            if (null != tempRecord)
+            {
+                serviceRecord.ID = tempRecord.ID;
+                serviceRecord.ServiceCode = tempRecord.ServiceCode;
+                serviceRecord.MemberNumber = tempRecord.MemberID;
+                serviceRecord.ProviderNumber = tempRecord.ProviderID;
+                serviceRecord.TimeStamp = tempRecord.TimeStamp;
+                serviceRecord.DateProvided = tempRecord.DateProvided;
+                serviceRecord.Comments = tempRecord.Comments;
+            }
+
+            return serviceRecord;
+        }
+
+        #endregion
         
     }
 }
