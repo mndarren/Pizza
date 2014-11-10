@@ -1,4 +1,10 @@
-﻿using AttributeRouting.Web.Http;
+﻿/*@Class: CSCU531
+ *@Author: Zhao Xie
+ *@Date:11/6/2014
+ *@File: ManageService.cs
+ *@Description: this class contains service info
+ */
+using AttributeRouting.Web.Http;
 using PizzaModels.Models;
 using PizzaRepository.ListInterface;
 using System;
@@ -12,10 +18,12 @@ namespace PizzaController.Controllers
 {
     public class ManageService : ApiController
     {
+        #region Private Members
         private readonly IMemberList memberList;
         private readonly IProviderList providerList;
         private readonly IProviderDirectory providerDirectory;
         private readonly IServiceRecordList serviceRecordList;
+        #endregion
 
         public ManageService(IMemberList memberList, IProviderList providerList,
             IProviderDirectory providerDirectory, IServiceRecordList serviceRecordList)
@@ -45,6 +53,14 @@ namespace PizzaController.Controllers
             }
 
             return services;
+        }
+        public bool AddServiceRecord(ServiceRecord newServiceRecord) 
+        {
+            return serviceRecordList.InsertServiceRecord(newServiceRecord);
+        }
+        public bool AddService(Service newService)
+        {
+            return 
         }
 
     }

@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PizzaModels.Models;
-using PizzaRepository.ListInterface;
 
 namespace PizzaRepository.ListClass
 {
@@ -48,7 +47,7 @@ namespace PizzaRepository.ListClass
 
             return success;
         }
-        public bool DeleteServiceItem(int serviceID)
+        public bool DeleteService(int serviceID)
         {
             var success = false;
             try
@@ -88,8 +87,8 @@ namespace PizzaRepository.ListClass
                         foreach (var es in pizzaDB.Services
                             .Where(es => es.ServiceCode == newService.ServiceCode))
                         {
-                            es.ServiceName = newService.ServiceName;
-                            es.ServiceFee = newService.ServiceFee;
+                            es.Name = newService.ServiceName;
+                            es.Fee = newService.ServiceFee;
                         }
                         pizzaDB.SaveChanges(); //Apply changes to DB
                         service = GetService(newService.ServiceName);
@@ -114,7 +113,7 @@ namespace PizzaRepository.ListClass
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
                 var eService = pizzaDB.Services
-                    .Where(es => es.ServiceName == serviceName).FirstOrDefault();
+                    .Where(es => es.Name == serviceName).FirstOrDefault();
 
                 if (null != eService)
                    service = MapEntityToService(eService);
@@ -139,8 +138,8 @@ namespace PizzaRepository.ListClass
             if (null != service)
             {
                 eService.ServiceCode = service.ServiceCode;
-                eService.ServiceName = service.ServiceName;
-                eService.ServiceFee = service.ServiceFee;
+                eService.Name = service.ServiceName;
+                eService.Fee = service.ServiceFee;
             }
 
             return eService;
@@ -153,8 +152,8 @@ namespace PizzaRepository.ListClass
             if (null != eService)
             {
                 service.ServiceCode = eService.ServiceCode;
-                service.ServiceName = eService.ServiceName;
-                service.ServiceFee = eService.ServiceFee;
+                service.ServiceName = eService.Name;
+                service.ServiceFee = eService.Fee;
             }
 
             return service;
