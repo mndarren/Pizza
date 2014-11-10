@@ -15,9 +15,16 @@ namespace PizzaRepository.ListClass
 {
     public class ProviderDirectory : IProviderDirectory
     {
-        private List<Service> services = new List<Service>();
-        public ProviderDirectory(){}
-        public List<Service> GetServices(){return services;}
+        public List<Service> GetServices()
+        {
+            List<Provider> services = new List<Provider>();
+            var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+            foreach (var es in pizzaDB.Providers)
+            {
+                services.Add(MapEntityToService(es));
+            }
+            return services;
+        }
         public bool AddService(Service newService)
         {
             var success = false;

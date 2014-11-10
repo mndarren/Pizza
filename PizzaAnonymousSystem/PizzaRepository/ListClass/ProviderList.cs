@@ -21,10 +21,8 @@ namespace PizzaRepository.ListClass
             var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
             foreach (var es in pizzaDB.Providers)
             {
-                
                 providers.Add(MapEntityToProvider(es));
             }
-            
             return providers;
         }
       
