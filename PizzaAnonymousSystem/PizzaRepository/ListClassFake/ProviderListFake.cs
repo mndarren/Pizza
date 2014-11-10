@@ -34,11 +34,12 @@ namespace PizzaRepository.ListClassFake
             else return null;
         }
 
-        public Provider UpdateProvider(Provider newProvider)
+        public Provider UpdateProvider(string name, int providerID, string streetAddress,
+                                     string city, string state, string ZIPcode, long bankAccount)
         {
             if (!_returnError)
             {
-                return newProvider;
+                return new Provider();
             }
             else return null;
         }

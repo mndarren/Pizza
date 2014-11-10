@@ -54,14 +54,25 @@ namespace PizzaController.Controllers
 
             return services;
         }
-        public bool AddServiceRecord(ServiceRecord newServiceRecord) 
+        [GET("/servicemanager/services/")]
+        public bool AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 
         {
             return serviceRecordList.InsertServiceRecord(newServiceRecord);
         }
-        public bool AddService(Service newService)
+        [GET("/servicemanager/services/")]
+        public bool AddService([FromBody]Service newService)
         {
-            return 
+            return providerDirectory.AddService(newService);
         }
-
+        [GET("/servicemanager/services/")]
+        public UpdateService([FromBody]Service newService)
+        {
+            providerDirectory.UpdateService(newService);
+        }
+        [GET("/servicemanager/services/")]
+        public DeleteService([FromBody]int serviceCode)
+        {
+            providerDirectory.DeleteService(serviceCode);
+        }
     }
 }
