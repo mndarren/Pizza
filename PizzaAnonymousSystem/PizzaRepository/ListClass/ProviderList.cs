@@ -19,6 +19,7 @@ namespace PizzaRepository.ListClass
         
         public ProviderList(){}
         public List<Provider> GetProviders() {return providers;}
+      
         public bool AddProvider(Provider newProvider)
         {
             var success = false;

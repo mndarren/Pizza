@@ -30,12 +30,32 @@ namespace PizzaRepository.ListClass
 
         //add member into list
         public Boolean InsertMember(Member member){
-            if (member != null){
-                members.Add(member);
-                return true;
+            var success = false;
+
+            try
+            {
+                var pizzDB = new Entity.PizzaDBEntities();
+                if (member != null)
+                {
+                    var tempmember = pizzDB.Members.Where(node => node.ID == member.ID).FirstOrDefault();
+                    if (tempmember == null)
+                    {
+                        pizzDB.Members.Add(MapMemberToEntity(member));
+                        pizzDB.SaveChanges();
+                        success = true;
+                    }
+                    else success = false;
+                }
+                else success = false;
             }
-            else { return false; }
+            catch (Exception e)
+            {
+                success = false;
+                throw new Exception(e.Message);
+            }
+            return success;
         }
+
 
         public Member GetMember(int memberID) {
             Member member = members.Where(node => node.ID == memberID).FirstOrDefault();
@@ -71,5 +91,38 @@ namespace PizzaRepository.ListClass
            }
            else { return false; }
         }
+
+
+        #region Entity DataType Mapping
+
+        private Entity.Member MapMemberToEntity(Member member)
+        {
+            var tempMember = new Entity.Member();
+
+            if (null != member)
+            {
+                tempMember.ID = member.ID;
+                tempMember.Name = member.Name;
+                tempMember.StreetAddress = member.StreetAddress;
+            }
+
+            return tempMember;
+        }
+
+        private Member MapEntityToProvider(Entity.Provider tempMember)
+        {
+            var Member = new Member();
+
+            if (null != tempMember)
+            {
+                Member.ID = tempMember.ID;
+                Member.Name = tempMember.Name;
+                Member.StreetAddress = tempMember.StreetAddress;
+            }
+
+            return Member;
+        }
+
+        #endregion
     }
 }
