@@ -42,7 +42,7 @@ namespace PizzaController.Controllers
         }
 
         [POST("/accountmanager/account")]
-        public Boolean UpdateMember([FromBody]string name, int ID, string streetAddress,
+        public Member UpdateMember([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
             return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
@@ -79,10 +79,11 @@ namespace PizzaController.Controllers
         }
 
         [POST("/accountmanager/account")]
-        public Boolean UpdateProvider([FromBody]string name, int ID, string streetAddress,
+        public Provider UpdateProvider([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, long bankAccount)
         {
-            return providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
+            var result = providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
+            return result;
         }
 
         /********************************
@@ -114,7 +115,7 @@ namespace PizzaController.Controllers
         [POST("/accountmanager/account")]
         public Boolean addAdmin([FromBody] Admin admin)
         {
-            return adminList.AddAdmin(admin);
+            return adminList.addAdmin(admin);
         }
 
         [DELETE("/accountmanager/account")]
@@ -124,7 +125,7 @@ namespace PizzaController.Controllers
         }
 
         [POST("/accountmanager/account")]
-        public Boolean UpdateAdmin([FromBody]string name, int ID, string streetAddress,
+        public Admin UpdateAdmin([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode)
         {
             return adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
