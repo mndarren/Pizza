@@ -31,7 +31,7 @@ namespace PizzaModels.Models
         }
 
         public int ServiceCode { get { return _serviceCode; } set { _serviceCode = value; } }
-        public int ServiceRecordID { get { return _serviceRecordID; } set { _serviceRecordID = value; } }
+        public int ID { get { return _serviceRecordID; } set { _serviceRecordID = value; } }
         public DateTime TimeStamp { get { return _timeStamp; } set { _timeStamp = value; } }
         public DateTime DateProvided { get { return _dateProvided; } set { _dateProvided = value; } }
         public int ProviderNumber { get { return _providerNumber; } set { _providerNumber = value; } }
