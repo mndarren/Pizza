@@ -1,93 +1,180 @@
-﻿using PizzaRepository.ListInterface;
+﻿/*
+Author: Mo Chen
+*/
+using PizzaModels.Models;
+using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using PizzaModels.Models;
 
 namespace PizzaRepository.ListClass
 {
     public class AdminList : IAdminList
     {
-        private List<Admin> listOfAdmin = new List<Admin>();
+        private List<Admin> admins = new List<Admin>();
 
-        //private static AdminList adminList;
+        private static AdminList adminList;
 
-        //create an admin list instance
-        //public static AdminList Instance()
-        //{
-        //    if (adminList == null)
-        //    {
-        //        return (adminList = new AdminList());
-        //    }
-        //    else
-        //    {
-        //        return adminList;
-        //    }
-        //}
+        //create a admin list instance
+        public static AdminList Instance()
+        {
+            if (adminList == null)
+            {
+                return (adminList = new AdminList());
+            }
+            else
+            {
+                return adminList;
+            }
+        }
 
         public AdminList() { }
 
         //add admin into list
         public Boolean addAdmin(Admin admin)
         {
-            listOfAdmin.Add(admin);
-            return true;
+            var success = false;
+
+            try
+            {
+                var pizzDB = new Entity.PizzaDBEntities();
+                if (admin != null)
+                {
+                    var tempadmin = pizzDB.Admins.Where(node => node.ID == admin.ID).FirstOrDefault();
+                    if (tempadmin == null)
+                    {
+                        pizzDB.Admins.Add(MapAdminToEntity(admin));
+                        pizzDB.SaveChanges();
+                        success = true;
+                    }
+                    else success = false;
+                }
+                else success = false;
+            }
+            catch (Exception e)
+            {
+                success = false;
+                throw new Exception(e.Message);
+            }
+            return success;
+        }
+
+        //need to fix this
+        public Admin GetAdmin(int adminID)
+        {
+            var admin = new Admin();
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                var tempAdmin = pizzaDB.Admins
+                    .Where(es => es.ID == adminID).FirstOrDefault();
+
+                if (null != tempAdmin)
+                    admin = MapEntityToAdmin(tempAdmin);
+                else admin = null;
+            }
+            catch (Exception e)
+            {
+                admin = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return admin;
         }
 
         //delete admin from link list
-        public Boolean deleteAdmin(int adminID) 
+        public Boolean DeleteAdmin(int adminID)
         {
-            Admin admin = listOfAdmin.First;
-            while (admin != listOfAdmin.Last) 
+            var success = false;
+            try
             {
-                if (adminID == admin.Value.ID)
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                var tempAdmin = pizzaDB.Admins
+                    .Where(es => es.ID == adminID).FirstOrDefault();
+
+                if (null != tempAdmin)
                 {
-                    listOfAdmin.Remove(admin);
-                    return true;
+                    pizzaDB.Admins.Remove(tempAdmin);
+                    pizzaDB.SaveChanges(); //Apply changes to DB
                 }
-                else
-                    admin = admin.Next;
+                else success = false;
             }
-            return false;
-        }
-             
-        //Update  status
-        public Boolean updateAdmin(int _adminID, string _adminName, string _adminAddress,
-                       string _adminState, string _adminCity, string _adminZip)
-        {
-            LinkedListNode<Admin> admin = listOfAdmin.First;
-            while (admin != listOfAdmin.Last)
+            catch (Exception e)
             {
-                if (admin.Value.ID == memberID)
-                {
-                    admin.Value.adminName = _adminName;
-                    admin.Value.adminAddress = _adminAddress;
-                    admin.Value.adminState = _adminState;
-                    admin.Value.adminCiry = _adminCity;
-                    admin.Value.adminZip = _adminZip;
-                    return true;
-                }
-                else  
-                    admin = admin.Next;
+                success = false;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
             }
-            return false;
+            return success;
         }
 
-        public LinkedList<Admin> getAdminList()
+        //Update admin
+        public Admin UpdateAdmin(string name, int adminID, string streetAddress,
+                                     string city, string state, string ZIPcode)
         {
-            return listOfAdmin;
+            var admin = new Admin();
+            try
+            {
+                var pizzDB = new Entity.PizzaDBEntities();
+
+                Admin eAdmin = admins.Where(node => node.ID == adminID).FirstOrDefault();
+
+                if (eAdmin != null)
+                {
+                    foreach (var es in pizzDB.Admins.Where(es => es.ID == adminID))
+                    {
+                        es.Name = name;
+                        es.StreetAddress = streetAddress;
+                        es.City = city;
+                        es.State = state;
+                        es.ZipCode = ZIPcode;
+                    }
+                    pizzDB.SaveChanges();
+                    admin = GetAdmin(adminID);
+                }
+                else admin = null;
+            }
+            catch (Exception e)
+            {
+                admin = null;
+                throw new Exception(e.Message);
+            }
+            return admin;
         }
 
-        //public void WriteToFile()
-        //{
-        //
-        //}
 
-        //public void ReadFromFile()
-        //{
-        //
-        //}
+        #region Entity DataType Mapping
 
+        private Entity.Admin MapAdminToEntity(Admin admin)
+        {
+            var tempAdmin = new Entity.Admin();
+
+            if (null != admin)
+            {
+                tempAdmin.ID = admin.ID;
+                tempAdmin.Name = admin.Name;
+                tempAdmin.StreetAddress = admin.StreetAddress;
+            }
+
+            return tempAdmin;
+        }
+
+        private Admin MapEntityToAdmin(Entity.Admin tempAdmin)
+        {
+            var Admin = new Admin();
+
+            if (null != tempAdmin)
+            {
+                Admin.ID = tempAdmin.ID;
+                Admin.Name = tempAdmin.Name;
+                Admin.StreetAddress = tempAdmin.StreetAddress;
+            }
+
+            return Admin;
+        }
+
+        #endregion
     }
 }

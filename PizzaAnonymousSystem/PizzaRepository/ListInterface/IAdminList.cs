@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PizzaModels.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace PizzaRepository.ListInterface
 {
     public interface IAdminList
     {
+        Boolean addAdmin(Admin admin);
+        Member GetAdmin(int adminID);
+        Boolean DeleteAdmin(int adminID);
+        Admin UpdateAdmin(string name, int adminID, string streetAddress,
+                                     string city, string state, string ZIPcode);
     }
 }
