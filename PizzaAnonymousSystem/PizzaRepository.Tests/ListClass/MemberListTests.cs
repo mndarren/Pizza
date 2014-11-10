@@ -47,9 +47,16 @@ namespace PizzaRepository.Tests.ListClass
         {
             var list = new MemberList();
             int memberID = 1, status = 0;
-            var result = list.UpdateMember(memberID, status);
+            string name = cheng;
+            string streetAddress = "379 4th Ave S";
+            string city = "Saint Cloud";
+            string state = "MN";
+            string ZIPcode = "56301";
 
-            Assert.IsTrue(result);
+            var result = list.UpdateMember(name, memberID, streetAddress,
+                                     city,state,ZIPcode,status);
+
+            Assert.IsNotNull(result);
         }
         
     }

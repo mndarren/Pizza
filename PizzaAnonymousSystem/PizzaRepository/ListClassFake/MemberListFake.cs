@@ -22,11 +22,6 @@ namespace PizzaRepository.ListClassFake
             return !_returnError;
         }
 
-       // public List<Member> GetMembers()
-       // {
-       //
-       // }
-
         public Boolean DeleteMember(int memberID)
         {
             return !_returnError;
