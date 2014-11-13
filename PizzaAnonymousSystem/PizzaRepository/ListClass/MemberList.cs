@@ -1,4 +1,5 @@
-﻿/*
+﻿using PizzaCommon.Tools;
+/*
  Author:Cheng Luo
  */
 using PizzaModels.Models;
@@ -35,6 +36,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 if (member != null)
                 {
                     var tempmember = pizzDB.Members.Where(node => node.ID == member.ID).FirstOrDefault();
@@ -62,6 +66,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 var tempMember = pizzaDB.Members
                     .Where(es => es.ID == memberID).FirstOrDefault();
 
@@ -85,6 +92,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 var tempMember = pizzaDB.Members
                     .Where(es => es.ID == memberID).FirstOrDefault();
 
@@ -112,6 +122,8 @@ namespace PizzaRepository.ListClass
            try
            {
                var pizzDB = new Entity.PizzaDBEntities();
+               AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
               
                var eMember = pizzDB.Members.Where(node => node.ID == memberID).FirstOrDefault();
 
@@ -137,7 +149,22 @@ namespace PizzaRepository.ListClass
                throw new Exception(e.Message);
            }
            return member;
-         }
+        }
+
+        public List<Member> GetAllMembers()
+        {
+            var member = new Member();
+            var pizzDB = new Entity.PizzaDBEntities();
+            AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
+            foreach (var result in pizzDB.Members)
+            {
+                member = MapEntityToMember(result);
+                members.Add(member);
+            }
+            return members;
+        }
 
 
         #region Entity DataType Mapping
@@ -171,18 +198,5 @@ namespace PizzaRepository.ListClass
         }
 
         #endregion
-
-        public List<Member> GetAllMembers()
-        {
-            var member = new Member();
-            var pizzDB = new Entity.PizzaDBEntities();
-
-            foreach (var result in pizzDB.Members)
-            {
-                member = MapEntityToMember(result);
-                members.Add(member);
-            }
-            return members;
-        }
     }
 }

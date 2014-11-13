@@ -1,4 +1,5 @@
-﻿using PizzaModels.Models;
+﻿using PizzaCommon.Tools;
+using PizzaModels.Models;
 using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace PizzaRepository.ListClass
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
                 AppDomain.CurrentDomain.SetData("DataDirectory", 
-                    System.IO.Path.Combine(System.Environment.CurrentDirectory, "PizzaDatabase"));
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
 
                 if (null != newSchedule)
                 {
@@ -53,6 +54,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
 
                 var eSchedule = pizzaDB.ReportSchedules
                     .Where(es => es.ReportType == reportType).FirstOrDefault();
@@ -78,6 +81,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
 
                 if (null != updatedSchedule)
                 {
@@ -119,6 +124,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
 
                 var eSchedule = pizzaDB.ReportSchedules
                     .Where(es => es.ReportType == reportType).FirstOrDefault();

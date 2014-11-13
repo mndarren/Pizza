@@ -1,4 +1,5 @@
-﻿/*
+﻿using PizzaCommon.Tools;
+/*
 Author: Mo Chen
 */
 using PizzaModels.Models;
@@ -39,6 +40,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 if (admin != null)
                 {
                     var tempadmin = pizzDB.Admins.Where(node => node.ID == admin.ID).FirstOrDefault();
@@ -67,6 +71,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 var tempAdmin = pizzaDB.Admins
                     .Where(es => es.ID == adminID).FirstOrDefault();
 
@@ -91,6 +98,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 var tempAdmin = pizzaDB.Admins
                     .Where(es => es.ID == adminID).FirstOrDefault();
 
@@ -118,6 +128,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
 
                 Admin eAdmin = admins.Where(node => node.ID == adminID).FirstOrDefault();
 

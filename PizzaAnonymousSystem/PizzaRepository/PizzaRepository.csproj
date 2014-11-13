@@ -184,6 +184,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PizzaCommon\PizzaCommon.csproj">
+      <Project>{781cf598-427c-4617-bc80-b70c77adc7f5}</Project>
+      <Name>PizzaCommon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PizzaModels\PizzaModels.csproj">
       <Project>{cb5f6f8a-dcb0-4f95-82de-af4391bbaaff}</Project>
       <Name>PizzaModels</Name>

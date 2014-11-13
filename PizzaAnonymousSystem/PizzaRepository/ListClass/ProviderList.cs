@@ -1,4 +1,5 @@
-﻿/*@Class: CSCU531
+﻿using PizzaCommon.Tools;
+/*@Class: CSCU531
  *@Author: Zhao Xie
  *@Date:11/6/2014
  *@File: ProviderList.cs
@@ -19,6 +20,9 @@ namespace PizzaRepository.ListClass
         {
             List<Provider> providers = new List<Provider>();
             var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+            AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
             foreach (var es in pizzaDB.Providers)
             {
                 providers.Add(MapEntityToProvider(es));
@@ -32,6 +36,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 if (null != newProvider)
                 {
                     var eProvider = pizzaDB.Providers
@@ -61,6 +68,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 var eProvider = pizzaDB.Providers
                     .Where(es => es.ID == ProviderID).FirstOrDefault();
 
@@ -88,6 +98,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 var eProvider = pizzaDB.Providers
                         .Where(es => es.ID == providerID).FirstOrDefault();
 
@@ -123,6 +136,9 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory",
+                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+
                 var eProvider = pizzaDB.Providers
                     .Where(es => es.ID == providerID).FirstOrDefault();
 
