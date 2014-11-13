@@ -11,14 +11,14 @@ using PizzaModels.Models;
 
 namespace PizzaController.Controllers
 {
-    public class ManageReport : ApiController
+    public class ManageReportController : ApiController
     {
         private readonly IMemberList ml;
         private readonly IProviderList providerList;
         private readonly IProviderDirectory providerDirectory;
         private readonly IScheduleList scheduleList;
 
-        public ManageReport(IMemberList ml, IProviderList providerList,
+        public ManageReportController(IMemberList ml, IProviderList providerList,
             IProviderDirectory providerDirectory, IScheduleList scheduleList)
         {
             this.ml = ml;
@@ -48,7 +48,7 @@ namespace PizzaController.Controllers
             return memberReports;
         }
 
-       public ManageReport() { }
+       public ManageReportController() { }
 
         public List<MemberReport> GetWeeklyMemberReports()
         {

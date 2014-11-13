@@ -16,7 +16,7 @@ using System.Web.Http;
 
 namespace PizzaController.Controllers
 {
-    public class ManageService : ApiController
+    public class ManageServiceController : ApiController
     {
         #region Private Members
         private readonly IMemberList memberList;
@@ -25,7 +25,7 @@ namespace PizzaController.Controllers
         private readonly IServiceRecordList serviceRecordList;
         #endregion
 
-        public ManageService(IMemberList memberList, IProviderList providerList,
+        public ManageServiceController(IMemberList memberList, IProviderList providerList,
             IProviderDirectory providerDirectory, IServiceRecordList serviceRecordList)
         {
             this.memberList = memberList;
@@ -38,6 +38,7 @@ namespace PizzaController.Controllers
         /// Get all services
         /// </summary>
         /// <returns>returns all services</returns>
+        //[HttpGet]
         [GET("api/servicemanager/services/")]
         public List<Service> GetAllServices()
         {

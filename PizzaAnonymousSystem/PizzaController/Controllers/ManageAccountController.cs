@@ -10,14 +10,14 @@ using PizzaModels.Models;
 
 namespace PizzaController.Controllers
 {
-    public class ManageAccount : ApiController
+    public class ManageAccountController : ApiController
     {
         private readonly IAdminList adminList;
         private readonly IManagerList managerList;
         private readonly IMemberList memberList;
         private readonly IProviderList providerList;
 
-        public ManageAccount(IAdminList adminList, IManagerList managerList, 
+        public ManageAccountController(IAdminList adminList, IManagerList managerList, 
             IMemberList memberList, IProviderList providerList)
         {
             this.adminList = adminList;
