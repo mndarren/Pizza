@@ -17,8 +17,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                AppDomain.CurrentDomain.SetData("DataDirectory", 
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 if (null != newSchedule)
                 {
@@ -54,8 +53,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 var eSchedule = pizzaDB.ReportSchedules
                     .Where(es => es.ReportType == reportType).FirstOrDefault();
@@ -81,8 +79,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 if (null != updatedSchedule)
                 {
@@ -124,8 +121,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 var eSchedule = pizzaDB.ReportSchedules
                     .Where(es => es.ReportType == reportType).FirstOrDefault();

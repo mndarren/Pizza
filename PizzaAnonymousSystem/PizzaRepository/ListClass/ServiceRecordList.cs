@@ -30,8 +30,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 if (_serviceRecord != null)
                 {
@@ -58,8 +57,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == serviceRecordID).FirstOrDefault();
 

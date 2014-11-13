@@ -41,7 +41,7 @@ namespace PizzaRepository.ListClass
             {
                 var pizzDB = new Entity.PizzaDBEntities();
                 AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                    PathFactory.DatabasePath());
 
                 if (admin != null)
                 {
@@ -72,7 +72,7 @@ namespace PizzaRepository.ListClass
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
                 AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                    PathFactory.DatabasePath());
 
                 var tempAdmin = pizzaDB.Admins
                     .Where(es => es.ID == adminID).FirstOrDefault();
@@ -99,7 +99,7 @@ namespace PizzaRepository.ListClass
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
                 AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                    PathFactory.DatabasePath());
 
                 var tempAdmin = pizzaDB.Admins
                     .Where(es => es.ID == adminID).FirstOrDefault();
@@ -129,7 +129,7 @@ namespace PizzaRepository.ListClass
             {
                 var pizzDB = new Entity.PizzaDBEntities();
                 AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                    PathFactory.DatabasePath());
 
                 Admin eAdmin = admins.Where(node => node.ID == adminID).FirstOrDefault();
 

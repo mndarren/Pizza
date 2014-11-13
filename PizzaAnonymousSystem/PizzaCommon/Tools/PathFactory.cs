@@ -18,5 +18,10 @@ namespace PizzaCommon.Tools
 
             return solutionPath;
         }
+
+        public static string DatabasePath()
+        {
+            return System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data");
+        }
     }
 }

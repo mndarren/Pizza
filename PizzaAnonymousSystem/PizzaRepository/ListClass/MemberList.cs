@@ -36,8 +36,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 if (member != null)
                 {
@@ -66,8 +65,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 var tempMember = pizzaDB.Members
                     .Where(es => es.ID == memberID).FirstOrDefault();
@@ -92,8 +90,7 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
-                AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
                 var tempMember = pizzaDB.Members
                     .Where(es => es.ID == memberID).FirstOrDefault();
@@ -122,8 +119,7 @@ namespace PizzaRepository.ListClass
            try
            {
                var pizzDB = new Entity.PizzaDBEntities();
-               AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+               AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
               
                var eMember = pizzDB.Members.Where(node => node.ID == memberID).FirstOrDefault();
 
@@ -155,8 +151,7 @@ namespace PizzaRepository.ListClass
         {
             var member = new Member();
             var pizzDB = new Entity.PizzaDBEntities();
-            AppDomain.CurrentDomain.SetData("DataDirectory",
-                    System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data"));
+            AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
             foreach (var result in pizzDB.Members)
             {
