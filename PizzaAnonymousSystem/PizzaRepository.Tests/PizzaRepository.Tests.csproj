@@ -71,6 +71,7 @@
     <Compile Include="ListClass\ProviderListTests.cs" />
     <Compile Include="ListClass\ProviderDirectory.cs" />
     <Compile Include="ListClass\ServiceRecordListTests.cs" />
+    <Compile Include="ListClass\AdminListTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
