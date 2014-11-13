@@ -18,6 +18,8 @@ namespace PizzaRepository.ListClass
 
         public ServiceRecordList(){}
         
+        //get servicerecord list by member ID / provider id.
+
         //create a service record list instance
         public static ServiceRecordList Instance() {
             if (_serviceRecordList == null) { return _serviceRecordList = new ServiceRecordList(); }
