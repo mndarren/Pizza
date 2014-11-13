@@ -10,20 +10,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PizzaModels.Models;
+using PizzaCommon.Tools;
 
 namespace PizzaRepository.ListClass
 {
     public class ProviderDirectory : IProviderDirectory
     {
-        private List<Service> services = new List<Service>();
-        public ProviderDirectory(){}
-        public List<Service> GetServices(){return services;}
+        public List<Service> GetServices()
+        {
+            List<Service> services = new List<Service>();
+            var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+            AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+            foreach (var es in pizzaDB.Services)
+            {
+                services.Add(MapEntityToService(es));
+            }
+            return services;
+        }
         public bool AddService(Service newService)
         {
             var success = false;
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
                 if (null != newService)
                 {
                     var eService = pizzaDB.Services
@@ -53,6 +65,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
                 var eService = pizzaDB.Services
                     .Where(es => es.ServiceCode == serviceID).FirstOrDefault();
 
@@ -77,6 +91,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
                 if (null != newService)
                 {
                     var eService = pizzaDB.Services
@@ -112,6 +128,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
                 var eService = pizzaDB.Services
                     .Where(es => es.Name == serviceName).FirstOrDefault();
 

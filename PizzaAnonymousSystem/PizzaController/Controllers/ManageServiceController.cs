@@ -16,7 +16,7 @@ using System.Web.Http;
 
 namespace PizzaController.Controllers
 {
-    public class ManageService : ApiController
+    public class ManageServiceController : ApiController
     {
         #region Private Members
         private readonly IMemberList memberList;
@@ -25,7 +25,7 @@ namespace PizzaController.Controllers
         private readonly IServiceRecordList serviceRecordList;
         #endregion
 
-        public ManageService(IMemberList memberList, IProviderList providerList,
+        public ManageServiceController(IMemberList memberList, IProviderList providerList,
             IProviderDirectory providerDirectory, IServiceRecordList serviceRecordList)
         {
             this.memberList = memberList;
@@ -38,7 +38,8 @@ namespace PizzaController.Controllers
         /// Get all services
         /// </summary>
         /// <returns>returns all services</returns>
-        [GET("/servicemanager/services/")]
+        //[HttpGet]
+        [GET("api/servicemanager/services/")]
         public List<Service> GetAllServices()
         {
             //var services = new List<Service>();
@@ -52,28 +53,28 @@ namespace PizzaController.Controllers
                 throw new HttpRequestException(e.Message);
             }
         }
-        [GET("/servicemanager/services/")]
+        [POST("api/servicemanager/servicerecords/")]
         public bool AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 
         {
             return serviceRecordList.InsertServiceRecord(newServiceRecord);
         }
-        [GET("/servicemanager/services/")]
+        [POST("api/servicemanager/services/")]
         public bool AddService([FromBody]Service newService)
         {
             return providerDirectory.AddService(newService);
         }
-        [GET("/servicemanager/services/")]
+        [PUT("api/servicemanager/services/")]
         public Service UpdateService([FromBody]Service newService)
         {
             return providerDirectory.UpdateService(newService);
         }
-        [GET("/servicemanager/services/")]
-        public bool DeleteService([FromBody]int serviceCode)
+        [DELETE("api/servicemanager/services/{serviceCode}")]
+        public bool DeleteService([FromUri]int serviceCode)
         {
             return providerDirectory.DeleteService(serviceCode);
         }
-        [GET("/servicemanager/services/")]
-        public ServiceRecord GetServiceRecord(int serviceRecordID)
+        [GET("api/servicemanager/servicerecords/{serviceRecordID}")]
+        public ServiceRecord GetServiceRecord([FromUri]int serviceRecordID)
         {
             return serviceRecordList.GetServiceRecord(serviceRecordID);
         }

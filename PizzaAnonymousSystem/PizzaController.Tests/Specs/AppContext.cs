@@ -10,8 +10,8 @@ namespace PizzaController.Tests.Specs
     [Binding]
     public class AppContext
     {
-        public ManageService ManageServiceController { get; set; }
-        public ManageAccount ManageAccountController { get; set; }
-        public ManageReport ManageReportController { get; set; }
+        public ManageServiceController ManageServiceController { get; set; }
+        public ManageAccountController ManageAccountController { get; set; }
+        public ManageReportController ManageReportController { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿/*
+﻿using PizzaCommon.Tools;
+/*
  Author:Cheng Luo
  */
 using PizzaModels.Models;
@@ -29,6 +30,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
                 if (_serviceRecord != null)
                 {
                     var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == _serviceRecord.ID).FirstOrDefault();
@@ -54,6 +57,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
                 var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == serviceRecordID).FirstOrDefault();
 
                 if (null != tempRecord) serviceRecord = MapEntityToRecord(tempRecord);
