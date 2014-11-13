@@ -16,6 +16,8 @@ namespace PizzaRepository.ListClass
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", 
+                    System.IO.Path.Combine(System.Environment.CurrentDirectory, "PizzaDatabase"));
 
                 if (null != newSchedule)
                 {
