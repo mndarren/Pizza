@@ -11,5 +11,7 @@ namespace PizzaRepository.ListInterface
     {
         Boolean InsertServiceRecord(ServiceRecord _serviceRecord);
         ServiceRecord GetServiceRecord(int serviceCodeID);
+        List<ServiceRecord> GetAllServiceRecordForMember(int memberID);
+        List<ServiceRecord> GetAllServiceRecordForProvider(int providerID);
     }
 }

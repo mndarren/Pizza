@@ -19,6 +19,36 @@ namespace PizzaRepository.ListClass
         public ServiceRecordList(){}
         
         //get servicerecord list by member ID / provider id.
+        public List<ServiceRecord> GetAllServiceRecordForMember(int memberID)
+        {
+            List<ServiceRecord> recordList = new List<ServiceRecord>();
+            var serviceRecord = new ServiceRecord();
+            var pizzDB = new Entity.PizzaDBEntities();
+            AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+            foreach(var result in pizzDB.ServiceRecords.Where(node => node.MemberID == memberID)){
+                serviceRecord = MapEntityToRecord(result);
+                recordList.Add(serviceRecord);
+            }
+
+            return recordList; 
+        }
+
+        public List<ServiceRecord> GetAllServiceRecordForProvider(int providerID)
+        {
+            List<ServiceRecord> recordList = new List<ServiceRecord>();
+            var serviceRecord = new ServiceRecord();
+            var pizzDB = new Entity.PizzaDBEntities();
+            AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+            foreach (var result in pizzDB.ServiceRecords.Where(node => node.ProviderID == providerID))
+            {
+                serviceRecord = MapEntityToRecord(result);
+                recordList.Add(serviceRecord);
+            }
+
+            return recordList; 
+        }
 
         //create a service record list instance
         public static ServiceRecordList Instance() {
