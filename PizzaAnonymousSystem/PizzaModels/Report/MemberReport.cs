@@ -30,12 +30,14 @@ namespace PizzaModels.Report
                     using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
                     {
                         file.WriteLine("----------------------Member Report--------------------");
-                        file.WriteLine(_member.ID);
-                        file.WriteLine(_member.Name);
-                        file.WriteLine(_member.State);
-                        file.WriteLine(_member.StreetAddress);
-                        file.WriteLine(_member.ZipCode);
-                        file.WriteLine(_member.Status);                      
+                        file.WriteLine("Member ID: " + _member.ID);
+                        file.WriteLine("Member Name: " + _member.Name);
+                        file.WriteLine("State: " + _member.State);
+                        file.WriteLine("Street Address: " + _member.StreetAddress);
+                        file.WriteLine("Zipcode: " + _member.ZipCode);
+                        file.WriteLine("Status: " + _member.Status);
+
+                        List<Service> serveList =_member.GetServices();
                     }
                 }
             }

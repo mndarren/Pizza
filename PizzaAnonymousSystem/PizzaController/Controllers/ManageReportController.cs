@@ -58,6 +58,7 @@ namespace PizzaController.Controllers
             {
                 Schedule schedule = scheduleList.GetSchedule(
                     ReportType.MemberReportType);
+
                 TimeSpan startDate;//calculate start date from schedule;
                 TimeSpan endDate; //calculate end date from schedule;
 
@@ -67,12 +68,7 @@ namespace PizzaController.Controllers
                     MemberReport memberReport = new MemberReport();
                     memberReport.SetMemberInformation(member);
 
-                    foreach (Service s in member.GetServices())
-                       // .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
-                    {
-                       // memberReport.AddService(service,
-                       //     ProviderList.GetProvider(service.GetProviderID()));
-                    }
+                    
 
                     memberReports.Add(memberReport);
                 }
@@ -197,8 +193,6 @@ namespace PizzaController.Controllers
 
             return memberReport;
         }
-
-
 
         public bool UpdateMemberReportSchedule
             (int weekday, TimeSpan time)
