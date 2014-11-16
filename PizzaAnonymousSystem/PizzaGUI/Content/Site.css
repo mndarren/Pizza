@@ -78,3 +78,15 @@ input[type="checkbox"].input-validation-error {
                 width:225px;
                 border-radius:4px;
             }
+
+.tool-area {
+
+}
+
+    .tool-area .tool-nav {
+        padding-top:10px;
+    }
+
+    .tool-area .tool-content {
+        padding-top:10px;
+    }
