@@ -2,6 +2,7 @@
 using PizzaModels.Report;
 using PizzaRepository.ListInterface;
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -310,6 +311,7 @@ namespace PizzaController.Controllers
             //compare the current time with the time set
             while (true)
             {
+                Thread.Sleep(1000);
                 String _nowTime = DateTime.Now.ToString("hh:mm:ss");
                 String _schTime = _schedule.Time.ToString();
                 String fileName;
@@ -351,6 +353,7 @@ namespace PizzaController.Controllers
             //compare the current time with the time set
             while (true)
             {
+                Thread.Sleep(1000);
                 String _nowTime = DateTime.Now.ToString("hh:mm:ss");
                 String _schTime = _schedule.Time.ToString();
                 String fileName;
@@ -390,6 +393,7 @@ namespace PizzaController.Controllers
             //compare the current time with the time set
             while (true)
             {
+                Thread.Sleep(1000);
                 String _nowTime = DateTime.Now.ToString("hh:mm:ss");
                 String _schTime = _schedule.Time.ToString();
                 String fileName;
