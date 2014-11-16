@@ -40,3 +40,41 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+#login-area {
+    
+}
+
+    #login-area #login-area-header {
+        margin-left:auto;
+        margin-right:auto;
+
+        text-align:center;
+    }
+
+    #login-area #login-area-box {
+        margin-left:auto;
+        margin-right:auto;
+        width:250px;
+    
+        border-width:2px;
+        border-color:#e5e2e2;
+        border-radius:5px;
+        border-style:solid;
+    
+        padding:10px;
+    }
+    
+        #login-area #login-area-box .login-area-box-section {
+            padding-top:3px;
+            padding-bottom:3px;
+        }
+
+            #login-area #login-area-box .login-area-box-section .btn {
+                width:111px;
+            }
+        
+            #login-area #login-area-box .login-area-box-section #login-role {
+                width:225px;
+                border-radius:4px;
+            }
