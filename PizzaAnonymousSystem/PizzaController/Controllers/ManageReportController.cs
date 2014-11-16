@@ -17,14 +17,16 @@ namespace PizzaController.Controllers
         private readonly IProviderList providerList;
         private readonly IProviderDirectory providerDirectory;
         private readonly IScheduleList scheduleList;
+        private readonly IServiceRecordList serviceRecordList;
 
         public ManageReportController(IMemberList ml, IProviderList providerList,
-            IProviderDirectory providerDirectory, IScheduleList scheduleList)
+            IProviderDirectory providerDirectory, IScheduleList scheduleList, IServiceRecordList serviceRecordList)
         {
             this.ml = ml;
             this.providerList = providerList;
             this.providerDirectory = providerDirectory;
             this.scheduleList = scheduleList;
+            this.serviceRecordList = serviceRecordList;
         }
 
         /// <summary>
@@ -48,7 +50,7 @@ namespace PizzaController.Controllers
             return memberReports;
         }
 
-       public ManageReportController() { }
+        public ManageReportController() { }
 
         public List<MemberReport> GetWeeklyMemberReports()
         {
@@ -66,10 +68,7 @@ namespace PizzaController.Controllers
                 foreach (Member member in memberList)
                 {
                     MemberReport memberReport = new MemberReport();
-                    memberReport.SetMemberInformation(member);
-
-                    
-
+                    runMemberReportSchedule(member, schedule);
                     memberReports.Add(memberReport);
                 }
             }
@@ -84,42 +83,34 @@ namespace PizzaController.Controllers
 
 
         public List<ProviderReport> GetWeeklyProviderReports()
-    {
-	    List<ProviderReport> providerReports = new List<ProviderReport>();
+        {
+            List<ProviderReport> providerReports = new List<ProviderReport>();
 
-	    try
-	    {
-            Schedule schedule = scheduleList.GetSchedule(
-			    ReportType.ProviderReportType);
-		    TimeSpan startDate;//calculate start date from schedule;
-		    TimeSpan endDate;//calculate end date from schedule;
-		
-		    List<Provider> providers = providerList.GetAllProviders();
-		    foreach (Provider provider in providers)
-		    {
-			    ProviderReport providerReport = new ProviderReport();
-			    providerReport.Provider = provider;//SetProviderInformation(provider);
-			
-                /*
-			    foreach (Service service in ServiceList.GetServicesByProviderID
-				    (provider.ID)
-				    .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
-			    {
-				    providerReport.AddService(service,
-					    ProviderList.GetProvider(service.GetMemberID()));
-			    }*/
+            try
+            {
+                Schedule schedule = scheduleList.GetSchedule(
+                    ReportType.ProviderReportType);
+                TimeSpan startDate;//calculate start date from schedule;
+                TimeSpan endDate;//calculate end date from schedule;
 
-			    providerReports.Add(providerReport);
-		    }
-	    }
-	    catch (Exception e)
-	    {
-		    //record exception
-		    providerReports = null;
-	    }
-	
-	    return providerReports;
-    }
+                List<Provider> providers = providerList.GetAllProviders();
+                foreach (Provider provider in providers)
+                {
+                    ProviderReport providerReport = new ProviderReport();
+
+                    runProviderReportSchedule(provider, schedule);
+
+                    providerReports.Add(providerReport);
+                }
+            }
+            catch (Exception e)
+            {
+                //record exception
+                providerReports = null;
+            }
+
+            return providerReports;
+        }
 
         public List<EFTReport> GetWeeklyEFTReports()
         {
@@ -133,23 +124,7 @@ namespace PizzaController.Controllers
                 TimeSpan endDate; //calculate end date from schedule;
 
                 List<Provider> providers = providerList.GetAllProviders();
-                foreach (Provider provider in providers)
-                {
-                    var eftReport = new EFTReport();
-                    eftReport.providerID = provider.ID;
-                    eftReport.providerName = provider.Name;
-
-                    double totalFee = 0.0;
-                    /*
-                    foreach (Service service in providerDirectory.GetServicesByProviderID
-                        (provider.ID)
-                        .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
-                    {
-                        totalFee += service.GetFee();
-                    }*/
-
-                    eftReports.Add(eftReport);
-                }
+                runEFTReportSchedule(providers,schedule);
             }
             catch (Exception e)
             {
@@ -161,6 +136,7 @@ namespace PizzaController.Controllers
         }
 
 
+        /*
         public MemberReport GetMemberReport
             (int memberID, TimeSpan startDate, TimeSpan endDate)
         {
@@ -175,11 +151,11 @@ namespace PizzaController.Controllers
                     memberReport.SetMemberInformation(member);
 
                     foreach (Service s in member.GetServices())
-                     //   .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
+                    //   .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
                     {
 
-                   //     memberReport.AddService(service,
-                   //         ProviderList.GetProvider(service.GetProviderID()));
+                        //     memberReport.AddService(service,
+                        //         ProviderList.GetProvider(service.GetProviderID()));
                     }
                 }
                 else throw new Exception("member not found");
@@ -192,7 +168,7 @@ namespace PizzaController.Controllers
             }
 
             return memberReport;
-        }
+        }*/
 
         public bool UpdateMemberReportSchedule
             (int weekday, TimeSpan time)
@@ -230,7 +206,7 @@ namespace PizzaController.Controllers
                 updatedSchedule.Week = weekday;
                 updatedSchedule.Time = time;
 
-               updatedSchedule = scheduleList.UpdateSchedule(updatedSchedule);
+                updatedSchedule = scheduleList.UpdateSchedule(updatedSchedule);
             }
             catch (Exception e)
             {
@@ -276,7 +252,7 @@ namespace PizzaController.Controllers
                 if (null != providerList.GetProvider(providerID))
                 {
                     //var services = providerDirectory.GetServicesByProviderID(providerID)
-                     //   .Where(s => s.GetDate() <= endDate
+                    //   .Where(s => s.GetDate() <= endDate
                     //        && s.GetDate() > startDate);
                     /*
                     foreach (var service in services)
@@ -326,6 +302,125 @@ namespace PizzaController.Controllers
             }
 
             return success;
+        }
+
+
+        public void runMemberReportSchedule(Member _member, Schedule _schedule)
+        {
+            //compare the current time with the time set
+            while (true)
+            {
+                String _nowTime = DateTime.Now.ToString("hh:mm:ss");
+                String _schTime = _schedule.Time.ToString();
+                String fileName;
+                if (_nowTime.Equals(_schTime))
+                {
+                    fileName = _member.Name + "_" + _nowTime + ".txt";
+                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                    {
+                        file.WriteLine("----------------------Member Report--------------------");
+                        file.WriteLine("Member ID: " + _member.ID);
+                        file.WriteLine("Member Name: " + _member.Name);
+                        file.WriteLine("State: " + _member.State);
+                        file.WriteLine("Street Address: " + _member.StreetAddress);
+                        file.WriteLine("Zipcode: " + _member.ZipCode);
+                        file.WriteLine("Status: " + _member.Status);
+
+                        List<Service> serveList = null;//serviceRecordList.GetServices(_member);
+                        int counter = 0;
+                        foreach(Service s in serveList){
+                            counter++;
+                            file.WriteLine("Service:" + counter);
+                            file.WriteLine("Service Name: " + s.ServiceName);
+                            file.WriteLine("Service Code: " + s.ServiceCode);
+                            file.WriteLine("Service Fee: " + s.ServiceFee);
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+        public void runProviderReportSchedule(Provider provider, Schedule _schedule)
+        {
+            //compare the current time with the time set
+            while (true)
+            {
+                String _nowTime = DateTime.Now.ToString("hh:mm:ss");
+                String _schTime = _schedule.Time.ToString();
+                String fileName;
+                if (_nowTime.Equals(_schTime))
+                {
+                    fileName = provider.Name + "_" + _nowTime + ".txt";
+                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                    {
+                        file.WriteLine("----------------------Provider Report--------------------");
+                        file.WriteLine("Provider ID: " + provider.ID);
+                        file.WriteLine("Provider Name: " + provider.Name);
+                        file.WriteLine("State: " + provider.State);
+                        file.WriteLine("Street Address: " + provider.StreetAddress);
+                        file.WriteLine("Zipcode: " + provider.ZipCode);
+
+                        List<Service> serveList = null;//serviceRecordList.GetServices();
+                        int counter = 0;
+                        foreach (Service s in serveList)
+                        {
+                            counter++;
+                            file.WriteLine("Service:" + counter);
+                            file.WriteLine("Service Name: " + s.ServiceName);
+                            file.WriteLine("Service Code: " + s.ServiceCode);
+                            file.WriteLine("Service Fee: " + s.ServiceFee);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        public void runEFTReportSchedule(List<Provider> providers, Schedule _schedule)
+        {
+            //compare the current time with the time set
+            while (true)
+            {
+                String _nowTime = DateTime.Now.ToString("hh:mm:ss");
+                String _schTime = _schedule.Time.ToString();
+                String fileName;
+                if (_nowTime.Equals(_schTime))
+                {
+                    fileName = "EFT_" + _nowTime + ".txt";
+                    int providerNum = 0;
+                    decimal totalFee = 0;
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                    {
+                        file.WriteLine("----------------------EFT Report--------------------");
+                        foreach (Provider provider in providers)
+                        {
+                            providerNum++;
+                            int serviceNum = 0;
+                            decimal sumFee = 0;
+                            file.WriteLine("Provider Name: " + provider.Name);
+
+                            List<Service> serveList = null;//serviceRecordList.GetServices();
+                            foreach (Service s in serveList)
+                            {
+                                serviceNum++;
+                                file.WriteLine("Service Name: " + s.ServiceName);
+                                file.WriteLine("Service fee: " + s.ServiceFee);
+                                sumFee += s.ServiceFee;
+                            }
+                            file.WriteLine("The sum of fee for this provider: " + sumFee);
+                            file.WriteLine("The number of the services: " + serviceNum);
+                            totalFee += sumFee;
+                        }
+                        file.WriteLine("The total fee of all providers: " + totalFee);
+                        file.WriteLine("The number of the providers: " + providerNum);
+                    }
+                }
+            }
+        
         }
     }
 }
