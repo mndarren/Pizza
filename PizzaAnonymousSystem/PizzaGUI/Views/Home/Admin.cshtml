@@ -23,6 +23,9 @@
             <a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">admin</a>
         </li>
         <li role="presentation">
+            <a href="#service" aria-controls="service" role="tab" data-toggle="tab">service</a>
+        </li>
+        <li role="presentation">
             <a href="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">schedule</a>
         </li>
         <li role="presentation">
@@ -40,27 +43,32 @@
 
         <!--provider tab-->
         <div role="tabpanel" class="tab-pane" id="provider">
-            provider
+            @Html.Partial("ToolContents/_ProviderContent")
         </div>
 
         <!--manager tab-->
         <div role="tabpanel" class="tab-pane" id="manager">
-            manager
+            @Html.Partial("ToolContents/_ManagerContent")
         </div>
 
         <!--admin tab-->
         <div role="tabpanel" class="tab-pane" id="admin">
-            admin
+            @Html.Partial("ToolContents/_AdminContent")
+        </div>
+
+        <!--service tab-->
+        <div role="tabpanel" class="tab-pane" id="service">
+            @Html.Partial("ToolContents/_ServiceContent")
         </div>
 
         <!--schedule-->
         <div role="tabpanel" class="tab-pane" id="schedule">
-            schedule
+            @Html.Partial("ToolContents/_ScheduleContent")
         </div>
 
         <!--report-->
         <div role="tabpanel" class="tab-pane" id="report">
-            report
+            @Html.Partial("ToolContents/_ReportContent")
         </div>
 
     </div>
