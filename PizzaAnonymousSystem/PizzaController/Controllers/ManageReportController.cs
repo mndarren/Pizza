@@ -327,14 +327,17 @@ namespace PizzaController.Controllers
                         file.WriteLine("Zipcode: " + _member.ZipCode);
                         file.WriteLine("Status: " + _member.Status);
 
-                        List<Service> serveList = null;//serviceRecordList.GetServices(_member);
+                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
                         int counter = 0;
-                        foreach(Service s in serveList){
+                        foreach (ServiceRecord s in serveList)
+                        {
                             counter++;
+                            int serviceCode = s.ServiceCode;
+                            Service service = providerDirectory.GetService("");
                             file.WriteLine("Service:" + counter);
-                            file.WriteLine("Service Name: " + s.ServiceName);
-                            file.WriteLine("Service Code: " + s.ServiceCode);
-                            file.WriteLine("Service Fee: " + s.ServiceFee);
+                            file.WriteLine("Service Name: " + service.ServiceName);
+                            file.WriteLine("Service Code: " + service.ServiceCode);
+                            file.WriteLine("Service Fee: " + service.ServiceFee);
                         }
 
                     }
@@ -364,15 +367,17 @@ namespace PizzaController.Controllers
                         file.WriteLine("Street Address: " + provider.StreetAddress);
                         file.WriteLine("Zipcode: " + provider.ZipCode);
 
-                        List<Service> serveList = null;//serviceRecordList.GetServices();
+                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(provider.ID);
                         int counter = 0;
-                        foreach (Service s in serveList)
+                        foreach (ServiceRecord s in serveList)
                         {
                             counter++;
+                            int serviceCode = s.ServiceCode;
+                            Service service = providerDirectory.GetService("");
                             file.WriteLine("Service:" + counter);
-                            file.WriteLine("Service Name: " + s.ServiceName);
-                            file.WriteLine("Service Code: " + s.ServiceCode);
-                            file.WriteLine("Service Fee: " + s.ServiceFee);
+                            file.WriteLine("Service Name: " + service.ServiceName);
+                            file.WriteLine("Service Code: " + service.ServiceCode);
+                            file.WriteLine("Service Fee: " + service.ServiceFee);
                         }
 
                     }
@@ -403,13 +408,15 @@ namespace PizzaController.Controllers
                             decimal sumFee = 0;
                             file.WriteLine("Provider Name: " + provider.Name);
 
-                            List<Service> serveList = null;//serviceRecordList.GetServices();
-                            foreach (Service s in serveList)
+                            List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(provider.ID);
+                            foreach (ServiceRecord s in serveList)
                             {
                                 serviceNum++;
-                                file.WriteLine("Service Name: " + s.ServiceName);
-                                file.WriteLine("Service fee: " + s.ServiceFee);
-                                sumFee += s.ServiceFee;
+                                int serviceCode = s.ServiceCode;
+                                Service service = providerDirectory.GetService("");
+                                file.WriteLine("Service Name: " + service.ServiceName);
+                                file.WriteLine("Service fee: " + service.ServiceFee);
+                                sumFee += service.ServiceFee;
                             }
                             file.WriteLine("The sum of fee for this provider: " + sumFee);
                             file.WriteLine("The number of the services: " + serviceNum);
