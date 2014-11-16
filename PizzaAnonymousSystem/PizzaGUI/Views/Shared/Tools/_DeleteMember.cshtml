@@ -1,0 +1,41 @@
+﻿
+
+<form role="form" class="tool-form" id="tool-delete-member">
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>DELETE MEMBER</strong></h4>
+        </div>
+        <div class="tool-form-header-desc">
+            delete an existing member. please provide member ID.
+        </div>
+    </div>
+
+    <div class="tool-form-content">
+        
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="delete-member-success">
+                <strong>success!</strong> member has been deleted.
+            </div>
+
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="delete-member-error">
+                <strong>error!</strong> please try again.
+            </div>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">ID</span>
+            <input type="text" class="form-control" id="delete-member-name" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="tool-form-content-buttons tool-form-content-input text-right">
+            <button class="btn btn-danger"  id="delete-member-reset" >reset</button>
+            <button class="btn btn-primary" id="delete-member-submit">submit</button>
+        </div>
+
+    </div>
+
+</form>

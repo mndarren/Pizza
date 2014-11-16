@@ -4,6 +4,10 @@
 
 <div class="tool-area">
     
+    <div class="tool-header">
+        <h3><strong class="tool-header-title">ADMIN TOOLS</strong> | welcome, <strong>your name</strong></h3>
+    </div>
+
     <!--navigation tabs-->
     <ul class="nav nav-tabs tool-nav">
         <li role="presentation" class="active">
@@ -31,7 +35,7 @@
         
         <!--member tab-->
         <div role="tabpanel" class="tab-pane active" id="member">
-            member
+            @Html.Partial("ToolContents/_MemberContent")
         </div>
 
         <!--provider tab-->

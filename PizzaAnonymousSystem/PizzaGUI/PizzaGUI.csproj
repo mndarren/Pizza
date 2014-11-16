@@ -217,6 +217,10 @@
     <Content Include="Views\Home\Provider.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\Home\Manager.cshtml" />
+    <Content Include="Views\Shared\Tools\_AddMember.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_MemberContent.cshtml" />
+    <Content Include="Views\Shared\Tools\_UpdateMember.cshtml" />
+    <Content Include="Views\Shared\Tools\_DeleteMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

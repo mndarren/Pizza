@@ -41,6 +41,24 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+/*common*/
+.pad-right-5 {
+    padding-right:5px;
+}
+
+.pad-left-5 {
+    padding-left:5px;
+}
+
+.display-none {
+    display:none;
+}
+
+.visibility-hidden {
+    visibility:hidden;
+}
+
+
 #login-area {
     
 }
@@ -75,18 +93,62 @@ input[type="checkbox"].input-validation-error {
             }
         
             #login-area #login-area-box .login-area-box-section #login-role {
-                width:225px;
-                border-radius:4px;
+                width:175px;
+                border-radius:0px 4px 4px 0px;
+                cursor:pointer;
             }
 
 .tool-area {
 
 }
 
-    .tool-area .tool-nav {
+    .tool-area .tool-header {
         padding-top:10px;
+    }
+
+        .tool-area .tool-header .tool-header-title {
+            color:#428bca;
+        }
+
+    .tool-area .tool-nav {
+        padding-top:5px;
     }
 
     .tool-area .tool-content {
         padding-top:10px;
     }
+
+        .tool-area .tool-content .tool-sub-nav {
+            padding-top:5px;
+        }
+
+        .tool-area .tool-content .tool-sub-content {
+            padding-top:10px;
+        }
+
+.tool-form {
+
+}
+
+    .tool-form .tool-form-header {
+        padding-bottom:10px;
+    }
+
+    .tool-form .tool-form-content {
+        width:500px;
+    }
+
+        .tool-form .tool-form-content .tool-form-content-input {
+            padding-top:3px;
+            padding-bottom:3px;
+        }
+
+            .tool-form .tool-form-content .tool-form-content-input select {
+                border-radius:0px 4px 4px 0px;
+                cursor:pointer;
+            }
+
+        .tool-form .tool-form-content .tool-form-content-buttons {
+            padding-top:3px;
+            padding-bottom:3px;
+        }
