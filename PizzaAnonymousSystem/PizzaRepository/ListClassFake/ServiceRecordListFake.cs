@@ -21,5 +21,16 @@ namespace PizzaRepository.ListClassFake
         {
             throw new NotImplementedException();
         }
+
+
+        public List<ServiceRecord> GetAllServiceRecordForMember(int memberID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ServiceRecord> GetAllServiceRecordForProvider(int providerID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

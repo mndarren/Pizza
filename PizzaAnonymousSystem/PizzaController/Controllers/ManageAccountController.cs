@@ -48,21 +48,6 @@ namespace PizzaController.Controllers
             return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
         }
 
-        //[GET("/accountmanager/account")]
-        //public List<Member> GetAllMembers()
-        //{
-        //    var members = new List<Member>();
-        //    try
-        //    {
-        //
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new HttpRequestException(e.Message);
-        //    }
-        //    return members;
-        //}
-
         /********************************************
          * Provider
          * *****************************************/

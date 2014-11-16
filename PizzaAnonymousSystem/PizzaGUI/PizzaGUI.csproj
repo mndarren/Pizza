@@ -160,7 +160,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PizzaAnonymousApplicationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,7 +214,36 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\PizzaAnonymousApplication\PizzaAnonymousApplication.cshtml" />
+    <Content Include="Views\Home\Provider.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\Manager.cshtml" />
+    <Content Include="Views\Shared\Tools\_AddMember.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_MemberContent.cshtml" />
+    <Content Include="Views\Shared\Tools\_UpdateMember.cshtml" />
+    <Content Include="Views\Shared\Tools\_DeleteMember.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_ProviderContent.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_ManagerContent.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_AdminContent.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_ScheduleContent.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_ReportContent.cshtml" />
+    <Content Include="Views\Shared\Tools\_AddProvider.cshtml" />
+    <Content Include="Views\Shared\Tools\_AddManager.cshtml" />
+    <Content Include="Views\Shared\Tools\_AddAdmin.cshtml" />
+    <Content Include="Views\Shared\Tools\_DeleteManager.cshtml" />
+    <Content Include="Views\Shared\Tools\_DeleteAdmin.cshtml" />
+    <Content Include="Views\Shared\Tools\_DeleteProvider.cshtml" />
+    <Content Include="Views\Shared\Tools\_UpdateAdmin.cshtml" />
+    <Content Include="Views\Shared\Tools\_UpdateManager.cshtml" />
+    <Content Include="Views\Shared\Tools\_UpdateProvider.cshtml" />
+    <Content Include="Views\Shared\Tools\_UpdateSchedule.cshtml" />
+    <Content Include="Views\Shared\Tools\_GetReport.cshtml" />
+    <Content Include="Views\Shared\Tools\_VerifyReport.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_ServiceContent.cshtml" />
+    <Content Include="Views\Shared\Tools\_AddServiceRecord.cshtml" />
+    <Content Include="Views\Shared\ToolContents\_ServiceRecordContent.cshtml" />
+    <Content Include="Views\Shared\Tools\_AddService.cshtml" />
+    <Content Include="Views\Shared\Tools\_UpdateService.cshtml" />
+    <Content Include="Views\Shared\Tools\_DeleteService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
