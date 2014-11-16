@@ -23,18 +23,21 @@ namespace PizzaGUI.Controllers
             return View();
         }
 
-        public ActionResult Provider()
+        public ActionResult Provider(string username = "your name")
         {
+            ViewBag.Username = username;
             return View();
         }
 
-        public ActionResult Admin()
+        public ActionResult Admin(string username = "your name")
         {
+            ViewBag.Username = username;
             return View();
         }
 
-        public ActionResult Manager()
+        public ActionResult Manager(string username = "your name")
         {
+            ViewBag.Username = username;
             return View();
         }
     }

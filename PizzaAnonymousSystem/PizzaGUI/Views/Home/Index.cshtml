@@ -16,7 +16,7 @@
         <div class="login-area-box-alerts">
             <!--error-->
             <div class="alert alert-danger display-none" role="alert" id="login-error">
-                <strong>error!</strong> please try again.
+                <strong>error!</strong> sorry, did you have all the proper information?.
             </div>
         </div>
 
@@ -25,7 +25,7 @@
             <select class="form-control" id="login-role">
                 <option value="1" selected="selected">provider</option>
                 <option value="2">manager</option>
-                <option value="2">admin</option>
+                <option value="3">admin</option>
             </select>
         </div>
 
@@ -35,13 +35,46 @@
         </div>
 
         <div class="login-area-box-section" id="login-area-box-buttons">
-            <button class="btn btn-danger"  id="login-btn-reset" onclick="resetLoginBox()">reset</button>
-            <button class="btn btn-primary" id="login-btn-submit" onclick="submitLoginBox()">submit</button>
+            <button class="btn btn-danger"  id="login-btn-reset">reset</button>
+            <button class="btn btn-primary" id="login-btn-submit">submit</button>
         </div>
     </div>
 
 </form>
 
 <script type="text/javascript">
-    
+    var login = {
+        adminPath: '@Url.Action("Admin", "Home")',
+        managerPath: '@Url.Action("Manager", "Home")',
+        providerPath: '@Url.Action("Provider", "Home")'
+    };
 </script>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("login-btn-reset").onclick = resetLoginBox;
+            document.getElementById("login-btn-submit").onclick = submitLoginBox;
+
+            function resetLoginBox() {
+                event.preventDefault();
+                $('#login-role').val(1);
+                $('#login-id').val("");
+            }
+
+            function submitLoginBox() { //Temporary. Link to actual function later
+                event.preventDefault();
+                var role = parseInt($('#login-role').val());
+                
+                if ($('#login-id').val() != "") {
+                    if (role == 3) window.location = login.adminPath;
+                    else if (role == 2) window.location = login.managerPath;
+                    else window.location = login.providerPath;
+                } else {
+                    $('#login-error').slideToggle(400).delay(3000).slideToggle(400);
+                    
+                }
+            }
+        });
+    </script>
+}

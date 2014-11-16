@@ -2,6 +2,55 @@
     ViewBag.Title = "Manager";
 }
 
+<div class="tool-area">
+    
+    <div class="tool-header">
+        <h3><strong class="tool-header-title">MANAGER TOOLS</strong> | welcome, <strong>@ViewBag.Username</strong></h3>
+    </div>
+
+    <!--navigation tabs-->
+    <ul class="nav nav-tabs tool-nav">
+        <li role="presentation" class="active">
+            <a href="#member" aria-controls="member" role="tab" data-toggle="tab">member</a>
+        </li>
+        <li role="presentation">
+            <a href="#provider" aria-controls="provider" role="tab" data-toggle="tab">provider</a>
+        </li>
+        <li role="presentation">
+            <a href="#service" aria-controls="service" role="tab" data-toggle="tab">service</a>
+        </li>
+        <li role="presentation">
+            <a href="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">schedule</a>
+        </li>
+    </ul>
+
+    <!--tab panes-->
+    <div class="tab-content tool-content">
+        
+        <!--member tab-->
+        <div role="tabpanel" class="tab-pane active" id="member">
+            @Html.Partial("ToolContents/_MemberContent")
+        </div>
+
+        <!--provider tab-->
+        <div role="tabpanel" class="tab-pane" id="provider">
+            @Html.Partial("ToolContents/_ProviderContent")
+        </div>
+        
+        <!--service tab-->
+        <div role="tabpanel" class="tab-pane" id="service">
+            @Html.Partial("ToolContents/_ServiceContent")
+        </div>
+
+        <!--schedule-->
+        <div role="tabpanel" class="tab-pane" id="schedule">
+            @Html.Partial("ToolContents/_ScheduleContent")
+        </div>
+
+    </div>
+
+</div>
+
 <script type="text/javascript">
     
 </script>
