@@ -2,6 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
+<!--
 <form id="LoginBox">
 
     <h1>Welcome to Pizza Anonymous! Do not drop the soap!</h1>
@@ -37,4 +38,37 @@
         </div>
         <button class="btn btn-default">submit</button>
     </div>
+</form>
+-->
+
+<form role="form" id="login-area">
+
+    <div id="login-area-header">
+        <h1>welcome to <strong style="color:#808080;">pizza anonymous interface</strong></h1>
+
+        <img src="http://i.imgur.com/dBNKQ.gif" />
+
+        <h3>please enter your credentials</h3>
+    </div>
+
+    <div id="login-area-box">
+        <div class="input-group login-area-box-section">
+            <select class="form-control" id="login-role">
+                <option value="1" selected="selected">provider</option>
+                <option value="2">manager</option>
+                <option value="2">admin</option>
+            </select>
+        </div>
+
+        <div class="input-group login-area-box-section">
+            <span class="input-group-addon">ID</span>
+            <input type="text" class="form-control" id="login-id" placeholder="">
+        </div>
+
+        <div class="login-area-box-section" id="login-area-box-buttons">
+            <button class="btn btn-danger"  id="login-btn-reset" >reset</button>
+            <button class="btn btn-primary" id="login-btn-submit">submit</button>
+        </div>
+    </div>
+
 </form>
