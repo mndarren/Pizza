@@ -1,1 +1,75 @@
 ﻿
+<form role="form" class="tool-form" id="tool-update-admin">
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>UPDATE ADMIN</strong></h4>
+        </div>
+        <div class="tool-form-header-desc">
+            update an existing admin. please provide all of the information.
+        </div>
+    </div>
+
+    <div class="tool-form-content">
+
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="update-admin-success">
+                <strong>success!</strong> admin has been updated.
+            </div>
+
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="update-admin-error">
+                <strong>error!</strong> please try again.
+            </div>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">ID</span>
+            <input type="text" class="form-control" id="update-admin-id" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">name</span>
+            <input type="text" class="form-control" id="update-admin-name" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">address</span>
+            <input type="text" class="form-control" id="update-admin-address" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="row">
+
+            <div class="input-group tool-form-content-input col-md-5 pad-right-5">
+                <span class="input-group-addon">city</span>
+                <input type="text" class="form-control" id="update-admin-city" placeholder="">
+            </div>
+
+            <div class="input-group tool-form-content-input col-md-3 pad-left-5 pad-right-5">
+                <span class="input-group-addon">state</span>
+                <input type="text" class="form-control" id="update-admin-state" placeholder="">
+            </div>
+
+            <div class="input-group tool-form-content-input col-md-4 pad-left-5">
+                <span class="input-group-addon">zip</span>
+                <input type="text" class="form-control" id="update-admin-zip" placeholder="">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 tool-form-content-buttons text-right">
+                <button class="btn btn-danger" id="update-admin-reset">reset</button>
+                <button class="btn btn-primary" id="update-admin-submit">submit</button>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+</script>

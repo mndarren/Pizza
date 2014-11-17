@@ -15,7 +15,7 @@ namespace PizzaRepository.Tests.ListClass
             var list = new ServiceRecordList();
             var serviceRecord = new ServiceRecord();
             var result = list.InsertServiceRecord(serviceRecord);
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         //[TestMethod]
