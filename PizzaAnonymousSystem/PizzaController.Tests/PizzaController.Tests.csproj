@@ -116,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ManageReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specs\AppContext.cs" />
     <Compile Include="Specs\ManageServices\ManageServicesSteps.cs" />
@@ -142,7 +143,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Specs\ManageAccount\" />
     <Folder Include="Specs\ManageReports\" />
   </ItemGroup>

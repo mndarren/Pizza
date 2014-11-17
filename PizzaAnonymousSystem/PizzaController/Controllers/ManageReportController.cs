@@ -30,29 +30,7 @@ namespace PizzaController.Controllers
             this.serviceRecordList = serviceRecordList;
         }
 
-        /// <summary>
-        /// Return all weekly member reports
-        /// </summary>
-        /// <returns>a list of member reports</returns>
-        [GET("/reportmanager/weeklymemberreports/")]
-        public List<MemberReport> GetWeeklyMemberReports1()
-        {
-            var memberReports = new List<MemberReport>();
-
-            try
-            {
-
-            }
-            catch (Exception e)
-            {
-                throw new HttpRequestException(e.Message);
-            }
-
-            return memberReports;
-        }
-
-        public ManageReportController() { }
-
+        [GET("api/reportmanager/reports/memberreport")]
         public List<MemberReport> GetWeeklyMemberReports()
         {
             List<MemberReport> memberReports = new List<MemberReport>();
@@ -82,7 +60,7 @@ namespace PizzaController.Controllers
             return memberReports;
         }
 
-
+        [GET("api/reportmanager/reports/providerreport")]
         public List<ProviderReport> GetWeeklyProviderReports()
         {
             List<ProviderReport> providerReports = new List<ProviderReport>();
@@ -113,6 +91,7 @@ namespace PizzaController.Controllers
             return providerReports;
         }
 
+        [GET("api/reportmanager/reports/eftreport")]
         public List<EFTReport> GetWeeklyEFTReports()
         {
             List<EFTReport> eftReports = new List<EFTReport>();
@@ -135,7 +114,6 @@ namespace PizzaController.Controllers
 
             return eftReports;
         }
-
 
         /*
         public MemberReport GetMemberReport
@@ -170,7 +148,7 @@ namespace PizzaController.Controllers
 
             return memberReport;
         }*/
-
+        [PUT("api/reportmanager/schedules/memberreport")]
         public bool UpdateMemberReportSchedule
             (int weekday, TimeSpan time)
         {
@@ -192,9 +170,8 @@ namespace PizzaController.Controllers
 
             return success;
         }
-
-
-
+        
+        [PUT("api/reportmanager/schedules/providerreport")]
         public bool UpdateProviderReportSchedule
             (int weekday, TimeSpan time)
         {
@@ -218,7 +195,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
-
+        [PUT("api/reportmanager/schedules/eftreport")]
         public bool UpdateEFTReportSchedule
             (int weekday, TimeSpan time)
         {
@@ -242,7 +219,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
-
+        [PUT("api/reportmanager/report/providerreport/verification/service")]
         public bool VerifyProviderReportServices
             (int providerID, TimeSpan startDate, TimeSpan endDate)
         {
@@ -273,7 +250,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
-
+        [PUT("api/reportmanager/report/providerreport/verification/fee")]
         public bool VerifyProviderReportFees
             (int providerID, TimeSpan startDate, TimeSpan endDate)
         {
@@ -305,7 +282,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
-
+        [GET("api/reportmanager/report/memberreport")]
         public void runMemberReportSchedule(Member _member, Schedule _schedule)
         {
             //compare the current time with the time set
@@ -346,8 +323,8 @@ namespace PizzaController.Controllers
                 }
             }
         }
-
-
+        
+        [GET("api/reportmanager/report/providerreport")]
         public void runProviderReportSchedule(Provider provider, Schedule _schedule)
         {
             //compare the current time with the time set
@@ -388,6 +365,7 @@ namespace PizzaController.Controllers
             }
         }
 
+        [GET("api/reportmanager/report/eftreport")]
         public void runEFTReportSchedule(List<Provider> providers, Schedule _schedule)
         {
             //compare the current time with the time set
