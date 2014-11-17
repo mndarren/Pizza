@@ -1,5 +1,5 @@
 ﻿using System;
-using PizzaRepository.ListClassFake;
+using PizzaRepository.ListClass;
 using PizzaController.Controllers;
 using PizzaModels.Report;
 
@@ -14,7 +14,7 @@ namespace PizzaController.Tests.Controllers
         [TestCategory("ManageReportController")]
         public void TestMemberReport()
         {
-            var report = new ManageReportController(new MemberListFake(), new ProviderListFake(), new ProviderDirectoryFake(), new ScheduleListFake(), new ServiceRecordListFake());
+            var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             var result = report.GetWeeklyMemberReports();
             Assert.IsFalse(null != result);
         }
