@@ -33,6 +33,14 @@ namespace PizzaRepository.ListClassFake
             }
             else return null;
         }
+        public Service GetService(int serviceCode)
+        {
+            if (!_returnError)
+            {
+                return new Service(123456, "Massage", 100.00m);
+            }
+            else return null;
+        }
 
         public Service UpdateService(Service newService)
         {

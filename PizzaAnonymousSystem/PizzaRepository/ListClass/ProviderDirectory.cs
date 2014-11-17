@@ -146,6 +146,30 @@ namespace PizzaRepository.ListClass
 
             return service;
         }
+        public Service GetService(int serviceCode)
+        {
+            var service = new Service();
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+                var eService = pizzaDB.Services
+                    .Where(es => es.ServiceCode == serviceCode).FirstOrDefault();
+
+                if (null != eService)
+                    service = MapEntityToService(eService);
+                else service = null;
+            }
+            catch (Exception e)
+            {
+                service = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return service;
+        }
 
         #region Entity DataType Mapping
 

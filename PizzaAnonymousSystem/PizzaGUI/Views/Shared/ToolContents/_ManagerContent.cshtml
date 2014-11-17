@@ -1,1 +1,32 @@
-﻿
+﻿<!--navigation sub-tabs-->
+<ul class="nav nav-pills tool-sub-nav">
+    <li role="presentation" class="active">
+        <a href="#add-manager" aria-controls="add-manager" role="tab" data-toggle="tab">add manager</a>
+    </li>
+    <li role="presentation">
+        <a href="#update-manager" aria-controls="update-manager" role="tab" data-toggle="tab">update manager</a>
+    </li>
+    <li role="presentation">
+        <a href="#delete-manager" aria-controls="delete-manager" role="tab" data-toggle="tab">delete manager</a>
+    </li>
+</ul>
+
+<!--sub-tab panes-->
+<div class="tab-content tool-sub-content">
+
+    <!--add manager tab-->
+    <div role="tabpanel" class="tab-pane active" id="add-manager">
+        @Html.Partial("Tools/_AddManager")
+    </div>
+
+    <!--add member tab-->
+    <div role="tabpanel" class="tab-pane" id="update-member">
+        @Html.Partial("Tools/_UpdateMember")
+    </div>
+
+    <!--add member tab-->
+    <div role="tabpanel" class="tab-pane" id="delete-member">
+        @Html.Partial("Tools/_DeleteMember")
+    </div>
+
+</div>
