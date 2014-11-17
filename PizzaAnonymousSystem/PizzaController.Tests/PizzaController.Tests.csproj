@@ -141,6 +141,10 @@
       <Project>{3BEDA8C1-2027-4B7A-B05B-03109C4D0B3E}</Project>
       <Name>PizzaController</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PizzaModels\PizzaModels.csproj">
+      <Project>{cb5f6f8a-dcb0-4f95-82de-af4391bbaaff}</Project>
+      <Name>PizzaModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PizzaRepository\PizzaRepository.csproj">
       <Project>{2a8cb478-ac0b-4e85-a0a3-5372ce5a3ab1}</Project>
       <Name>PizzaRepository</Name>

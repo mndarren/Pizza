@@ -30,72 +30,145 @@ namespace PizzaController.Controllers
             this.serviceRecordList = serviceRecordList;
         }
 
-        [HttpGet]
         [GET("api/reportmanager/reports/memberreport")]
-        public List<MemberReport> GetWeeklyMemberReports()
+        public void GetWeeklyMemberReports()
         {
-            List<MemberReport> memberReports = new List<MemberReport>();
-
+            List<MemberReport> memberReports = null;
             try
             {
-                Schedule schedule = scheduleList.GetSchedule(
-                    ReportType.MemberReportType);
+                Schedule _schedule = scheduleList.GetSchedule(
+                ReportType.MemberReportType);
 
                 TimeSpan startDate;//calculate start date from schedule;
                 TimeSpan endDate; //calculate end date from schedule;
 
-                List<Member> memberList = ml.GetAllMembers();
-                foreach (Member member in memberList)
+             
+                if (true)
                 {
-                    MemberReport memberReport = new MemberReport();
-                    runMemberReportSchedule(member, schedule);
-                    memberReports.Add(memberReport);
-                }
+                    Thread.Sleep(5000);
+                    memberReports = new List<MemberReport>();
+                    List<Member> memberList = ml.GetAllMembers();
+               
+                    //compare the current time with the time set
+                    foreach (Member _member in memberList)
+                    {
+                        MemberReport memberReport = new MemberReport();
+                        memberReports.Add(memberReport);
+
+                        String _nowTime = DateTime.Now.ToString("hh:mm");
+
+                        String _schTime = _schedule.Time.Hours.ToString() + ":" + _schedule.Time.Minutes.ToString();
+
+                        String fileName;
+                        //if (_nowTime.Equals(_schTime))
+                        _nowTime = _nowTime.Replace(":", "_");
+                        if (true)
+                        {
+                            fileName = _member.Name + "_" + _nowTime + ".txt";
+                            // System.IO.File.WriteAllText(@"WriteText.txt", text);
+                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName))
+                            {
+                                file.WriteLine("----------------------Member Report--------------------");
+                                file.WriteLine("Member ID: " + _member.ID);
+                                file.WriteLine("Member Name: " + _member.Name);
+                                file.WriteLine("State: " + _member.State);
+                                file.WriteLine("Street Address: " + _member.StreetAddress);
+                                file.WriteLine("Zipcode: " + _member.ZipCode);
+                                file.WriteLine("Status: " + _member.Status);
+
+                                List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
+                                int counter = 0;
+                                foreach (ServiceRecord s in serveList)
+                                {
+                                    counter++;
+                                    int serviceCode = s.ServiceCode;
+                                    Service service = providerDirectory.GetService("");
+                                    file.WriteLine("Service:" + counter);
+                                    file.WriteLine("Service Name: " + service.ServiceName);
+                                    file.WriteLine("Service Code: " + service.ServiceCode);
+                                    file.WriteLine("Service Fee: " + service.ServiceFee);
+                                }
+
+                            }
+                        }
+                        memberReports.Add(memberReport);
+                    }
+                }             
             }
             catch (Exception e)
             {
                 //record exception
                 memberReports = null;
             }
-
-            return memberReports;
         }
 
-        [HttpGet]
         [GET("api/reportmanager/reports/providerreport")]
-        public List<ProviderReport> GetWeeklyProviderReports()
+        public void GetWeeklyProviderReports()
         {
-            List<ProviderReport> providerReports = new List<ProviderReport>();
+            List<ProviderReport> providerReports = null;
 
             try
             {
-                Schedule schedule = scheduleList.GetSchedule(
-                    ReportType.ProviderReportType);
+                Schedule _schedule = scheduleList.GetSchedule(
+                ReportType.ProviderReportType);
                 TimeSpan startDate;//calculate start date from schedule;
                 TimeSpan endDate;//calculate end date from schedule;
 
-                List<Provider> providers = providerList.GetAllProviders();
-                foreach (Provider provider in providers)
+                //compare the current time with the time set
+                if (true)
                 {
-                    ProviderReport providerReport = new ProviderReport();
+                    Thread.Sleep(5000);
+                    providerReports = new List<ProviderReport>();
+                    List<Provider> providers = providerList.GetAllProviders();
+                    foreach (Provider provider in providers)
+                    {
+                        ProviderReport providerReport = new ProviderReport();
+                        String _nowTime = DateTime.Now.ToString("hh:mm");
 
-                    runProviderReportSchedule(provider, schedule);
+                        String _schTime = _schedule.Time.Hours.ToString() + ":" + _schedule.Time.Minutes.ToString();
 
-                    providerReports.Add(providerReport);
-                }
-            }
-            catch (Exception e)
-            {
+                        String fileName;
+                        //if (_nowTime.Equals(_schTime))
+                        _nowTime = _nowTime.Replace(":", "_");
+                        if (true)
+                        {
+                            fileName = provider.Name + "_" + _nowTime + ".txt";
+                            // System.IO.File.WriteAllText(@"WriteText.txt", text);
+                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                            {
+                                file.WriteLine("----------------------Provider Report--------------------");
+                                file.WriteLine("Provider ID: " + provider.ID);
+                                file.WriteLine("Provider Name: " + provider.Name);
+                                file.WriteLine("State: " + provider.State);
+                                file.WriteLine("Street Address: " + provider.StreetAddress);
+                                file.WriteLine("Zipcode: " + provider.ZipCode);
+
+                                List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(provider.ID);
+                                int counter = 0;
+                                foreach (ServiceRecord s in serveList)
+                                {
+                                    counter++;
+                                    int serviceCode = s.ServiceCode;
+                                    Service service = providerDirectory.GetService("");
+                                    file.WriteLine("Service:" + counter);
+                                    file.WriteLine("Service Name: " + service.ServiceName);
+                                    file.WriteLine("Service Code: " + service.ServiceCode);
+                                    file.WriteLine("Service Fee: " + service.ServiceFee);
+                                }
+
+                            }
+                        }
+                        providerReports.Add(providerReport);
+                    }
+                     }
+                } catch (Exception e){
                 //record exception
                 providerReports = null;
             }
-
-            return providerReports;
         }
 
-        [HttpGet]
         [GET("api/reportmanager/reports/eftreport")]
-        public List<EFTReport> GetWeeklyEFTReports()
+        public void GetWeeklyEFTReports()
         {
             List<EFTReport> eftReports = new List<EFTReport>();
 
@@ -114,43 +187,8 @@ namespace PizzaController.Controllers
                 //record exception
                 eftReports = null;
             }
-
-            return eftReports;
         }
 
-        /*
-        public MemberReport GetMemberReport
-            (int memberID, TimeSpan startDate, TimeSpan endDate)
-        {
-            MemberReport memberReport = new MemberReport();
-
-            try
-            {
-                Member member = ml.GetMember(memberID);
-
-                if (null != member)
-                {
-                    memberReport.SetMemberInformation(member);
-
-                    foreach (Service s in member.GetServices())
-                    //   .Where(s => s.GetDate() <= endDate && s.GetDate() > startDate))
-                    {
-
-                        //     memberReport.AddService(service,
-                        //         ProviderList.GetProvider(service.GetProviderID()));
-                    }
-                }
-                else throw new Exception("member not found");
-
-            }
-            catch (Exception e)
-            {
-                //record exception
-                memberReport = null;
-            }
-
-            return memberReport;
-        }*/
         [HttpPut]
         [PUT("api/reportmanager/schedules/memberreport")]
         public bool UpdateMemberReportSchedule
@@ -175,7 +213,6 @@ namespace PizzaController.Controllers
             return success;
         }
         
-        [HttpPut]
         [PUT("api/reportmanager/schedules/providerreport")]
         public bool UpdateProviderReportSchedule
             (int weekday, TimeSpan time)
@@ -200,7 +237,6 @@ namespace PizzaController.Controllers
             return success;
         }
 
-        [HttpPut]
         [PUT("api/reportmanager/schedules/eftreport")]
         public bool UpdateEFTReportSchedule
             (int weekday, TimeSpan time)
@@ -225,7 +261,6 @@ namespace PizzaController.Controllers
             return success;
         }
 
-        [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/service")]
         public bool VerifyProviderReportServices
             (int providerID, TimeSpan startDate, TimeSpan endDate)
@@ -257,7 +292,6 @@ namespace PizzaController.Controllers
             return success;
         }
 
-        [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/fee")]
         public bool VerifyProviderReportFees
             (int providerID, TimeSpan startDate, TimeSpan endDate)
@@ -290,103 +324,22 @@ namespace PizzaController.Controllers
             return success;
         }
 
-        [HttpGet]
-        [GET("api/reportmanager/reports/memberreport/file")]
-        public void runMemberReportSchedule(Member _member, Schedule _schedule)
-        {
-            //compare the current time with the time set
-            while (true)
-            {
-                Thread.Sleep(1000);
-                String _nowTime = DateTime.Now.ToString("hh:mm:ss");
-                String _schTime = _schedule.Time.ToString();
-                String fileName;
-                if (_nowTime.Equals(_schTime))
-                {
-                    fileName = _member.Name + "_" + _nowTime + ".txt";
-                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
-                    {
-                        file.WriteLine("----------------------Member Report--------------------");
-                        file.WriteLine("Member ID: " + _member.ID);
-                        file.WriteLine("Member Name: " + _member.Name);
-                        file.WriteLine("State: " + _member.State);
-                        file.WriteLine("Street Address: " + _member.StreetAddress);
-                        file.WriteLine("Zipcode: " + _member.ZipCode);
-                        file.WriteLine("Status: " + _member.Status);
 
-                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
-                        int counter = 0;
-                        foreach (ServiceRecord s in serveList)
-                        {
-                            counter++;
-                            int serviceCode = s.ServiceCode;
-                            Service service = providerDirectory.GetService("");
-                            file.WriteLine("Service:" + counter);
-                            file.WriteLine("Service Name: " + service.ServiceName);
-                            file.WriteLine("Service Code: " + service.ServiceCode);
-                            file.WriteLine("Service Fee: " + service.ServiceFee);
-                        }
-
-                    }
-                }
-            }
-        }
-        
-        [HttpGet]
-        [GET("api/reportmanager/reports/providerreport/file")]
-        public void runProviderReportSchedule(Provider provider, Schedule _schedule)
-        {
-            //compare the current time with the time set
-            while (true)
-            {
-                Thread.Sleep(1000);
-                String _nowTime = DateTime.Now.ToString("hh:mm:ss");
-                String _schTime = _schedule.Time.ToString();
-                String fileName;
-                if (_nowTime.Equals(_schTime))
-                {
-                    fileName = provider.Name + "_" + _nowTime + ".txt";
-                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
-                    {
-                        file.WriteLine("----------------------Provider Report--------------------");
-                        file.WriteLine("Provider ID: " + provider.ID);
-                        file.WriteLine("Provider Name: " + provider.Name);
-                        file.WriteLine("State: " + provider.State);
-                        file.WriteLine("Street Address: " + provider.StreetAddress);
-                        file.WriteLine("Zipcode: " + provider.ZipCode);
-
-                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(provider.ID);
-                        int counter = 0;
-                        foreach (ServiceRecord s in serveList)
-                        {
-                            counter++;
-                            int serviceCode = s.ServiceCode;
-                            Service service = providerDirectory.GetService("");
-                            file.WriteLine("Service:" + counter);
-                            file.WriteLine("Service Name: " + service.ServiceName);
-                            file.WriteLine("Service Code: " + service.ServiceCode);
-                            file.WriteLine("Service Fee: " + service.ServiceFee);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        [HttpGet]
-        [GET("api/reportmanager/reports/eftreport/file")]
+        [GET("api/reportmanager/report/eftreport")]
         public void runEFTReportSchedule(List<Provider> providers, Schedule _schedule)
         {
             //compare the current time with the time set
-            while (true)
+            if (true)
             {
-                Thread.Sleep(1000);
-                String _nowTime = DateTime.Now.ToString("hh:mm:ss");
-                String _schTime = _schedule.Time.ToString();
+                Thread.Sleep(5000);
+                String _nowTime = DateTime.Now.ToString("hh:mm");
+
+                String _schTime = _schedule.Time.Hours.ToString() + ":" + _schedule.Time.Minutes.ToString();
+
                 String fileName;
-                if (_nowTime.Equals(_schTime))
+                //if (_nowTime.Equals(_schTime))
+                _nowTime = _nowTime.Replace(":", "_");
+                if (true)
                 {
                     fileName = "EFT_" + _nowTime + ".txt";
                     int providerNum = 0;

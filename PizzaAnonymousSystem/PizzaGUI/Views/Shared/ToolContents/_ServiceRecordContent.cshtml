@@ -1,1 +1,16 @@
-﻿
+﻿<!--navigation sub-tabs-->
+<ul class="nav nav-pills tool-sub-nav">
+    <li role="presentation" class="active">
+        <a href="#add-service" aria-controls="add-service" role="tab" data-toggle="tab">Add Service Record</a>
+    </li>
+</ul>
+
+<!--sub-tab panes-->
+<div class="tab-content tool-sub-content">
+
+    <!--add service tab-->
+    <div role="tabpanel" class="tab-pane active" id="add-service">
+        @Html.Partial("Tools/_AddServiceRecord")
+    </div>
+
+</div>
