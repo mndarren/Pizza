@@ -116,6 +116,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ManageAccountControllerTest.cs" />
     <Compile Include="Controllers\ManageReportControllerTest.cs" />
     <Compile Include="Controllers\ManageServiceControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -32,7 +32,6 @@ namespace PizzaRepository.ListClass
         //add member into list
         public Boolean InsertMember(Member member){
             var success = false;
-
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();

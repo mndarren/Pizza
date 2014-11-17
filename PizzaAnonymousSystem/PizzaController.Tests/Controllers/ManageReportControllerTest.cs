@@ -15,8 +15,28 @@ namespace PizzaController.Tests.Controllers
         public void TestMemberReport()
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
-            var result = report.GetWeeklyMemberReports();
-            Assert.IsFalse(null != result);
+            report.GetWeeklyMemberReports();
+        }
+
+
+        [TestMethod]
+        [TestCategory("ManageReportController")]
+        public void TestProviderReport()
+        {
+            var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
+            report.GetWeeklyProviderReports();
+        }
+
+
+        [TestMethod]
+        [TestCategory("ManageReportController")]
+        public void TestEFTReport()
+        {
+            var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
+            report.GetWeeklyEFTReports();
         }
     }
+
+
+
 }

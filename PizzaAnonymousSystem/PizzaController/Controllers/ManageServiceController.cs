@@ -38,8 +38,8 @@ namespace PizzaController.Controllers
         /// Get all services
         /// </summary>
         /// <returns>returns all services</returns>
-        //[HttpGet]
-        [GET("api/servicemanager/services/")]
+        [HttpGet]
+        [GET("api/servicemanager/services")]
         public List<Service> GetAllServices()
         {
             //var services = new List<Service>();
@@ -53,26 +53,36 @@ namespace PizzaController.Controllers
                 throw new HttpRequestException(e.Message);
             }
         }
+
+        [HttpPost]
         [POST("api/servicemanager/servicerecords/")]
         public bool AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 
         {
             return serviceRecordList.InsertServiceRecord(newServiceRecord);
         }
+        
+        [HttpPost]
         [POST("api/servicemanager/services/")]
         public bool AddService([FromBody]Service newService)
         {
             return providerDirectory.AddService(newService);
         }
+
+        [HttpPut]
         [PUT("api/servicemanager/services/")]
         public Service UpdateService([FromBody]Service newService)
         {
             return providerDirectory.UpdateService(newService);
         }
+
+        [HttpDelete]
         [DELETE("api/servicemanager/services/{serviceCode}")]
         public bool DeleteService([FromUri]int serviceCode)
         {
             return providerDirectory.DeleteService(serviceCode);
         }
+
+        [HttpGet]
         [GET("api/servicemanager/servicerecords/{serviceRecordID}")]
         public ServiceRecord GetServiceRecord([FromUri]int serviceRecordID)
         {
