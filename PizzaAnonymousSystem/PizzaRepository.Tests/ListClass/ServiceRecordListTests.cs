@@ -18,14 +18,5 @@ namespace PizzaRepository.Tests.ListClass
             Assert.IsFalse(result);
         }
 
-        //[TestMethod]
-        //[TestCategory("ServiceRecordList")]
-        //public void GetServiceRecord()
-        //{
-        //    var list = new ServiceRecordList();
-        //    var result = list.GetServiceRecord();
-        //    Assert.IsNotNull(result);
-        //}
-
     }
 }
