@@ -130,6 +130,7 @@ namespace PizzaRepository.ListClass
                 {
                     pizzaDB.ReportSchedules.Remove(eSchedule);
                     pizzaDB.SaveChanges(); //Apply changes to DB
+                    success = true;
                 }
                 else success = false;
             }
