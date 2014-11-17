@@ -11,17 +11,18 @@ namespace PizzaCommon.Tools
         public static string SolutionPath()
         {
             var solutionPath = "";
-            var currentDirectory = System.Environment.CurrentDirectory;
+            var currentDirectory = AppDomain.CurrentDomain.RelativeSearchPath;
 
             var dirSplit = currentDirectory.Split(new string[] { "PizzaAnonymousSystem" }, StringSplitOptions.None);
             solutionPath = dirSplit[0] + "PizzaAnonymousSystem";
-
+            
             return solutionPath;
         }
 
         public static string DatabasePath()
         {
             return System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data");
+            //return System.IO.Path.Combine(PathFactory.SolutionPath(), "App_Data");
         }
     }
 }

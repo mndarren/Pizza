@@ -148,6 +148,7 @@ namespace PizzaController.Controllers
 
             return memberReport;
         }*/
+        [HttpPut]
         [PUT("api/reportmanager/schedules/memberreport")]
         public bool UpdateMemberReportSchedule
             (int weekday, TimeSpan time)

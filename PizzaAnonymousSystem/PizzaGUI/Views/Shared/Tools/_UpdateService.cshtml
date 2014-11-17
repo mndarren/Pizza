@@ -1,1 +1,63 @@
 ﻿
+<form role="form" class="tool-form" id="tool-update-service">
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>UPDATE SERVICE</strong></h4>
+        </div>
+        <div class="tool-form-header-desc">
+            update an existing service. please provide all of the information.
+        </div>
+    </div>
+
+    <div class="tool-form-content">
+
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="update-service-success">
+                <strong>success!</strong> service has been updated.
+            </div>
+
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="update-service-error">
+                <strong>error!</strong> please try again.
+            </div>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">ID</span>
+            <input type="text" class="form-control" id="update-service-id" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">name</span>
+            <input type="text" class="form-control" id="update-service-name" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">code</span>
+            <input type="text" class="form-control" id="update-service-code" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="row">
+
+            <div class="input-group tool-form-content-input col-md-5 pad-right-5">
+                <span class="input-group-addon">fee</span>
+                <input type="text" class="form-control" id="update-service-fee" placeholder="">
+            </div>
+
+            <div class="col-md-6 tool-form-content-buttons text-right">
+                <button class="btn btn-danger" id="update-service-reset">reset</button>
+                <button class="btn btn-primary" id="update-service-submit">submit</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+</script>

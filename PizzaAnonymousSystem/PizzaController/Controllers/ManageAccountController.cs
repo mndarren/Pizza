@@ -29,12 +29,14 @@ namespace PizzaController.Controllers
         /************************************
          * member
          ***********************************/
+        [HttpPost]
         [POST("api/accountmanager/account/member")]
         public Boolean AddMember([FromBody]Member member)
         {   
            return memberList.InsertMember(member);
         }
 
+        [HttpDelete]
         [DELETE("api/accountmanager/account/member/{memberID}")]
         public Boolean DeleteMember([FromUri]int memberID)
         {
@@ -51,18 +53,21 @@ namespace PizzaController.Controllers
         /********************************************
          * Provider
          * *****************************************/
+        [HttpPost]
         [POST("api/accountmanager/account/provider")]
         public Boolean AddProvider([FromBody]Provider provider)
         {
             return providerList.AddProvider(provider);
         }
 
+        [HttpDelete]
         [DELETE("api/accountmanager/account/provider/{providerID}")]
         public Boolean DeleteProvider([FromUri]int providerID)
         {
             return providerList.DeleteProvider(providerID);
         }
 
+        [HttpPost]
         [POST("api/accountmanager/account/provider")]
         public Provider UpdateProvider([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, long bankAccount)
@@ -74,18 +79,21 @@ namespace PizzaController.Controllers
         /********************************
          * Manager
          * ************************************/
+        [HttpPost]
         [POST("api/accountmamnager/account/manager")]
         public Boolean AddManager([FromBody]Manager manager)
         {
             return managerList.InsertManager(manager);
         }
         
+        [HttpDelete]
         [DELETE("api/accountmanager/account/manager/{managerID}")]
         public Boolean DeleteManager([FromUri]int managerID)
         {
             return managerList.DeleteManager(managerID);
         }
 
+        [HttpPost]
         [POST("api/accountmanager/account/manager")]
         public Boolean UpdateManager([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode)
@@ -97,18 +105,21 @@ namespace PizzaController.Controllers
         /**********************
          * admin
          * *******************/
+        [HttpPost]
         [POST("api/accountmanager/account/admin")]
         public Boolean addAdmin([FromBody] Admin admin)
         {
             return adminList.addAdmin(admin);
         }
 
+        [HttpDelete]
         [DELETE("api/accountmanager/account/admin/{adminID}")]
         public Boolean DeleteAdmin([FromUri]int adminID)
         {
             return adminList.DeleteAdmin(adminID);
         }
 
+        [HttpPost]
         [POST("api/accountmanager/account/admin")]
         public Admin UpdateAdmin([FromBody]string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode)
@@ -119,6 +130,7 @@ namespace PizzaController.Controllers
         /*************************************
          * validate member
          * **********************************/
+        [HttpPost]
         [GET("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
