@@ -1,6 +1,8 @@
 ﻿using System;
 using PizzaRepository.ListClassFake;
 using PizzaController.Controllers;
+using PizzaModels.Report;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PizzaController.Tests.Controllers
@@ -13,8 +15,8 @@ namespace PizzaController.Tests.Controllers
         public void TestMemberReport()
         {
             var report = new ManageReportController(new MemberListFake(), new ProviderListFake(), new ProviderDirectoryFake(), new ScheduleListFake(), new ServiceRecordListFake());
-            //var result = report.GetWeeklyMemberReports();
-           // Assert.IsFalse(null != result);
+            var result = report.GetWeeklyMemberReports();
+            Assert.IsFalse(null != result);
         }
     }
 }
