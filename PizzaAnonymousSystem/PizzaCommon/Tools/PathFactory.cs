@@ -11,7 +11,8 @@ namespace PizzaCommon.Tools
         public static string SolutionPath()
         {
             var solutionPath = "";
-            var currentDirectory = AppDomain.CurrentDomain.RelativeSearchPath;
+            var currentDirectory = null != AppDomain.CurrentDomain.RelativeSearchPath
+                ? AppDomain.CurrentDomain.RelativeSearchPath : System.Environment.CurrentDirectory;
 
             var dirSplit = currentDirectory.Split(new string[] { "PizzaAnonymousSystem" }, StringSplitOptions.None);
             solutionPath = dirSplit[0] + "PizzaAnonymousSystem";
