@@ -6,7 +6,7 @@
             <h4><strong>VERIFY SERVICES PROVIDED</strong></h4>
         </div>
         <div class="tool-form-header-desc">
-            verify service provided. please verify the service and fee.
+            Verify service provided. please verify the service and fee.
         </div>
     </div>
 
@@ -21,35 +21,68 @@
 
             <!--error-->
             <div class="alert alert-danger display-none" role="alert" id="verify-services-error">
-                <strong>error!</strong> please try again.
+                <strong>error!</strong> please try verify services again.
+            </div>
+        </div>
+    </div>
+    <div class="tool-form-header-desc">
+        List all services provided in last week:
+    </div>
+        <div class="col-md-3">
+            <table data-toggle="table" data-url="data1.json" data-cache="false" data-height="299">
+                <thead>
+                    <tr>
+                        <th data-field="Service Code">Service Code</th>
+                        <th data-field="Service Name">Service Name</th>
+                        <th data-field="Service Fee">Service Fee</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0004</td>
+                        <td>Massage</td>
+                        <td>$120</td>
+                    </tr>
+                    <tr>
+                        <td>0005</td>
+                        <td>Haircut</td>
+                        <td>$32</td>
+                    </tr>
+                    <tr>
+                        <td>0006</td>
+                        <td>Massage</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>Services</td>
+                        <td>$252</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">Services Confirmation:</span>
+            <div class="tool-form-content-buttons text-right">
+                <button class="btn btn-danger" id="verification-deny">Deny</button>
+                <button class="btn btn-primary" id="verification-confirm">Confirm</button>
             </div>
         </div>
 
         <div class="input-group tool-form-content-input">
-            <span class="input-group-addon" style="width:80px;">Service Name</span>
-            <input type="text" class="form-control" id="add-service-name" placeholder="" style="width:418px;max-width:500px;">
-        </div>
-
-        <div class="input-group tool-form-content-input">
-            <span class="input-group-addon" style="width:80px;">Service Code</span>
-            <input type="text" class="form-control" id="add-service-code" placeholder="" style="width:418px;max-width:500px;">
+            <span class="input-group-addon" style="width:80px;">ServiceFee Confirmation:</span>
+            <div class="tool-form-content-buttons text-right">
+                <button class="btn btn-danger" id="verification-deny">Deny</button>
+                <button class="btn btn-primary" id="verification-confirm">Confirm</button>
+            </div>
         </div>
 
         <div class="row">
 
-            <div class="input-group tool-form-content-input col-md-5 pad-right-5">
-                <span class="input-group-addon">Service Fee</span>
-                <input type="text" class="form-control" id="add-service-fee" placeholder="">
-            </div>
-
         </div>
 
-        <div class="tool-form-content-buttons tool-form-content-input text-right">
-            <button class="btn btn-danger" id="add-service-reset">reset</button>
-            <button class="btn btn-primary" id="add-service-submit">submit</button>
-        </div>
-
-    </div>
 
 </form>
 
