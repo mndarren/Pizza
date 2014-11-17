@@ -1,6 +1,9 @@
-﻿/*
-Mo Chen
-*/
+﻿/*@Class: CSCI531
+ *@Author: Mo Chen
+ *@Date:11/6/2014
+ *@File: Admin.cs
+ *@Description: this class contains Admin's info
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
