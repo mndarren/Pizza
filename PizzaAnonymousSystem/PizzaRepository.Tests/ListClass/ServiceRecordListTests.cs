@@ -18,5 +18,12 @@ namespace PizzaRepository.Tests.ListClass
             Assert.IsFalse(result);
         }
 
+        public void GetServiceRecord()
+        {
+            var list = new ServiceRecordList();
+            int ID = 1;
+            var result = list.GetServiceRecord(ID);
+            Assert.IsNull(result);
+        }
     }
 }
