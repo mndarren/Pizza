@@ -23,7 +23,6 @@ namespace PizzaCommon.Tools
         public static string DatabasePath()
         {
             return System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data");
-            //return System.IO.Path.Combine(PathFactory.SolutionPath(), "App_Data");
         }
     }
 }

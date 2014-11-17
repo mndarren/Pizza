@@ -80,7 +80,7 @@ namespace PizzaController.Controllers
          * Manager
          * ************************************/
         [HttpPost]
-        [POST("api/accountmamnager/account/manager")]
+        [POST("api/accountmanager/account/manager")]
         public Boolean AddManager([FromBody]Manager manager)
         {
             return managerList.InsertManager(manager);
