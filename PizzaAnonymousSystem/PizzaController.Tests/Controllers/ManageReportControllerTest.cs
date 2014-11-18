@@ -18,7 +18,7 @@ namespace PizzaController.Tests.Controllers
             report.GetWeeklyMemberReports();
         }
 
-
+        //sync
         [TestMethod]
         [TestCategory("ManageReportController")]
         public void TestProviderReport()

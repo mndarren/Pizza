@@ -98,6 +98,7 @@ namespace PizzaRepository.ListClass
                 {
                     pizzaDB.Members.Remove(tempMember);
                     pizzaDB.SaveChanges(); //Apply changes to DB
+                    success = true;
                 }
                 else success = false;
             }
