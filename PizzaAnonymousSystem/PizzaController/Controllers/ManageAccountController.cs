@@ -161,7 +161,7 @@ namespace PizzaController.Controllers
         /*************************************
          * validate member
          * **********************************/
-        [HttpPost]
+        [HttpGet]
         [GET("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
