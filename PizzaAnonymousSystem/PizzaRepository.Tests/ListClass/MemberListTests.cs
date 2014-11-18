@@ -15,8 +15,13 @@ namespace PizzaRepository.Tests.ListClass
             var list = new MemberList();
 
             var member = new Member();
+            member.City = "StCloud";
+            member.Name = "Mike";
+            member.State = "MN";
+            member.Status = 1;
+            member.StreetAddress = "232 4th ave s";
+            member.ZipCode = "56301";
             var result = list.InsertMember(member);
-
             Assert.IsTrue(result);
         }
 
