@@ -112,9 +112,16 @@ namespace PizzaController.Controllers
 
         [HttpPut]
         [PUT("api/accountmanager/account/manager")]
-        public Boolean UpdateManager([FromBody]string name, int ID, string streetAddress,
-                                     string city, string state, string ZIPcode)
+        public Manager UpdateManager([FromBody]/*string name, int ID, string streetAddress,
+                                     string city, string state, string ZIPcode*/ Manager manager)
         {
+            string name = manager.Name;
+            int ID = manager.ID;
+            string streetAddress = manager.StreetAddress;
+            string city = manager.City;
+            string state = manager.State;
+            string ZIPcode = manager.ZipCode;
+
             return managerList.UpdateManager(name, ID, streetAddress,
                                      city, state, ZIPcode);
         }
