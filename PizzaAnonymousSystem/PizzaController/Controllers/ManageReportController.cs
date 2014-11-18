@@ -46,7 +46,7 @@ namespace PizzaController.Controllers
              
                 if (true)
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(1000);
                     memberReports = new List<MemberReport>();
                     List<Member> memberList = ml.GetAllMembers();
                
@@ -66,6 +66,7 @@ namespace PizzaController.Controllers
                         if (true)
                         {
                             fileName = _member.Name + "_" + _nowTime + ".txt";
+                            string _status = "";
                             // System.IO.File.WriteAllText(@"WriteText.txt", text);
                             using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName))
                             {
@@ -75,7 +76,13 @@ namespace PizzaController.Controllers
                                 file.WriteLine("State: " + _member.State);
                                 file.WriteLine("Street Address: " + _member.StreetAddress);
                                 file.WriteLine("Zipcode: " + _member.ZipCode);
-                                file.WriteLine("Status: " + _member.Status);
+                                if (_member.Status == 0)
+                                    _status = "Accepted";
+                                else if (_member.Status == 2)
+                                    _status = "Suspened";
+                                else 
+                                    _status = "Invalid";
+                                file.WriteLine("Status: " + _status);
 
                                 List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
                                 int counter = 0;
@@ -83,13 +90,12 @@ namespace PizzaController.Controllers
                                 {
                                     counter++;
                                     int serviceCode = s.ServiceCode;
-                                    Service service = providerDirectory.GetService("");
-                                    file.WriteLine("Service:" + counter);
+                                    Service service = providerDirectory.GetService(serviceCode);
+                                    file.WriteLine("\nService:" + counter);
                                     file.WriteLine("Service Name: " + service.ServiceName);
                                     file.WriteLine("Service Code: " + service.ServiceCode);
                                     file.WriteLine("Service Fee: " + service.ServiceFee);
                                 }
-
                             }
                         }
                         memberReports.Add(memberReport);
@@ -119,7 +125,7 @@ namespace PizzaController.Controllers
                 //compare the current time with the time set
                 if (true)
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(1000);
                     providerReports = new List<ProviderReport>();
                     List<Provider> providers = providerList.GetAllProviders();
                     foreach (Provider provider in providers)
@@ -143,16 +149,16 @@ namespace PizzaController.Controllers
                                 file.WriteLine("Provider Name: " + provider.Name);
                                 file.WriteLine("State: " + provider.State);
                                 file.WriteLine("Street Address: " + provider.StreetAddress);
-                                file.WriteLine("Zipcode: " + provider.ZipCode);
+                                file.WriteLine("Zip Code: " + provider.ZipCode);
 
-                                List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(provider.ID);
+                                List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
                                 int counter = 0;
                                 foreach (ServiceRecord s in serveList)
                                 {
                                     counter++;
                                     int serviceCode = s.ServiceCode;
-                                    Service service = providerDirectory.GetService("");
-                                    file.WriteLine("Service:" + counter);
+                                    Service service = providerDirectory.GetService(serviceCode);
+                                    file.WriteLine("\nService:" + counter);
                                     file.WriteLine("Service Name: " + service.ServiceName);
                                     file.WriteLine("Service Code: " + service.ServiceCode);
                                     file.WriteLine("Service Fee: " + service.ServiceFee);
@@ -338,7 +344,7 @@ namespace PizzaController.Controllers
             //compare the current time with the time set
             if (true)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(1000);
                 String _nowTime = DateTime.Now.ToString("hh:mm");
 
                 String _schTime = _schedule.Time.Hours.ToString() + ":" + _schedule.Time.Minutes.ToString();
@@ -361,22 +367,23 @@ namespace PizzaController.Controllers
                             decimal sumFee = 0;
                             file.WriteLine("Provider Name: " + provider.Name);
 
-                            List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(provider.ID);
+                            List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
                             foreach (ServiceRecord s in serveList)
                             {
                                 serviceNum++;
                                 int serviceCode = s.ServiceCode;
-                                Service service = providerDirectory.GetService("");
+                                Service service = providerDirectory.GetService(serviceCode);
                                 file.WriteLine("Service Name: " + service.ServiceName);
                                 file.WriteLine("Service fee: " + service.ServiceFee);
                                 sumFee += service.ServiceFee;
                             }
-                            file.WriteLine("The sum of fee for this provider: " + sumFee);
+                            file.WriteLine("\nThe sum of fee for this provider: " + sumFee);
                             file.WriteLine("The number of the services: " + serviceNum);
                             totalFee += sumFee;
                         }
-                        file.WriteLine("The total fee of all providers: " + totalFee);
+                        file.WriteLine("\nThe total fee of all providers: " + totalFee);
                         file.WriteLine("The number of the providers: " + providerNum);
+                        file.WriteLine("\n");
                     }
                 }
             }
