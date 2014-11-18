@@ -161,7 +161,6 @@
       <DependentUpon>PizzaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ListClassFake\AdminListFake.cs" />
-    <Compile Include="ListClassFake\ManagerListFake.cs" />
     <Compile Include="ListClassFake\MemberListFake.cs" />
     <Compile Include="ListClassFake\ProviderDirectoryFake.cs" />
     <Compile Include="ListClassFake\ProviderListFake.cs" />

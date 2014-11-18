@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PizzaModels.Models;
+using PizzaCommon.Tools;
 
 namespace PizzaRepository.ListClass
 {
@@ -89,7 +90,7 @@ namespace PizzaRepository.ListClass
         }
 
         //Update manager status
-        public Manager UpdateManager(string name, int managerID, string streetAddress,
+        public Boolean UpdateManager(string name, int managerID, string streetAddress,
                                      string city, string state, string ZIPcode)
         {
             var manager = new Manager();
@@ -120,7 +121,7 @@ namespace PizzaRepository.ListClass
                 manager = null;
                 throw new Exception(e.Message);
             }
-            return manager;
+            return true;
         }
 
 

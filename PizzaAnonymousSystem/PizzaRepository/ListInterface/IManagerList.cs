@@ -11,7 +11,7 @@ namespace PizzaRepository.ListInterface
     {
 
         Boolean InsertManager(Manager manager);
-        Member GetManager(int managerID);
+        Manager GetManager(int managerID);
         Boolean DeleteManager(int managerID);
         Boolean UpdateManager(string name, int managerID, string streetAddress,
                                      string city, string state, string ZIPcode);

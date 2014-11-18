@@ -66,6 +66,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListClass\ManagerListTests.cs" />
     <Compile Include="ListClass\MemberListTests.cs" />
     <Compile Include="ListClass\ScheduleListTests.cs" />
     <Compile Include="ListClass\ProviderListTests.cs" />
