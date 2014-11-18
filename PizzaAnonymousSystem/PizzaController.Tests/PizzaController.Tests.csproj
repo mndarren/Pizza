@@ -118,6 +118,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ManageAccountControllerTest.cs" />
     <Compile Include="Controllers\ManageReportControllerTest.cs" />
+    <Compile Include="Controllers\ManageServiceControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Specs\AppContext.cs" />
     <Compile Include="Specs\ManageServices\ManageServicesSteps.cs" />

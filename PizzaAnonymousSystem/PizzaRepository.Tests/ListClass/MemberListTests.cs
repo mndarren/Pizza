@@ -15,6 +15,12 @@ namespace PizzaRepository.Tests.ListClass
             var list = new MemberList();
 
             var member = new Member();
+            member.Name = "Cheng luo";
+            member.StreetAddress = "397 4th Ave S";
+            member.State = "MN";
+            member.City = "Saint Cloud";
+            member.ZipCode = "56301";
+
             var result = list.InsertMember(member);
 
             Assert.IsTrue(result);
@@ -28,7 +34,7 @@ namespace PizzaRepository.Tests.ListClass
             int memberID = 0;
             var result = list.GetMember(memberID);
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
 
         }
 
@@ -39,7 +45,7 @@ namespace PizzaRepository.Tests.ListClass
             var list = new MemberList();
             int memberID = 1;
             var result = list.DeleteMember(memberID);
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -57,7 +63,7 @@ namespace PizzaRepository.Tests.ListClass
             var result = list.UpdateMember(name, memberID, streetAddress,
                                      city,state,ZIPcode,status);
 
-            Assert.IsNotNull(result);
+            Assert.IsNull(result);
         }
         
     }
