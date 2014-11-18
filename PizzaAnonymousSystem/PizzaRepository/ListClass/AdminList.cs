@@ -111,6 +111,7 @@ namespace PizzaRepository.ListClass
                 {
                     pizzaDB.Admins.Remove(tempAdmin);
                     pizzaDB.SaveChanges(); //Apply changes to DB
+                    success = true;
                 }
                 else success = false;
             }
@@ -134,7 +135,7 @@ namespace PizzaRepository.ListClass
                 AppDomain.CurrentDomain.SetData("DataDirectory",
                     PathFactory.DatabasePath());
 
-                Admin eAdmin = admins.Where(node => node.ID == adminID).FirstOrDefault();
+                var eAdmin = pizzDB.Admins.Where(node => node.ID == adminID).FirstOrDefault();
 
                 if (eAdmin != null)
                 {
@@ -171,6 +172,9 @@ namespace PizzaRepository.ListClass
                 tempAdmin.ID = admin.ID;
                 tempAdmin.Name = admin.Name;
                 tempAdmin.StreetAddress = admin.StreetAddress;
+                tempAdmin.City = admin.City;
+                tempAdmin.State = admin.State;
+                tempAdmin.ZipCode = admin.ZipCode;
             }
 
             return tempAdmin;
@@ -185,6 +189,9 @@ namespace PizzaRepository.ListClass
                 Admin.ID = tempAdmin.ID;
                 Admin.Name = tempAdmin.Name;
                 Admin.StreetAddress = tempAdmin.StreetAddress;
+                Admin.City = tempAdmin.City;
+                Admin.State = tempAdmin.State;
+                Admin.ZipCode = tempAdmin.ZipCode;
             }
 
             return Admin;
