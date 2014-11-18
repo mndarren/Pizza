@@ -172,6 +172,10 @@ namespace PizzaRepository.ListClass
                 tempMember.ID = member.ID;
                 tempMember.Name = member.Name;
                 tempMember.StreetAddress = member.StreetAddress;
+                tempMember.City = member.City;
+                tempMember.State = member.State;
+                tempMember.ZipCode = member.ZipCode;
+                tempMember.Status = (short)member.Status;
             }
 
             return tempMember;
@@ -186,6 +190,10 @@ namespace PizzaRepository.ListClass
                 Member.ID = tempMember.ID;
                 Member.Name = tempMember.Name;
                 Member.StreetAddress = tempMember.StreetAddress;
+                Member.City = tempMember.City;
+                Member.State = tempMember.State;
+                Member.ZipCode = tempMember.ZipCode;
+                Member.Status = (int)tempMember.Status;
             }
 
             return Member;
