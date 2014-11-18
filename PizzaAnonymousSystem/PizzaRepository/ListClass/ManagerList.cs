@@ -99,7 +99,7 @@ namespace PizzaRepository.ListClass
                 var pizzDB = new Entity.PizzaDBEntities();
                 AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
-                var eMember = pizzDB.Members.Where(node => node.ID == managerID).FirstOrDefault();
+                var eMember = pizzDB.Managers.Where(node => node.ID == managerID).FirstOrDefault();
 
                 if (eMember != null)
                 {

@@ -31,7 +31,7 @@ namespace PizzaRepository.Tests.ListClass
         public void GetManager()
         {
             var list = new ManagerList();
-            int managerID = 0;
+            int managerID = 10;
             var result = list.GetManager(managerID);
 
             Assert.IsNull(result);
@@ -43,7 +43,7 @@ namespace PizzaRepository.Tests.ListClass
         public void DeleteManager()
         {
             var list = new ManagerList();
-            int managerID = 1007;
+            int managerID = 30;
             var result = list.DeleteManager(managerID);
             Assert.IsFalse(result);
         }
@@ -53,7 +53,7 @@ namespace PizzaRepository.Tests.ListClass
         public void UpdateManager()
         {
             var list = new ManagerList();
-            int managerID = 1, status = 0;
+            int managerID = 16, status = 0;
             string name = "manager2";
             string streetAddress = "379 4th Ave S";
             string city = "Saint Cloud";
