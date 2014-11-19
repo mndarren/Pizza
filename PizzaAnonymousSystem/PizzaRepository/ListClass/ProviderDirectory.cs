@@ -73,6 +73,7 @@ namespace PizzaRepository.ListClass
                 if (null != eService){
                     pizzaDB.Services.Remove(eService);
                     pizzaDB.SaveChanges(); //Apply changes to DB
+                    success = true;
                  }
                 else success = false;
             }
