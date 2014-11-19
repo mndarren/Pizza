@@ -58,7 +58,7 @@ namespace PizzaController.Controllers
 
             return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
         }
-
+        
         /********************************************
          * Provider
          * *****************************************/
@@ -92,7 +92,6 @@ namespace PizzaController.Controllers
             var result = providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
             return result;
         }
-
         /********************************
          * Manager
          * ************************************/
@@ -170,7 +169,16 @@ namespace PizzaController.Controllers
             else if (member.Status == 2) { return "Suspend!"; }
             else return null;
         }
-
+        
+        [HttpGet]
+        [GET("api/accountmanager/validation/provider/{providerID}")]
+        public string ValidateProvider([FromUri] int providerID)
+        {
+            var provider = providerList.GetProvider(providerID);
+            if (provider == null) { return "Invalid!"; }
+            else  return "Validate!"; 
+        }
+        
         [HttpGet]
         [GET("api/accountmanager/account/member/{memberID}")]
         public Member GetMember([FromUri]int memberID)
