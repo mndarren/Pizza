@@ -41,14 +41,14 @@ namespace PizzaRepository.ListClass
                 if (manager != null)
                 {
                     if (manager.Name == null || manager.State == null || manager.StreetAddress == null || manager.ZipCode == null)
-                        return false;
+                        return new int?();
 
                     if (manager.Name.Trim().Length == 0 || manager.State.Trim().Length == 0 || manager.StreetAddress.Trim().Length == 0 || manager.ZipCode.Trim().Length == 0)
-                        return false;
+                        return new int?();
 
                     //first check if exist
                    Manager m2 = this.GetManager(manager.Name);
-                   if (m2 != null) return false;
+                   if (m2 != null) return new int?();
 
                     var tempmanager = pizzDB.Managers.Where(node => node.ID == manager.ID).FirstOrDefault();
                     if (tempmanager == null)
