@@ -17,8 +17,13 @@ namespace PizzaController.Tests.Controllers
         public void AddMember()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            Member m = new Member();
-            var result = account.AddMember(m);
+            var member = new Member();
+            member.Name = "Cheng luo";
+            member.StreetAddress = "123 77th Ave S";
+            member.State = "MN";
+            member.City = "Saint Cloud";
+            member.ZipCode = "12345";
+            var result = account.AddMember(member);
             Assert.IsTrue(result,"Failed to add a new member.");
         }
 
@@ -27,8 +32,7 @@ namespace PizzaController.Tests.Controllers
         public void DeleteMember()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            Member m = new Member();
-            int memberId = 0;
+            int memberId = 1010;
             var result = account.DeleteMember(memberId);
             Assert.IsTrue(result, "Failed to delete a new member.");
         }
@@ -39,9 +43,15 @@ namespace PizzaController.Tests.Controllers
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
             Member m = new Member();
-            
+            m.Name = "PST";
+            m.ID = 1001;
+            m.StreetAddress = "123 77th Ave S";
+            m.State = "MN";
+            m.City = "Saint Cloud";
+            m.ZipCode = "191919";
+            m.Status = 0;
             var result = account.UpdateMember(m);
-            Assert.IsNull(result, "Failed to update a member.");
+            Assert.IsNotNull(result, "Failed to update a member.");
         }
 
 
@@ -50,10 +60,10 @@ namespace PizzaController.Tests.Controllers
         public void AddProvider()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            Provider p = new Provider();
+            var p = new Provider("Zhao Xie111", "397 4th Ave S", "MN", "St. Cloud", "56301", 100000023434);
 
             var result = account.AddProvider(p);
-            Assert.IsNull(result, "Failed to add a provider.");
+            Assert.IsTrue(result, "Failed to add a provider.");
         }
 
         [TestMethod]
@@ -61,10 +71,10 @@ namespace PizzaController.Tests.Controllers
         public void DeleteProvider()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            int providerId = 0;
+            int providerId = 107;
 
             var result = account.DeleteProvider(providerId);
-            Assert.IsNull(result, "Failed to delete a provider.");
+            Assert.IsTrue(result, "Failed to delete a provider.");
         }
 
         [TestMethod]
@@ -83,10 +93,14 @@ namespace PizzaController.Tests.Controllers
         public void AddManager()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            Manager m = new Manager();
-
-            var result = account.AddManager(m);
-            Assert.IsNull(result, "Failed to add a manager.");
+            Manager manager = new Manager();
+            manager.Name = "manager06";
+            manager.StreetAddress = "123 77th Ave S";
+            manager.State = "MN";
+            manager.City = "Saint Cloud";
+            manager.ZipCode = "56301";
+            var result = account.AddManager(manager);
+            Assert.IsTrue(result, "Failed to add a manager.");
         }
 
         [TestMethod]
@@ -94,9 +108,9 @@ namespace PizzaController.Tests.Controllers
         public void DeleteManager()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            int managerID = 0;
+            int managerID = 36;
             var result = account.DeleteManager(managerID);
-            Assert.IsNull(result, "Failed to delete a manager.");
+            Assert.IsTrue(result, "Failed to delete a manager.");
         }
 
         [TestMethod]
@@ -114,9 +128,16 @@ namespace PizzaController.Tests.Controllers
         public void addAdmin()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            Admin a = new Admin();
-            var result = account.addAdmin(a);
-            Assert.IsNull(result, "Failed to add an admin.");
+            var newAdmin = new Admin()
+            {
+                Name = "Mike",
+                StreetAddress = "12th Ave",
+                City = "Minneapolis",
+                State = "MN",
+                ZipCode = "12446"
+            };
+            var result = account.addAdmin(newAdmin);
+            Assert.IsTrue(result, "Failed to add an admin.");
         }
 
         [TestMethod]
@@ -124,9 +145,9 @@ namespace PizzaController.Tests.Controllers
         public void DeleteAdmin()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            int adminID = 0;
+            int adminID = 2;
             var result = account.DeleteAdmin(adminID);
-            Assert.IsNull(result, "Failed to delete an admin.");
+            Assert.IsTrue(result, "Failed to delete an admin.");
         }
 
         [TestMethod]
@@ -144,7 +165,7 @@ namespace PizzaController.Tests.Controllers
         public void ValidateMember()
         {
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
-            int memberId = 0;
+            int memberId = 1016;
             var result = account.ValidateMember(memberId);
             Assert.IsNull(result, "Failed to validate a member.");
         }
