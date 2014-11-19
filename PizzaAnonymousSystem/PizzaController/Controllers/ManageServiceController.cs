@@ -34,10 +34,6 @@ namespace PizzaController.Controllers
             this.serviceRecordList = serviceRecordList;
         }
 
-        /// <summary>
-        /// Get all services
-        /// </summary>
-        /// <returns>returns all services</returns>
         [HttpGet]
         [GET("api/servicemanager/services")]
         public List<Service> GetAllServices()

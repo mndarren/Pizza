@@ -170,6 +170,96 @@ namespace PizzaController.Controllers
             else if (member.Status == 2) { return "Suspend!"; }
             else return null;
         }
-        
+
+        [HttpGet]
+        [GET("api/accountmanager/account/member/{memberID}")]
+        public Member GetMember([FromUri]int memberID)
+        {
+            var member = new Member();
+
+            try
+            {
+                member = memberList.GetMember(memberID);
+                if (null == member) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "member not found"));
+            }
+            catch (Exception e)
+            {
+                member = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return member;
+        }
+
+        [HttpGet]
+        [GET("api/accountmanager/account/provider/{providerID}")]
+        public Provider GetProvider([FromUri]int providerID)
+        {
+            var provider = new Provider();
+
+            try
+            {
+                provider = providerList.GetProvider(providerID);
+                if (null == provider) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "provider not found"));
+            }
+            catch (Exception e)
+            {
+                provider = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return provider;
+        }
+
+        [HttpGet]
+        [GET("api/accountmanager/account/manager/{managerID}")]
+        public Manager GetManager([FromUri]int managerID)
+        {
+            var manager = new Manager();
+
+            try
+            {
+                manager = managerList.GetManager(managerID);
+                if (null == manager) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "manager not found"));
+            }
+            catch (Exception e)
+            {
+                manager = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return manager;
+        }
+
+        [HttpGet]
+        [GET("api/accountmanager/account/admin/{adminID}")]
+        public Admin GetAdmin([FromUri]int adminID)
+        {
+            var admin = new Admin();
+
+            try
+            {
+                admin = adminList.GetAdmin(adminID);
+                if (null == admin) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "admin not found"));
+            }
+            catch (Exception e)
+            {
+                admin = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return admin;
+        }
     }
 }

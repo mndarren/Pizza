@@ -42,11 +42,19 @@ namespace PizzaRepository.Tests.ListClass
         public void GetMember()
         {
             var list = new MemberList();
-            int memberID = 1001;
-            var result = list.GetMember(memberID);
+            var member = new Member();
+            member.Name = "Cheng luo";
+            member.StreetAddress = "123 77th Ave S";
+            member.State = "MN";
+            member.City = "Saint Cloud";
+            member.ZipCode = "12345";
 
+            var newmemberID = list.InsertMember(member);
+            Assert.IsTrue(null != newmemberID, "Adding Member Failed!");
+            var result = list.GetMember(newmemberID.Value);
             Assert.IsTrue(null != result, "Returned member does not exist");
-
+            var deleteResult = list.DeleteMember(newmemberID.Value);
+            Assert.IsTrue(null != deleteResult, "Delete Fail");
         }
 
         [TestMethod]
@@ -66,15 +74,22 @@ namespace PizzaRepository.Tests.ListClass
         public void DeleteMember()
         {
             var list = new MemberList();
-            int memberID = 1000;
-            var member = list.GetMember(memberID);
-            var result = list.DeleteMember(memberID);
+            Member member = new Member();
+            member.Name = "LUO";
+            member.StreetAddress = "397 4th Ave S";
+            member.City = "Saint Cloud";
+            member.State = "MN";
+            member.ZipCode = "56301";
+
+            var newmemberID = list.InsertMember(member);
+            Assert.IsTrue(null != newmemberID,"Insert member Fail" );
+
+            var result = list.DeleteMember(newmemberID.Value);
 
             Assert.IsTrue(result,"Delete Fail");
 
-            var newMemberId = list.InsertMember(member);
-
-            Assert.IsTrue(null != newMemberId, "Adding Fail");
+            var negitiveTest = list.DeleteMember(0);
+            Assert.IsFalse(negitiveTest, "Delete member not exsit!");
         }
 
         [TestMethod]
@@ -100,7 +115,7 @@ namespace PizzaRepository.Tests.ListClass
             Assert.IsTrue(null != newMemberId, "Adding Fail");
 
             var result = list.UpdateMember(name, newMemberId.Value, streetAddress,
-                                     city,state,ZIPcode,member.Status);
+                                     city,state,"56000",member.Status);
 
             Assert.IsTrue(null!=result,"update fail");
         }

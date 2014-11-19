@@ -41,31 +41,52 @@ namespace PizzaRepository.Tests.ListClass
         [TestCategory("ProviderDirectory")]
         public void GetServices()
         {
-            var repository = new ProviderList();
-            var providerList = repository.GetAllProviders();
-            var provider = providerList[providerList.Count - 1];
-            var updatedProvider = repository.UpdateProvider("Mo", 102, "100th Ave", "city", "MM", "30093", 2341341);
+            var repository = new ProviderDirectory();
+            var serviceList = repository.GetServices();
+            var count = serviceList.Count;
 
-            Assert.IsTrue(updatedProvider != null, "returned updated provider");
-
-            Assert.AreEqual(updatedProvider.Name, provider.Name, "names are not equal");
-            Assert.AreEqual(updatedProvider.StreetAddress, provider.StreetAddress, "addresses are not equal");
-            Assert.AreEqual(updatedProvider.State, provider.State, "states are not equal");
-            Assert.AreEqual(updatedProvider.City, provider.City, "cities are not equal");
-            Assert.AreEqual(updatedProvider.BankAccount, provider.BankAccount, "bankaccounts are not equal");
+            Assert.IsTrue(count != 0, "returned updated provider");
         }
         [TestMethod]
         [TestCategory("ProviderDirectory")]
         public void UpdateService()
         {
-            Assert.Fail("not implemented yet");
+            var repository = new ProviderDirectory();
+            var addedService = new Service(888777, "WashFeet", 100m);
+            var success = repository.AddService(addedService);
+
+            var newService = new Service(888777, "cutNail", 104m);
+            var updatedService = repository.UpdateService(newService);
+
+            Assert.IsTrue(updatedService != null, "returned updated provider");
+
+            Assert.AreEqual(updatedService.ServiceCode, newService.ServiceCode, "codes are not equal");
+            Assert.AreEqual(updatedService.ServiceName, newService.ServiceName, "names are not equal");
+            Assert.AreEqual(updatedService.ServiceFee, newService.ServiceFee, "fees are not equal");
+
+            //Negtive Path
+            var newService1 = new Service(777788, "cutNail", 104m);
+            var updatedService1 = repository.UpdateService(newService1);
+
+            Assert.IsFalse(updatedService != null, "returned updated provider");
         }
 
         [TestMethod]
         [TestCategory("ProviderDirectory")]
         public void DeleteService()
         {
-            Assert.Fail("not implemented yet");
+            var repository = new ProviderDirectory();
+            var newService = new Service(888777, "WashFeet", 100m);
+            var success = repository.AddService(newService);
+
+            var serviceList = repository.GetServices();
+            var service = serviceList[serviceList.Count - 1];
+
+            success = repository.DeleteService(service.ServiceCode);
+            Assert.IsTrue(success, "delete fail");
+            //Negtive path
+            success = repository.DeleteService(service.ServiceCode);
+            Assert.IsFalse(success, "delete fail");
         }
     }
 }

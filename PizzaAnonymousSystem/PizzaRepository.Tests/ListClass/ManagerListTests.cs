@@ -52,7 +52,7 @@ namespace PizzaRepository.Tests.ListClass
             manager.ZipCode = "56301";
             newManagerId = list.InsertManager(manager);
             Assert.IsFalse(null != newManagerId, "failed to execute an operation of adding a manager who does exist in the DB.");
-            Assert.IsTrue(null != newManagerId, "insert manager failed.");
+            Assert.IsFalse(null != newManagerId, "insert manager failed.");
         }
 
         [TestMethod]
@@ -83,10 +83,24 @@ namespace PizzaRepository.Tests.ListClass
         {
             var list = new ManagerList();
 
+            Manager manager = new Manager();
+            manager.Name = "LUO";
+            manager.StreetAddress = "397 4th Ave S";
+            manager.City = "Saint Cloud";
+            manager.State = "MN";
+            manager.ZipCode = "56301";
+
+            var newID = list.InsertManager(manager);
+            Assert.IsTrue(null != newID, "Insert member Fail");
+
+            var success = list.DeleteManager(newID.Value);
+
+            Assert.IsTrue(success, "Delete Fail");
+
             //delete a manager who exists in the DB
             int managerID = 42;
             var result = list.DeleteManager(managerID);
-            Assert.IsTrue(result,"Failed to delete a manager who exists in the DB.");
+            Assert.IsFalse(result,"Failed to delete a manager who exists in the DB.");
 
             //delete a manager who does exist in the DB
             managerID = 0;

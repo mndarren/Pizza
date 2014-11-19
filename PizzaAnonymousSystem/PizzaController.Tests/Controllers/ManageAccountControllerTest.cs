@@ -169,5 +169,45 @@ namespace PizzaController.Tests.Controllers
             var result = account.ValidateMember(memberId);
             Assert.IsNull(result, "Failed to validate a member.");
         }
+
+        [TestMethod]
+        [TestCategory("ManageAccountController")]
+        public void GetMember()
+        {
+            var controller = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
+            int memberId = 1001;
+            var member = controller.GetMember(memberId);
+            Assert.IsTrue(null != member, "member not found");
+        }
+
+        [TestMethod]
+        [TestCategory("ManageAccountController")]
+        public void GetProvider()
+        {
+            var controller = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
+            int providerId = 101;
+            var provider = controller.GetProvider(providerId);
+            Assert.IsTrue(null != provider, "provider not found");
+        }
+
+        [TestMethod]
+        [TestCategory("ManageAccountController")]
+        public void GetManager()
+        {
+            var controller = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
+            int managerId = 11;
+            var manager = controller.GetManager(managerId);
+            Assert.IsTrue(null != manager, "manager not found");
+        }
+
+        [TestMethod]
+        [TestCategory("ManageAccountController")]
+        public void GetAdmin()
+        {
+            var controller = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
+            int adminId = 1;
+            var admin = controller.GetAdmin(adminId);
+            Assert.IsTrue(null != admin, "admin not found");
+        }
     }
 }

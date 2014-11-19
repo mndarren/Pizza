@@ -184,7 +184,7 @@ namespace PizzaRepository.ListClass
                 Member.City = tempMember.City;
                 Member.State = tempMember.State;
                 Member.ZipCode = tempMember.ZipCode;
-                Member.Status = (int)tempMember.Status;
+                Member.Status = (int)(null != tempMember.Status ? tempMember.Status.Value : 0);
             }
 
             return Member;
