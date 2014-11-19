@@ -95,11 +95,11 @@ namespace PizzaRepository.Tests.ListClass
             member.State = state;
             member.ZipCode = ZIPcode;
 
-            var success = list.InsertMember(member);
+            var newMemberId = list.InsertMember(member);
 
-            Assert.IsTrue(success, "Adding Fail");
+            Assert.IsTrue(null != newMemberId, "Adding Fail");
 
-            var result = list.UpdateMember(name, memberID, streetAddress,
+            var result = list.UpdateMember(name, newMemberId.Value, streetAddress,
                                      city,state,ZIPcode,member.Status);
 
             Assert.IsTrue(null!=result,"update fail");
