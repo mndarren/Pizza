@@ -42,7 +42,7 @@ namespace PizzaRepository.Tests.ListClass
         public void GetMember()
         {
             var list = new MemberList();
-            int memberID = 1000;
+            int memberID = 1001;
             var result = list.GetMember(memberID);
 
             Assert.IsTrue(null != result, "Returned member does not exist");
@@ -82,15 +82,25 @@ namespace PizzaRepository.Tests.ListClass
         public void UpdateMember()
         {
             var list = new MemberList();
-            int memberID = 1, status = 0;
+            var member = new Member();
             string name = "cheng";
             string streetAddress = "379 4th Ave S";
             string city = "Saint Cloud";
             string state = "MN";
             string ZIPcode = "56301";
 
+            member.Name = name;
+            member.StreetAddress = streetAddress;
+            member.City = city;
+            member.State = state;
+            member.ZipCode = ZIPcode;
+
+            var success = list.InsertMember(member);
+
+            Assert.IsTrue(success, "Adding Fail");
+
             var result = list.UpdateMember(name, memberID, streetAddress,
-                                     city,state,ZIPcode,status);
+                                     city,state,ZIPcode,member.Status);
 
             Assert.IsTrue(null!=result,"update fail");
         }

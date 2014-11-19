@@ -44,6 +44,7 @@ namespace PizzaController.Controllers
                 TimeSpan endDate; //calculate end date from schedule;
 
              
+                //while(true)
                 if (true)
                 {
                     Thread.Sleep(1000);
@@ -123,6 +124,7 @@ namespace PizzaController.Controllers
                 TimeSpan endDate;//calculate end date from schedule;
 
                 //compare the current time with the time set
+                //while(true)
                 if (true)
                 {
                     Thread.Sleep(1000);
@@ -352,6 +354,7 @@ namespace PizzaController.Controllers
                 String fileName;
                 //if (_nowTime.Equals(_schTime))
                 _nowTime = _nowTime.Replace(":", "_");
+                //while(true)
                 if (true)
                 {
                     fileName = "EFT_" + _nowTime + ".txt";
