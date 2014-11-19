@@ -15,12 +15,12 @@ namespace PizzaRepository.Tests.ListClass
             var repository = new ProviderList();
 
             var newProvider = new Provider("Zhao Xie", "397 4th Ave S", "MN", "St. Cloud", "56301",100000023434);
-            var success = repository.AddProvider(newProvider);
+            var newProviderId = repository.AddProvider(newProvider);
             var providerList = repository.GetAllProviders();
 
             var provider = providerList[providerList.Count - 1];
 
-            Assert.IsTrue(success, "addition fail");
+            Assert.IsTrue(null != newProviderId, "addition fail");
             Assert.IsTrue(null != provider, "returned provider does not exist");
 
             Assert.AreEqual(newProvider.Name, provider.Name, "names are not equal");
@@ -29,8 +29,8 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(newProvider.City,provider.City,"cities are not equal");
             Assert.AreEqual(newProvider.BankAccount, provider.BankAccount, "bankaccounts are not equal");
 
-            success = repository.DeleteProvider(provider.ID);
-            Assert.IsTrue(success, "delete fail");
+            var deleteSuccess = repository.DeleteProvider(newProviderId.Value);
+            Assert.IsTrue(deleteSuccess, "delete fail");
         }
 
         [TestMethod]

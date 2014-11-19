@@ -30,9 +30,9 @@ namespace PizzaRepository.ListClass
         public ManagerList() { }
 
         //add manager into list
-        public Boolean InsertManager(Manager manager)
+        public int? InsertManager(Manager manager)
         {
-            var success = false;
+            var managerId = new int?();
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
@@ -43,20 +43,21 @@ namespace PizzaRepository.ListClass
                     var tempmanager = pizzDB.Managers.Where(node => node.ID == manager.ID).FirstOrDefault();
                     if (tempmanager == null)
                     {
-                        pizzDB.Managers.Add(MapManagerToEntity(manager));
+                        var eManager = MapManagerToEntity(manager);
+                        pizzDB.Managers.Add(eManager);
                         pizzDB.SaveChanges();
-                        success = true;
+                        managerId = eManager.ID;
                     }
-                    else success = false;
+                    else managerId = new int?();
                 }
-                else success = false;
+                else managerId = new int?();
             }
             catch (Exception e)
             {
-                success = false;
+                managerId = new int?();
                 throw new Exception(e.Message);
             }
-            return success;
+            return managerId;
         }
 
 

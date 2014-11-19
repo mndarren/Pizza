@@ -33,7 +33,7 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/member")]
         public Boolean AddMember([FromBody]Member member)
         {   
-           return memberList.InsertMember(member);
+           return null != memberList.InsertMember(member);
         }
 
         [HttpDelete]
@@ -66,7 +66,7 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/provider")]
         public Boolean AddProvider([FromBody]Provider provider)
         {
-            return providerList.AddProvider(provider);
+            return null != providerList.AddProvider(provider);
         }
 
         [HttpDelete]
@@ -100,7 +100,7 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/manager")]
         public Boolean AddManager([FromBody]Manager manager)
         {
-            return managerList.InsertManager(manager);
+            return null != managerList.InsertManager(manager);
         }
         
         [HttpDelete]
@@ -133,7 +133,7 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/admin")]
         public Boolean addAdmin([FromBody] Admin admin)
         {
-            return adminList.addAdmin(admin);
+            return null != adminList.AddAdmin(admin);
         }
 
         [HttpDelete]

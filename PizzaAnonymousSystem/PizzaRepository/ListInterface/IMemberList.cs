@@ -9,7 +9,7 @@ namespace PizzaRepository.ListInterface
 {
     public interface IMemberList
     {
-        Boolean InsertMember(Member member);
+        int? InsertMember(Member member);
         Member GetMember(int memberID);
         Boolean DeleteMember(int memberID);
         Member UpdateMember(string name, int memberID, string streetAddress,

@@ -9,7 +9,7 @@ namespace PizzaRepository.ListInterface
 {
     public interface IServiceRecordList
     {
-        Boolean InsertServiceRecord(ServiceRecord _serviceRecord);
+        int? InsertServiceRecord(ServiceRecord _serviceRecord);
         ServiceRecord GetServiceRecord(int serviceCodeID);
         List<ServiceRecord> GetAllServiceRecordForMember(int memberID);
         List<ServiceRecord> GetAllServiceRecordForProvider(int providerID);

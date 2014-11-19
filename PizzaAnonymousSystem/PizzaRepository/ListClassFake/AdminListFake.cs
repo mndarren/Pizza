@@ -18,9 +18,10 @@ namespace PizzaRepository.ListClassFake
 
         public bool ReturnError { get { return _returnError; } set { _returnError = value; } }
 
-        public Boolean addAdmin(Admin admin)
+        public int? AddAdmin(Admin admin)
         {
-            return !_returnError;
+            if (!_returnError) return 1;
+            else return null;
         }
 
         public Boolean DeleteAdmin(int adminID)

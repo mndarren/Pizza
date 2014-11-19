@@ -51,8 +51,8 @@ namespace PizzaRepository.ListClass
         }
 
         //add service record into list
-        public Boolean InsertServiceRecord(ServiceRecord _serviceRecord) {
-            var success = false;
+        public int? InsertServiceRecord(ServiceRecord _serviceRecord) {
+            var serviceRecordId = new int?();
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
@@ -63,19 +63,22 @@ namespace PizzaRepository.ListClass
                     var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == _serviceRecord.ID).FirstOrDefault();
                     if (tempRecord == null)
                     {
-                        pizzDB.ServiceRecords.Add(MapRecordToEntity(_serviceRecord));
+                        var eServiceRecord = MapRecordToEntity(_serviceRecord);
+                        pizzDB.ServiceRecords.Add(eServiceRecord);
                         pizzDB.SaveChanges();
-                        success = true;
+                        serviceRecordId = eServiceRecord.ID;
                     }
-                    else success = false;
+                    else serviceRecordId = new int?();
                 }
-                else success = false;
+                else serviceRecordId = new int?();
             }
             catch (Exception e)
             {
-                success = false;
+                serviceRecordId = new int?();
                 throw new Exception(e.Message);
-            } return success;
+            } 
+            
+            return serviceRecordId;
         }
 
         public ServiceRecord GetServiceRecord(int serviceRecordID) {

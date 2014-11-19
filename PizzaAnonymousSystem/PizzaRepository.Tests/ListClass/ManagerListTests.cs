@@ -21,9 +21,9 @@ namespace PizzaRepository.Tests.ListClass
             manager.City = "Saint Cloud";
             manager.ZipCode = "12345";
 
-            var result = list.InsertManager(manager);
+            var newManagerId = list.InsertManager(manager);
 
-            Assert.IsTrue(result);
+            Assert.IsTrue(null != newManagerId, "insert manager failed.");
         }
 
         [TestMethod]
