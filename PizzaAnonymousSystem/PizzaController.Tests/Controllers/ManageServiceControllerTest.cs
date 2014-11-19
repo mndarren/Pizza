@@ -18,6 +18,7 @@ namespace PizzaController.Tests.Controllers
             var result = report.AddServiceRecord(new ServiceRecord(123456,DateTime.Now, DateTime.Today, 10005,2009, "NoComment"));
             Assert.IsTrue(result, "Failed to add a new service record.");
         }
+
         [TestMethod]
         [TestCategory("ManageServiceController")]
         public void TestAddService()
@@ -26,6 +27,7 @@ namespace PizzaController.Tests.Controllers
             var result = report.AddService(new Service(222233, "handHealth", 150m));
             Assert.IsTrue(result, "Failed to add a new service");
         }
+
         [TestMethod]
         [TestCategory("ManageServiceController")]
         public void TestUpdateService()
@@ -35,11 +37,27 @@ namespace PizzaController.Tests.Controllers
             var updatedService = report.UpdateService(newService);
             Assert.IsTrue(updatedService != null, "Failed to update a service");
         }
+
         [TestMethod]
         [TestCategory("ManageServiceController")]
         public void TestDeleteService() 
         {
-           
+            var report = new ManageServiceController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ServiceRecordList());
+            var serviceCode = 222244;
+            var newService = new Service(serviceCode, "Consult", 50.50m);
+
+            var success = report.AddService(newService);
+            Assert.IsTrue(success, "add service failed.");
+
+            success = report.DeleteService(serviceCode);
+            Assert.IsTrue(success, "delete service failed.");
+        }
+
+        [TestMethod]
+        [TestCategory("ManageServiceController")]
+        public void TestGetServiceRecord()
+        {
+
         }
     }
 }
