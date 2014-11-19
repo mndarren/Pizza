@@ -34,7 +34,7 @@ namespace PizzaController.Tests.Controllers
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
             int memberId = 1010;
             var result = account.DeleteMember(memberId);
-            Assert.IsTrue(result, "Failed to delete a new member.");
+            Assert.IsFalse(result, "Failed to delete a new member.");
         }
 
         [TestMethod]
@@ -100,7 +100,7 @@ namespace PizzaController.Tests.Controllers
             manager.City = "Saint Cloud";
             manager.ZipCode = "56301";
             var result = account.AddManager(manager);
-            Assert.IsTrue(null != result, "Failed to add a manager.");
+            Assert.IsFalse(null != result, "Failed to add a manager.");
         }
 
         [TestMethod]
@@ -110,7 +110,7 @@ namespace PizzaController.Tests.Controllers
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
             int managerID = 36;
             var result = account.DeleteManager(managerID);
-            Assert.IsTrue(result, "Failed to delete a manager.");
+            Assert.IsFalse(result, "Failed to delete a manager.");
         }
 
         [TestMethod]
@@ -147,7 +147,7 @@ namespace PizzaController.Tests.Controllers
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
             int adminID = 2;
             var result = account.DeleteAdmin(adminID);
-            Assert.IsTrue(result, "Failed to delete an admin.");
+            Assert.IsFalse(result, "Failed to delete an admin.");
         }
 
         [TestMethod]
