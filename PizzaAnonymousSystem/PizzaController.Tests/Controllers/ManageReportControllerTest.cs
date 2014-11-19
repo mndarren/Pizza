@@ -10,6 +10,16 @@ namespace PizzaController.Tests.Controllers
     [TestClass]
     public class ManageReportControllerTest
     {
+
+        [TestMethod]
+        [TestCategory("ManageReportController")]
+        public void TestOneMemberReport()
+        {
+            var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
+            int memberID = 1016;
+            report.GetWeeklyOneMemberReport(memberID);
+        }
+
         [TestMethod]
         [TestCategory("ManageReportController")]
         public void TestMemberReport()
