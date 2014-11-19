@@ -20,18 +20,18 @@ namespace PizzaRepository.Tests.ListClass
             manager.StreetAddress = "124 77th Ave S";
             manager.State = "MN";
             manager.City = "Saint Cloud";
-            manager.ZipCode = "56401";
-            var result = list.InsertManager(manager);
-            Assert.IsTrue(result,"failed to adding a member.");
+            manager.ZipCode = "12345";
+
+            var newManagerId = list.InsertManager(manager);
 
             //fields are null
             manager = new Manager();
-            result = list.InsertManager(manager);
-            Assert.IsFalse(result, "feilds are null.");
+            newManagerId = list.InsertManager(manager);
+            Assert.IsFalse(null != newManagerId, "feilds are null.");
 
             //object is null
-            result = list.InsertManager(null);
-            Assert.IsFalse(result, "adding a null object.");
+            newManagerId = list.InsertManager(null);
+            Assert.IsFalse(null != newManagerId, "adding a null object.");
 
             //boundary data
             manager = new Manager();
@@ -40,8 +40,8 @@ namespace PizzaRepository.Tests.ListClass
             manager.State = "";
             manager.City = "";
             manager.ZipCode = "";
-            result = list.InsertManager(manager);
-            Assert.IsFalse(result, "all field are empty.");
+            newManagerId = list.InsertManager(manager);
+            Assert.IsFalse(null != newManagerId, "all field are empty.");
 
             //add a manager who does exists in the DB
             manager = new Manager();
@@ -50,8 +50,9 @@ namespace PizzaRepository.Tests.ListClass
             manager.State = "MN";
             manager.City = "Saint Cloud";
             manager.ZipCode = "56301";
-            result = list.InsertManager(manager);
-            Assert.IsFalse(result, "failed to execute an operation of adding a manager who does exist in the DB.");
+            newManagerId = list.InsertManager(manager);
+            Assert.IsFalse(null != newManagerId, "failed to execute an operation of adding a manager who does exist in the DB.");
+            Assert.IsTrue(null != newManagerId, "insert manager failed.");
         }
 
         [TestMethod]

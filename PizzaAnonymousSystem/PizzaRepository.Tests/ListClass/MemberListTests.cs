@@ -20,10 +20,10 @@ namespace PizzaRepository.Tests.ListClass
             member.City = "Saint Cloud";
             member.ZipCode = "12345";
 
-            var resultID = list.InsertMember(member);
-            var tempmember = list.GetMember(resultID);
+            var newMemberId = list.InsertMember(member);
+            var tempmember = list.GetMember(member.ID);
 
-            Assert.IsTrue(result,"Adding Fail");
+            Assert.IsTrue(null != newMemberId,"Adding Fail");
             Assert.IsTrue(null != tempmember, "Return member does not exist");
 
             Assert.AreEqual(member.Name, tempmember.Name, "Name are not equal");
@@ -32,8 +32,8 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(member.City, tempmember.City, "City are not the same");
             Assert.AreEqual(member.ZipCode, tempmember.ZipCode, "ZIPCode are not the same");
 
-            result = list.DeleteMember(member.ID);
-            Assert.IsTrue(result, "Delete Fail");
+            var deleteSuccess = list.DeleteMember(newMemberId.Value);
+            Assert.IsTrue(deleteSuccess, "Delete Fail");
 
         }
 
@@ -72,9 +72,9 @@ namespace PizzaRepository.Tests.ListClass
 
             Assert.IsTrue(result,"Delete Fail");
 
-            result = list.InsertMember(member);
+            var newMemberId = list.InsertMember(member);
 
-            Assert.IsTrue(result, "Adding Fail");
+            Assert.IsTrue(null != newMemberId, "Adding Fail");
         }
 
         [TestMethod]

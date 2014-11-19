@@ -29,9 +29,9 @@ namespace PizzaRepository.ListClass
             return providers;
         }
       
-        public bool AddProvider(Provider newProvider)
+        public int? AddProvider(Provider newProvider)
         {
-            var success = false;
+            var providerId = new int?();
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
@@ -43,22 +43,23 @@ namespace PizzaRepository.ListClass
                         .Where(es => es.ID == newProvider.ID).FirstOrDefault();
                     if (null == eProvider)
                     {
-                        pizzaDB.Providers.Add(MapProviderToEntity(newProvider));
+                        eProvider = MapProviderToEntity(newProvider);
+                        pizzaDB.Providers.Add(eProvider);
                         pizzaDB.SaveChanges(); //Apply changes to DB
-                        success = true;
+                        providerId = eProvider.ID;
                     }
-                    else success = false;
+                    else providerId = new int?();
                 }
-                else success = false;
+                else providerId = new int?();
             }
             catch (Exception e)
             {
-                success = false;
+                providerId = new int?();
                 //If we have time, record the exception
                 throw new Exception(e.Message);
             }
 
-            return success;
+            return providerId;
         }
         public bool DeleteProvider(int ProviderID)
         {

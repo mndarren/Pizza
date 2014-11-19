@@ -19,8 +19,8 @@ namespace PizzaRepository.ListClass
         public MemberList() { }
 
         //add member into list
-        public Boolean InsertMember(Member member){
-            var success = false;
+        public int? InsertMember(Member member){
+            var memberId = new int?();
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
@@ -31,20 +31,21 @@ namespace PizzaRepository.ListClass
                     var tempmember = pizzDB.Members.Where(node => node.ID == member.ID).FirstOrDefault();
                     if (tempmember == null)
                     {
-                        pizzDB.Members.Add(MapMemberToEntity(member));
+                        var eMember = MapMemberToEntity(member);
+                        pizzDB.Members.Add(eMember);
                         pizzDB.SaveChanges();
-                        success = true;
+                        memberId = eMember.ID;
                     }
-                    else success = false;
+                    else memberId = new int?();
                 }
-                else success = false;
+                else memberId = new int?();
             }
             catch (Exception e)
             {
-                success = false;
+                memberId = new int?();
                 throw new Exception(e.Message);
             }
-            return success;
+            return memberId;
         }
 
         //need to fix this

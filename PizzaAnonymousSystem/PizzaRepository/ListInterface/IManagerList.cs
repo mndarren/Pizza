@@ -10,7 +10,7 @@ namespace PizzaRepository.ListInterface
     public interface IManagerList
     {
 
-        Boolean InsertManager(Manager manager);
+        int? InsertManager(Manager manager);
         Manager GetManager(int managerID);
         Boolean DeleteManager(int managerID);
         Manager UpdateManager(string name, int managerID, string streetAddress,

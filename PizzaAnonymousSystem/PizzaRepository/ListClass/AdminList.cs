@@ -36,9 +36,9 @@ namespace PizzaRepository.ListClass
         public AdminList() { }
 
         //add admin into list
-        public Boolean addAdmin(Admin admin)
+        public int? AddAdmin(Admin admin)
         {
-            var success = false;
+            var adminId = new int?();
 
             try
             {
@@ -51,20 +51,21 @@ namespace PizzaRepository.ListClass
                     var tempadmin = pizzDB.Admins.Where(node => node.ID == admin.ID).FirstOrDefault();
                     if (tempadmin == null)
                     {
-                        pizzDB.Admins.Add(MapAdminToEntity(admin));
+                        var eAdmin = MapAdminToEntity(admin);
+                        pizzDB.Admins.Add(eAdmin);
                         pizzDB.SaveChanges();
-                        success = true;
+                        adminId = eAdmin.ID;
                     }
-                    else success = false;
+                    else adminId = new int?();
                 }
-                else success = false;
+                else adminId = new int?();
             }
             catch (Exception e)
             {
-                success = false;
+                adminId = new int?();
                 throw new Exception(e.Message);
             }
-            return success;
+            return adminId;
         }
 
         //need to fix this
