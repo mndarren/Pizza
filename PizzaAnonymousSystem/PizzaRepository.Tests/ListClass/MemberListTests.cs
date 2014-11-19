@@ -33,7 +33,7 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(member.ZipCode, tempmember.ZipCode, "ZIPCode are not the same");
 
             result = list.DeleteMember(member.ID);
-            Assert
+            Assert.IsTrue(result, "Delete Fail");
 
         }
 
@@ -42,22 +42,22 @@ namespace PizzaRepository.Tests.ListClass
         public void GetMember()
         {
             var list = new MemberList();
-            int memberID = 0;
+            int memberID = 1000;
             var result = list.GetMember(memberID);
 
-            Assert.IsNull(result);
+            Assert.IsTrue(null != result, "Returned member does not exist");
 
         }
 
         [TestMethod]
         [TestCategory("MemberList")]
-        public void GetMembers()
+        public void GetAllMembers()
         {
             var list = new MemberList();
-            int memberID = 0;
-            var result = list.GetMember(memberID);
+            
+            var result = list.GetAllMembers();
 
-            Assert.IsNull(result);
+            Assert.IsTrue(null != result,"return list not exist");
 
         }
 
@@ -66,18 +66,15 @@ namespace PizzaRepository.Tests.ListClass
         public void DeleteMember()
         {
             var list = new MemberList();
-            int memberID = 1007;
+            int memberID = 1000;
+            var member = list.GetMember(memberID);
             var result = list.DeleteMember(memberID);
-            Assert.IsFalse(result);
-        }
 
-        [TestMethod]
-        [TestCategory("MemberList")]
-        public void AllMembers()
-        {
-            var list = new MemberList();
-            var result = list.GetAllMembers();
-            Assert.IsFalse((result != null));
+            Assert.IsTrue(result,"Delete Fail");
+
+            result = list.InsertMember(member);
+
+            Assert.IsTrue(result, "Adding Fail");
         }
 
         [TestMethod]
@@ -95,8 +92,7 @@ namespace PizzaRepository.Tests.ListClass
             var result = list.UpdateMember(name, memberID, streetAddress,
                                      city,state,ZIPcode,status);
 
-            Assert.IsNull(result);
+            Assert.IsTrue(null!=result,"update fail");
         }
-        
     }
 }
