@@ -42,11 +42,19 @@ namespace PizzaRepository.Tests.ListClass
         public void GetMember()
         {
             var list = new MemberList();
-            int memberID = 1001;
-            var result = list.GetMember(memberID);
+            var member = new Member();
+            member.Name = "Cheng luo";
+            member.StreetAddress = "123 77th Ave S";
+            member.State = "MN";
+            member.City = "Saint Cloud";
+            member.ZipCode = "12345";
 
+            var newmemberID = list.InsertMember(member);
+            Assert.IsTrue(null != newmemberID, "Adding Member Failed!");
+            var result = list.GetMember(newmemberID.Value);
             Assert.IsTrue(null != result, "Returned member does not exist");
-
+            var deleteResult = list.DeleteMember(newmemberID.Value);
+            Assert.IsTrue(null != deleteResult, "Delete Fail");
         }
 
         [TestMethod]
@@ -104,7 +112,7 @@ namespace PizzaRepository.Tests.ListClass
             Assert.IsTrue(null != newMemberId, "Adding Fail");
 
             var result = list.UpdateMember(name, newMemberId.Value, streetAddress,
-                                     city,state,ZIPcode,member.Status);
+                                     city,state,"56000",member.Status);
 
             Assert.IsTrue(null!=result,"update fail");
         }
