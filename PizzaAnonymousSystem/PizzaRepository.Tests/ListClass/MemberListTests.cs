@@ -32,6 +32,8 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(member.City, tempmember.City, "City are not the same");
             Assert.AreEqual(member.ZipCode, tempmember.ZipCode, "ZIPCode are not the same");
 
+            result = list.DeleteMember(member.ID);
+            Assert
 
         }
 
