@@ -31,9 +31,9 @@ namespace PizzaController.Controllers
          ***********************************/
         [HttpPost]
         [POST("api/accountmanager/account/member")]
-        public Boolean AddMember([FromBody]Member member)
+        public int? AddMember([FromBody]Member member)
         {   
-           return null != memberList.InsertMember(member);
+           return memberList.InsertMember(member);
         }
 
         [HttpDelete]
@@ -58,15 +58,15 @@ namespace PizzaController.Controllers
 
             return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
         }
-
+        
         /********************************************
          * Provider
          * *****************************************/
         [HttpPost]
         [POST("api/accountmanager/account/provider")]
-        public Boolean AddProvider([FromBody]Provider provider)
+        public int? AddProvider([FromBody]Provider provider)
         {
-            return null != providerList.AddProvider(provider);
+            return providerList.AddProvider(provider);
         }
 
         [HttpDelete]
@@ -92,15 +92,14 @@ namespace PizzaController.Controllers
             var result = providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
             return result;
         }
-
         /********************************
          * Manager
          * ************************************/
         [HttpPost]
         [POST("api/accountmanager/account/manager")]
-        public Boolean AddManager([FromBody]Manager manager)
+        public int? AddManager([FromBody]Manager manager)
         {
-            return null != managerList.InsertManager(manager);
+            return managerList.InsertManager(manager);
         }
         
         [HttpDelete]
@@ -131,9 +130,9 @@ namespace PizzaController.Controllers
          * *******************/
         [HttpPost]
         [POST("api/accountmanager/account/admin")]
-        public Boolean addAdmin([FromBody] Admin admin)
+        public int? addAdmin([FromBody] Admin admin)
         {
-            return null != adminList.AddAdmin(admin);
+            return adminList.AddAdmin(admin);
         }
 
         [HttpDelete]
@@ -170,7 +169,16 @@ namespace PizzaController.Controllers
             else if (member.Status == 2) { return "Suspend!"; }
             else return null;
         }
-
+        
+        [HttpGet]
+        [GET("api/accountmanager/validation/provider/{providerID}")]
+        public string ValidateProvider([FromUri] int providerID)
+        {
+            var provider = providerList.GetProvider(providerID);
+            if (provider == null) { return "Invalid!"; }
+            else  return "Validate!"; 
+        }
+        
         [HttpGet]
         [GET("api/accountmanager/account/member/{memberID}")]
         public Member GetMember([FromUri]int memberID)

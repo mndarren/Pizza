@@ -15,7 +15,7 @@ namespace PizzaRepository.ListClass
     {
         private List<Member> members = new List<Member>();
 
-        private static MemberList memberList;
+        //private static MemberList memberList;
         public MemberList() { }
 
         //add member into list

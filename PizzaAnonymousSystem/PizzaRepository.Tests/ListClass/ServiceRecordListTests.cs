@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PizzaModels.Models;
 using PizzaRepository.ListClass;
@@ -88,6 +89,50 @@ namespace PizzaRepository.Tests.ListClass
             var result = list.GetAllServiceRecordForProvider(newId.Value);
 
             Assert.IsTrue(null != result, "Get list Fail!");
+        }
+
+        [TestMethod]
+        [TestCategory("ServiceRecordList")]
+        public void VerifyServiceRecords()
+        {
+            var providerList = new ProviderList();
+            var memberList = new MemberList();
+            var providerDirectory = new ProviderDirectory();
+            var serviceRecordList = new ServiceRecordList();
+
+            var providers = providerList.GetAllProviders();
+            var members = memberList.GetAllMembers();
+            var services = providerDirectory.GetServices();
+
+            var providerId = null != providers && providers.Any() ? providers.First().ID : new int?();
+            var memberId = null != members && members.Any() ? members.First().ID : new int?();
+            var serviceCode = null != services && services.Any() ? services.First().ServiceCode : new int?();
+
+            Assert.IsTrue(providerId.HasValue,  "unable to get provider ID");
+            Assert.IsTrue(memberId.HasValue,    "unable to get member ID");
+            Assert.IsTrue(serviceCode.HasValue, "unable to get service code");
+
+            var newServiceRecord = new ServiceRecord(serviceCode.Value, DateTime.Now, DateTime.Today,
+                providerId.Value, memberId.Value, "test");
+
+            var serviceRecordId = serviceRecordList.InsertServiceRecord(newServiceRecord);
+
+            Assert.IsTrue(serviceRecordId.HasValue, "unable to add service record");
+
+            var feeVerification = true;
+            var serviceVerification = true;
+            var success = serviceRecordList.VerifyServiceRecords(providerId.Value,
+                DateTime.Today.AddDays(-1), DateTime.Today.AddDays(1), 
+                feeVerification, serviceVerification);
+
+            Assert.IsTrue(success, "failed to verify service record");
+
+            var serviceRecord = serviceRecordList.GetServiceRecord(serviceRecordId.Value);
+
+            Assert.IsTrue(null != serviceRecord, "unable to get service record");
+
+            Assert.AreEqual(serviceRecord.FeeVerified, feeVerification,         "fee verification are not equal");
+            Assert.AreEqual(serviceRecord.ServiceVerified, serviceVerification, "service verification are not equal");
         }
 
     }

@@ -52,9 +52,9 @@ namespace PizzaController.Controllers
 
         [HttpPost]
         [POST("api/servicemanager/servicerecords/")]
-        public bool AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 
+        public int? AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 
         {
-            return null != serviceRecordList.InsertServiceRecord(newServiceRecord);
+            return serviceRecordList.InsertServiceRecord(newServiceRecord);
         }
         
         [HttpPost]

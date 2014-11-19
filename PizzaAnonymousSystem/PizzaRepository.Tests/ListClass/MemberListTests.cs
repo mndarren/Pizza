@@ -54,7 +54,7 @@ namespace PizzaRepository.Tests.ListClass
             var result = list.GetMember(newmemberID.Value);
             Assert.IsTrue(null != result, "Returned member does not exist");
             var deleteResult = list.DeleteMember(newmemberID.Value);
-            Assert.IsTrue(null != deleteResult, "Delete Fail");
+            Assert.IsTrue(deleteResult, "Delete Fail");
         }
 
         [TestMethod]
