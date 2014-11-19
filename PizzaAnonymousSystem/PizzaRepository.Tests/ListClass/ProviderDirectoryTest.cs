@@ -41,31 +41,37 @@ namespace PizzaRepository.Tests.ListClass
         [TestCategory("ProviderDirectory")]
         public void GetServices()
         {
-            var repository = new ProviderList();
-            var providerList = repository.GetAllProviders();
-            var provider = providerList[providerList.Count - 1];
-            var updatedProvider = repository.UpdateProvider("Mo", 102, "100th Ave", "city", "MM", "30093", 2341341);
+            var repository = new ProviderDirectory();
+            var serviceList = repository.GetServices();
+            var count = serviceList.Count;
 
-            Assert.IsTrue(updatedProvider != null, "returned updated provider");
-
-            Assert.AreEqual(updatedProvider.Name, provider.Name, "names are not equal");
-            Assert.AreEqual(updatedProvider.StreetAddress, provider.StreetAddress, "addresses are not equal");
-            Assert.AreEqual(updatedProvider.State, provider.State, "states are not equal");
-            Assert.AreEqual(updatedProvider.City, provider.City, "cities are not equal");
-            Assert.AreEqual(updatedProvider.BankAccount, provider.BankAccount, "bankaccounts are not equal");
+            Assert.IsTrue(count != 0, "returned updated provider");
         }
         [TestMethod]
         [TestCategory("ProviderDirectory")]
         public void UpdateService()
         {
-            Assert.Fail("not implemented yet");
+            var repository = new ProviderDirectory();
+            var newService = new Service(777666, "cutNail", 104m);
+            var updatedService = repository.UpdateService(newService);
+
+            Assert.IsTrue(updatedService != null, "returned updated provider");
+
+            Assert.AreEqual(updatedService.ServiceCode, newService.ServiceCode, "codes are not equal");
+            Assert.AreEqual(updatedService.ServiceName, newService.ServiceName, "names are not equal");
+            Assert.AreEqual(updatedService.ServiceFee, newService.ServiceFee, "fees are not equal");
         }
 
         [TestMethod]
         [TestCategory("ProviderDirectory")]
         public void DeleteService()
         {
-            Assert.Fail("not implemented yet");
+            var repository = new ProviderDirectory();
+            var serviceList = repository.GetServices();
+            var service = serviceList[serviceList.Count - 1];
+
+            var success = repository.DeleteService(service.ServiceCode);
+            Assert.IsTrue(success, "delete fail");
         }
     }
 }
