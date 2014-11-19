@@ -16,8 +16,8 @@ namespace PizzaRepository.ListClass
         private List<ServiceRecord> _serviceRecords = new List<ServiceRecord>();
         //private static ServiceRecordList _serviceRecordList;
 
-        public ServiceRecordList(){}
-        
+        public ServiceRecordList() { }
+
         //get servicerecord list by member ID / provider id.
         public List<ServiceRecord> GetAllServiceRecordForMember(int memberID)
         {
@@ -26,12 +26,13 @@ namespace PizzaRepository.ListClass
             var pizzDB = new Entity.PizzaDBEntities();
             AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
-            foreach(var result in pizzDB.ServiceRecords.Where(node => node.MemberID == memberID)){
+            foreach (var result in pizzDB.ServiceRecords.Where(node => node.MemberID == memberID))
+            {
                 serviceRecord = MapEntityToRecord(result);
                 recordList.Add(serviceRecord);
             }
 
-            return recordList; 
+            return recordList;
         }
 
         public List<ServiceRecord> GetAllServiceRecordForProvider(int providerID)
@@ -47,11 +48,12 @@ namespace PizzaRepository.ListClass
                 recordList.Add(serviceRecord);
             }
 
-            return recordList; 
+            return recordList;
         }
 
         //add service record into list
-        public int? InsertServiceRecord(ServiceRecord _serviceRecord) {
+        public int? InsertServiceRecord(ServiceRecord _serviceRecord)
+        {
             var serviceRecordId = new int?();
             try
             {
@@ -76,12 +78,13 @@ namespace PizzaRepository.ListClass
             {
                 serviceRecordId = new int?();
                 throw new Exception(e.Message);
-            } 
-            
+            }
+
             return serviceRecordId;
         }
 
-        public ServiceRecord GetServiceRecord(int serviceRecordID) {
+        public ServiceRecord GetServiceRecord(int serviceRecordID)
+        {
             var serviceRecord = new ServiceRecord();
             try
             {
@@ -101,7 +104,7 @@ namespace PizzaRepository.ListClass
             return serviceRecord;
         }
 
-        public bool VerifyServiceRecords(int providerID, DateTime startDate, DateTime endDate, 
+        public bool VerifyServiceRecords(int providerID, DateTime startDate, DateTime endDate,
             bool? verifyFee = true, bool? verifyService = true)
         {
             var success = false;
@@ -115,7 +118,7 @@ namespace PizzaRepository.ListClass
                 if (null == endDate) endDate = DateTime.Today.AddDays(1);
 
                 foreach (var eServiceRecord in pizzDB.ServiceRecords
-                    .Where(sr => sr.DateProvided >= startDate 
+                    .Where(sr => sr.DateProvided >= startDate
                         && sr.DateProvided <= endDate && sr.ProviderID == providerID))
                 {
                     if (verifyService.HasValue) eServiceRecord.ServiceVerified = verifyService.Value;

@@ -57,8 +57,12 @@ namespace PizzaRepository.Tests.ListClass
             var list = new ServiceRecordList();
             var serviceRecord = new ServiceRecord(1231, DateTime.Now, DateTime.Today, 100, newMemberId.Value, "Hello, This is a Test!");
             var serviceRecord2 = new ServiceRecord(1231, DateTime.Now, DateTime.Today, 100, newMemberId.Value, "Hello, This is a Test!");
-            Assert.IsTrue(null != serviceRecord, "Adding Fail!");
-            Assert.IsTrue(null != serviceRecord2, "Adding Fail!");
+                     
+            var result1 = list.InsertServiceRecord(serviceRecord);
+            var result2 = list.InsertServiceRecord(serviceRecord2);
+           
+            Assert.IsTrue(null != result1, "Adding Fail!");
+            Assert.IsTrue(null != result2, "Adding Fail!");
 
             var result = list.GetAllServiceRecordForMember(newMemberId.Value);
 

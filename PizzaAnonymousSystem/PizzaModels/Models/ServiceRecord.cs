@@ -33,6 +33,8 @@ namespace PizzaModels.Models
             _providerNumber = providerNumber;
             _memberNumber = memberNumber;
             _comments = comments;
+            _serviceVerified = false;
+            _feeVerified = false;
         }
 
         public int ServiceCode { get { return _serviceCode; } set { _serviceCode = value; } }
