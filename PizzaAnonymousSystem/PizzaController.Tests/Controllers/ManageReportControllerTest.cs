@@ -63,10 +63,5 @@ namespace PizzaController.Tests.Controllers
             TimeSpan ts = new TimeSpan(2, 14, 0);
             report.UpdateEFTReportSchedule(2, ts);
         }
-
-
     }
-
-
-
 }

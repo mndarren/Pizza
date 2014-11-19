@@ -82,7 +82,6 @@ namespace PizzaRepository.Tests.ListClass
         public void DeleteManager()
         {
             var list = new ManagerList();
-
             Manager manager = new Manager();
             manager.Name = "LUO";
             manager.StreetAddress = "397 4th Ave S";

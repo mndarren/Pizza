@@ -48,7 +48,7 @@ namespace PizzaController.Tests.Controllers
             m.StreetAddress = "123 77th Ave S";
             m.State = "MN";
             m.City = "Saint Cloud";
-            m.ZipCode = "19195";
+            m.ZipCode = "56302";
             m.Status = 0;
             var result = account.UpdateMember(m);
             Assert.IsNotNull(result, "Failed to update a member.");
