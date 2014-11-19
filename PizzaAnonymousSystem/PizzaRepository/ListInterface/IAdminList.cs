@@ -9,7 +9,7 @@ namespace PizzaRepository.ListInterface
 {
     public interface IAdminList
     {
-        Boolean addAdmin(Admin admin);
+        int? AddAdmin(Admin admin);
         Admin GetAdmin(int adminID);
         Boolean DeleteAdmin(int adminID);
         Admin UpdateAdmin(string name, int adminID, string streetAddress,

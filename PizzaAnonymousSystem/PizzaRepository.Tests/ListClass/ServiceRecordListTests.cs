@@ -14,8 +14,8 @@ namespace PizzaRepository.Tests.ListClass
         {
             var list = new ServiceRecordList();
             var serviceRecord = new ServiceRecord();
-            var result = list.InsertServiceRecord(serviceRecord);
-            Assert.IsFalse(result);
+            var newServiceRecordId = list.InsertServiceRecord(serviceRecord);
+            Assert.IsTrue(null != newServiceRecordId, "insert service record failed.");
         }
 
         [TestMethod]
@@ -32,7 +32,8 @@ namespace PizzaRepository.Tests.ListClass
         [TestCategory ("ServiceRecordList")]
         public void GetAllServiceRecordForMember()
         {
-
+            int memberID;
+            var list = new
         }
 
         [TestMethod]

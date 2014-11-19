@@ -10,7 +10,7 @@ namespace PizzaRepository.ListClassFake
     public class ServiceRecordListFake : IServiceRecordList
     {
 
-        public bool InsertServiceRecord(ServiceRecord _serviceRecord)
+        public int? InsertServiceRecord(ServiceRecord _serviceRecord)
         {
             throw new NotImplementedException();
         }

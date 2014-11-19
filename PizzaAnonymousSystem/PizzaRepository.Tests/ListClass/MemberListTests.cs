@@ -20,10 +20,10 @@ namespace PizzaRepository.Tests.ListClass
             member.City = "Saint Cloud";
             member.ZipCode = "12345";
 
-            var result = list.InsertMember(member);
+            var newMemberId = list.InsertMember(member);
             var tempmember = list.GetMember(member.ID);
 
-            Assert.IsTrue(result,"Adding Fail");
+            Assert.IsTrue(null != newMemberId,"Adding Fail");
             Assert.IsTrue(null != tempmember, "Return member does not exist");
 
             Assert.AreEqual(member.Name, tempmember.Name, "Name are not equal");
@@ -32,8 +32,8 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(member.City, tempmember.City, "City are not the same");
             Assert.AreEqual(member.ZipCode, tempmember.ZipCode, "ZIPCode are not the same");
 
-            result = list.DeleteMember(member.ID);
-            Assert.IsTrue(result, "Delete Fail");
+            var deleteSuccess = list.DeleteMember(newMemberId.Value);
+            Assert.IsTrue(deleteSuccess, "Delete Fail");
 
         }
 
@@ -42,7 +42,7 @@ namespace PizzaRepository.Tests.ListClass
         public void GetMember()
         {
             var list = new MemberList();
-            int memberID = 1000;
+            int memberID = 1001;
             var result = list.GetMember(memberID);
 
             Assert.IsTrue(null != result, "Returned member does not exist");
@@ -72,9 +72,9 @@ namespace PizzaRepository.Tests.ListClass
 
             Assert.IsTrue(result,"Delete Fail");
 
-            result = list.InsertMember(member);
+            var newMemberId = list.InsertMember(member);
 
-            Assert.IsTrue(result, "Adding Fail");
+            Assert.IsTrue(null != newMemberId, "Adding Fail");
         }
 
         [TestMethod]
@@ -82,15 +82,25 @@ namespace PizzaRepository.Tests.ListClass
         public void UpdateMember()
         {
             var list = new MemberList();
-            int memberID = 1, status = 0;
+            var member = new Member();
             string name = "cheng";
             string streetAddress = "379 4th Ave S";
             string city = "Saint Cloud";
             string state = "MN";
             string ZIPcode = "56301";
 
-            var result = list.UpdateMember(name, memberID, streetAddress,
-                                     city,state,ZIPcode,status);
+            member.Name = name;
+            member.StreetAddress = streetAddress;
+            member.City = city;
+            member.State = state;
+            member.ZipCode = ZIPcode;
+
+            var newMemberId = list.InsertMember(member);
+
+            Assert.IsTrue(null != newMemberId, "Adding Fail");
+
+            var result = list.UpdateMember(name, newMemberId.Value, streetAddress,
+                                     city,state,ZIPcode,member.Status);
 
             Assert.IsTrue(null!=result,"update fail");
         }

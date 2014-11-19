@@ -30,9 +30,9 @@ namespace PizzaRepository.ListClass
         public ManagerList() { }
 
         //add manager into list
-        public Boolean InsertManager(Manager manager)
+        public int? InsertManager(Manager manager)
         {
-            var success = false;
+            var managerId = new int?();
             try
             {
                 var pizzDB = new Entity.PizzaDBEntities();
@@ -41,32 +41,33 @@ namespace PizzaRepository.ListClass
                 if (manager != null)
                 {
                     if (manager.Name == null || manager.State == null || manager.StreetAddress == null || manager.ZipCode == null)
-                        return false;
+                        return new int?();
 
                     if (manager.Name.Trim().Length == 0 || manager.State.Trim().Length == 0 || manager.StreetAddress.Trim().Length == 0 || manager.ZipCode.Trim().Length == 0)
-                        return false;
+                        return new int?();
 
                     //first check if exist
                    Manager m2 = this.GetManager(manager.Name);
-                   if (m2 != null) return false;
+                   if (m2 != null) return new int?();
 
                     var tempmanager = pizzDB.Managers.Where(node => node.ID == manager.ID).FirstOrDefault();
                     if (tempmanager == null)
                     {
-                        pizzDB.Managers.Add(MapManagerToEntity(manager));
+                        var eManager = MapManagerToEntity(manager);
+                        pizzDB.Managers.Add(eManager);
                         pizzDB.SaveChanges();
-                        success = true;
+                        managerId = eManager.ID;
                     }
-                    else success = false;
+                    else managerId = new int?();
                 }
-                else success = false;
+                else managerId = new int?();
             }
             catch (Exception e)
             {
-                success = false;
+                managerId = new int?();
                 throw new Exception(e.Message);
             }
-            return success;
+            return managerId;
         }
 
 

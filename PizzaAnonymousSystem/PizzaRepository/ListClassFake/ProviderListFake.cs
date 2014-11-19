@@ -20,9 +20,10 @@ namespace PizzaRepository.ListClassFake
         public bool ReturnError { get { return _returnError; } set { _returnError = value; } }
 
 
-        public bool AddProvider(Provider newProvider)
+        public int? AddProvider(Provider newProvider)
         {
-            return !_returnError;
+            if (!_returnError) return 100;
+            else return null;
         }
 
         public Provider GetProvider(int providerID)

@@ -10,7 +10,7 @@ namespace PizzaRepository.ListClassFake
     public class MemberListFake : IMemberList
     {
 
-        public bool InsertMember(Member member)
+        public int? InsertMember(Member member)
         {
             throw new NotImplementedException();
         }
