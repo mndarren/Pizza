@@ -13,7 +13,8 @@ namespace PizzaRepository.Tests.ListClass
         public void InsertServiceRecord()
         {
             var list = new ServiceRecordList();
-            var serviceRecord = new ServiceRecord();
+            var serviceRecord = new ServiceRecord(1231,DateTime.Now, DateTime.Today,);
+
             var newServiceRecordId = list.InsertServiceRecord(serviceRecord);
             Assert.IsTrue(null != newServiceRecordId, "insert service record failed.");
         }

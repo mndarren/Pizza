@@ -66,15 +66,19 @@ namespace PizzaRepository.Tests.ListClass
         public void DeleteMember()
         {
             var list = new MemberList();
-            int memberID = 1000;
-            var member = list.GetMember(memberID);
-            var result = list.DeleteMember(memberID);
+            Member member = new Member();
+            member.Name = "LUO";
+            member.StreetAddress = "397 4th Ave S";
+            member.City = "Saint Cloud";
+            member.State = "MN";
+            member.ZipCode = "56301";
+
+            var newmemberID = list.InsertMember(member);
+            Assert.IsTrue(null != newmemberID,"Insert member Fail" );
+
+            var result = list.DeleteMember(newmemberID.Value);
 
             Assert.IsTrue(result,"Delete Fail");
-
-            var newMemberId = list.InsertMember(member);
-
-            Assert.IsTrue(null != newMemberId, "Adding Fail");
         }
 
         [TestMethod]
