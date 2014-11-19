@@ -101,6 +101,40 @@ namespace PizzaRepository.ListClass
             return serviceRecord;
         }
 
+        public bool VerifyServiceRecords(int providerID, DateTime startDate, DateTime endDate, 
+            bool? verifyFee = true, bool? verifyService = true)
+        {
+            var success = false;
+
+            try
+            {
+                var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+                if (null == startDate) startDate = DateTime.Today;
+                if (null == endDate) endDate = DateTime.Today.AddDays(1);
+
+                foreach (var eServiceRecord in pizzDB.ServiceRecords
+                    .Where(sr => sr.DateProvided >= startDate 
+                        && sr.DateProvided <= endDate && sr.ProviderID == providerID))
+                {
+                    if (verifyService.HasValue) eServiceRecord.ServiceVerified = verifyService.Value;
+                    if (verifyFee.HasValue) eServiceRecord.FeeVerified = verifyFee.Value;
+                }
+                pizzDB.SaveChanges();
+
+                success = true;
+            }
+            catch (Exception e)
+            {
+                success = false;
+                throw new Exception(e.Message);
+            }
+
+            return success;
+        }
+
+
         #region Entity DataType Mapping
 
         private Entity.ServiceRecord MapRecordToEntity(ServiceRecord serviceRecord)
@@ -116,6 +150,8 @@ namespace PizzaRepository.ListClass
                 tempRecord.TimeStamp = serviceRecord.TimeStamp;
                 tempRecord.Comments = serviceRecord.Comments;
                 tempRecord.DateProvided = serviceRecord.DateProvided;
+                tempRecord.ServiceVerified = serviceRecord.ServiceVerified;
+                tempRecord.FeeVerified = serviceRecord.FeeVerified;
             }
 
             return tempRecord;
@@ -134,12 +170,13 @@ namespace PizzaRepository.ListClass
                 serviceRecord.TimeStamp = tempRecord.TimeStamp;
                 serviceRecord.DateProvided = tempRecord.DateProvided;
                 serviceRecord.Comments = tempRecord.Comments;
+                serviceRecord.ServiceVerified = tempRecord.ServiceVerified;
+                serviceRecord.FeeVerified = tempRecord.FeeVerified;
             }
 
             return serviceRecord;
         }
 
         #endregion
-        
     }
 }

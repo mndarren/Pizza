@@ -105,8 +105,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 memberReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -172,8 +173,9 @@ namespace PizzaController.Controllers
                     }
                      }
                 } catch (Exception e){
-                //record exception
                 providerReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -195,8 +197,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 eftReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -217,8 +220,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -242,8 +246,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -267,8 +272,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -277,7 +283,7 @@ namespace PizzaController.Controllers
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/service")]
         public bool VerifyProviderReportServices
-            (int providerID, TimeSpan startDate, TimeSpan endDate)
+            (int providerID, DateTime startDate, DateTime endDate)
         {
             bool success = false;
 
@@ -285,22 +291,16 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
-                    //var services = providerDirectory.GetServicesByProviderID(providerID)
-                    //   .Where(s => s.GetDate() <= endDate
-                    //        && s.GetDate() > startDate);
-                    /*
-                    foreach (var service in services)
-                    {
-                        service.SetServiceVerified(true);
-                        ServiceList.UpdateService(service);
-                    }*/
+                    success = serviceRecordList.VerifyServiceRecords(providerID, 
+                        startDate, endDate, null, true);
                 }
                 else throw new Exception("invalid provider");
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -309,7 +309,7 @@ namespace PizzaController.Controllers
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/fee")]
         public bool VerifyProviderReportFees
-            (int providerID, TimeSpan startDate, TimeSpan endDate)
+            (int providerID, DateTime startDate, DateTime endDate)
         {
             bool success = false;
 
@@ -317,23 +317,16 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
-                    /*
-                    var services = providerDirectory.GetServicesByProviderID(providerID)
-                        .Where(s => s.GetDate() <= endDate
-                            && s.GetDate() > startDate);
-
-                    foreach (var service in services)
-                    {
-                        service.SetFeeVerified(true);
-                        ServiceList.UpdateService(service);
-                    }*/
+                    success = serviceRecordList.VerifyServiceRecords(providerID, 
+                        startDate, endDate, true, null);
                 }
                 else throw new Exception("invalid provider");
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;

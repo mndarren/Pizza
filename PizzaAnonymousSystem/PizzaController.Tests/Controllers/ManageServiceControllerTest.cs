@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PizzaController.Controllers;
 using PizzaModels.Models;
 using PizzaRepository.ListClass;
+using PizzaModels.Constants;
 
 
 namespace PizzaController.Tests.Controllers
@@ -16,7 +17,7 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageServiceController(new MemberList(),new ProviderList(),new ProviderDirectory(), new ServiceRecordList());
             var result = report.AddServiceRecord(new ServiceRecord(123456,DateTime.Now, DateTime.Today, 10005,2009, "NoComment"));
-            Assert.IsTrue(result, "Failed to add a new service record.");
+            Assert.IsTrue(null != result, "Failed to add a new service record.");
         }
 
         [TestMethod]
@@ -57,7 +58,54 @@ namespace PizzaController.Tests.Controllers
         [TestCategory("ManageServiceController")]
         public void TestGetServiceRecord()
         {
+            var serviceController = new ManageServiceController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ServiceRecordList());
+            var accountConroller = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
 
+            var serviceCode = 222255;
+            var newService = new Service(serviceCode, "Hypno Thrpy", 55.50m);
+
+            var newMember = new Member()
+            {
+                Name = "Jonas Bros",
+                StreetAddress = "21 Jump Street",
+                City = "St. Paul",
+                State = "MN",
+                ZipCode = "12345",
+                Status = MemberStatus.ACCEPTED
+            };
+
+            var newProvider = new Provider()
+            {
+                Name = "Mario Bros",
+                StreetAddress = "22 Jump Street",
+                City = "Minneapolis",
+                State = "MN",
+                ZipCode = "54321"
+            };
+
+            var success = serviceController.AddService(newService);
+            var memberId = accountConroller.AddMember(newMember);
+            var providerId = accountConroller.AddProvider(newProvider);
+
+            Assert.IsTrue(success,             "add service failed");
+            Assert.IsTrue(memberId.HasValue,   "add member failed");
+            Assert.IsTrue(providerId.HasValue, "add provider failed");
+            
+            var newServiceRecord = new ServiceRecord(serviceCode, 
+                DateTime.Now, DateTime.Today, providerId.Value, memberId.Value, "all green");
+
+            var newServiceRecordId = serviceController.AddServiceRecord(newServiceRecord);
+
+            Assert.IsTrue(newServiceRecordId.HasValue, "add service record failed");
+
+            var serviceRecord = serviceController.GetServiceRecord(newServiceRecordId.Value);
+
+            Assert.AreEqual(serviceRecord.ServiceCode, newServiceRecord.ServiceCode,       "service code does not match");
+            Assert.AreEqual(serviceRecord.MemberNumber, newServiceRecord.MemberNumber,     "member number does not match");
+            Assert.AreEqual(serviceRecord.ProviderNumber, newServiceRecord.ProviderNumber, "provider number does not match");
+            Assert.AreEqual(serviceRecord.DateProvided, newServiceRecord.DateProvided,     "date provided does not match");
+            Assert.AreEqual(serviceRecord.TimeStamp, newServiceRecord.TimeStamp,           "timestamp does not match");
+            Assert.AreEqual(serviceRecord.Comments, newServiceRecord.Comments,             "comments does not match");
         }
     }
 }

@@ -93,7 +93,7 @@ namespace PizzaRepository.ListClass
         public Provider UpdateProvider(string name, int providerID, string streetAddress,
                                      string city, string state, string ZIPcode,long bankAccount)
         {
-            var Provider = new Provider();
+            var provider = new Provider();
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
@@ -115,22 +115,22 @@ namespace PizzaRepository.ListClass
                         es.BankAccount = bankAccount;
                     }
                     pizzaDB.SaveChanges(); //Apply changes to DB
-                    Provider = GetProvider(providerID);
+                    provider = GetProvider(providerID);
                 }
-                else Provider = null;
+                else provider = null;
             }
             catch (Exception e)
             {
-                Provider = null;
+                provider = null;
                 //If we have time, record the exception
                 throw new Exception(e.Message);
             }
 
-            return Provider;
+            return provider;
         }
         public Provider GetProvider(int providerID)
         {
-            var Provider = new Provider();
+            var provider = new Provider();
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
@@ -140,17 +140,17 @@ namespace PizzaRepository.ListClass
                     .Where(es => es.ID == providerID).FirstOrDefault();
 
                 if (null != eProvider)
-                    Provider = MapEntityToProvider(eProvider);
-                else Provider = null;
+                    provider = MapEntityToProvider(eProvider);
+                else provider = null;
             }
             catch (Exception e)
             {
-                Provider = null;
+                provider = null;
                 //If we have time, record the exception
                 throw new Exception(e.Message);
             }
 
-            return Provider;
+            return provider;
         }
 
         #region Entity DataType Mapping
