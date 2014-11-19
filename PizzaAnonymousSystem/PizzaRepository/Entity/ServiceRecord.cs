@@ -21,6 +21,8 @@ namespace PizzaRepository.Entity
         public string Comments { get; set; }
         public System.DateTime DateProvided { get; set; }
         public System.DateTime TimeStamp { get; set; }
+        public bool ServiceVerified { get; set; }
+        public bool FeeVerified { get; set; }
     
         public virtual Member Member { get; set; }
         public virtual Provider Provider { get; set; }

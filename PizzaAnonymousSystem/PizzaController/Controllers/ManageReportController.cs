@@ -283,7 +283,7 @@ namespace PizzaController.Controllers
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/service")]
         public bool VerifyProviderReportServices
-            (int providerID, TimeSpan startDate, TimeSpan endDate)
+            (int providerID, DateTime startDate, DateTime endDate)
         {
             bool success = false;
 
@@ -291,15 +291,8 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
-                    //var services = providerDirectory.GetServicesByProviderID(providerID)
-                    //   .Where(s => s.GetDate() <= endDate
-                    //        && s.GetDate() > startDate);
-                    /*
-                    foreach (var service in services)
-                    {
-                        service.SetServiceVerified(true);
-                        ServiceList.UpdateService(service);
-                    }*/
+                    success = serviceRecordList.VerifyServiceRecords(providerID, 
+                        startDate, endDate, null, true);
                 }
                 else throw new Exception("invalid provider");
             }
@@ -316,7 +309,7 @@ namespace PizzaController.Controllers
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/fee")]
         public bool VerifyProviderReportFees
-            (int providerID, TimeSpan startDate, TimeSpan endDate)
+            (int providerID, DateTime startDate, DateTime endDate)
         {
             bool success = false;
 
@@ -324,16 +317,8 @@ namespace PizzaController.Controllers
             {
                 if (null != providerList.GetProvider(providerID))
                 {
-                    /*
-                    var services = providerDirectory.GetServicesByProviderID(providerID)
-                        .Where(s => s.GetDate() <= endDate
-                            && s.GetDate() > startDate);
-
-                    foreach (var service in services)
-                    {
-                        service.SetFeeVerified(true);
-                        ServiceList.UpdateService(service);
-                    }*/
+                    success = serviceRecordList.VerifyServiceRecords(providerID, 
+                        startDate, endDate, true, null);
                 }
                 else throw new Exception("invalid provider");
             }

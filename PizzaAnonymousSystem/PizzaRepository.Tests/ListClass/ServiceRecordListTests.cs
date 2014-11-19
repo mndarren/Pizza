@@ -90,5 +90,12 @@ namespace PizzaRepository.Tests.ListClass
             Assert.IsTrue(null != result, "Get list Fail!");
         }
 
+        [TestMethod]
+        [TestCategory("ServiceRecordList")]
+        public void VerifyServiceRecords()
+        {
+            Assert.Fail("not implemented yet");
+        }
+
     }
 }

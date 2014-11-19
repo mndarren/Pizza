@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PizzaDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PizzaDBModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="PizzaDBModelStoreContainer">
           <EntitySet Name="Admins" EntityType="PizzaDBModel.Store.Admins" store:Type="Tables" />
           <EntitySet Name="Managers" EntityType="PizzaDBModel.Store.Managers" store:Type="Tables" />
@@ -88,6 +88,8 @@
           <Property Name="Comments" Type="nvarchar" MaxLength="100" />
           <Property Name="DateProvided" Type="datetime" Nullable="false" />
           <Property Name="TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="ServiceVerified" Type="bit" Nullable="false" />
+          <Property Name="FeeVerified" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Services">
           <Key>
@@ -122,8 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PizzaDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -214,6 +215,8 @@
           <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Member" Relationship="PizzaDBModel.Subscribing_Member" FromRole="ServiceRecords" ToRole="Members" />
           <NavigationProperty Name="Provider" Relationship="PizzaDBModel.Service_Provider" FromRole="ServiceRecords" ToRole="Providers" />
+          <Property Type="Boolean" Name="ServiceVerified" Nullable="false" />
+          <Property Type="Boolean" Name="FeeVerified" Nullable="false" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -317,6 +320,8 @@
           <EntitySetMapping Name="ServiceRecords">
             <EntityTypeMapping TypeName="PizzaDBModel.ServiceRecord">
               <MappingFragment StoreEntitySet="ServiceRecords">
+                <ScalarProperty Name="FeeVerified" ColumnName="FeeVerified" />
+                <ScalarProperty Name="ServiceVerified" ColumnName="ServiceVerified" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
                 <ScalarProperty Name="ProviderID" ColumnName="ProviderID" />
