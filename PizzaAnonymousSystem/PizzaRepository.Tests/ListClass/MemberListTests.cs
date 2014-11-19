@@ -87,6 +87,9 @@ namespace PizzaRepository.Tests.ListClass
             var result = list.DeleteMember(newmemberID.Value);
 
             Assert.IsTrue(result,"Delete Fail");
+
+            var negitiveTest = list.DeleteMember(0);
+            Assert.IsFalse(negitiveTest, "Delete member not exsit!");
         }
 
         [TestMethod]
