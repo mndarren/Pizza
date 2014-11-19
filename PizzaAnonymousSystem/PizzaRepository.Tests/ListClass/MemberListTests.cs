@@ -20,8 +20,8 @@ namespace PizzaRepository.Tests.ListClass
             member.City = "Saint Cloud";
             member.ZipCode = "12345";
 
-            var result = list.InsertMember(member);
-            var tempmember = list.GetMember(member.ID);
+            var resultID = list.InsertMember(member);
+            var tempmember = list.GetMember(resultID);
 
             Assert.IsTrue(result,"Adding Fail");
             Assert.IsTrue(null != tempmember, "Return member does not exist");

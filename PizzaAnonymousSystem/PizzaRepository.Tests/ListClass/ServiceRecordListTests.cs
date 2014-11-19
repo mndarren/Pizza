@@ -32,7 +32,8 @@ namespace PizzaRepository.Tests.ListClass
         [TestCategory ("ServiceRecordList")]
         public void GetAllServiceRecordForMember()
         {
-
+            int memberID;
+            var list = new
         }
 
         [TestMethod]

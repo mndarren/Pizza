@@ -14,7 +14,7 @@ namespace PizzaRepository.ListClass
     public class ServiceRecordList : IServiceRecordList
     {
         private List<ServiceRecord> _serviceRecords = new List<ServiceRecord>();
-        private static ServiceRecordList _serviceRecordList;
+        //private static ServiceRecordList _serviceRecordList;
 
         public ServiceRecordList(){}
         
