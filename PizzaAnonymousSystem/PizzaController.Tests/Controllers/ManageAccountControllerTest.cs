@@ -100,7 +100,7 @@ namespace PizzaController.Tests.Controllers
             manager.City = "Saint Cloud";
             manager.ZipCode = "56301";
             var result = account.AddManager(manager);
-            Assert.IsTrue(result, "Failed to add a manager.");
+            Assert.IsTrue(null != result, "Failed to add a manager.");
         }
 
         [TestMethod]

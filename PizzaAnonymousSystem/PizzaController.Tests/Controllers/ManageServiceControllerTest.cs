@@ -91,7 +91,8 @@ namespace PizzaController.Tests.Controllers
             Assert.IsTrue(memberId.HasValue,   "add member failed");
             Assert.IsTrue(providerId.HasValue, "add provider failed");
             
-            var newServiceRecord = new ServiceRecord(serviceCode, DateTime.Now, DateTime.Today, providerId.Value, memberId.Value, "all green");
+            var newServiceRecord = new ServiceRecord(serviceCode, 
+                DateTime.Now, DateTime.Today, providerId.Value, memberId.Value, "all green");
 
             var newServiceRecordId = serviceController.AddServiceRecord(newServiceRecord);
 
@@ -99,9 +100,12 @@ namespace PizzaController.Tests.Controllers
 
             var serviceRecord = serviceController.GetServiceRecord(newServiceRecordId.Value);
 
-            Assert.AreEqual(serviceRecord.ServiceCode, newServiceRecord.ServiceCode, "");
-            Assert.AreEqual(serviceRecord.MemberNumber, newServiceRecord.MemberNumber, "");
-            Assert.AreEqual(serviceRecord.ProviderNumber, serviceRecord.ProviderNumber, "");
+            Assert.AreEqual(serviceRecord.ServiceCode, newServiceRecord.ServiceCode,       "service code does not match");
+            Assert.AreEqual(serviceRecord.MemberNumber, newServiceRecord.MemberNumber,     "member number does not match");
+            Assert.AreEqual(serviceRecord.ProviderNumber, newServiceRecord.ProviderNumber, "provider number does not match");
+            Assert.AreEqual(serviceRecord.DateProvided, newServiceRecord.DateProvided,     "date provided does not match");
+            Assert.AreEqual(serviceRecord.TimeStamp, newServiceRecord.TimeStamp,           "timestamp does not match");
+            Assert.AreEqual(serviceRecord.Comments, newServiceRecord.Comments,             "comments does not match");
         }
     }
 }

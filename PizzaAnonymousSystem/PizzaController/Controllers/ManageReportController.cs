@@ -105,8 +105,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 memberReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -172,8 +173,9 @@ namespace PizzaController.Controllers
                     }
                      }
                 } catch (Exception e){
-                //record exception
                 providerReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -195,8 +197,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 eftReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
         }
 
@@ -217,8 +220,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -242,8 +246,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -267,8 +272,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -299,8 +305,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;
@@ -332,8 +339,9 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                //record exception
                 success = false;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
             return success;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PizzaGUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,22 +24,25 @@ namespace PizzaGUI.Controllers
             return View();
         }
 
-        public ActionResult Provider(string username = "your name")
+        public ActionResult Provider(string username = "your name", int id = 0)
         {
+            ViewBag.ID = id;
             ViewBag.Username = username;
-            return View();
+            return View(new ProviderViewModel());
         }
 
-        public ActionResult Admin(string username = "your name")
+        public ActionResult Admin(string username = "your name", int id = 0)
         {
+            ViewBag.ID = id;
             ViewBag.Username = username;
-            return View();
+            return View(new AdminViewModel());
         }
 
-        public ActionResult Manager(string username = "your name")
+        public ActionResult Manager(string username = "your name", int id = 0)
         {
+            ViewBag.ID = id;
             ViewBag.Username = username;
-            return View();
+            return View(new ManagerViewModel());
         }
     }
 }

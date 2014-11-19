@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Model
+
+@{
     ViewBag.Title = "Admin";
 }
 
@@ -76,5 +78,15 @@
 </div>
 
 <script type="text/javascript">
-    
+    var path = {
+        AddMember  : '@Model.Addmember',
+        AddAdmin   : '@Model.AddAdmin',
+        AddManager : '@Model.AddManager',
+        AddProvider: '@Model.AddProvider',
+
+        UpdateMember  : '@Model.Updatemember',
+        UpdateAdmin   : '@Model.UpdateAdmin',
+        UpdateManager : '@Model.UpdateManager',
+        UpdateProvider: '@Model.UpdateProvider'
+    };
 </script>
