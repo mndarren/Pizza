@@ -52,7 +52,10 @@ namespace PizzaRepository.Tests.ListClass
         public void UpdateService()
         {
             var repository = new ProviderDirectory();
-            var newService = new Service(777666, "cutNail", 104m);
+            var addedService = new Service(888777, "WashFeet", 100m);
+            var success = repository.AddService(addedService);
+
+            var newService = new Service(888777, "cutNail", 104m);
             var updatedService = repository.UpdateService(newService);
 
             Assert.IsTrue(updatedService != null, "returned updated provider");
@@ -60,6 +63,12 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(updatedService.ServiceCode, newService.ServiceCode, "codes are not equal");
             Assert.AreEqual(updatedService.ServiceName, newService.ServiceName, "names are not equal");
             Assert.AreEqual(updatedService.ServiceFee, newService.ServiceFee, "fees are not equal");
+
+            //Negtive Path
+            var newService1 = new Service(777788, "cutNail", 104m);
+            var updatedService1 = repository.UpdateService(newService1);
+
+            Assert.IsFalse(updatedService != null, "returned updated provider");
         }
 
         [TestMethod]
@@ -67,11 +76,17 @@ namespace PizzaRepository.Tests.ListClass
         public void DeleteService()
         {
             var repository = new ProviderDirectory();
+            var newService = new Service(888777, "WashFeet", 100m);
+            var success = repository.AddService(newService);
+
             var serviceList = repository.GetServices();
             var service = serviceList[serviceList.Count - 1];
 
-            var success = repository.DeleteService(service.ServiceCode);
+            success = repository.DeleteService(service.ServiceCode);
             Assert.IsTrue(success, "delete fail");
+            //Negtive path
+            success = repository.DeleteService(service.ServiceCode);
+            Assert.IsFalse(success, "delete fail");
         }
     }
 }

@@ -37,7 +37,7 @@ namespace PizzaController.Tests.Controllers
         }
         [TestMethod]
         [TestCategory("ManageServiceController")]
-        public void TestUpdateService() 
+        public void TestDeleteService() 
         {
            
         }
