@@ -286,7 +286,7 @@ namespace PizzaController.Controllers
 
         [HttpGet]
         [GET("api/reportmanager/reports/eftreport")]
-        public void GetWeeklyEFTReports()
+        public int GetWeeklyEFTReports()
         {
             List<EFTReport> eftReports = new List<EFTReport>();
             int result = 0; //0: success, 1: member is null, 2: serveList
@@ -308,6 +308,7 @@ namespace PizzaController.Controllers
                 throw new HttpResponseException(
                     Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
+            return result;
         }
 
         [HttpPut]
