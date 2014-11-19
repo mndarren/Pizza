@@ -19,6 +19,15 @@ namespace PizzaModels.Models
         #endregion
 
         public Provider(){}
+        public Provider(string name, string streetAddress, string state, string city, string zipCode,long bankAccount)
+        {
+            BankAccount = bankAccount;
+            Name = name;
+            StreetAddress = streetAddress;
+            State = state;
+            City = city;
+            ZipCode = zipCode;
+        }
         public Provider(Provider p) 
         {
             BankAccount = p.BankAccount;

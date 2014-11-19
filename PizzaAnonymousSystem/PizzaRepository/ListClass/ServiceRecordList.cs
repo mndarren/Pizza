@@ -50,12 +50,6 @@ namespace PizzaRepository.ListClass
             return recordList; 
         }
 
-        //create a service record list instance
-        public static ServiceRecordList Instance() {
-            if (_serviceRecordList == null) { return _serviceRecordList = new ServiceRecordList(); }
-            else { return _serviceRecordList; }
-        }
-
         //add service record into list
         public Boolean InsertServiceRecord(ServiceRecord _serviceRecord) {
             var success = false;
