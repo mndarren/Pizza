@@ -48,10 +48,10 @@ namespace PizzaController.Tests.Controllers
             m.StreetAddress = "123 77th Ave S";
             m.State = "MN";
             m.City = "Saint Cloud";
-            m.ZipCode = "19195";
+            m.ZipCode = "191919";
             m.Status = 0;
             var result = account.UpdateMember(m);
-            Assert.IsNotNull(result, "Failed to update a member.");
+            Assert.IsTrue(null != result, "Failed to update a member.");
         }
 
 
@@ -100,7 +100,7 @@ namespace PizzaController.Tests.Controllers
             manager.City = "Saint Cloud";
             manager.ZipCode = "56301";
             var result = account.AddManager(manager);
-            Assert.IsFalse(null != result, "Failed to add a manager.");
+            Assert.IsTrue(result, "Failed to add a manager.");
         }
 
         [TestMethod]
