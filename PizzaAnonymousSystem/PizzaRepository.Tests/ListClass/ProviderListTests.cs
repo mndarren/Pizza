@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using 
+using PizzaModels.Models;
+using PizzaRepository.ListClass;
 
 namespace PizzaRepository.Tests.ListClass
 {
@@ -12,11 +13,10 @@ namespace PizzaRepository.Tests.ListClass
         public void AddProvider()
         {
             var repository = new ProviderList();
-            var testReportType = 99;
 
-            var newSchedule = new Schedule(testReportType, 5, new TimeSpan(12, 59, 59));
-            var success = repository.AddSchedule(newSchedule);
-            var schedule = repository.GetSchedule(testReportType);
+            var newProvider = new Provider("Zhao Xie", "397 4th Ave S", "MN", "St. Cloud", "56301",100000023434);
+            var success = repository.AddProvider(newProvider);
+            var schedule = repository.GetProvider(testReportType);
 
             Assert.IsTrue(success, "addition fail");
             Assert.IsTrue(null != schedule, "returned schedule does not exist");
