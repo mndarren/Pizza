@@ -16,17 +16,6 @@ namespace PizzaRepository.ListClass
         private List<Member> members = new List<Member>();
 
         private static MemberList memberList;
-
-        //create a member list instance
-        public static MemberList Instance(){
-            if (memberList == null){
-                return (memberList = new MemberList());
-            }
-            else{
-                return memberList;
-            }
-        }
-
         public MemberList() { }
 
         //add member into list

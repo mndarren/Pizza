@@ -13,7 +13,6 @@ namespace PizzaRepository.Tests.ListClass
         public void InsertMember()
         {
             var list = new MemberList();
-
             var member = new Member();
             member.Name = "Cheng luo";
             member.StreetAddress = "123 77th Ave S";
@@ -22,13 +21,35 @@ namespace PizzaRepository.Tests.ListClass
             member.ZipCode = "12345";
 
             var result = list.InsertMember(member);
+            var tempmember = list.GetMember(member.ID);
 
-            Assert.IsTrue(result);
+            Assert.IsTrue(result,"Adding Fail");
+            Assert.IsTrue(null != tempmember, "Return member does not exist");
+
+            Assert.AreEqual(member.Name, tempmember.Name, "Name are not equal");
+            Assert.AreEqual(member.StreetAddress, member.StreetAddress, "StreetAddress are not the same");
+            Assert.AreEqual(member.State, tempmember.State, "State are not the same");
+            Assert.AreEqual(member.City, tempmember.City, "City are not the same");
+            Assert.AreEqual(member.ZipCode, tempmember.ZipCode, "ZIPCode are not the same");
+
+
         }
 
         [TestMethod]
         [TestCategory("MemberList")]
         public void GetMember()
+        {
+            var list = new MemberList();
+            int memberID = 0;
+            var result = list.GetMember(memberID);
+
+            Assert.IsNull(result);
+
+        }
+
+        [TestMethod]
+        [TestCategory("MemberList")]
+        public void GetMembers()
         {
             var list = new MemberList();
             int memberID = 0;
@@ -47,7 +68,6 @@ namespace PizzaRepository.Tests.ListClass
             var result = list.DeleteMember(memberID);
             Assert.IsFalse(result);
         }
-
 
         [TestMethod]
         [TestCategory("MemberList")]
