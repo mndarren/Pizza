@@ -39,7 +39,7 @@ namespace PizzaController.Controllers
         /// </summary>
         /// <returns>returns all services</returns>
         [HttpGet]
-        [GET("api/servicemanager/services/")]
+        [GET("api/servicemanager/services")]
         public List<Service> GetAllServices()
         {
             //var services = new List<Service>();
