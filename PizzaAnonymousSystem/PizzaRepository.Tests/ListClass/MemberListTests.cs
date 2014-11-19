@@ -16,10 +16,10 @@ namespace PizzaRepository.Tests.ListClass
 
             var member = new Member();
             member.Name = "Cheng luo";
-            member.StreetAddress = "397 4th Ave S";
+            member.StreetAddress = "123 77th Ave S";
             member.State = "MN";
             member.City = "Saint Cloud";
-            member.ZipCode = "56301";
+            member.ZipCode = "12345";
 
             var result = list.InsertMember(member);
 
@@ -43,9 +43,19 @@ namespace PizzaRepository.Tests.ListClass
         public void DeleteMember()
         {
             var list = new MemberList();
-            int memberID = 1;
+            int memberID = 1007;
             var result = list.DeleteMember(memberID);
             Assert.IsFalse(result);
+        }
+
+
+        [TestMethod]
+        [TestCategory("MemberList")]
+        public void AllMembers()
+        {
+            var list = new MemberList();
+            var result = list.GetAllMembers();
+            Assert.IsFalse((result != null));
         }
 
         [TestMethod]

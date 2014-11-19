@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PizzaModels.Models;
+using PizzaCommon.Tools;
 
 namespace PizzaRepository.ListClass
 {
@@ -31,54 +32,161 @@ namespace PizzaRepository.ListClass
         //add manager into list
         public Boolean InsertManager(Manager manager)
         {
-            if (manager != null)
+            var success = false;
+            try
             {
-                managers.Add(manager);
-                return true;
+                var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+                if (manager != null)
+                {
+                    var tempmanager = pizzDB.Managers.Where(node => node.ID == manager.ID).FirstOrDefault();
+                    if (tempmanager == null)
+                    {
+                        pizzDB.Managers.Add(MapManagerToEntity(manager));
+                        pizzDB.SaveChanges();
+                        success = true;
+                    }
+                    else success = false;
+                }
+                else success = false;
             }
-            else { return false; }
+            catch (Exception e)
+            {
+                success = false;
+                throw new Exception(e.Message);
+            }
+            return success;
         }
 
-        public Manager GetManager(int managerID)
-        {
-            Manager manager = managers.Where(node => node.ID == managerID).FirstOrDefault();
-            return manager;
-
-        }
 
         //delete manager from link list
         public Boolean DeleteManager(int managerID)
         {
-            Manager manager = managers.Where(node => node.ID == managerID).FirstOrDefault();
-            if (manager != null)
+            var success = false;
+            try
             {
-                managers.Remove(manager);
-                return true;
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+                var tempManager = pizzaDB.Managers
+                    .Where(es => es.ID == managerID).FirstOrDefault();
+
+                if (null != tempManager)
+                {
+                    pizzaDB.Managers.Remove(tempManager);
+                    pizzaDB.SaveChanges(); //Apply changes to DB
+                    success = true;
+                }
+                else success = false;
             }
-            else { return false; }
+            catch (Exception e)
+            {
+                success = false;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+            return success;
         }
 
         //Update manager status
-        public Boolean UpdateManager(string name, int managerID, string streetAddress,
+        public Manager UpdateManager(string name, int managerID, string streetAddress,
                                      string city, string state, string ZIPcode)
         {
-            Manager manager = managers.Where(node => node.ID == managerID).FirstOrDefault();
-            if (manager != null)
+            var manager = new Manager();
+            try
             {
-                manager.Name = name;
-                manager.StreetAddress = streetAddress;
-                manager.City = city;
-                manager.State = state;
-                manager.ZipCode = ZIPcode;
-                return true;
+                var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+                var eMember = pizzDB.Managers.Where(node => node.ID == managerID).FirstOrDefault();
+
+                if (eMember != null)
+                {
+                    foreach (var es in pizzDB.Managers.Where(es => es.ID == managerID))
+                    {
+                        es.Name = name;
+                        es.StreetAddress = streetAddress;
+                        es.City = city;
+                        es.State = state;
+                        es.ZipCode = ZIPcode;
+                    }
+                    pizzDB.SaveChanges();
+                    manager = GetManager(managerID);
+                }
+                else manager = null;
             }
-            else { return false; }
+            catch (Exception e)
+            {
+                manager = null;
+                throw new Exception(e.Message);
+            }
+            return manager;
         }
 
 
-        Member IManagerList.GetManager(int managerID)
+        public Manager GetManager(int managerID)
         {
-            throw new NotImplementedException();
+            var manager = new Manager();
+            try
+            {
+                var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
+
+                var tempManager = pizzaDB.Managers
+                    .Where(es => es.ID == managerID).FirstOrDefault();
+
+                if (null != tempManager)
+                    manager = MapEntityToManager(tempManager);
+                else manager = null;
+            }
+            catch (Exception e)
+            {
+                manager = null;
+                //If we have time, record the exception
+                throw new Exception(e.Message);
+            }
+
+            return manager;
         }
+
+    
+        #region Entity DataType Mapping
+
+        private Entity.Manager MapManagerToEntity(Manager manager)
+        {
+            var tempManager = new Entity.Manager();
+
+            if (null != manager)
+            {
+                tempManager.ID = manager.ID;
+                tempManager.Name = manager.Name;
+                tempManager.StreetAddress = manager.StreetAddress;
+                tempManager.City = manager.City;
+                tempManager.State = manager.State;
+                tempManager.ZipCode = manager.ZipCode;
+            }
+
+            return tempManager;
+        }
+
+        private Manager MapEntityToManager(Entity.Manager tempManager)
+        {
+            var manager = new Manager();
+
+            if (null != tempManager)
+            {
+                manager.ID = tempManager.ID;
+                manager.Name = tempManager.Name;
+                manager.StreetAddress = tempManager.StreetAddress;
+                manager.City = tempManager.City;
+                manager.State = tempManager.State;
+                manager.ZipCode = tempManager.ZipCode;
+            }
+
+            return manager;
+        }
+
+        #endregion
     }
 }

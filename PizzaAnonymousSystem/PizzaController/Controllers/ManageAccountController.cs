@@ -43,10 +43,19 @@ namespace PizzaController.Controllers
             return memberList.DeleteMember(memberID);
         }
 
-        [POST("api/accountmanager/account/member")]
-        public Member UpdateMember([FromBody]string name, int ID, string streetAddress,
-                                     string city, string state, string ZIPcode, int status)
+        [HttpPut]
+        [PUT("api/accountmanager/account/member")]
+        public Member UpdateMember([FromBody]/*string name, int ID, string streetAddress,
+                                     string city, string state, string ZIPcode, int status*/ Member member)
         {
+            string name = member.Name;
+            int ID = member.ID;
+            string streetAddress = member.StreetAddress;
+            string city = member.City;
+            string state = member.State;
+            string ZIPcode = member.ZipCode;
+            int status = member.Status;
+
             return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
         }
 
@@ -67,11 +76,19 @@ namespace PizzaController.Controllers
             return providerList.DeleteProvider(providerID);
         }
 
-        [HttpPost]
-        [POST("api/accountmanager/account/provider")]
-        public Provider UpdateProvider([FromBody]string name, int ID, string streetAddress,
-                                     string city, string state, string ZIPcode, long bankAccount)
+        [HttpPut]
+        [PUT("api/accountmanager/account/provider")]
+        public Provider UpdateProvider([FromBody]/*string name, int ID, string streetAddress,
+                                     string city, string state, string ZIPcode, long bankAccount*/ Provider provider)
         {
+            string name = provider.Name;
+            int ID = provider.ID;
+            string streetAddress = provider.StreetAddress;
+            string city = provider.City;
+            string state = provider.State;
+            string ZIPcode = provider.ZipCode;
+            long bankAccount = provider.BankAccount;
+
             var result = providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
             return result;
         }
@@ -93,11 +110,18 @@ namespace PizzaController.Controllers
             return managerList.DeleteManager(managerID);
         }
 
-        [HttpPost]
-        [POST("api/accountmanager/account/manager")]
-        public Boolean UpdateManager([FromBody]string name, int ID, string streetAddress,
-                                     string city, string state, string ZIPcode)
+        [HttpPut]
+        [PUT("api/accountmanager/account/manager")]
+        public Manager UpdateManager([FromBody]/*string name, int ID, string streetAddress,
+                                     string city, string state, string ZIPcode*/ Manager manager)
         {
+            string name = manager.Name;
+            int ID = manager.ID;
+            string streetAddress = manager.StreetAddress;
+            string city = manager.City;
+            string state = manager.State;
+            string ZIPcode = manager.ZipCode;
+
             return managerList.UpdateManager(name, ID, streetAddress,
                                      city, state, ZIPcode);
         }
@@ -119,18 +143,25 @@ namespace PizzaController.Controllers
             return adminList.DeleteAdmin(adminID);
         }
 
-        [HttpPost]
-        [POST("api/accountmanager/account/admin")]
-        public Admin UpdateAdmin([FromBody]string name, int ID, string streetAddress,
-                                     string city, string state, string ZIPcode)
+        [HttpPut]
+        [PUT("api/accountmanager/account/admin")]
+        public Admin UpdateAdmin([FromBody]/*string name, int ID, string streetAddress,
+                                     string city, string state, string ZIPcode*/Admin admin)
         {
+            string name = admin.Name;
+            int ID = admin.ID;
+            string streetAddress = admin.StreetAddress;
+            string city = admin.City;
+            string state = admin.State;
+            string ZIPcode = admin.ZipCode;
+
             return adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
         }
         
         /*************************************
          * validate member
          * **********************************/
-        [HttpPost]
+        [HttpGet]
         [GET("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);

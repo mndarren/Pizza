@@ -75,6 +75,7 @@ namespace PizzaRepository.ListClass
                 {
                     pizzaDB.Providers.Remove(eProvider);
                     pizzaDB.SaveChanges(); //Apply changes to DB
+                    success = true;
                 }
                 else success = false;
             }
