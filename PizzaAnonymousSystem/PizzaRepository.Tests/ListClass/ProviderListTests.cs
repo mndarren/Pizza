@@ -38,7 +38,9 @@ namespace PizzaRepository.Tests.ListClass
         public void GetProvider()
         {
             var repository = new ProviderList();
-            var provider = repository.GetProvider(102);
+            var newProvider = new Provider("Zhao Xie", "397 4th Ave S", "MN", "St. Cloud", "56301", 100000023434);
+            var newProviderId = repository.AddProvider(newProvider);
+            var provider = repository.GetProvider(newProviderId.Value);
 
             Assert.IsTrue(null != provider, "returned provider does not exist");
         }

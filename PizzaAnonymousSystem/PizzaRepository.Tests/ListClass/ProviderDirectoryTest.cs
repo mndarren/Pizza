@@ -65,10 +65,10 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(updatedService.ServiceFee, newService.ServiceFee, "fees are not equal");
 
             //Negtive Path
-            var newService1 = new Service(777788, "cutNail", 104m);
+            var newService1 = new Service(777999, "cutNail", 104m);
             var updatedService1 = repository.UpdateService(newService1);
 
-            Assert.IsFalse(updatedService != null, "returned updated provider");
+            Assert.IsFalse(updatedService == null, "returned updated provider");
         }
 
         [TestMethod]
