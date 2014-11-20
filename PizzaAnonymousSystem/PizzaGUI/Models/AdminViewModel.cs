@@ -23,6 +23,12 @@ namespace PizzaGUI.Models
         public string DeleteManager = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/manager");
         public string DeleteProvider = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/provider");
 
+        public string GetMember = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/member");
+        public string GetAdmin = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/admin");
+        public string GetManager = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/manager");
+        public string GetProvider = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/provider");
+        
+        public string GetAllServices = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");
         public string AddService = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");
         public string UpdateService = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");
         public string DeleteService = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");
@@ -31,6 +37,7 @@ namespace PizzaGUI.Models
         public string UpdateProviderReportSchedule = System.IO.Path.Combine(PizzaApi.Path, "reportmanager/schedules/providerreport");
         public string UpdateEFTReportSchedule = System.IO.Path.Combine(PizzaApi.Path, "reportmanager/schedules/eftreport");
 
+        public string GetWeeklyOneMemberReport = System.IO.Path.Combine(PizzaApi.Path, "reportmanager/reports/onememberreport");
         public string GetWeeklyMemberReports = System.IO.Path.Combine(PizzaApi.Path, "reportmanager/reports/memberreport");
         public string GetWeeklyProviderReports = System.IO.Path.Combine(PizzaApi.Path, "reportmanager/reports/providerreport");
         public string GetWeeklyEFTReports = System.IO.Path.Combine(PizzaApi.Path, "reportmanager/reports/eftreport");

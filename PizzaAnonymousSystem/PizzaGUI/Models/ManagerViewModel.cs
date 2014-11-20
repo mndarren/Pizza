@@ -17,6 +17,10 @@ namespace PizzaGUI.Models
         public string DeleteMember = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/member");
         public string DeleteProvider = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/provider");
 
+        public string GetMember = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/member");
+        public string GetProvider = System.IO.Path.Combine(PizzaApi.Path, "accountmanager/account/provider");
+
+        public string GetAllServices = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");
         public string AddService = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");
         public string UpdateService = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");
         public string DeleteService = System.IO.Path.Combine(PizzaApi.Path, "servicemanager/services");

@@ -252,6 +252,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\Tools\Admin\" />
+    <Folder Include="Scripts\Tools\Manager\" />
+    <Folder Include="Scripts\Tools\Member\" />
+    <Folder Include="Scripts\Tools\Provider\" />
+    <Folder Include="Scripts\Tools\Report\" />
+    <Folder Include="Scripts\Tools\Schedule\" />
+    <Folder Include="Scripts\Tools\ServiceRecord\" />
+    <Folder Include="Scripts\Tools\Service\" />
+    <Folder Include="Scripts\Tools\Verification\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

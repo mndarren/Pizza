@@ -117,8 +117,8 @@ namespace PizzaController.Controllers
 
 
         [HttpGet]
-        [GET("api/reportmanager/reports/onememberreport")]
-        public int GetWeeklyOneMemberReport(int memberID)
+        [GET("api/reportmanager/reports/onememberreport/{memberID}")]
+        public int GetWeeklyOneMemberReport([FromUri]int memberID)
         {
             int result = 0; //0: success, 1: member is null, 2: serveList
             try
