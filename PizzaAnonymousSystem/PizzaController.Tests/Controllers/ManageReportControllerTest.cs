@@ -52,10 +52,23 @@ namespace PizzaController.Tests.Controllers
 
         [TestMethod]
         [TestCategory("ManageReportController")]
-        public void TestEFTReport()
+        public void TestAccountPayableReport()
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             int result = report.GetWeeklyEFTReports();
+            Assert.IsTrue((result == 0), "Successfully generate an account payable report.");
+            Assert.IsTrue((result == 1), "fail to generate an account payable report because providers is null.");
+            Assert.IsTrue((result == 2), "fail to generate  an account payable report because service list is null.");
+            Assert.IsTrue((result == 3), "fail to generate  an account payable report  because service is null.");
+
+        }
+
+        [TestMethod]
+        [TestCategory("ManageReportController")]
+        public void TestEFTReport()
+        {
+            var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
+            int result = report.GetWeeklyEFTReports();  
             Assert.IsTrue((result == 0), "Successfully generate the EFT report.");
             Assert.IsTrue((result == 1), "fail to generate providers report because providers is null.");
             Assert.IsTrue((result == 2), "fail to generate providers report because service list is null.");
@@ -69,7 +82,8 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             TimeSpan ts = new TimeSpan(2, 14, 0);
-            report.UpdateMemberReportSchedule(2,ts);
+            var result = report.UpdateMemberReportSchedule(2,ts);
+            Assert.IsTrue(result, "fail  to update member report schedule.");
         }
 
 
@@ -79,7 +93,8 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             TimeSpan ts = new TimeSpan(2, 14, 0);
-            report.UpdateProviderReportSchedule(2, ts);
+            var result = report.UpdateProviderReportSchedule(2, ts);
+            Assert.IsTrue(result, "fail  to update provider report schedule.");
         }
 
         [TestMethod]
@@ -88,7 +103,8 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             TimeSpan ts = new TimeSpan(2, 14, 0);
-            report.UpdateEFTReportSchedule(2, ts);
+            var result = report.UpdateEFTReportSchedule(2, ts);
+            Assert.IsTrue(result, "fail  to update EFT report schedule.");
         }
 
         [TestMethod]
