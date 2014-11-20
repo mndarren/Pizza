@@ -250,10 +250,13 @@ namespace PizzaController.Controllers
                                             counter++;
                                             int serviceCode = s.ServiceCode;
                                             Service service = providerDirectory.GetService(serviceCode);
-                                            file.WriteLine("\nService:" + counter);
-                                            file.WriteLine("Service Name: " + service.ServiceName);
-                                            file.WriteLine("Service Code: " + service.ServiceCode);
-                                            file.WriteLine("Service Fee: " + service.ServiceFee);
+                                            if (service != null)
+                                            {
+                                                file.WriteLine("\nService:" + counter);
+                                                file.WriteLine("Service Name: " + service.ServiceName);
+                                                file.WriteLine("Service Code: " + service.ServiceCode);
+                                                file.WriteLine("Service Fee: " + service.ServiceFee);
+                                            }
                                         }
                                     }
                                     else
@@ -336,10 +339,13 @@ namespace PizzaController.Controllers
                                             counter++;
                                             int serviceCode = s.ServiceCode;
                                             Service service = providerDirectory.GetService(serviceCode);
-                                            file.WriteLine("\nService:" + counter);
-                                            file.WriteLine("Service Name: " + service.ServiceName);
-                                            file.WriteLine("Service Code: " + service.ServiceCode);
-                                            file.WriteLine("Service Fee: " + service.ServiceFee);
+                                            if (service != null)
+                                            {
+                                                file.WriteLine("\nService:" + counter);
+                                                file.WriteLine("Service Name: " + service.ServiceName);
+                                                file.WriteLine("Service Code: " + service.ServiceCode);
+                                                file.WriteLine("Service Fee: " + service.ServiceFee);
+                                            }
                                         }
                                     }
                                     else
@@ -566,6 +572,7 @@ namespace PizzaController.Controllers
                                 if (service != null)
                                 {
                                     sumFee += service.ServiceFee;
+                                    result = 0;
                                 }
                                 else
                                 {
