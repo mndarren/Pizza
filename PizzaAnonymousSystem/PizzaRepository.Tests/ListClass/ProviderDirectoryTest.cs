@@ -25,7 +25,7 @@ namespace PizzaRepository.Tests.ListClass
             Assert.AreEqual(newService.ServiceCode, service.ServiceCode, "service codes are not equal");
             Assert.AreEqual(newService.ServiceName, service.ServiceName, "service names are not equal");
             Assert.AreEqual(newService.ServiceFee, service.ServiceFee, "service fees are not equal");
-            repository.DeleteService(success.Value);
+            repository.DeleteService(888909);
         }
 
         [TestMethod]
