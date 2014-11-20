@@ -22,7 +22,8 @@ namespace PizzaRepository.ListClassFake
 
         public int? AddService(Service newService)
         {
-            return !_returnError;
+            int? result = new int?();
+            return result;
         }
 
         public Service GetService(string serviceName)

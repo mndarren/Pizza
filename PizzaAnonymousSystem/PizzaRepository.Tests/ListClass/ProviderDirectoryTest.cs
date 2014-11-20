@@ -77,15 +77,15 @@ namespace PizzaRepository.Tests.ListClass
         {
             var repository = new ProviderDirectory();
             var newService = new Service(888777, "WashFeet", 100m);
-            var success = repository.AddService(newService);
+            var serviceId = repository.AddService(newService);
 
-            var serviceList = repository.GetServices();
-            var service = serviceList[serviceList.Count - 1];
+            //var serviceList = repository.GetServices();
+            //var service = serviceList[serviceList.Count - 1];
 
-            success = repository.DeleteService(service.ServiceCode);
+            var success = repository.DeleteService(serviceId.Value);
             Assert.IsTrue(success, "delete fail");
             //Negtive path
-            success = repository.DeleteService(service.ServiceCode);
+            success = repository.DeleteService(serviceId.Value);
             Assert.IsFalse(success, "delete fail");
         }
     }
