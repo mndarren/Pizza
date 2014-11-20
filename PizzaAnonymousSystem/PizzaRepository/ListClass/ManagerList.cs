@@ -27,6 +27,17 @@ namespace PizzaRepository.ListClass
             }
         }
 
+        void checkManager(Manager manager)
+        {
+            var regex = "^[a-zA-Z]'?([a-zA-Z]|\\.| |-)+$";
+            var str = "";
+            if (manager == null)
+                str = "Manager is null.";
+            else if (manager.ID < 999999 || manager.ID < 0)
+                str = "Manager ID is out of range(1-999999).";
+           
+        }
+
         public ManagerList() { }
 
         //add manager into list
