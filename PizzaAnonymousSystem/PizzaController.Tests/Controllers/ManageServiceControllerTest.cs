@@ -16,7 +16,10 @@ namespace PizzaController.Tests.Controllers
         public void TestAddServiceRecord()
         {
             var report = new ManageServiceController(new MemberList(),new ProviderList(),new ProviderDirectory(), new ServiceRecordList());
-            var result = report.AddServiceRecord(new ServiceRecord(123456,DateTime.Now, DateTime.Today, 10005,2009, "NoComment"));
+            var serviceRecord = new ServiceRecord(123456, DateTime.Now, DateTime.Today, 10005, 2009, "NoComment");
+
+            var result = report.AddServiceRecord(serviceRecord);
+            
             Assert.IsTrue(null != result, "Failed to add a new service record.");
         }
 
