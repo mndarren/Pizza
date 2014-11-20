@@ -164,9 +164,9 @@ namespace PizzaController.Controllers
         [GET("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
-            if (member.Status == 0) { return "Validate!"; }
-            else if (member.Status == 1) { return "invalid!"; }
-            else if (member.Status == 2) { return "Suspend!"; }
+            if (member.Status == -1) { return "Validate!"; }
+            else if (member.Status == 0) { return "invalid!"; }
+            else if (member.Status == 1) { return "Suspend!"; }
             else return null;
         }
         

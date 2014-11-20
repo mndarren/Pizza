@@ -183,7 +183,19 @@ namespace PizzaController.Tests.Controllers
             var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
             int memberId = 1016;
             var result = account.ValidateMember(memberId);
-            Assert.IsNull(result, "Failed to validate a member.");
+            Assert.IsTrue(result != null, "Failed to validate a member.");
+        }
+
+        [TestMethod]
+        [TestCategory("ManageAccountController")]
+        public void ValidateProvider()
+        {
+            var account = new ManageAccountController(new AdminList(), new ManagerList(), new MemberList(), new ProviderList());
+            int providerID = 100;
+            var result = account.ValidateProvider(providerID);
+
+            Assert.IsTrue(result != null, "Failed to validate provider!");
+
         }
 
         [TestMethod]
