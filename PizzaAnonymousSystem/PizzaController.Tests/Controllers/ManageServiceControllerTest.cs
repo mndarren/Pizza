@@ -16,7 +16,7 @@ namespace PizzaController.Tests.Controllers
         public void TestAddServiceRecord()
         {
             var report = new ManageServiceController(new MemberList(),new ProviderList(),new ProviderDirectory(), new ServiceRecordList());
-            var serviceRecord = new ServiceRecord(123456, DateTime.Now, DateTime.Today, 10005, 2009, "NoComment");
+            var serviceRecord = new ServiceRecord(1231, DateTime.Now, DateTime.Today, 100, 1001, "Hello, This is a Test!");
 
             var result = report.AddServiceRecord(serviceRecord);
             
@@ -28,8 +28,14 @@ namespace PizzaController.Tests.Controllers
         public void TestAddService()
         {
             var report = new ManageServiceController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ServiceRecordList());
-            var result = report.AddService(new Service(222233, "handHealth", 150m));
+
+            var service = new Service(222233, "handHealth", 150m);
+            var result = report.AddService(service);
+            
             Assert.IsTrue(result!=null, "Failed to add a new service");
+
+            var delete = report.DeleteService(service.ServiceCode);
+            Assert.IsTrue(delete, "Delete Fail!");
         }
 
         [TestMethod]
@@ -37,9 +43,21 @@ namespace PizzaController.Tests.Controllers
         public void TestUpdateService()
         {
             var report = new ManageServiceController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ServiceRecordList());
+            
             var newService = new Service(222233,"Wash hair",45m);
+            
+            var addresult = report.AddService(newService);
+            Assert.IsTrue(null != addresult, "Adding Fail!");
+
+            var updateService = new Service(222233, "Wash Har", 30m);
+
             var updatedService = report.UpdateService(newService);
+            
             Assert.IsTrue(updatedService != null, "Failed to update a service");
+
+            var deleteService = report.DeleteService(newService.ServiceCode);
+
+            Assert.IsTrue(deleteService, "Fail to delete a service");
         }
 
         [TestMethod]

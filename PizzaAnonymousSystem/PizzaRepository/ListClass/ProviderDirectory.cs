@@ -42,8 +42,9 @@ namespace PizzaRepository.ListClass
                         .Where(es => es.ServiceCode == newService.ServiceCode).FirstOrDefault();
                     if (null == eService)
                     {
-                        pizzaDB.Services.Add(MapServiceToEntity(newService));
-                        pizzaDB.SaveChanges(); //Apply changes to DB
+                        eService = MapServiceToEntity(newService);
+                        pizzaDB.Services.Add(eService);
+                        pizzaDB.SaveChanges();
                         serviceId = eService.ID;
                     }
                     else serviceId = new int?();
