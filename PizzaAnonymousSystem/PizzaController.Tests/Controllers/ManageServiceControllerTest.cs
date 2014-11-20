@@ -127,5 +127,23 @@ namespace PizzaController.Tests.Controllers
             Assert.AreEqual(serviceRecord.Comments, newServiceRecord.Comments,             "comments does not match");
        
         }
+
+        [TestMethod]
+        [TestCategory("ManageServiceController")]
+        public void TestGetAllServices()
+        {
+            var report = new ManageServiceController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ServiceRecordList());
+
+            var service = new Service(222266, "consult", 50m);
+            var result = report.AddService(service);
+
+            Assert.IsTrue(result != null, "Failed to add a new service");
+
+            var services = report.GetAllServices();
+            Assert.IsTrue(null != services, "Failed to get all services");
+
+            var delete = report.DeleteService(service.ServiceCode);
+            Assert.IsTrue(delete, "Delete Fail!");
+        }
     }
 }
