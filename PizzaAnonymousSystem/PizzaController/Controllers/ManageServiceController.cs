@@ -59,7 +59,7 @@ namespace PizzaController.Controllers
         
         [HttpPost]
         [POST("api/servicemanager/services/")]
-        public bool AddService([FromBody]Service newService)
+        public int? AddService([FromBody]Service newService)
         {
             return providerDirectory.AddService(newService);
         }

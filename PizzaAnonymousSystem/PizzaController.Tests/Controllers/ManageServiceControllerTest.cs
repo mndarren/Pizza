@@ -26,7 +26,7 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageServiceController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ServiceRecordList());
             var result = report.AddService(new Service(222233, "handHealth", 150m));
-            Assert.IsTrue(result, "Failed to add a new service");
+            Assert.IsTrue(result!=null, "Failed to add a new service");
         }
 
         [TestMethod]
@@ -48,10 +48,10 @@ namespace PizzaController.Tests.Controllers
             var newService = new Service(serviceCode, "Consult", 50.50m);
 
             var success = report.AddService(newService);
-            Assert.IsTrue(success, "add service failed.");
+            Assert.IsTrue(success!=null, "add service failed.");
 
-            success = report.DeleteService(serviceCode);
-            Assert.IsTrue(success, "delete service failed.");
+            var success1 = report.DeleteService(serviceCode);
+            Assert.IsTrue(success1, "delete service failed.");
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace PizzaController.Tests.Controllers
             var memberId = accountConroller.AddMember(newMember);
             var providerId = accountConroller.AddProvider(newProvider);
 
-            Assert.IsTrue(success,             "add service failed");
+            Assert.IsTrue(success!=null,  "add service failed");
             Assert.IsTrue(memberId.HasValue,   "add member failed");
             Assert.IsTrue(providerId.HasValue, "add provider failed");
             
