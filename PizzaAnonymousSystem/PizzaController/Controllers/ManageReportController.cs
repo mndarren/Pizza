@@ -32,6 +32,91 @@ namespace PizzaController.Controllers
 
 
         [HttpGet]
+        [GET("api/reportmanager/reports/accountPayableReport")]
+        public int GetAccountPayableReport()
+        {
+            int result = 0;//0: success, 1: member is null, 2: serveList is null
+            List<AccountPayableReport> eftReports = new List<AccountPayableReport>();
+            try
+            {
+                Schedule _schedule = scheduleList.GetSchedule(
+                    ReportType.PayableType);
+                TimeSpan startDate; //calculate start date from schedule;
+                TimeSpan endDate; //calculate end date from schedule;
+
+                List<Provider> providers = providerList.GetAllProviders();
+                if (providers != null)
+                {
+                    String _nowTime = DateTime.Now.ToString("hh:mm");
+
+                    String _schTime = _schedule.Time.Hours.ToString() + ":" + _schedule.Time.Minutes.ToString();
+
+                    String fileName;
+                    //if (_nowTime.Equals(_schTime))
+                    _nowTime = _nowTime.Replace(":", "_");
+                    //while(true)
+                    if (true)
+                    {
+                        fileName = "Account_Payable_" + _nowTime + ".txt";
+                        int providerNum = 0;
+                        decimal totalFee = 0;
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                        {
+                            file.WriteLine("----------------------Account Payable Report--------------------");
+                            foreach (Provider provider in providers)
+                            {
+                                providerNum++;
+                                int serviceNum = 0;
+                                decimal sumFee = 0;
+                                file.WriteLine("Provider Name: " + provider.Name);
+
+                                List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
+                                if (serveList != null)
+                                {
+                                    foreach (ServiceRecord s in serveList)
+                                    {
+                                        serviceNum++;
+                                        int serviceCode = s.ServiceCode;
+                                        Service service = providerDirectory.GetService(serviceCode);
+                                        if (service != null)
+                                        {
+                                            file.WriteLine("Service Name: " + service.ServiceName);
+                                            file.WriteLine("Service fee: " + service.ServiceFee);
+                                            sumFee += service.ServiceFee;
+                                        }
+                                        else
+                                        {
+                                            result = 3;//service is null
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    result = 2;//service list is null
+                                }
+                                file.WriteLine("\nThe sum of fee for this provider: " + sumFee);
+                                file.WriteLine("The number of the services: " + serviceNum);
+                                totalFee += sumFee;
+                            }
+                            file.WriteLine("\nThe total fee of all providers: " + totalFee);
+                            file.WriteLine("The number of the providers: " + providerNum);
+                            file.WriteLine("\n");
+                        }
+                    }
+                }
+                else result = 1; //providers = null;
+            }
+            catch (Exception e)
+            {
+                eftReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
+        }
+
+
+        [HttpGet]
         [GET("api/reportmanager/reports/onememberreport")]
         public int GetWeeklyOneMemberReport(int memberID)
         {
@@ -468,7 +553,7 @@ namespace PizzaController.Controllers
                         providerNum++;
                         int serviceNum = 0;
                         decimal sumFee = 0;
-                        file.WriteLine("Provider Name: " + provider.Name);
+                        file.WriteLine("Bank account: " + provider.BankAccount);
 
                         List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
                         if (serveList != null)
@@ -480,8 +565,6 @@ namespace PizzaController.Controllers
                                 Service service = providerDirectory.GetService(serviceCode);
                                 if (service != null)
                                 {
-                                    file.WriteLine("Service Name: " + service.ServiceName);
-                                    file.WriteLine("Service fee: " + service.ServiceFee);
                                     sumFee += service.ServiceFee;
                                 }
                                 else
@@ -494,12 +577,9 @@ namespace PizzaController.Controllers
                         {
                             result = 2;//service list is null
                         }
-                        file.WriteLine("\nThe sum of fee for this provider: " + sumFee);
-                        file.WriteLine("The number of the services: " + serviceNum);
                         totalFee += sumFee;
                     }
-                    file.WriteLine("\nThe total fee of all providers: " + totalFee);
-                    file.WriteLine("The number of the providers: " + providerNum);
+                    file.WriteLine("\nThe total fee: " + totalFee);
                     file.WriteLine("\n");
                 }
             }
