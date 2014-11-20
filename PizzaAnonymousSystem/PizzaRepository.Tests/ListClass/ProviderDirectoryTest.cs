@@ -14,18 +14,18 @@ namespace PizzaRepository.Tests.ListClass
         {
             var repository = new ProviderDirectory();
 
-            var newService = new Service(888777,"WashFeet",100m);
+            var newService = new Service(888909,"WashFeet",100m);
             var success = repository.AddService(newService);
 
             var serviceList = repository.GetServices();
             var service = serviceList[serviceList.Count - 1];
 
-            Assert.IsTrue(success, "addition fail");
             Assert.IsTrue(null != service, "returned service does not exist");
 
             Assert.AreEqual(newService.ServiceCode, service.ServiceCode, "service codes are not equal");
             Assert.AreEqual(newService.ServiceName, service.ServiceName, "service names are not equal");
             Assert.AreEqual(newService.ServiceFee, service.ServiceFee, "service fees are not equal");
+            repository.DeleteService(success.Value);
         }
 
         [TestMethod]

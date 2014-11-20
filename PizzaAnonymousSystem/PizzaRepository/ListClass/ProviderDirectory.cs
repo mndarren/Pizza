@@ -28,9 +28,9 @@ namespace PizzaRepository.ListClass
             }
             return services;
         }
-        public bool AddService(Service newService)
+        public int? AddService(Service newService)
         {
-            var success = false;
+            var serviceId = new int?();
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
@@ -44,20 +44,20 @@ namespace PizzaRepository.ListClass
                     {
                         pizzaDB.Services.Add(MapServiceToEntity(newService));
                         pizzaDB.SaveChanges(); //Apply changes to DB
-                        success = true;
+                        serviceId = eService.ID;
                     }
-                    else success = false;
+                    else serviceId = new int?();
                 }
-                else success = false;
+                else serviceId = new int?();
             }
             catch (Exception e)
             {
-                success = false;
+                serviceId = new int?();
                 //If we have time, record the exception
                 throw new Exception(e.Message);
             }
 
-            return success;
+            return serviceId;
         }
         public bool DeleteService(int serviceID)
         {

@@ -20,7 +20,7 @@ namespace PizzaRepository.ListClassFake
         public bool ReturnError { get { return _returnError; } set { _returnError = value; } }
 
 
-        public bool AddService(Service newService)
+        public int? AddService(Service newService)
         {
             return !_returnError;
         }
