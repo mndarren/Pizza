@@ -432,7 +432,7 @@ namespace PizzaController.Controllers
         public bool UpdateProviderReportSchedule
             (int weekday, TimeSpan time)
         {
-            bool success = false;
+            bool success = true;
 
             try
             {
