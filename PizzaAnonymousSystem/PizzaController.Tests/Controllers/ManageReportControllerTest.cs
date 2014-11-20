@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 using PizzaRepository.ListClass;
 using PizzaController.Controllers;
 using PizzaModels.Report;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PizzaModels.Models;
+using PizzaModels.Constants;
 
 namespace PizzaController.Tests.Controllers
 {
@@ -92,14 +95,118 @@ namespace PizzaController.Tests.Controllers
         [TestCategory("ManageReportController")]
         public void TestVerifyProviderReportServices()
         {
-            Assert.Fail("not implemented yet");
+            var accountController = new ManageAccountController(new AdminList(), 
+                new ManagerList(), new MemberList(), new ProviderList());
+            var serviceController = new ManageServiceController(new MemberList(), new ProviderList(), 
+                new ProviderDirectory(), new ServiceRecordList());
+            var reportController = new ManageReportController(new MemberList(), new ProviderList(), 
+                new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
+
+            var newMember = new Member()
+            {
+                Name = "John Deere",
+                City = "Maple Grove",
+                State = "MN",
+                StreetAddress = "11 st 25",
+                ZipCode = "12345",
+                Status = MemberStatus.ACCEPTED
+            };
+
+            var newProvider = new Provider()
+            {
+                Name = "John Deere",
+                City = "Maple Grove",
+                State = "MN",
+                StreetAddress = "11 st 25",
+                ZipCode = "12345",
+                BankAccount = 1234567890
+            };
+            
+            var newMemberId = accountController.AddMember(newMember);
+            var newProviderId = accountController.AddProvider(newProvider);
+
+            Assert.IsTrue(newMemberId.HasValue,   "unable to add new member");
+            Assert.IsTrue(newProviderId.HasValue, "unable to add new provider");
+
+            var services = serviceController.GetAllServices();
+            var serviceCode = null != services && services.Any() ? services.First().ServiceCode : new int?();
+
+            Assert.IsTrue(serviceCode.HasValue, "unable to get service code");
+
+            var newServiceRecord = new ServiceRecord(serviceCode.Value, 
+                DateTime.Now, DateTime.Today, newProviderId.Value, newMemberId.Value, "test");
+
+            var newServiceRecordId = serviceController.AddServiceRecord(newServiceRecord);
+
+            Assert.IsTrue(newServiceRecordId.HasValue, "unable to add service record");
+
+            var serviceVerified = true;
+            var success = reportController.VerifyProviderReportServices(newProviderId.Value, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(1));
+
+            var serviceRecord = serviceController.GetServiceRecord(newServiceRecordId.Value);
+
+            Assert.IsTrue(null != serviceRecord, "unable to get service record");
+
+            Assert.AreEqual(serviceRecord.ServiceVerified, serviceVerified, "service verified are not equal");
         }
 
         [TestMethod]
         [TestCategory("ManageReportController")]
         public void TestVerifyProviderReportFees()
         {
-            Assert.Fail("not implemented yet");
+            var accountController = new ManageAccountController(new AdminList(),
+                new ManagerList(), new MemberList(), new ProviderList());
+            var serviceController = new ManageServiceController(new MemberList(), new ProviderList(),
+                new ProviderDirectory(), new ServiceRecordList());
+            var reportController = new ManageReportController(new MemberList(), new ProviderList(),
+                new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
+
+            var newMember = new Member()
+            {
+                Name = "John Deere",
+                City = "Maple Grove",
+                State = "MN",
+                StreetAddress = "11 st 25",
+                ZipCode = "12345",
+                Status = MemberStatus.ACCEPTED
+            };
+
+            var newProvider = new Provider()
+            {
+                Name = "John Deere",
+                City = "Maple Grove",
+                State = "MN",
+                StreetAddress = "11 st 25",
+                ZipCode = "12345",
+                BankAccount = 1234567890
+            };
+
+            var newMemberId = accountController.AddMember(newMember);
+            var newProviderId = accountController.AddProvider(newProvider);
+
+            Assert.IsTrue(newMemberId.HasValue, "unable to add new member");
+            Assert.IsTrue(newProviderId.HasValue, "unable to add new provider");
+
+            var services = serviceController.GetAllServices();
+            var serviceCode = null != services && services.Any() ? services.First().ServiceCode : new int?();
+
+            Assert.IsTrue(serviceCode.HasValue, "unable to get service code");
+
+            var newServiceRecord = new ServiceRecord(serviceCode.Value,
+                DateTime.Now, DateTime.Today, newProviderId.Value, newMemberId.Value, "test");
+
+            var newServiceRecordId = serviceController.AddServiceRecord(newServiceRecord);
+
+            Assert.IsTrue(newServiceRecordId.HasValue, "unable to add service record");
+
+            var feeVerified = true;
+            var success = reportController.VerifyProviderReportFees(newProviderId.Value, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(1));
+
+            var serviceRecord = serviceController.GetServiceRecord(newServiceRecordId.Value);
+
+            Assert.IsTrue(null != serviceRecord, "unable to get service record");
+
+            Assert.AreEqual(serviceRecord.FeeVerified, feeVerified, "service verified are not equal");
         }
     }
 }
