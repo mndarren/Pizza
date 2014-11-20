@@ -87,5 +87,19 @@ namespace PizzaController.Tests.Controllers
             TimeSpan ts = new TimeSpan(2, 14, 0);
             report.UpdateEFTReportSchedule(2, ts);
         }
+
+        [TestMethod]
+        [TestCategory("ManageReportController")]
+        public void TestVerifyProviderReportServices()
+        {
+            Assert.Fail("not implemented yet");
+        }
+
+        [TestMethod]
+        [TestCategory("ManageReportController")]
+        public void TestVerifyProviderReportFees()
+        {
+            Assert.Fail("not implemented yet");
+        }
     }
 }
