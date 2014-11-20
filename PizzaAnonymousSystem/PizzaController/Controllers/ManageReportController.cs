@@ -407,7 +407,7 @@ namespace PizzaController.Controllers
         public bool UpdateMemberReportSchedule
             (int weekday, TimeSpan time)
         {
-            bool success = false;
+            bool success = true;
             try
             {
                 Schedule updatedSchedule = new Schedule();
@@ -458,7 +458,7 @@ namespace PizzaController.Controllers
         public bool UpdateEFTReportSchedule
             (int weekday, TimeSpan time)
         {
-            bool success = false;
+            bool success = true;
 
             try
             {
