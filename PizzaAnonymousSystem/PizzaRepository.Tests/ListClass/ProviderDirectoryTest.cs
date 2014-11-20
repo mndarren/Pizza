@@ -82,10 +82,10 @@ namespace PizzaRepository.Tests.ListClass
             //var serviceList = repository.GetServices();
             //var service = serviceList[serviceList.Count - 1];
 
-            var success = repository.DeleteService(serviceId.Value);
+            var success = repository.DeleteService(newService.ServiceCode);
             Assert.IsTrue(success, "delete fail");
             //Negtive path
-            success = repository.DeleteService(serviceId.Value);
+            success = repository.DeleteService(newService.ServiceCode);
             Assert.IsFalse(success, "delete fail");
         }
     }
