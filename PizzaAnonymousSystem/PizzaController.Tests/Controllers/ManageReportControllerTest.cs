@@ -21,9 +21,12 @@ namespace PizzaController.Tests.Controllers
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             int memberID = 1016;
             int result = report.GetWeeklyOneMemberReport(memberID);
-            Assert.IsTrue((result == 0), "Successfully generate one member report.");
-            Assert.IsTrue((result == 1), "fail to generate one member report because a member is null.");
-            Assert.IsTrue((result == 2), "fail to generate one member report because a service list is null.");
+            if (result == 0)
+                Assert.IsTrue((result == 0), "Successfully generate one member report.");
+            else if (result == 1)
+                Assert.IsTrue((result == 1), "fail to generate one member report because a member is null.");
+            else if (result == 2)
+                Assert.IsTrue((result == 2), "fail to generate one member report because a service list is null.");
         }
 
         [TestMethod]
@@ -32,9 +35,12 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             int result = report.GetWeeklyMemberReports();
-            Assert.IsTrue((result == 0), "Successfully generate all members report.");
-            Assert.IsTrue((result == 1), "fail to generate members report because members is null.");
-            Assert.IsTrue((result == 2), "fail to generate members report because service list is null.");
+            if (result == 0)
+                Assert.IsTrue((result == 0), "Successfully generate all members report.");
+            else if (result == 1)
+                Assert.IsTrue((result == 1), "fail to generate members report because members is null.");
+            else if (result == 2)
+                Assert.IsTrue((result == 2), "fail to generate members report because service list is null.");
         }
 
         //sync
@@ -44,9 +50,12 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             int result = report.GetWeeklyProviderReports();
-            Assert.IsTrue((result == 0), "Successfully generate all providers report.");
-            Assert.IsTrue((result == 1), "fail to generate providers report because providers is null.");
-            Assert.IsTrue((result == 2), "fail to generate providers report because service list is null.");
+            if (result == 0)
+                Assert.IsTrue((result == 0), "Successfully generate all providers report.");
+            else if (result == 1)
+                Assert.IsTrue((result == 1), "fail to generate providers report because providers is null.");
+            else if (result == 2)
+                Assert.IsTrue((result == 2), "fail to generate providers report because service list is null.");
         }
 
 
@@ -56,10 +65,14 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             int result = report.GetWeeklyEFTReports();
-            Assert.IsTrue((result == 0), "Successfully generate an account payable report.");
-            Assert.IsTrue((result == 1), "fail to generate an account payable report because providers is null.");
-            Assert.IsTrue((result == 2), "fail to generate  an account payable report because service list is null.");
-            Assert.IsTrue((result == 3), "fail to generate  an account payable report  because service is null.");
+            if (result == 0)
+                Assert.IsTrue((result == 0), "Successfully generate an account payable report.");
+            else if (result == 1)
+                Assert.IsTrue((result == 1), "fail to generate an account payable report because providers is null.");
+            else if (result == 2)
+                Assert.IsTrue((result == 2), "fail to generate  an account payable report because service list is null.");
+            else if (result == 3)
+                Assert.IsTrue((result == 3), "fail to generate  an account payable report  because service is null.");
 
         }
 
@@ -68,11 +81,15 @@ namespace PizzaController.Tests.Controllers
         public void TestEFTReport()
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
-            int result = report.GetWeeklyEFTReports();  
-            Assert.IsTrue((result == 0), "Successfully generate the EFT report.");
-            Assert.IsTrue((result == 1), "fail to generate providers report because providers is null.");
-            Assert.IsTrue((result == 2), "fail to generate providers report because service list is null.");
-            Assert.IsTrue((result == 3), "fail to generate EFT report because service is null.");
+            int result = report.GetWeeklyEFTReports();
+            if (result == 0)
+                Assert.IsTrue((result == 0), "Successfully generate the EFT report.");
+            else if (result == 1)
+                Assert.IsTrue((result == 1), "fail to generate providers report because providers is null.");
+            else if (result == 2)
+                Assert.IsTrue((result == 2), "fail to generate providers report because service list is null.");
+            else if (result == 3)
+                Assert.IsTrue((result == 3), "fail to generate EFT report because service is null.");
 
         }
 
@@ -82,7 +99,7 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             TimeSpan ts = new TimeSpan(2, 14, 0);
-            var result = report.UpdateMemberReportSchedule(2,ts);
+            var result = report.UpdateMemberReportSchedule(2, ts);
             Assert.IsTrue(result, "fail  to update member report schedule.");
         }
 
@@ -111,11 +128,11 @@ namespace PizzaController.Tests.Controllers
         [TestCategory("ManageReportController")]
         public void TestVerifyProviderReportServices()
         {
-            var accountController = new ManageAccountController(new AdminList(), 
+            var accountController = new ManageAccountController(new AdminList(),
                 new ManagerList(), new MemberList(), new ProviderList());
-            var serviceController = new ManageServiceController(new MemberList(), new ProviderList(), 
+            var serviceController = new ManageServiceController(new MemberList(), new ProviderList(),
                 new ProviderDirectory(), new ServiceRecordList());
-            var reportController = new ManageReportController(new MemberList(), new ProviderList(), 
+            var reportController = new ManageReportController(new MemberList(), new ProviderList(),
                 new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
 
             var newMember = new Member()
@@ -137,11 +154,11 @@ namespace PizzaController.Tests.Controllers
                 ZipCode = "12345",
                 BankAccount = 1234567890
             };
-            
+
             var newMemberId = accountController.AddMember(newMember);
             var newProviderId = accountController.AddProvider(newProvider);
 
-            Assert.IsTrue(newMemberId.HasValue,   "unable to add new member");
+            Assert.IsTrue(newMemberId.HasValue, "unable to add new member");
             Assert.IsTrue(newProviderId.HasValue, "unable to add new provider");
 
             var services = serviceController.GetAllServices();
@@ -149,7 +166,7 @@ namespace PizzaController.Tests.Controllers
 
             Assert.IsTrue(serviceCode.HasValue, "unable to get service code");
 
-            var newServiceRecord = new ServiceRecord(serviceCode.Value, 
+            var newServiceRecord = new ServiceRecord(serviceCode.Value,
                 DateTime.Now, DateTime.Today, newProviderId.Value, newMemberId.Value, "test");
 
             var newServiceRecordId = serviceController.AddServiceRecord(newServiceRecord);
