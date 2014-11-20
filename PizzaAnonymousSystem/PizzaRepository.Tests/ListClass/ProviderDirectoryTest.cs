@@ -49,6 +49,7 @@ namespace PizzaRepository.Tests.ListClass
         }
         [TestMethod]
         [TestCategory("ProviderDirectory")]
+
         public void UpdateService()
         {
             var repository = new ProviderDirectory();

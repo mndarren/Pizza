@@ -323,6 +323,7 @@ namespace PizzaController.Controllers
                                     file.WriteLine("----------------------Provider Report--------------------");
                                     file.WriteLine("Provider ID: " + provider.ID);
                                     file.WriteLine("Provider Name: " + provider.Name);
+                                    file.WriteLine("City: " + provider.City);
                                     file.WriteLine("State: " + provider.State);
                                     file.WriteLine("Street Address: " + provider.StreetAddress);
                                     file.WriteLine("Zip Code: " + provider.ZipCode);

@@ -33,6 +33,7 @@ namespace PizzaRepository.Tests.ListClass
             Assert.IsTrue(deleteSuccess, "delete fail");
         }
 
+
         [TestMethod]
         [TestCategory("ProviderList")]
         public void GetProvider()
@@ -45,6 +46,15 @@ namespace PizzaRepository.Tests.ListClass
             Assert.IsTrue(null != provider, "returned provider does not exist");
         }
 
+        [TestMethod]
+        [TestCategory("ProviderList")]
+        public void GetAllProviders()
+        {
+            var repository = new ProviderList();
+            var providers = repository.GetAllProviders();
+
+            Assert.IsTrue(null != providers, "returned provider does not exist");
+        }
         [TestMethod]
         [TestCategory("ProviderList")]
         public void UpdateProvider()
