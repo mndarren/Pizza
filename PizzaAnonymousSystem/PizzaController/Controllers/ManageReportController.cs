@@ -585,9 +585,10 @@ namespace PizzaController.Controllers
                             result = 2;//service list is null
                         }
                         totalFee += sumFee;
+                        file.WriteLine("The total fee: " + totalFee);
+                        file.WriteLine("\n");
                     }
-                    file.WriteLine("\nThe total fee: " + totalFee);
-                    file.WriteLine("\n");
+
                 }
             }
             return result;
