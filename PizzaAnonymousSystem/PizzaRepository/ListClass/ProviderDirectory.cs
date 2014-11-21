@@ -30,7 +30,7 @@ namespace PizzaRepository.ListClass
         }
         public int? AddService(Service newService)
         {
-            Validator.CheckingService(newService); //check input data format
+            Validator.ValidateService(newService); //check input data format
 
             var serviceId = new int?();
 
@@ -93,7 +93,7 @@ namespace PizzaRepository.ListClass
         }
         public Service UpdateService(Service newService)
         {
-            Validator.CheckingService(newService);
+            Validator.ValidateService(newService);
             var service = new Service();
             try
             {

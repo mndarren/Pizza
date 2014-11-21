@@ -5,63 +5,85 @@ using System.Text;
 using System.Threading.Tasks;
 using PizzaModels.Models;
 using PizzaCommon.Tools;
+using System.Text.RegularExpressions;
 
 namespace PizzaCommon.Tools
 {
     public static class Validator
     {
-        private const string checkingName = @"/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
-        private const string checkingAddress = @"\d{1,3}.?\d{0,3}\s[a-zA-Z]{2,30}\s[a-zA-Z]{2,15}";
-        private const string checkingCity = @"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$";
-        private const string checkingState = @"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$";
-        private const string checkingZIPCode = @"^\d{5}(?:[-\s]\d{4})?$";
+        private const string nameRegex = @"/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
+        private const string addressRegex = @"\d{1,3}.?\d{0,3}\s[a-zA-Z]{2,30}\s[a-zA-Z]{2,15}";
+        private const string cityRegex = @"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$";
+        private const string stateRegex = @"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$";
+        private const string zipCodeRegex = @"^\d{5}(?:[-\s]\d{4})?$";
 
-        private string CheckingPerson(Person newPerson)
+        private static string ValidatePerson(Person person)
         {
             var exceptions = "";
-            if (newPerson.StreetAddress > 25 || !newPerson.StreetAddress.Regex(checkingAddress))
+
+            if (person.StreetAddress.Length > 25 || !Regex.IsMatch(person.StreetAddress, addressRegex))
                 exceptions += "newPerson street address is wrong (<25 characters, & no special characters)";
-            if (newPerson.Name.Length > 25 || !newPerson.Name.Regex(checkingName))
+            if (person.Name.Length > 25 || !Regex.IsMatch(person.Name, nameRegex))
                 exceptions += "newPerson name is wrong (<25 characters, & no special characters)";
-            if (newPerson.City.Length > 14 || !newPerson.City.Regex(checkingCity))
+            if (person.City.Length > 14 || !Regex.IsMatch(person.City, cityRegex))
                 exceptions += "newPerson city is wrong (<14 characters, & no special characters)";
-            if (newPerson.State.Length != 2 || !newPerson.State.Regex(checkingState))
+            if (person.State.Length != 2 || !Regex.IsMatch(person.State, stateRegex))
                 exceptions += "newPerson state is wrong (==2 characters, & no special characters)";
-            if (newPerson.ZipCode.Length != 5 || !newPerson.ZipCode.Regex(checkingZIPCode))
+            if (person.ZipCode.Length != 5 || !Regex.IsMatch(person.ZipCode, zipCodeRegex))
                 exceptions += "newPerson ZipCode is wrong (==5 characters, & no special characters)";
             
             return exceptions;
         }
-        public string CheckingMember() { }
-        public void CheckingProvider(Provider newProvider) 
+
+        public static void ValidateMember() 
         {
-            var exceptions = CheckingPerson(newProvider);
+            throw new NotImplementedException(); //TODO
+        }
+
+        public static void ValidateProvider(Provider provider) 
+        {
+            var exceptions = ValidatePerson(provider);
             
-            if (newProvider.BankAccount > 9999999999999999)
+            if (provider.BankAccount > 9999999999999999)
                 exceptions += "provider bank account is wrong (<16 digits, & no special characters)";
 
             throw new Exception(exceptions);
         }
-        public string CheckingManager() { }
-        public string CheckingAdmin() { }
-        public string CheckingSchedule() { }
-        public void CheckingService(Service newService) 
+
+        public static void ValidateManager(Manager manager) 
+        {
+            throw new NotImplementedException(); //TODO
+        }
+
+        public static void ValidateAdmin(Admin admin) 
+        {
+            throw new NotImplementedException(); //TODO
+        }
+
+
+        public static void ValidateSchedule(Schedule schedule) 
+        {
+            throw new NotImplementedException(); //TODO
+        }
+
+
+        public static void ValidateService(Service service) 
         {
             var exceptions = "";
-            if (newService.ServiceCode > 999999 || newService.ServiceCode < 0)
+
+            if (service.ServiceCode > 999999 || service.ServiceCode < 0)
                 exceptions += "service code is wrong [0,999999]";
-            if (newService.ServiceName.Length > 25 || !newService.ServiceName.Regex(checkingName))
+            if (service.ServiceName.Length > 25 || !Regex.IsMatch(service.ServiceName, nameRegex))
                 exceptions += "service name is wrong (<25 characters, & no special characters)";
-            if (newService.ServiceFee < 0m || newService.ServiceFee > 999.99m)
+            if (service.ServiceFee < 0m || service.ServiceFee > 999.99m)
                 exceptions += "service fee is wrong [0,999.99]";
+
             throw new Exception(exceptions);
         }
-        public string CheckingServiceReocrd() { }
 
-
-        public static void CheckingService(global::PizzaModels.Models.Service newService)
+        public static void ValidateServiceRecord(ServiceRecord serviceRecord) 
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); //TODO
         }
     }
 }

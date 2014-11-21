@@ -1,12 +1,11 @@
-﻿using PizzaCommon.Tools;
-/*@Class: CSCU531
+﻿/*@Class: CSCU531
  *@Author: Zhao Xie
  *@Date:11/6/2014
  *@File: ProviderList.cs
  *@Description: this class contains Provider objects
  */
 using PizzaModels.Models;
-using PizzaCommon.Tools.Validator;
+using PizzaCommon.Tools;
 using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
@@ -32,7 +31,7 @@ namespace PizzaRepository.ListClass
       
         public int? AddProvider(Provider newProvider)
         {
-            Validator.CheckingProvider(newProvider);
+            Validator.ValidateProvider(newProvider);
             var providerId = new int?();
             try
             {
@@ -96,7 +95,7 @@ namespace PizzaRepository.ListClass
                                      string city, string state, string ZIPcode,long bankAccount)
         {
             var provider = new Provider(name,streetAddress,city,state,ZIPcode,bankAccount);
-            Validator.CheckingProvider(provider);  //validate the format
+            Validator.ValidateProvider(provider);  //validate the format
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
