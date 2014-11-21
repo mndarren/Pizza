@@ -28,21 +28,10 @@ namespace PizzaRepository.ListClass
             }
             return services;
         }
-        private string checkService(Service newService)
-        {
-            var exceptions = "";
-            if(newService.ServiceCode > 999999 || newService.ServiceCode<0)
-               exceptions += "name is wrong [0,999999]. ";
-            if(newService.ServiceName.Length > 25)
-               exceptions += "id is wrong (<=25 characters).";
-            if (newService.ServiceFee > 999.99m || newService.ServiceFee < 0m)
-                exceptions += "service fee is wrong [0,999.99].";
-            throw new Exception(exceptions);
-        }
         public int? AddService(Service newService)
         {
+            Validator.CheckingService(newService);
 
-            checkService(newService);
             var serviceId = new int?();
 
             try

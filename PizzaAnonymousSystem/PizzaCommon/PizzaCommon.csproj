@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tools\PathFactory.cs" />
-    <Compile Include="Tools\Vaildator.cs" />
+    <Compile Include="Tools\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
