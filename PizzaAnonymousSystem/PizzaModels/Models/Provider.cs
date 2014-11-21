@@ -19,7 +19,7 @@ namespace PizzaModels.Models
         #endregion
 
         public Provider(){}
-        public Provider(string name, string streetAddress, string state, string city, string zipCode,long bankAccount)
+        public Provider(string name, string streetAddress,  string city,string state, string zipCode,long bankAccount)
         {
             BankAccount = bankAccount;
             Name = name;

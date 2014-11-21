@@ -6,6 +6,7 @@
  *@Description: this class contains Provider objects
  */
 using PizzaModels.Models;
+using PizzaCommon.Tools.Validator;
 using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace PizzaRepository.ListClass
       
         public int? AddProvider(Provider newProvider)
         {
+            Validator.CheckingProvider(newProvider);
             var providerId = new int?();
             try
             {
@@ -93,7 +95,8 @@ namespace PizzaRepository.ListClass
         public Provider UpdateProvider(string name, int providerID, string streetAddress,
                                      string city, string state, string ZIPcode,long bankAccount)
         {
-            var provider = new Provider();
+            var provider = new Provider(name,streetAddress,city,state,ZIPcode,bankAccount);
+            Validator.CheckingProvider(provider);  //validate the format
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository
@@ -115,6 +118,7 @@ namespace PizzaRepository.ListClass
                         es.BankAccount = bankAccount;
                     }
                     pizzaDB.SaveChanges(); //Apply changes to DB
+                    provider = null;
                     provider = GetProvider(providerID);
                 }
                 else provider = null;

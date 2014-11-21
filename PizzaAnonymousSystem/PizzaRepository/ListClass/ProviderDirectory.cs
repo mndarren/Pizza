@@ -93,6 +93,7 @@ namespace PizzaRepository.ListClass
         }
         public Service UpdateService(Service newService)
         {
+            Validator.CheckingService(newService);
             var service = new Service();
             try
             {

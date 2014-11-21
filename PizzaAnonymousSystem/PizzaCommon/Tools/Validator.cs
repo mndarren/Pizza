@@ -15,14 +15,29 @@ namespace PizzaCommon.Tools
         private const string checkingCity = @"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$";
         private const string checkingState = @"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$";
         private const string checkingZIPCode = @"^\d{5}(?:[-\s]\d{4})?$";
-        private const string checkingBankAccount = @"";
 
         public string CheckingMember() { }
-        public string CheckingProvider() { }
+        public string CheckingProvider(Provider newProvider) 
+        {
+            var exceptions = "";
+            if (newProvider.StreetAddress > 25 || !newProvider.StreetAddress.Regex(checkingAddress))
+                exceptions += "provider street address is wrong (<25 characters, & no special characters)";
+            if (newProvider.Name.Length > 25 || !newProvider.Name.Regex(checkingName))
+                exceptions += "provider name is wrong (<25 characters, & no special characters)";
+            if (newProvider.City.Length > 14 || !newProvider.City.Regex(checkingCity))
+                exceptions += "provider city is wrong (<14 characters, & no special characters)";
+            if (newProvider.State.Length != 2 || !newProvider.State.Regex(checkingState))
+                exceptions += "provider state is wrong (==2 characters, & no special characters)";
+            if (newProvider.ZipCode.Length != 5 || !newProvider.ZipCode.Regex(checkingZIPCode))
+                exceptions += "provider ZipCode is wrong (==5 characters, & no special characters)";
+            if (newProvider.BankAccount > 9999999999999999)
+                exceptions += "provider bank account is wrong (<16 digits, & no special characters)";
+            throw new Exception(exceptions);
+        }
         public string CheckingManager() { }
         public string CheckingAdmin() { }
         public string CheckingSchedule() { }
-        public string CheckingService(Service newService) 
+        public void CheckingService(Service newService) 
         {
             var exceptions = "";
             if (newService.ServiceCode > 999999 || newService.ServiceCode < 0)
