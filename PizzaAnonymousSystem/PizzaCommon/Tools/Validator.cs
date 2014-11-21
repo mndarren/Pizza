@@ -35,7 +35,7 @@ namespace PizzaCommon.Tools
             return exceptions;
         }
 
-        public static void ValidateMember() 
+        public static void ValidateMember(Member member) 
         {
             throw new NotImplementedException(); //TODO
         }
