@@ -16,7 +16,7 @@ namespace PizzaCommon.Tools
         private const string checkingState = @"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$";
         private const string checkingZIPCode = @"^\d{5}(?:[-\s]\d{4})?$";
 
-        public string CheckingPerson(Person newPerson)
+        private string CheckingPerson(Person newPerson)
         {
             var exceptions = "";
             if (newPerson.StreetAddress > 25 || !newPerson.StreetAddress.Regex(checkingAddress))
@@ -33,7 +33,7 @@ namespace PizzaCommon.Tools
             return exceptions;
         }
         public string CheckingMember() { }
-        public string CheckingProvider(Provider newProvider) 
+        public void CheckingProvider(Provider newProvider) 
         {
             var exceptions = CheckingPerson(newProvider);
             
