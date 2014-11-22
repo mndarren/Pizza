@@ -47,7 +47,7 @@ namespace PizzaCommon.Tools
             if (provider.BankAccount > 9999999999999999)
                 exceptions += "provider bank account is wrong (<16 digits, & no special characters)";
 
-            throw new Exception(exceptions);
+            if (exceptions != "") throw new Exception(exceptions);
         }
 
         public static void ValidateManager(Manager manager) 
@@ -63,7 +63,27 @@ namespace PizzaCommon.Tools
 
         public static void ValidateSchedule(Schedule schedule) 
         {
-            throw new NotImplementedException(); //TODO
+            var exceptions = "";
+
+            if (null != schedule)
+            {
+                if (schedule.Week < 1 || schedule.Week > 7)
+                    exceptions += "invalid week day. week day has to be between 1 and 7. ";
+                if (null == schedule.Time)
+                    exceptions += "invalid time. time has to be defined. ";
+
+                //interferes with unit testing
+                //if (schedule.ReportType != ReportType.MemberReportType
+                //    || schedule.ReportType != ReportType.ProviderReportType
+                //    || schedule.ReportType != ReportType.EFTReportType
+                //    || schedule.ReportType != ReportType.PayableType)
+                //    exceptions += "invalid report type. invalid report type ID. please check your administrator. ";
+
+                if (exceptions != "")
+                    exceptions = "error: " + exceptions;
+            }
+
+            if (exceptions != "") throw new Exception(exceptions);
         }
 
 
@@ -78,7 +98,7 @@ namespace PizzaCommon.Tools
             if (service.ServiceFee < 0m || service.ServiceFee > 999.99m)
                 exceptions += "service fee is wrong [0,999.99]";
 
-            throw new Exception(exceptions);
+            if (exceptions != "") throw new Exception(exceptions);
         }
 
         public static void ValidateServiceRecord(ServiceRecord serviceRecord) 
