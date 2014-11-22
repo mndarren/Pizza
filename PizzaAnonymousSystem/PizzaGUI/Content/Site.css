@@ -105,6 +105,13 @@ input[type="checkbox"].input-validation-error {
     
         padding:10px;
     }
+
+        #login-area #login-area-box .login-area-progress {
+            border-radius:0px;
+            height:5px;
+
+            margin-bottom:5px;
+        }
     
         #login-area #login-area-box .login-area-box-section {
             padding-top:3px;
