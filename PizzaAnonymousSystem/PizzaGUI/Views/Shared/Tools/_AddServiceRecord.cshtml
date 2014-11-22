@@ -9,8 +9,8 @@
             add a new service record. please provide all of the information.
         </div>
     </div>
-
-    <div class="tool-form-content">
+    
+    <div class="tool-form-content-large">
 
         <!--alerts-->
         <div class="tool-form-alerts">
@@ -25,67 +25,116 @@
             </div>
         </div>
 
-        <div class="row">
-
+        <div class="tool-form-subcontent row">
+            
             <div class="col-md-8">
 
-                <div class="input-group tool-form-content-input pad-right-5">
-                    <span class="input-group-addon">Member ID</span>
-                    <input type="text" class="form-control" id="add-member-id" placeholder="">
+                <div class="tool-form-content-loader">
+                    <div id="add-service-record-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+                        <div class="progress-bar progress-bar-success" 
+                            role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                            style="width:100%;"></div>
+                    </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5 tool-form-content-buttons tool-form-content-input text-left">
-                        <button class="btn btn-primary" id="add-record-check">Check</button>
+                    
+                    <div class="col-md-8 pad-right-5">
+
+                        <div class="input-group tool-form-content-input pad-right-5">
+                            <span class="input-group-addon" style="width:130px;">member ID</span>
+                            <input type="text" class="form-control" id="add-service-record-member-id" placeholder="" style="width:363px;max-width:493px;">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 tool-form-content-buttons tool-form-content-input text-left">
+                                <button class="btn btn-info" id="validate-member">validate member</button>
+                            </div>
+
+                            <div class="col-md-8">
+                               <h4 id="validate-member-status" class="text-right pad-right-5 color-green visibility-hidden" 
+                                    style="margin-top:12px;margin-bottom:3px;">
+                                    VALIDATED
+                               </h4>
+                            </div>
+                        </div>
+
+                        <hr style="margin-top:5px;margin-bottom:5px;margin-right:5px;"/>
+
+                        <div class="input-group tool-form-content-input pad-right-5">
+                            <span class="input-group-addon" style="width:130px;">service code</span>
+                            <input type="text" class="form-control" id="add-service-record-service-code" placeholder="" style="width:363px;max-width:493px;">
+                        </div>
+
+                        <div class="input-group tool-form-content-input pad-right-5">
+                            <span class="input-group-addon" style="width:130px;">date provided</span>
+                            <input type="text" class="form-control" id="add-service-record-provider-id" placeholder="" style="width:363px;max-width:493px;">
+                        </div>
+
                     </div>
 
-                    <div class="col-md-7" id="check-member-status-display">
-                       <h3 style="margin-top:3px;margin-bottom:3px;"> Test The Status </h3>
+                    <div class="col-md-4">
+                        please validate member ID before submitting service record
                     </div>
+
                 </div>
 
-                <div class="input-group tool-form-content-input pad-right-5">
-                    <span class="input-group-addon">Service Code</span>
-                    <input type="text" class="form-control" id="add-service-code" placeholder="">
+                <div class="tool-form-content-buttons tool-form-content-input text-right">
+                    <button class="btn btn-danger" id="add-service-record-reset">reset</button>
+                    <button class="btn btn-primary" id="add-service-record-submit">submit</button>
                 </div>
 
-
-                <div class="input-group tool-form-content-input pad-right-5">
-                    <span class="input-group-addon">Date Provided</span>
-                    <input type="time" class="form-control" id="add-record-date"  placeholder="">
-                </div>
-
-
-                <div class="input-group tool-form-content-input pad-right-5">
-                    <span class="input-group-addon" >Provider Number</span>
-                    <input type="text" class="form-control" id="add-provider-id" placeholder="">
-                </div>
-           
-             </div>
-
-            <div class="col-md-4">
-                <table data-toggle="table" data-url="data1.json" data-cache="false" data-height="299">
-                    <thead>
-                        <tr>
-                            <th data-field="Service Code">Service Code</th>
-                            <th data-field="Service Name">Service Name</th>
-                            <th data-field="Service Fee">Service Fee</th>
-                        </tr>
-                        
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1234</td><td>Massage</td><td>$120.95</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
+
+            <div class="col-md-4 pad-left-0">
+            
+                <div class="tool-form-content-loader">
+                    <div id="get-all-services-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+                        <div class="progress-bar progress-bar-success active" 
+                            role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                            style="width:100%;"></div>
+                    </div>
+                </div>
+
+                <div class="tool-form-content-input">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4><strong class="color-blue">AVAILABLE SERVICES</strong></h4>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-info" id="add-record-reset">refresh</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tool-form-content-table-container">
+                    <table class="table table-striped tool-form-content-table">
+                        
+                        <thead>
+                            <tr>
+                                <th data-field="Service Code">Service Code</th>
+                                <th data-field="Service Name">Name</th>
+                                <th data-field="Service Fee">Fee</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr><td>100212</td><td>consult</td><td>$95.95</td></tr>
+                            <tr><td>100213</td><td>discuss</td><td>$95.95</td></tr>
+                            <tr><td>100214</td><td>pizza thrpy</td><td>$75.95</td></tr>
+                            <tr><td>100215</td><td>pizza patch</td><td>$50.95</td></tr>
+                            <tr><td>100216</td><td>pproni spply</td><td>$30.95</td></tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-        <div class="tool-form-content-buttons tool-form-content-input text-right">
-            <button class="btn btn-danger" id="add-record-reset">reset</button>
-            <button class="btn btn-primary" id="add-record-submit">submit</button>
-        </div>
 </form>
 
 <script type="text/javascript">

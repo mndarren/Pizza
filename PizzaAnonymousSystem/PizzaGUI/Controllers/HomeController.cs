@@ -11,7 +11,7 @@ namespace PizzaGUI.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new IndexViewModel());
         }
 
         public ActionResult About()

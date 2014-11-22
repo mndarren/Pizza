@@ -1,6 +1,4 @@
-﻿@model Model
-
-@{
+﻿@{
     ViewBag.Title = "Admin";
 }
 
@@ -79,40 +77,40 @@
 
 <script type="text/javascript">
     var paths = {
-        addMember  : '@Model.Addmember',
+        addMember  : '@Model.AddMember',
         addAdmin   : '@Model.AddAdmin',
         addManager : '@Model.AddManager',
         addProvider: '@Model.AddProvider',
-
-        updateMember  : '@Model.Updatemember',
+        
+        updateMember  : '@Model.UpdateMember',
         updateAdmin   : '@Model.UpdateAdmin',
         updateManager : '@Model.UpdateManager',
         updateProvider: '@Model.UpdateProvider',
-
-        deleteMember  : '@Model.Deletemember',
+        
+        deleteMember  : '@Model.DeleteMember',
         deleteAdmin   : '@Model.DeleteAdmin',
         deleteManager : '@Model.DeleteManager',
         deleteProvider: '@Model.DeleteProvider',
-
-        getMember  : '@Model.Getmember',
+        
+        getMember  : '@Model.GetMember',
         getAdmin   : '@Model.GetAdmin',
         getManager : '@Model.GetManager',
         getProvider: '@Model.GetProvider',
-
+        
         getAllServices: '@Model.GetAllServices',
         addService    : '@Model.AddService',
         updateService : '@Model.UpdateService',
         deleteService : '@Model.DeleteService',
-
+        
         updateMemberReportSchedule  : '@Model.UpdateMemberReportSchedule',
         updateProviderReportSchedule: '@Model.UpdateProviderReportSchedule',
         updateEFTReportSchedule     : '@Model.UpdateEFTReportSchedule',
-
+        
         getMemberReport         : '@Model.GetWeeklyOneMemberReport',
         getWeeklyMemberReports  : '@Model.GetWeeklyMemberReports',
         getWeeklyProviderReports: '@Model.GetWeeklyProviderReports',
         getWeeklyEFTReports     : '@Model.GetWeeklyEFTReportsFile',
-
+        
         getWeeklyMemberReportsFile  : '@Model.GetWeeklyMemberReportsFile',
         getWeeklyProviderReportsFile: '@Model.GetWeeklyProviderReportsFile',
         getWeeklyEFTReportsFile: '@Model.GetWeeklyEFTReportsFile'
