@@ -193,6 +193,39 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Tools\Admin\AddAdmin.js" />
+    <Content Include="Scripts\Tools\Admin\DeleteAdmin.js" />
+    <Content Include="Scripts\Tools\Admin\GetAdmin.js" />
+    <Content Include="Scripts\Tools\Admin\UpdateAdmin.js" />
+    <Content Include="Scripts\Tools\Manager\AddManager.js" />
+    <Content Include="Scripts\Tools\Manager\DeleteManager.js" />
+    <Content Include="Scripts\Tools\Manager\GetManager.js" />
+    <Content Include="Scripts\Tools\Manager\UpdateManager.js" />
+    <Content Include="Scripts\Tools\Member\AddMember.js" />
+    <Content Include="Scripts\Tools\Member\DeleteMember.js" />
+    <Content Include="Scripts\Tools\Member\GetMember.js" />
+    <Content Include="Scripts\Tools\Member\UpdateMember.js" />
+    <Content Include="Scripts\Tools\Provider\AddProvider.js" />
+    <Content Include="Scripts\Tools\Provider\DeleteProvider.js" />
+    <Content Include="Scripts\Tools\Provider\GetProvider.js" />
+    <Content Include="Scripts\Tools\Provider\UpdateProvider.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyEFTReports.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyEFTReportsFile.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyMemberReport.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyMemberReports.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyMemberReportsFile.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyProviderReports.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyProviderReportsFile.js" />
+    <Content Include="Scripts\Tools\Schedule\UpdateEFTReportSchedule.js" />
+    <Content Include="Scripts\Tools\Schedule\UpdateMemberReportSchedule.js" />
+    <Content Include="Scripts\Tools\Schedule\UpdateProviderReportSchedule.js" />
+    <Content Include="Scripts\Tools\ServiceRecord\AddServiceRecord.js" />
+    <Content Include="Scripts\Tools\Service\AddService.js" />
+    <Content Include="Scripts\Tools\Service\DeleteService.js" />
+    <Content Include="Scripts\Tools\Service\GetAllServices.js" />
+    <Content Include="Scripts\Tools\Service\UpdateService.js" />
+    <Content Include="Scripts\Tools\Verification\VerifyProviderReportFee.js" />
+    <Content Include="Scripts\Tools\Verification\VerifyProviderReportServices.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -253,15 +286,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Tools\Admin\" />
-    <Folder Include="Scripts\Tools\Manager\" />
-    <Folder Include="Scripts\Tools\Member\" />
-    <Folder Include="Scripts\Tools\Provider\" />
-    <Folder Include="Scripts\Tools\Report\" />
-    <Folder Include="Scripts\Tools\Schedule\" />
-    <Folder Include="Scripts\Tools\ServiceRecord\" />
-    <Folder Include="Scripts\Tools\Service\" />
-    <Folder Include="Scripts\Tools\Verification\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
