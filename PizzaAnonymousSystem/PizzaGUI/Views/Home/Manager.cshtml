@@ -75,3 +75,10 @@
         updateEFTReportSchedule: '@Model.UpdateEFTReportSchedule'
     };
 </script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/tools/member")
+    @Scripts.Render("~/bundles/tools/provider")
+    @Scripts.Render("~/bundles/tools/schedule")
+    @Scripts.Render("~/bundles/tools/service")
+}

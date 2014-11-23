@@ -46,3 +46,8 @@
         verifyProviderReportFee     : '@Model.VerifyProviderReportFee'
     };
 </script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/tools/service")
+    @Scripts.Render("~/bundles/tools/servicerecord")
+}

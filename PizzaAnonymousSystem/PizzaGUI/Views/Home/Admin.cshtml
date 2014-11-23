@@ -116,3 +116,13 @@
         getWeeklyEFTReportsFile: '@Model.GetWeeklyEFTReportsFile'
     };
 </script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/tools/admin")
+    @Scripts.Render("~/bundles/tools/manager")
+    @Scripts.Render("~/bundles/tools/member")
+    @Scripts.Render("~/bundles/tools/provider")
+    @Scripts.Render("~/bundles/tools/report")
+    @Scripts.Render("~/bundles/tools/schedule")
+    @Scripts.Render("~/bundles/tools/service")
+}
