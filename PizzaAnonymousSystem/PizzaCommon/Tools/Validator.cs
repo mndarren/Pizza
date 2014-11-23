@@ -31,37 +31,44 @@ namespace PizzaCommon.Tools
                 exceptions += "newPerson state is wrong (==2 characters, & no special characters)";
             if (person.ZipCode.Length != 5 || !Regex.IsMatch(person.ZipCode, zipCodeRegex))
                 exceptions += "newPerson ZipCode is wrong (==5 characters, & no special characters)";
-            
+
             return exceptions;
         }
 
-        public static void ValidateMember(Member member) 
+        public static void ValidateMember(Member member)
         {
-            throw new NotImplementedException(); //TODO
+            var exceptions = ValidatePerson(member);
+
+            if (member.Status != -1 || member.Status != 0 || member.Status != 1)
+            {
+                exceptions += "Member status is wrong (only can be -1, 0, and 1). ";
+            }
+
+            if (exceptions != "") throw new Exception(exceptions);
         }
 
-        public static void ValidateProvider(Provider provider) 
+        public static void ValidateProvider(Provider provider)
         {
             var exceptions = ValidatePerson(provider);
-            
+
             if (provider.BankAccount > 9999999999999999)
                 exceptions += "provider bank account is wrong (<16 digits, & no special characters)";
 
             if (exceptions != "") throw new Exception(exceptions);
         }
 
-        public static void ValidateManager(Manager manager) 
+        public static void ValidateManager(Manager manager)
         {
             throw new NotImplementedException(); //TODO
         }
 
-        public static void ValidateAdmin(Admin admin) 
+        public static void ValidateAdmin(Admin admin)
         {
             throw new NotImplementedException(); //TODO
         }
 
 
-        public static void ValidateSchedule(Schedule schedule) 
+        public static void ValidateSchedule(Schedule schedule)
         {
             var exceptions = "";
 
@@ -87,23 +94,36 @@ namespace PizzaCommon.Tools
         }
 
 
-        public static void ValidateService(Service service) 
+        public static void ValidateService(Service service)
         {
             var exceptions = "";
 
             if (service.ServiceCode > 999999 || service.ServiceCode < 0)
-                exceptions += "service code is wrong [0,999999]";
+                exceptions += "service code is wrong [0,999999]. ";
             if (service.ServiceName.Length > 25 || !Regex.IsMatch(service.ServiceName, nameRegex))
-                exceptions += "service name is wrong (<25 characters, & no special characters)";
+                exceptions += "service name is wrong (<25 characters, & no special characters). ";
             if (service.ServiceFee < 0m || service.ServiceFee > 999.99m)
-                exceptions += "service fee is wrong [0,999.99]";
+                exceptions += "service fee is wrong [0,999.99]. ";
 
             if (exceptions != "") throw new Exception(exceptions);
         }
 
-        public static void ValidateServiceRecord(ServiceRecord serviceRecord) 
-        {
-            throw new NotImplementedException(); //TODO
+
+        public static void ValidateServiceRecord(ServiceRecord serviceRecord) {
+            
+            var exceptions = "";
+
+            if (serviceRecord.ServiceCode > 999999 || serviceRecord.ServiceCode < 0)
+                exceptions += "service code is wrong [0,999999]. ";
+            if (serviceRecord.TimeStamp == null)
+                exceptions += "invalid time. time has to be defined. ";
+            if (serviceRecord.DateProvided ==null)
+                exceptions += "invalid time. time has to be defined. ";
+            if (serviceRecord.Comments.Length > 100)
+                exceptions += "invalid comments. ";
+
+            if (exceptions != "") throw new Exception(exceptions);
         }
+
     }
 }
