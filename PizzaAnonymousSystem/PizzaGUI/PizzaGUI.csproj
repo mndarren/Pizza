@@ -197,6 +197,7 @@
     <Content Include="Scripts\Tools\Admin\DeleteAdmin.js" />
     <Content Include="Scripts\Tools\Admin\GetAdmin.js" />
     <Content Include="Scripts\Tools\Admin\UpdateAdmin.js" />
+    <Content Include="Scripts\Index\LoginRole.js" />
     <Content Include="Scripts\Tools\Manager\AddManager.js" />
     <Content Include="Scripts\Tools\Manager\DeleteManager.js" />
     <Content Include="Scripts\Tools\Manager\GetManager.js" />
@@ -220,6 +221,7 @@
     <Content Include="Scripts\Tools\Schedule\UpdateMemberReportSchedule.js" />
     <Content Include="Scripts\Tools\Schedule\UpdateProviderReportSchedule.js" />
     <Content Include="Scripts\Tools\ServiceRecord\AddServiceRecord.js" />
+    <Content Include="Scripts\Tools\ServiceRecord\ValidateMember.js" />
     <Content Include="Scripts\Tools\Service\AddService.js" />
     <Content Include="Scripts\Tools\Service\DeleteService.js" />
     <Content Include="Scripts\Tools\Service\GetAllServices.js" />
