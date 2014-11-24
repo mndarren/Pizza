@@ -40,6 +40,8 @@ namespace PizzaRepository.ListClass
         //add manager into list
         public int? InsertManager(Manager manager)
         {
+            Validator.ValidateManager(manager);
+
             var managerId = new int?();
             try
             {
@@ -55,7 +57,7 @@ namespace PizzaRepository.ListClass
                         return new int?();
 
                     //validate all fields of the object
-                    Validator.ValidateAdmin(manager);
+                    //Validator.ValidateAdmin(manager);
 
                     //first check if exist
                    Manager m2 = this.GetManager(manager.Name);
