@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PizzaModels.Models;
+using System.Web.Http.Cors;
 
 namespace PizzaController.Controllers
 {
@@ -37,7 +38,7 @@ namespace PizzaController.Controllers
             this.serviceRecordList = serviceRecordList;
         }
 
-
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/accountPayableReport")]
         public int GetAccountPayableReport()
@@ -122,7 +123,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
-
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/onememberreport/{memberID}")]
         public int GetWeeklyOneMemberReport([FromUri]int memberID)
@@ -190,6 +191,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/memberreport")]
         public int GetWeeklyMemberReports()
@@ -292,6 +294,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/providerreport")]
         public int GetWeeklyProviderReports()
@@ -383,6 +386,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/eftreport")]
         public int GetWeeklyEFTReports()
@@ -435,6 +439,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/schedules/providerreport")]
         public bool UpdateProviderReportSchedule
@@ -461,6 +466,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/schedules/eftreport")]
         public bool UpdateEFTReportSchedule
@@ -487,6 +493,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/service")]
         public bool VerifyProviderReportServices
@@ -513,6 +520,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/fee")]
         public bool VerifyProviderReportFees
@@ -539,6 +547,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [GET("api/reportmanager/report/eftreport")]
         public int runEFTReportSchedule(List<Provider> providers, Schedule _schedule)

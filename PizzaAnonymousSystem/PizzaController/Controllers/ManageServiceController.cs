@@ -13,6 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace PizzaController.Controllers
 {
@@ -34,6 +35,7 @@ namespace PizzaController.Controllers
             this.serviceRecordList = serviceRecordList;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/servicemanager/services")]
         public List<Service> GetAllServices()
@@ -50,13 +52,15 @@ namespace PizzaController.Controllers
             }
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/servicemanager/servicerecords/")]
         public int? AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 
         {
             return serviceRecordList.InsertServiceRecord(newServiceRecord);
         }
-        
+
+        [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/servicemanager/services/")]
         public int? AddService([FromBody]Service newService)
@@ -64,6 +68,7 @@ namespace PizzaController.Controllers
             return providerDirectory.AddService(newService);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/servicemanager/services/")]
         public Service UpdateService([FromBody]Service newService)
@@ -71,6 +76,7 @@ namespace PizzaController.Controllers
             return providerDirectory.UpdateService(newService);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpDelete]
         [DELETE("api/servicemanager/services/{serviceCode}")]
         public bool DeleteService([FromUri]int serviceCode)
@@ -78,6 +84,7 @@ namespace PizzaController.Controllers
             return providerDirectory.DeleteService(serviceCode);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/servicemanager/servicerecords/{serviceRecordID}")]
         public ServiceRecord GetServiceRecord([FromUri]int serviceRecordID)

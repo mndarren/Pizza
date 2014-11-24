@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PizzaModels.Models;
+using System.Web.Http.Cors;
 
 namespace PizzaController.Controllers
 {
@@ -38,6 +39,7 @@ namespace PizzaController.Controllers
         /************************************
          * member
          ***********************************/
+        [EnableCors("*","*", "*")]
         [HttpPost]
         [POST("api/accountmanager/account/member")]
         public int? AddMember([FromBody]Member member)
@@ -45,6 +47,7 @@ namespace PizzaController.Controllers
            return memberList.InsertMember(member);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpDelete]
         [DELETE("api/accountmanager/account/member/{memberID}")]
         public Boolean DeleteMember([FromUri]int memberID)
@@ -52,6 +55,7 @@ namespace PizzaController.Controllers
             return memberList.DeleteMember(memberID);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/accountmanager/account/member")]
         public Member UpdateMember([FromBody]/*string name, int ID, string streetAddress,
@@ -71,6 +75,7 @@ namespace PizzaController.Controllers
         /********************************************
          * Provider
          * *****************************************/
+        [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/accountmanager/account/provider")]
         public int? AddProvider([FromBody]Provider provider)
@@ -78,6 +83,7 @@ namespace PizzaController.Controllers
             return providerList.AddProvider(provider);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpDelete]
         [DELETE("api/accountmanager/account/provider/{providerID}")]
         public Boolean DeleteProvider([FromUri]int providerID)
@@ -85,6 +91,7 @@ namespace PizzaController.Controllers
             return providerList.DeleteProvider(providerID);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/accountmanager/account/provider")]
         public Provider UpdateProvider([FromBody]/*string name, int ID, string streetAddress,
@@ -104,13 +111,15 @@ namespace PizzaController.Controllers
         /********************************
          * Manager
          * ************************************/
+        [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/accountmanager/account/manager")]
         public int? AddManager([FromBody]Manager manager)
         {
             return managerList.InsertManager(manager);
         }
-        
+
+        [EnableCors("*", "*", "*")]
         [HttpDelete]
         [DELETE("api/accountmanager/account/manager/{managerID}")]
         public Boolean DeleteManager([FromUri]int managerID)
@@ -118,6 +127,7 @@ namespace PizzaController.Controllers
             return managerList.DeleteManager(managerID);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/accountmanager/account/manager")]
         public Manager UpdateManager([FromBody]/*string name, int ID, string streetAddress,
@@ -137,6 +147,7 @@ namespace PizzaController.Controllers
         /**********************
          * admin
          * *******************/
+        [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/accountmanager/account/admin")]
         public int? addAdmin([FromBody] Admin admin)
@@ -144,6 +155,7 @@ namespace PizzaController.Controllers
             return adminList.AddAdmin(admin);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpDelete]
         [DELETE("api/accountmanager/account/admin/{adminID}")]
         public Boolean DeleteAdmin([FromUri]int adminID)
@@ -151,6 +163,7 @@ namespace PizzaController.Controllers
             return adminList.DeleteAdmin(adminID);
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/accountmanager/account/admin")]
         public Admin UpdateAdmin([FromBody]/*string name, int ID, string streetAddress,
@@ -169,6 +182,7 @@ namespace PizzaController.Controllers
         /*************************************
          * validate member
          * **********************************/
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
@@ -178,7 +192,8 @@ namespace PizzaController.Controllers
             else if (member.Status == 1) { return "Suspend!"; }
             else return null;
         }
-        
+
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/accountmanager/validation/provider/{providerID}")]
         public string ValidateProvider([FromUri] int providerID)
@@ -187,7 +202,8 @@ namespace PizzaController.Controllers
             if (provider == null) { return "Invalid!"; }
             else  return "Validate!"; 
         }
-        
+
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/accountmanager/account/member/{memberID}")]
         public Member GetMember([FromUri]int memberID)
@@ -210,6 +226,7 @@ namespace PizzaController.Controllers
             return member;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/accountmanager/account/provider/{providerID}")]
         public Provider GetProvider([FromUri]int providerID)
@@ -233,6 +250,7 @@ namespace PizzaController.Controllers
             return provider;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/accountmanager/account/manager/{managerID}")]
         public Manager GetManager([FromUri]int managerID)
@@ -256,6 +274,7 @@ namespace PizzaController.Controllers
             return manager;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/accountmanager/account/admin/{adminID}")]
         public Admin GetAdmin([FromUri]int adminID)
