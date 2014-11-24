@@ -1,13 +1,13 @@
 ﻿$(document).ready(function () {
-    document.getElementById("delete-admin-reset").onclick = addAdminReset;
-    document.getElementById("delete-admin-submit").onclick = addAdminSubmit;
+    document.getElementById("delete-admin-reset").onclick = deleteAdminReset;
+    document.getElementById("delete-admin-submit").onclick = deleteAdminSubmit;
 
-    function addAdminReset() {
+    function deleteAdminReset() {
         event.preventDefault();
         $('#delete-admin-ID').val("");
     }
 
-    function addAdminSubmit() {
+    function deleteAdminSubmit() {
         event.preventDefault();
 
         $.ajax({
@@ -18,17 +18,17 @@
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#add-admin-loader').removeClass("visibility-hidden");
+                $('#delete-admin-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#add-admin-success').slideToggle(400).delay(3000).slideToggle(400);
+                $('#delete-admin-success').slideToggle(400).delay(3000).slideToggle(400);
                 addAdminReset();
             },
             error: function (error) {
-                $('#add-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                $('#delete-admin-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#add-admin-loader').addClass("visibility-hidden");
+                $('#delete-admin-loader').addClass("visibility-hidden");
             }
         });
     }

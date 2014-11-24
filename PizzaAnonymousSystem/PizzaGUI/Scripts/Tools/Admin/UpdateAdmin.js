@@ -1,46 +1,34 @@
-﻿
-$(document).ready(function () {
-    document.getElementById("update-admin-reset").onclick = updateAdminReset;
-    document.getElementById("update-admin-submit").onclick = updateAdminSubmit;
+﻿$(document).ready(function () {
+    document.getElementById("get-admin-reset").onclick = getAdminReset;
+    document.getElementById("get-admin-submit").onclick = getAdminSubmit;
 
-    function updateAdminReset() {
+    function getAdminReset() {
         event.preventDefault();
-        $('#update-admin-name').val("");
-        $('#update-admin-address').val("");
-        $('#update-admin-city').val("");
-        $('#update-admin-state').val("");
-        $('#update-admin-zip').val("");
+        $('#get-admin-ID').val("");
     }
 
-    function updateAdminSubmit() {
+    function getAdminSubmit() {
         event.preventDefault();
 
         $.ajax({
-            type: 'PUT',
+            type: 'GET',
             crossDomain: true,
             url: 'http://localhost:49890/api/accountmanager/account/admin',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({
-                Name: $('#update-admin-name').val(),
-                StreetAddress: $('#update-admin-address').val(),
-                City: $('#update-admin-city').val(),
-                State: $('#update-admin-state').val(),
-                ZipCode: $('#update-admin-zip').val(),
-            }),
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#update-admin-loader').removeClass("visibility-hidden");
+                $('#get-admin-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#update-admin-success').slideToggle(400).delay(3000).slideToggle(400);
-                updateAdminReset();
+                $('#get-admin-success').slideToggle(400).delay(3000).slideToggle(400);
+                getAdminReset();
             },
             error: function (error) {
-                $('#update-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                $('#get-admin-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#update-admin-loader').addClass("visibility-hidden");
+                $('#get-admin-loader').addClass("visibility-hidden");
             }
         });
     }
