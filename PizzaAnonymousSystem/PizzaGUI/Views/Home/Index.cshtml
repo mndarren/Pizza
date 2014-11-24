@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<form role="form" id="login-area">
+
+    <div id="login-area-header">
+        <h1>welcome to <strong style="color:#808080;">pizza anonymous interface</strong></h1>
+
+        <img src="http://twistedsifter.files.wordpress.com/2013/06/animated-movie-stills-cinemagraphs-by-tech-noir-10.gif" />
+
+        <h3>please enter your credentials</h3>
+    </div>
+
+    <div id="login-area-box">
+        <div class="login-area-box-alerts">
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="login-error">
+                <strong>error!</strong> sorry, did you have all the proper information?.
+            </div>
+        </div>
+
+        <div class="login-area-loader">
+            <div id="login-loader" class="progress active progress-striped login-area-progress display-none">
+                <div class="progress-bar progress-bar-success active" 
+                    role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                    style="width:100%;"></div>
+            </div>
+        </div>
+
+        <div class="input-group login-area-box-section">
+            <span class="input-group-addon" style="width:50px;">role</span>
+            <select class="form-control" id="login-role">
+                <option value="1" selected="selected">provider</option>
+                <option value="2">manager</option>
+                <option value="3">admin</option>
+            </select>
+        </div>
+
+        <div class="input-group login-area-box-section">
+            <span class="input-group-addon" style="width:50px;">ID</span>
+            <input type="text" class="form-control" id="login-id" placeholder="">
+        </div>
+
+        <div class="login-area-box-section" id="login-area-box-buttons">
+            <button class="btn btn-danger"  id="login-btn-reset">reset</button>
+            <button class="btn btn-primary" id="login-btn-submit">submit</button>
+        </div>
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    var login = {
+        adminPath: '@Url.Action("Admin", "Home")',
+        managerPath: '@Url.Action("Manager", "Home")',
+        providerPath: '@Url.Action("Provider", "Home")'
+    };
+    
+    var paths = {
+        getAdmin   : '@Model.GetAdmin',
+        getManager : '@Model.GetManager',
+        getProvider: '@Model.GetProvider'
+    }
+</script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/index")
+}

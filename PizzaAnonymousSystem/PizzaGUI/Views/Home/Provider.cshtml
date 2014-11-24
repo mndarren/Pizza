@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Provider";
+}
+
+<div class="tool-area">
+    
+    <div class="tool-header">
+        <h3><strong class="tool-header-title">PROVIDER TOOLS</strong> | welcome, <strong>@ViewBag.Username</strong></h3>
+    </div>
+
+    <!--navigation tabs-->
+    <ul class="nav nav-tabs tool-nav">
+        <li role="presentation" class="active">
+            <a href="#service-record" aria-controls="service-record" role="tab" data-toggle="tab">service record</a>
+        </li>
+        <li role="presentation">
+            <a href="#verification" aria-controls="verification" role="tab" data-toggle="tab">verification</a>
+        </li>
+    </ul>
+
+    <!--tab panes-->
+    <div class="tab-content tool-content">
+        
+        <!--service record tab-->
+        <div role="tabpanel" class="tab-pane active" id="service-record">
+            @Html.Partial("ToolContents/_ServiceRecordContent")
+        </div>
+
+        <!--verification tab-->
+        <div role="tabpanel" class="tab-pane" id="verification">
+            @Html.Partial("ToolContents/_VerificationContent")
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var paths = {
+        validateMember: '@Model.ValidateMember',
+
+        addServiceRecord: '@Model.AddServiceRecord',
+        getAllServices  : '@Model.GetAllServices',
+
+        verifyProviderReportServices: '@Model.VerifyProviderReportServices',
+        verifyProviderReportFee     : '@Model.VerifyProviderReportFee'
+    };
+</script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/tools/service")
+    @Scripts.Render("~/bundles/tools/servicerecord")
+}

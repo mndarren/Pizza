@@ -1,0 +1,70 @@
+﻿
+<form role="form" class="tool-form" id="tool-update-schedule">
+
+    <div class="tool-form-content-loader">
+        <div id="update-schedule-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+            <div class="progress-bar progress-bar-success active" 
+                role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                style="width:100%;"></div>
+        </div>
+    </div>
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>UPDATE SCHEDULE</strong></h4>
+        </div>
+        <div class="tool-form-header-desc">
+            update an existing schedule. please provide all of the information.
+        </div>
+    </div>
+
+    <div class="tool-form-content">
+
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="update-schedule-success">
+                <strong>success!</strong> schedule has been updated.
+            </div>
+
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="update-schedule-error">
+                <strong>error!</strong> please try again.
+            </div>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">Date</span>
+            <input type="time" class="form-control" id="update-schedule" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 tool-form-content-input">
+                <div class="input-group">
+                    <span class="input-group-addon" style="width:70px;">Weekday</span>
+                    <select class="form-control" id="update-member-status">
+                        <option value="1" selected="selected">Monday</option>
+                        <option value="2">Tesuday</option>
+                        <option value="3">Wednesday</option>
+                        <option value="4">Thursday</option>
+                        <option value="5">Friday</option>
+                        <option value="6">Saturday</option>
+                        <option value="7">Sunday</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6 tool-form-content-buttons text-right">
+                <button class="btn btn-danger" id="update-schedule-reset">reset</button>
+                <button class="btn btn-primary" id="update-schedule-submit">submit</button>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+</script>

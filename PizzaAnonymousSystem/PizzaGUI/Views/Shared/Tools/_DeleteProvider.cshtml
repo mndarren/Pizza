@@ -1,0 +1,53 @@
+﻿
+
+<form role="form" class="tool-form" id="tool-delete-provider">
+
+    <div class="tool-form-content-loader">
+        <div id="delete-provider-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+            <div class="progress-bar progress-bar-success active" 
+                role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                style="width:100%;"></div>
+        </div>
+    </div>
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>DELETE Provider</strong></h4>
+        </div>
+        <div class="tool-form-header-desc">
+            delete an existing provider. please provide provider ID.
+        </div>
+    </div>
+
+    <div class="tool-form-content">
+
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="delete-provider-success">
+                <strong>success!</strong> provider has been deleted.
+            </div>
+
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="delete-provider-error">
+                <strong>error!</strong> please try again.
+            </div>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">ID</span>
+            <input type="text" class="form-control" id="delete-provider-name" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="tool-form-content-buttons tool-form-content-input text-right">
+            <button class="btn btn-danger" id="delete-provider-reset">reset</button>
+            <button class="btn btn-primary" id="delete-provider-submit">submit</button>
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+</script>

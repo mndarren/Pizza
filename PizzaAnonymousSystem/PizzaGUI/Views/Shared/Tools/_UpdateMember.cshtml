@@ -1,0 +1,96 @@
+﻿
+<form role="form" class="tool-form" id="tool-update-member">
+
+    <div class="tool-form-content-loader">
+        <div id="update-member-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+            <div class="progress-bar progress-bar-success active" 
+                role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                style="width:100%;"></div>
+        </div>
+    </div>
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>UPDATE MEMBER</strong></h4>
+        </div>
+        <div class="tool-form-header-desc">
+            update an existing member. please provide all of the information.
+        </div>
+    </div>
+
+    <div class="tool-form-content">
+        
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="update-member-success">
+                <strong>success!</strong> member has been updated.
+            </div>
+            
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="update-member-error">
+                <strong>error!</strong> please try again.
+            </div>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">ID</span>
+            <input type="text" class="form-control" id="update-member-id" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">name</span>
+            <input type="text" class="form-control" id="update-member-name" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">address</span>
+            <input type="text" class="form-control" id="update-member-address" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="row">
+            
+            <div class="input-group tool-form-content-input col-md-5 pad-right-5">
+                <span class="input-group-addon">city</span>
+                <input type="text" class="form-control" id="update-member-city" placeholder="">
+            </div>
+
+            <div class="input-group tool-form-content-input col-md-3 pad-left-5 pad-right-5">
+                <span class="input-group-addon">state</span>
+                <input type="text" class="form-control" id="update-member-state" placeholder="">
+            </div>
+
+            <div class="input-group tool-form-content-input col-md-4 pad-left-5">
+                <span class="input-group-addon">zip</span>
+                <input type="text" class="form-control" id="update-member-zip" placeholder="">
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 tool-form-content-input">
+                <div class="input-group">
+                    <span class="input-group-addon" style="width:80px;">status</span>
+                    <select class="form-control" id="update-member-status">
+                        <option value="0" selected="selected">valid</option>
+                        <option value="1">invalid</option>
+                        <option value="2">suspended</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6 tool-form-content-buttons text-right">
+                <button class="btn btn-danger"  id="update-member-reset" >reset</button>
+                <button class="btn btn-primary" id="update-member-submit">submit</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">
+    
+</script>

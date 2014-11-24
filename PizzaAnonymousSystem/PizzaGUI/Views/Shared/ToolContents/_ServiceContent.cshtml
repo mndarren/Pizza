@@ -1,0 +1,32 @@
+﻿<!--navigation sub-tabs-->
+<ul class="nav nav-pills tool-sub-nav">
+    <li role="presentation" class="active">
+        <a href="#add-service" aria-controls="add-service" role="tab" data-toggle="tab">add service</a>
+    </li>
+    <li role="presentation">
+        <a href="#update-service" aria-controls="update-service" role="tab" data-toggle="tab">update service</a>
+    </li>
+    <li role="presentation">
+        <a href="#delete-service" aria-controls="delete-service" role="tab" data-toggle="tab">delete service</a>
+    </li>
+</ul>
+
+<!--sub-tab panes-->
+<div class="tab-content tool-sub-content">
+
+    <!--add service tab-->
+    <div role="tabpanel" class="tab-pane active" id="add-service">
+        @Html.Partial("Tools/_AddService")
+    </div>
+
+    <!--add service tab-->
+    <div role="tabpanel" class="tab-pane" id="update-service">
+        @Html.Partial("Tools/_UpdateService")
+    </div>
+
+    <!--add service tab-->
+    <div role="tabpanel" class="tab-pane" id="delete-service">
+        @Html.Partial("Tools/_DeleteService")
+    </div>
+
+</div>
