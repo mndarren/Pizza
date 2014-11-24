@@ -1,10 +1,11 @@
 ﻿
 $(document).ready(function () {
-    document.getElementById("add-EFTReport-submit").onclick = addManagerSubmit;
+    document.getElementById("get-eft-report-submit").onclick = getEFTReport;
 
 
     function getEFTReport() {
         event.preventDefault();
+        alert();
 
         $.ajax({
             type: 'GET',
@@ -14,10 +15,10 @@ $(document).ready(function () {
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#add-EFTReport-loader').removeClass("visibility-hidden");
+                $('#EFTReport-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#add-EFTReport-success').slideToggle(400).delay(3000).slideToggle(400);
+                $('#eft-report-success').slideToggle(400).delay(3000).slideToggle(400);
                 $("#EFT-Report-Id").html('');
                 var divContent = '';
                 for (var i = 0; i < data.length; i++) {
@@ -27,10 +28,10 @@ $(document).ready(function () {
                 //window.location;
             },
             error: function (error) {
-                $('#add-EFTReport-error').slideToggle(400).delay(3000).slideToggle(400);
+                $('#eft-report-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#add-EFTReport-loader').addClass("visibility-hidden");
+                $('#EFTReport-loader').addClass("visibility-hidden");
             }
         });
     }
