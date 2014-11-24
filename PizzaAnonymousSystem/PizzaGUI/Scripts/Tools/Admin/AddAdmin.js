@@ -14,13 +14,6 @@ $(document).ready(function () {
 
     function addAdminSubmit() {
         event.preventDefault();
-        var admin = {
-            Name: $('#add-admin-name').val(),
-            StreetAddress: $('#add-admin-address').val(),
-            city: $('#add-admin-city').val(),
-            State: $('#add-admin-state').val(),
-            ZipCode: $('#add-admin-zip').val(),
-        };
 
         $.ajax({
             type: 'POST',
@@ -36,12 +29,13 @@ $(document).ready(function () {
                 Status: 0 //default to accepted
             }),
             dataType: "json",
-            beforeSend: function () {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 $('#add-admin-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
                 $('#add-admin-success').slideToggle(400).delay(3000).slideToggle(400);
-                addMemberReset();
+                addAdminReset();
             },
             error: function (error) {
                 $('#add-admin-error').slideToggle(400).delay(3000).slideToggle(400);

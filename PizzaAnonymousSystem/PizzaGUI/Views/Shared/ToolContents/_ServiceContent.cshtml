@@ -9,6 +9,9 @@
     <li role="presentation">
         <a href="#delete-service" aria-controls="delete-service" role="tab" data-toggle="tab">delete service</a>
     </li>
+    <li role="presentation">
+        <a href="#get-service" aria-controls="get-service" role="tab" data-toggle="tab">get service</a>
+    </li>
 </ul>
 
 <!--sub-tab panes-->
@@ -27,6 +30,11 @@
     <!--add service tab-->
     <div role="tabpanel" class="tab-pane" id="delete-service">
         @Html.Partial("Tools/_DeleteService")
+    </div>
+
+    <!--add service tab-->
+    <div role="tabpanel" class="tab-pane" id="get-service">
+        @Html.Partial("Tools/_GetService")
     </div>
 
 </div>
