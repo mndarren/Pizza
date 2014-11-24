@@ -48,6 +48,8 @@ namespace PizzaRepository.ListClass
 
                 if (admin != null)
                 {
+
+                    Validator.ValidateAdmin(admin);
                     var tempadmin = pizzDB.Admins.Where(node => node.ID == admin.ID).FirstOrDefault();
                     if (tempadmin == null)
                     {
@@ -130,8 +132,18 @@ namespace PizzaRepository.ListClass
                                      string city, string state, string ZIPcode)
         {
             var admin = new Admin();
+            var currentAdmin = new Admin();
             try
             {
+
+                currentAdmin.ID = adminID;
+                currentAdmin.Name = name;
+                currentAdmin.StreetAddress = streetAddress;
+                currentAdmin.City = city;
+                currentAdmin.State = state;
+                currentAdmin.ZipCode = ZIPcode;
+                Validator.ValidateAdmin(currentAdmin);
+
                 var pizzDB = new Entity.PizzaDBEntities();
                 AppDomain.CurrentDomain.SetData("DataDirectory",
                     PathFactory.DatabasePath());

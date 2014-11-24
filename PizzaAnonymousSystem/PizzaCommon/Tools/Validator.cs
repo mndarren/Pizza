@@ -125,5 +125,10 @@ namespace PizzaCommon.Tools
             if (exceptions != "") throw new Exception(exceptions);
         }
 
+
+        public static void ValidateAdmin(Manager manager)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
