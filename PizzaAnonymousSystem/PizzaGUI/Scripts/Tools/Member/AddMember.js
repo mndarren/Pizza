@@ -14,15 +14,7 @@ $(document).ready(function () {
 
     function addMemberSubmit() {
         event.preventDefault();
-        var member = {
-            Name         : $('#add-member-name').val(),
-            StreetAddress: $('#add-member-address').val(),
-            city         : $('#add-member-city').val(),
-            State        : $('#add-member-state').val(),
-            ZipCode      : $('#add-member-zip').val(),
-            Status       : 0 //default to accepted
-        };
-
+        
         $.ajax({
             type: 'POST',
             crossDomain: true,
@@ -37,7 +29,8 @@ $(document).ready(function () {
                 Status: 0 //default to accepted
             }),
             dataType: "json",
-            beforeSend: function () {
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 $('#add-member-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
