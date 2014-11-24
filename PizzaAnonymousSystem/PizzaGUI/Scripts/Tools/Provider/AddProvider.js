@@ -10,6 +10,7 @@ $(document).ready(function () {
         $('#add-provider-city').val("");
         $('#add-provider-state').val("");
         $('#add-provider-zip').val("");
+        $('#add-provider-bankaccount').val("");
     }
 
     function addProviderSubmit() {

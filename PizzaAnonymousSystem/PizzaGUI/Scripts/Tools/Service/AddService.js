@@ -20,8 +20,8 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 ServiceName: $('#add-service-name').val(),
-                ServiceCode: $('#add-service-address').val(),
-                ServiceFee: $('#add-service-city').val()
+                ServiceCode: $('#add-service-code').val(),
+                ServiceFee: $('#add-service-fee').val()
             }),
             dataType: "json",
             beforeSend: function (xhr) {
