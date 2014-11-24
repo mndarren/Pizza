@@ -1,4 +1,11 @@
-﻿using AttributeRouting.Web.Http;
+﻿/**
+ *@Author: Shengti Pan
+ *@Date:11/5/2014
+ *@File: ManageReportController.cs
+ *@Description: generate all reports for the system
+ */
+
+using AttributeRouting.Web.Http;
 using PizzaModels.Report;
 using PizzaRepository.ListInterface;
 using System;

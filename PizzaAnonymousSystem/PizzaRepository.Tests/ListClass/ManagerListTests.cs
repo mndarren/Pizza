@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+ *@Author: Shengti Pan
+ *@Date:11/8/2014
+ *@File: ManagerListTests.cs
+ *@Description: test the class ManagerListTests
+ */
+
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PizzaModels.Models;
 using PizzaRepository.ListClass;
