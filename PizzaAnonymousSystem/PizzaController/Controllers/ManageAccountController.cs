@@ -43,8 +43,22 @@ namespace PizzaController.Controllers
         [HttpPost]
         [POST("api/accountmanager/account/member")]
         public int? AddMember([FromBody]Member member)
-        {   
-           return memberList.InsertMember(member);
+        {
+            var memberId = new int?();
+
+            try
+            {
+                memberId = memberList.InsertMember(member);
+            }
+            catch (Exception e)
+            {
+                memberId = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return memberList.InsertMember(member);
         }
 
         [EnableCors("*", "*", "*")]
@@ -52,7 +66,21 @@ namespace PizzaController.Controllers
         [DELETE("api/accountmanager/account/member/{memberID}")]
         public Boolean DeleteMember([FromUri]int memberID)
         {
-            return memberList.DeleteMember(memberID);
+            var success = false;
+
+            try
+            {
+                success = memberList.DeleteMember(memberID);
+            }
+            catch (Exception e)
+            {
+                success = false;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return success;
         }
 
         [EnableCors("*", "*", "*")]
