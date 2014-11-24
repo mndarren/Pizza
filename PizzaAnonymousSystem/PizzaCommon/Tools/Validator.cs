@@ -39,7 +39,7 @@ namespace PizzaCommon.Tools
         {
             var exceptions = ValidatePerson(member);
 
-            if (member.Status != -1 || member.Status != 0 || member.Status != 1)
+            if (member.Status != -1 && member.Status != 0 && member.Status != 1)
             {
                 exceptions += "Member status is wrong (only can be -1, 0, and 1). ";
             }
@@ -59,12 +59,16 @@ namespace PizzaCommon.Tools
 
         public static void ValidateManager(Manager manager)
         {
-            throw new NotImplementedException(); //TODO
+            var exceptions = ValidatePerson(manager);
+
+            if (exceptions != "") throw new Exception(exceptions);
         }
 
         public static void ValidateAdmin(Admin admin)
         {
-            throw new NotImplementedException(); //TODO
+            var exceptions = ValidatePerson(admin);
+
+            if (exceptions != "") throw new Exception(exceptions);
         }
 
 
@@ -126,9 +130,9 @@ namespace PizzaCommon.Tools
         }
 
 
-        public static void ValidateAdmin(Manager manager)
-        {
-            throw new NotImplementedException();
-        }
+       // public static void ValidateAdmin(Manager manager)
+       // {
+       //     throw new NotImplementedException();
+       // }
     }
 }
