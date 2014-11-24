@@ -16,7 +16,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/accountmanager/account/service',
+            url: 'http://localhost:49890/api/servicemanager/services/',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 ServiceName: $('#add-service-name').val(),
