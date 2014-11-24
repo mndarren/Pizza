@@ -221,6 +221,7 @@ namespace PizzaController.Controllers
             else return null;
         }
 
+
         [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/accountmanager/validation/provider/{providerID}")]

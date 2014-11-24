@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-    document.getElementById("add-record-reset").onclick = addAdminReset;
-    document.getElementById("add-record-submit").onclick = addAdminSubmit;
+    document.getElementById("add-record-reset").onclick = addRecordReset;
+    document.getElementById("add-record-submit").onclick = addRecordSubmit;
 
-    function addAdminReset() {
+    function addRecordReset() {
         event.preventDefault();
         MemberNumber: $('#add-service-record-member-id').val();
         ServiceCode: $('#add-service-record-service-cod').val();
@@ -10,7 +10,7 @@
         Comments: $('#add-service-record-comments').val();
     }
 
-    function addAdminSubmit() {
+    function addRecordSubmit() {
         event.preventDefault();
 
         $.ajax({
@@ -32,7 +32,7 @@
             },
             success: function (data) {
                 $('#add-record-success').slideToggle(400).delay(3000).slideToggle(400);
-                addAdminReset();
+                addRecordReset();
             },
             error: function (error) {
                 $('#add-record-error').slideToggle(400).delay(3000).slideToggle(400);
