@@ -26,7 +26,7 @@ $(document).ready(function () {
                 City: $('#add-provider-city').val(),
                 State: $('#add-provider-state').val(),
                 ZipCode: $('#add-provider-zip').val(),
-                Status: 0 //default to accepted
+                BankAccount: $('#add-provider-bankaccount').val()
             }),
             dataType: "json",
             beforeSend: function (xhr) {
