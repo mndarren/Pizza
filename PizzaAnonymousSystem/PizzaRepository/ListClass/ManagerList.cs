@@ -1,4 +1,11 @@
-﻿using PizzaRepository.ListInterface;
+﻿/**
+ *@Author: Shengti Pan
+ *@Date:11/5/2014
+ *@File: ManagerList.cs
+ *@Description: insert, delete, update managers
+ */
+
+using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,22 +34,14 @@ namespace PizzaRepository.ListClass
             }
         }
 
-        void checkManager(Manager manager)
-        {
-            var regex = "^[a-zA-Z]'?([a-zA-Z]|\\.| |-)+$";
-            var str = "";
-            if (manager == null)
-                str = "Manager is null.";
-            else if (manager.ID < 999999 || manager.ID < 0)
-                str = "Manager ID is out of range(1-999999).";
-           
-        }
 
         public ManagerList() { }
 
         //add manager into list
         public int? InsertManager(Manager manager)
         {
+            Validator.ValidateManager(manager);
+
             var managerId = new int?();
             try
             {
@@ -56,6 +55,9 @@ namespace PizzaRepository.ListClass
 
                     if (manager.Name.Trim().Length == 0 || manager.State.Trim().Length == 0 || manager.StreetAddress.Trim().Length == 0 || manager.ZipCode.Trim().Length == 0)
                         return new int?();
+
+                    //validate all fields of the object
+                    //Validator.ValidateAdmin(manager);
 
                     //first check if exist
                    Manager m2 = this.GetManager(manager.Name);
@@ -116,17 +118,27 @@ namespace PizzaRepository.ListClass
                                      string city, string state, string ZIPcode)
         {
             var manager = new Manager();
+            var currentManage = new Manager();
             try
             {
                 //first check if exist
                 Manager m2 = this.GetManager(manager.Name);
-                if (m2 != null) return null;
+                if (m2 == null) return null;
 
                 if (name == null || state == null || streetAddress == null || ZIPcode == null)
                     return null;
 
                 if (name.Trim().Length == 0 || state.Trim().Length == 0 || streetAddress.Trim().Length == 0 || ZIPcode.Trim().Length == 0)
                     return null;
+
+                currentManage.ID = managerID;
+                currentManage.Name = name;
+                currentManage.StreetAddress = streetAddress;
+                currentManage.City = city;
+                currentManage.State = state;
+                currentManage.ZipCode = ZIPcode;
+                Validator.ValidateManager(currentManage);
+
 
                 var pizzDB = new Entity.PizzaDBEntities();
                 AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());

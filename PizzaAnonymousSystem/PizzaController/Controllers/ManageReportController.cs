@@ -1,14 +1,23 @@
-﻿using AttributeRouting.Web.Http;
+﻿/**
+ *@Author: Shengti Pan
+ *@Date:11/5/2014
+ *@File: ManageReportController.cs
+ *@Description: generate all reports for the system
+ */
+
+using AttributeRouting.Web.Http;
 using PizzaModels.Report;
 using PizzaRepository.ListInterface;
 using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using PizzaModels.Models;
+using System.Web.Http.Cors;
 
 namespace PizzaController.Controllers
 {
@@ -30,7 +39,7 @@ namespace PizzaController.Controllers
             this.serviceRecordList = serviceRecordList;
         }
 
-
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/accountPayableReport")]
         public int GetAccountPayableReport()
@@ -115,7 +124,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
-
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/onememberreport/{memberID}")]
         public int GetWeeklyOneMemberReport([FromUri]int memberID)
@@ -183,6 +192,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/memberreport")]
         public int GetWeeklyMemberReports()
@@ -285,6 +295,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/providerreport")]
         public int GetWeeklyProviderReports()
@@ -376,6 +387,7 @@ namespace PizzaController.Controllers
             return result;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpGet]
         [GET("api/reportmanager/reports/eftreport")]
         public int GetWeeklyEFTReports()
@@ -428,6 +440,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/schedules/providerreport")]
         public bool UpdateProviderReportSchedule
@@ -454,6 +467,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/schedules/eftreport")]
         public bool UpdateEFTReportSchedule
@@ -480,6 +494,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/service")]
         public bool VerifyProviderReportServices
@@ -506,6 +521,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [PUT("api/reportmanager/report/providerreport/verification/fee")]
         public bool VerifyProviderReportFees
@@ -532,6 +548,7 @@ namespace PizzaController.Controllers
             return success;
         }
 
+        [EnableCors("*", "*", "*")]
         [HttpPut]
         [GET("api/reportmanager/report/eftreport")]
         public int runEFTReportSchedule(List<Provider> providers, Schedule _schedule)
@@ -593,6 +610,21 @@ namespace PizzaController.Controllers
                 }
             }
             return result;
+        }
+
+        [EnableCors("*", "*", "*")]
+        [HttpPut]
+        [GET("api/reportmanager/report/geteftreport")]
+        public List<String> getEFTList()
+        {
+            // read the list of files in the directory. 
+            List<String> fileList = new List<String>();
+            string[] fileEntries = Directory.GetFiles("./");
+            foreach (string fileName in fileEntries) {
+                if(fileName.Contains("EFT"))
+                fileList.Add(fileName);
+            }
+            return fileList;
         }
     }
 }

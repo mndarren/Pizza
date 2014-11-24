@@ -9,24 +9,31 @@
     <li role="presentation">
         <a href="#delete-provider" aria-controls="delete-provider" role="tab" data-toggle="tab">delete provider</a>
     </li>
+    <li role="presentation">
+        <a href="#get-provider" aria-controls="get-provider" role="tab" data-toggle="tab">get provider</a>
+    </li>
 </ul>
 
 <!--sub-tab panes-->
 <div class="tab-content tool-sub-content">
 
-    <!--add member tab-->
+    <!--add provider tab-->
     <div role="tabpanel" class="tab-pane active" id="add-provider">
         @Html.Partial("Tools/_AddProvider")
     </div>
 
-    <!--add member tab-->
+    <!--add provider tab-->
     <div role="tabpanel" class="tab-pane" id="update-provider">
         @Html.Partial("Tools/_UpdateProvider")
     </div>
 
-    <!--add member tab-->
+    <!--add provider tab-->
     <div role="tabpanel" class="tab-pane" id="delete-provider">
         @Html.Partial("Tools/_DeleteProvider")
     </div>
 
+    <!--add provider tab-->
+    <div role="tabpanel" class="tab-pane" id="get-provider">
+        @Html.Partial("Tools/_GetProvider")
+    </div>
 </div>

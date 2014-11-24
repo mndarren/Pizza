@@ -54,6 +54,8 @@ namespace PizzaRepository.ListClass
         //add service record into list
         public int? InsertServiceRecord(ServiceRecord _serviceRecord)
         {
+            Validator.ValidateServiceRecord(_serviceRecord);
+
             var serviceRecordId = new int?();
             try
             {
