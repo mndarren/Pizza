@@ -1,7 +1,4 @@
 ﻿using PizzaCommon.Tools;
-/*
- Author:Cheng Luo
- */
 using PizzaModels.Models;
 using PizzaRepository.ListInterface;
 using System;
@@ -22,6 +19,8 @@ namespace PizzaRepository.ListClass
         //add member into list
         public int? InsertMember(Member member)
         {
+            Validator.ValidateMember(member);
+
             var memberId = new int?();
             try
             {
@@ -109,6 +108,9 @@ namespace PizzaRepository.ListClass
         public Member UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
+            var testmember = new Member(name, streetAddress, city, state, ZIPcode);
+            Validator.ValidateMember(testmember);
+            
             var member = new Member();
             try
             {

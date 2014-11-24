@@ -29,13 +29,21 @@ namespace PizzaRepository.ListClass
 
         void checkManager(Manager manager)
         {
-            var regex = "^[a-zA-Z]'?([a-zA-Z]|\\.| |-)+$";
+            var regex = @"^[a-zA-Z]'?([a-zA-Z]|\.| |-){5,15}+$";
             var str = "";
+            /*
+             Regex rx = new Regex(@"\b(?<word>\w+)\s+(\k<word>)\b",
+          RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            MatchCollection matches = rx.Matches(text);
+             * */
             if (manager == null)
                 str = "Manager is null.";
             else if (manager.ID < 999999 || manager.ID < 0)
                 str = "Manager ID is out of range(1-999999).";
-           
+            else if (manager.ID < 999999 || manager.ID < 0)
+            {
+                str = "";
+            }
         }
 
         public ManagerList() { }

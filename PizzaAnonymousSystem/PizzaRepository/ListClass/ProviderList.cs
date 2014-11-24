@@ -96,6 +96,7 @@ namespace PizzaRepository.ListClass
         {
             var provider = new Provider(name,streetAddress,city,state,ZIPcode,bankAccount);
             Validator.ValidateProvider(provider);  //validate the format
+
             try
             {
                 var pizzaDB = new Entity.PizzaDBEntities();//EntitiesRepository

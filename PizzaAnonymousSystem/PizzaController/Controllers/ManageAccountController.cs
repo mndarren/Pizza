@@ -26,6 +26,15 @@ namespace PizzaController.Controllers
             this.providerList = providerList;
         }
 
+
+        public HttpResponseMessage Options()
+        {
+            var response = new HttpResponseMessage();
+            response.StatusCode = HttpStatusCode.OK;
+            return response;
+        }
+
+
         /************************************
          * member
          ***********************************/
