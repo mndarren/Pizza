@@ -12,6 +12,7 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -609,6 +610,21 @@ namespace PizzaController.Controllers
                 }
             }
             return result;
+        }
+
+        [EnableCors("*", "*", "*")]
+        [HttpPut]
+        [GET("api/reportmanager/report/geteftreport")]
+        public List<String> getEFTList()
+        {
+            // read the list of files in the directory. 
+            List<String> fileList = new List<String>();
+            string[] fileEntries = Directory.GetFiles("./");
+            foreach (string fileName in fileEntries) {
+                if(fileName.Contains("EFT"))
+                fileList.Add(fileName);
+            }
+            return fileList;
         }
     }
 }

@@ -285,6 +285,7 @@
     <Content Include="Views\Shared\Tools\_UpdateService.cshtml" />
     <Content Include="Views\Shared\Tools\_DeleteService.cshtml" />
     <Content Include="Views\Shared\ToolContents\_VerificationContent.cshtml" />
+    <Content Include="Views\Shared\Tools\_GetProvider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
