@@ -23,7 +23,7 @@ namespace PizzaModels.Models
             State = state;
             City = city;
             ZipCode = zipCode;
-            _status = -1;
+            _status = 1;
         }
 
         public Member(int _newStatus) { _status = _newStatus; }
