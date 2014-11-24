@@ -26,7 +26,6 @@ $(document).ready(function () {
                 City: $('#add-admin-city').val(),
                 State: $('#add-admin-state').val(),
                 ZipCode: $('#add-admin-zip').val(),
-                Status: 0 //default to accepted
             }),
             dataType: "json",
             beforeSend: function (xhr) {
