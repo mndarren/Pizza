@@ -1,6 +1,4 @@
-﻿@model Model
-
-@{
+﻿@{
     ViewBag.Title = "Admin";
 }
 
@@ -78,15 +76,53 @@
 </div>
 
 <script type="text/javascript">
-    var path = {
-        AddMember  : '@Model.Addmember',
-        AddAdmin   : '@Model.AddAdmin',
-        AddManager : '@Model.AddManager',
-        AddProvider: '@Model.AddProvider',
-
-        UpdateMember  : '@Model.Updatemember',
-        UpdateAdmin   : '@Model.UpdateAdmin',
-        UpdateManager : '@Model.UpdateManager',
-        UpdateProvider: '@Model.UpdateProvider'
+    var paths = {
+        addMember  : '@Model.AddMember',
+        addAdmin   : '@Model.AddAdmin',
+        addManager : '@Model.AddManager',
+        addProvider: '@Model.AddProvider',
+        
+        updateMember  : '@Model.UpdateMember',
+        updateAdmin   : '@Model.UpdateAdmin',
+        updateManager : '@Model.UpdateManager',
+        updateProvider: '@Model.UpdateProvider',
+        
+        deleteMember  : '@Model.DeleteMember',
+        deleteAdmin   : '@Model.DeleteAdmin',
+        deleteManager : '@Model.DeleteManager',
+        deleteProvider: '@Model.DeleteProvider',
+        
+        getMember  : '@Model.GetMember',
+        getAdmin   : '@Model.GetAdmin',
+        getManager : '@Model.GetManager',
+        getProvider: '@Model.GetProvider',
+        
+        getAllServices: '@Model.GetAllServices',
+        addService    : '@Model.AddService',
+        updateService : '@Model.UpdateService',
+        deleteService : '@Model.DeleteService',
+        
+        updateMemberReportSchedule  : '@Model.UpdateMemberReportSchedule',
+        updateProviderReportSchedule: '@Model.UpdateProviderReportSchedule',
+        updateEFTReportSchedule     : '@Model.UpdateEFTReportSchedule',
+        
+        getMemberReport         : '@Model.GetWeeklyOneMemberReport',
+        getWeeklyMemberReports  : '@Model.GetWeeklyMemberReports',
+        getWeeklyProviderReports: '@Model.GetWeeklyProviderReports',
+        getWeeklyEFTReports     : '@Model.GetWeeklyEFTReportsFile',
+        
+        getWeeklyMemberReportsFile  : '@Model.GetWeeklyMemberReportsFile',
+        getWeeklyProviderReportsFile: '@Model.GetWeeklyProviderReportsFile',
+        getWeeklyEFTReportsFile: '@Model.GetWeeklyEFTReportsFile'
     };
 </script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/tools/admin")
+    @Scripts.Render("~/bundles/tools/manager")
+    @Scripts.Render("~/bundles/tools/member")
+    @Scripts.Render("~/bundles/tools/provider")
+    @Scripts.Render("~/bundles/tools/report")
+    @Scripts.Render("~/bundles/tools/schedule")
+    @Scripts.Render("~/bundles/tools/service")
+}

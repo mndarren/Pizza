@@ -41,8 +41,8 @@ namespace PizzaController.Controllers
             {
                 Schedule _schedule = scheduleList.GetSchedule(
                     ReportType.PayableType);
-                TimeSpan startDate; //calculate start date from schedule;
-                TimeSpan endDate; //calculate end date from schedule;
+                //TimeSpan startDate; //calculate start date from schedule; //NOT USED! REMOVE?
+                //TimeSpan endDate; //calculate end date from schedule;     //NOT USED! REMOVE?
 
                 List<Provider> providers = providerList.GetAllProviders();
                 if (providers != null)
@@ -117,8 +117,8 @@ namespace PizzaController.Controllers
 
 
         [HttpGet]
-        [GET("api/reportmanager/reports/onememberreport")]
-        public int GetWeeklyOneMemberReport(int memberID)
+        [GET("api/reportmanager/reports/onememberreport/{memberID}")]
+        public int GetWeeklyOneMemberReport([FromUri]int memberID)
         {
             int result = 0; //0: success, 1: member is null, 2: serveList
             try
@@ -194,8 +194,8 @@ namespace PizzaController.Controllers
                 Schedule _schedule = scheduleList.GetSchedule(
                 ReportType.MemberReportType);
 
-                TimeSpan startDate;//calculate start date from schedule;
-                TimeSpan endDate; //calculate end date from schedule;
+                //TimeSpan startDate;//calculate start date from schedule; //NOT USED! REMOVE?
+                //TimeSpan endDate; //calculate end date from schedule;    //NOT USED! REMOVE?
 
 
                 //while(true)
@@ -272,7 +272,7 @@ namespace PizzaController.Controllers
                 }
                 else
                 {
-                    result = 1;//memeberlist is null;
+                    //result = 1;//memeberlist is null; //UNREACHABLE CODE! REMOVE/REFACTOR?
                     //break;
                 }
             }
@@ -295,8 +295,8 @@ namespace PizzaController.Controllers
             {
                 Schedule _schedule = scheduleList.GetSchedule(
                 ReportType.ProviderReportType);
-                TimeSpan startDate;//calculate start date from schedule;
-                TimeSpan endDate;//calculate end date from schedule;
+                //TimeSpan startDate;//calculate start date from schedule; //NOT USED! REMOVE?
+                //TimeSpan endDate;//calculate end date from schedule;     //NOT USED! REMOVE?
 
                 //compare the current time with the time set
                 //while(true)
@@ -386,8 +386,8 @@ namespace PizzaController.Controllers
             {
                 Schedule schedule = scheduleList.GetSchedule(
                     ReportType.EFTReportType);
-                TimeSpan startDate; //calculate start date from schedule;
-                TimeSpan endDate; //calculate end date from schedule;
+                //TimeSpan startDate; //calculate start date from schedule; //NOT USED! REMOVE?
+                //TimeSpan endDate; //calculate end date from schedule;     //NOT USED! REMOVE?
 
                 List<Provider> providers = providerList.GetAllProviders();
                 if (providers != null)

@@ -28,6 +28,7 @@ namespace PizzaRepository.ListClass
                     if (null == eSchedule
                         && byte.TryParse(newSchedule.Week.ToString(), out newWeek))
                     {
+                        Validator.ValidateSchedule(newSchedule);
                         pizzaDB.ReportSchedules.Add(MapScheduleToEntity(newSchedule));
                         pizzaDB.SaveChanges(); //Apply changes to DB
                         success = true;
@@ -90,6 +91,7 @@ namespace PizzaRepository.ListClass
                     if (null != eSchedule 
                         && byte.TryParse(updatedSchedule.Week.ToString(), out updatedWeek))
                     {
+                        Validator.ValidateSchedule(updatedSchedule);
                         foreach (var es in pizzaDB.ReportSchedules
                             .Where(es => es.ReportType == updatedSchedule.ReportType))
                         {

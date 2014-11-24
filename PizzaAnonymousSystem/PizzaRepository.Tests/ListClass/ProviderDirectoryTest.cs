@@ -14,7 +14,7 @@ namespace PizzaRepository.Tests.ListClass
         {
             var repository = new ProviderDirectory();
 
-            var newService = new Service(888909,"WashFeet",100m);
+            var newService = new Service(88899,"WashFeetsdfasdfadfasdfadsdfas",1000m);
             var success = repository.AddService(newService);
 
             var serviceList = repository.GetServices();

@@ -41,9 +41,18 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+
 /*common*/
+.pad-right-0 {
+    padding-right:0px;
+}
+
 .pad-right-5 {
     padding-right:5px;
+}
+
+.pad-left-0 {
+    padding-left:0px;
 }
 
 .pad-left-5 {
@@ -56,6 +65,20 @@ input[type="checkbox"].input-validation-error {
 
 .visibility-hidden {
     visibility:hidden;
+}
+
+
+/*colors*/
+.color-blue {
+    color:#428bca;
+}
+
+.color-green {
+    color:#449d44;
+}
+
+.color-red {
+    color:#c9302c;
 }
 
 
@@ -82,6 +105,13 @@ input[type="checkbox"].input-validation-error {
     
         padding:10px;
     }
+
+        #login-area #login-area-box .login-area-progress {
+            border-radius:0px;
+            height:5px;
+
+            margin-bottom:5px;
+        }
     
         #login-area #login-area-box .login-area-box-section {
             padding-top:3px;
@@ -130,6 +160,11 @@ input[type="checkbox"].input-validation-error {
 
 }
 
+    .tool-form .tool-form-progress {
+        border-radius:0px;
+        height:5px;
+    }
+
     .tool-form .tool-form-header {
         padding-bottom:10px;
     }
@@ -138,17 +173,21 @@ input[type="checkbox"].input-validation-error {
         width:500px;
     }
 
-        .tool-form .tool-form-content .tool-form-content-input {
-            padding-top:3px;
-            padding-bottom:3px;
+    .tool-form .tool-form-content-large {
+
+    }
+
+    .tool-form .tool-form-content-input {
+        padding-top:3px;
+        padding-bottom:3px;
+    }
+
+        .tool-form .tool-form-content-input select {
+            border-radius:0px 4px 4px 0px;
+            cursor:pointer;
         }
 
-            .tool-form .tool-form-content .tool-form-content-input select {
-                border-radius:0px 4px 4px 0px;
-                cursor:pointer;
-            }
-
-        .tool-form .tool-form-content .tool-form-content-buttons {
-            padding-top:3px;
-            padding-bottom:3px;
-        }
+    .tool-form .tool-form-content-buttons {
+        padding-top:3px;
+        padding-bottom:3px;
+    }

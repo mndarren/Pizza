@@ -36,5 +36,18 @@
 </div>
 
 <script type="text/javascript">
-    
+    var paths = {
+        validateMember: '@Model.ValidateMember',
+
+        addServiceRecord: '@Model.AddServiceRecord',
+        getAllServices  : '@Model.GetAllServices',
+
+        verifyProviderReportServices: '@Model.VerifyProviderReportServices',
+        verifyProviderReportFee     : '@Model.VerifyProviderReportFee'
+    };
 </script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/tools/service")
+    @Scripts.Render("~/bundles/tools/servicerecord")
+}

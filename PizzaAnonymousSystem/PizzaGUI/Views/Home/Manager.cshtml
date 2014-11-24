@@ -1,5 +1,4 @@
-﻿r
-@{
+﻿@{
     ViewBag.Title = "Manager";
 }
 
@@ -53,5 +52,33 @@
 </div>
 
 <script type="text/javascript">
-    
+    var paths = {
+        addMember: '@Model.AddMember',
+        addProvider: '@Model.AddProvider',
+
+        updateMember: '@Model.UpdateMember',
+        updateProvider: '@Model.UpdateProvider',
+
+        deleteMember: '@Model.DeleteMember',
+        deleteProvider: '@Model.DeleteProvider',
+
+        getMember: '@Model.GetMember',
+        getProvider: '@Model.GetProvider',
+
+        getAllServices: '@Model.GetAllServices',
+        addService: '@Model.AddService',
+        updateService: '@Model.UpdateService',
+        deleteService: '@Model.DeleteService',
+
+        updateMemberReportSchedule: '@Model.UpdateMemberReportSchedule',
+        updateProviderReportSchedule: '@Model.UpdateProviderReportSchedule',
+        updateEFTReportSchedule: '@Model.UpdateEFTReportSchedule'
+    };
 </script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/tools/member")
+    @Scripts.Render("~/bundles/tools/provider")
+    @Scripts.Render("~/bundles/tools/schedule")
+    @Scripts.Render("~/bundles/tools/service")
+}

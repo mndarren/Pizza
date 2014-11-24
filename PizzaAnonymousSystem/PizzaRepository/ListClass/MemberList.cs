@@ -7,6 +7,7 @@ using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace PizzaRepository.ListClass
@@ -19,7 +20,8 @@ namespace PizzaRepository.ListClass
         public MemberList() { }
 
         //add member into list
-        public int? InsertMember(Member member){
+        public int? InsertMember(Member member)
+        {
             var memberId = new int?();
             try
             {
@@ -49,7 +51,8 @@ namespace PizzaRepository.ListClass
         }
 
         //need to fix this
-        public Member GetMember(int memberID) {
+        public Member GetMember(int memberID)
+        {
             var member = new Member();
             try
             {
@@ -74,7 +77,8 @@ namespace PizzaRepository.ListClass
         }
 
         //delete member from link list
-        public Boolean DeleteMember(int memberID) { 
+        public Boolean DeleteMember(int memberID)
+        {
             var success = false;
             try
             {
@@ -100,41 +104,41 @@ namespace PizzaRepository.ListClass
             }
             return success;
         }
-             
+
         //Update member
         public Member UpdateMember(string name, int memberID, string streetAddress,
                                      string city, string state, string ZIPcode, int status)
         {
-           var member = new Member();
-           try
-           {
-               var pizzDB = new Entity.PizzaDBEntities();
-               AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
-              
-               var eMember = pizzDB.Members.Where(node => node.ID == memberID).FirstOrDefault();
+            var member = new Member();
+            try
+            {
+                var pizzDB = new Entity.PizzaDBEntities();
+                AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
-               if (eMember != null)
-               {
-                   foreach (var es in pizzDB.Members.Where(es => es.ID == memberID))
-                   {
-                       es.Name = name;
-                       es.StreetAddress = streetAddress;
-                       es.City = city;
-                       es.State = state;
-                       es.ZipCode = ZIPcode;
-                       es.Status = (short)status;
-                   }
-                   pizzDB.SaveChanges();
-                   member = GetMember(memberID);
-               }
-               else member = null;
-           }
-           catch (Exception e)
-           {
-               member = null;
-               throw new Exception(e.Message);
-           }
-           return member;
+                var eMember = pizzDB.Members.Where(node => node.ID == memberID).FirstOrDefault();
+
+                if (eMember != null)
+                {
+                    foreach (var es in pizzDB.Members.Where(es => es.ID == memberID))
+                    {
+                        es.Name = name;
+                        es.StreetAddress = streetAddress;
+                        es.City = city;
+                        es.State = state;
+                        es.ZipCode = ZIPcode;
+                        es.Status = (short)status;
+                    }
+                    pizzDB.SaveChanges();
+                    member = GetMember(memberID);
+                }
+                else member = null;
+            }
+            catch (Exception e)
+            {
+                member = null;
+                throw new Exception(e.Message);
+            }
+            return member;
         }
 
         public List<Member> GetAllMembers()
