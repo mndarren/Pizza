@@ -15,9 +15,6 @@
             crossDomain: true,
             url: 'http://localhost:49890/api/accountmanager/account/admin',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({
-                ID: $('#add-admin-ID').val(),
-            }),
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
