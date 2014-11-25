@@ -297,6 +297,73 @@ namespace PizzaController.Controllers
 
         [EnableCors("*", "*", "*")]
         [HttpGet]
+        [GET("api/reportmanager/reports/oneproviderreport/{providerID}")]
+        public int GetWeeklyOneProviderReport([FromUri]int providerID)
+        {
+            int result = 0; //0: success, 1: member is null, 2: serveList
+            List<ProviderReport> providerReports = null;
+            try
+            {
+                String _nowTime = DateTime.Now.ToString("hh:mm");
+                providerReports = new List<ProviderReport>();
+                Provider provider = providerList.GetProvider(providerID);
+                if (provider != null)
+                {
+                    String fileName;
+                    //if (_nowTime.Equals(_schTime))
+                    _nowTime = _nowTime.Replace(":", "_");
+
+                    fileName = provider.Name + "_" + _nowTime + ".txt";
+                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                    {
+                        file.WriteLine("----------------------Provider Report--------------------");
+                        file.WriteLine("Provider ID: " + provider.ID);
+                        file.WriteLine("Provider Name: " + provider.Name);
+                        file.WriteLine("City: " + provider.City);
+                        file.WriteLine("State: " + provider.State);
+                        file.WriteLine("Street Address: " + provider.StreetAddress);
+                        file.WriteLine("Zip Code: " + provider.ZipCode);
+
+                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
+                        if (serveList != null)
+                        {
+                            int counter = 0;
+                            foreach (ServiceRecord s in serveList)
+                            {
+                                counter++;
+                                int serviceCode = s.ServiceCode;
+                                Service service = providerDirectory.GetService(serviceCode);
+                                if (service != null)
+                                {
+                                    file.WriteLine("\nService:" + counter);
+                                    file.WriteLine("Service Name: " + service.ServiceName);
+                                    file.WriteLine("Service Code: " + service.ServiceCode);
+                                    file.WriteLine("Service Fee: " + service.ServiceFee);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            result = 2;//serveList is null;
+                            //break;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                providerReports = null;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
+        }
+
+        [EnableCors("*", "*", "*")]
+        [HttpGet]
         [GET("api/reportmanager/reports/providerreport")]
         public int GetWeeklyProviderReports()
         {
@@ -614,15 +681,18 @@ namespace PizzaController.Controllers
 
         [EnableCors("*", "*", "*")]
         [HttpPut]
-        [GET("api/reportmanager/report/geteftreport")]
-        public List<String> getEFTList()
+        [POST("api/reportmanager/reports/eftreport/file")]
+        //[POST("api/reportmanager/report/geteftreportlist")]
+        //getEFTList
+        public List<String> getWeeklyEFTReportsFile()
         {
             // read the list of files in the directory. 
             List<String> fileList = new List<String>();
             string[] fileEntries = Directory.GetFiles("./");
-            foreach (string fileName in fileEntries) {
-                if(fileName.Contains("EFT"))
-                fileList.Add(fileName);
+            foreach (string fileName in fileEntries)
+            {
+                if (fileName.Contains("EFT"))
+                    fileList.Add(fileName);
             }
             return fileList;
         }
