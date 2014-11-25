@@ -211,20 +211,21 @@ namespace PizzaController.Controllers
          * validate member
          * **********************************/
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/validation/member/{memberID}")]
+        [HttpPost]
+        [POST("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
+            if (member == null) return "Invalid!";
             if (member.Status == -1) { return "Validate!"; }
-            else if (member.Status == 0) { return "invalid!"; }
+            else if (member.Status == 0) { return "Invalid!"; }
             else if (member.Status == 1) { return "Suspend!"; }
             else return null;
         }
 
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/validation/provider/{providerID}")]
+        [HttpPost]
+        [POST("api/accountmanager/validation/provider/{providerID}")]
         public string ValidateProvider([FromUri] int providerID)
         {
             var provider = providerList.GetProvider(providerID);

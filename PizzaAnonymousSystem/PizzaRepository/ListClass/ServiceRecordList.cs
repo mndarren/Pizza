@@ -67,6 +67,7 @@ namespace PizzaRepository.ListClass
                     var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == _serviceRecord.ID).FirstOrDefault();
                     if (tempRecord == null)
                     {
+                        _serviceRecord.TimeStamp = DateTime.Now;
                         var eServiceRecord = MapRecordToEntity(_serviceRecord);
                         pizzDB.ServiceRecords.Add(eServiceRecord);
                         pizzDB.SaveChanges();
