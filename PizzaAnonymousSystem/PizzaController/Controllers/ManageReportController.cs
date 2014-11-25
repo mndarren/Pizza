@@ -614,8 +614,10 @@ namespace PizzaController.Controllers
 
         [EnableCors("*", "*", "*")]
         [HttpPut]
-        [GET("api/reportmanager/report/geteftreport")]
-        public List<String> getEFTList()
+        [POST("api/reportmanager/reports/eftreport/file")]
+        //[POST("api/reportmanager/report/geteftreportlist")]
+        //getEFTList
+        public List<String> getWeeklyEFTReportsFile()
         {
             // read the list of files in the directory. 
             List<String> fileList = new List<String>();

@@ -5,15 +5,17 @@ $(document).ready(function () {
 
     function getEFTReport() {
         event.preventDefault();
-        alert();
+        alert("1");
 
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/reportmanager/reports/geteftreport',
+            url: 'http://localhost:49890/api/reportmanager/reports/geteftreportlist',
             contentType: 'application/json; charset=utf-8',
+            data: null,
             dataType: "json",
             beforeSend: function (xhr) {
+                alert("2");
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 $('#EFTReport-loader').removeClass("visibility-hidden");
             },
