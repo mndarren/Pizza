@@ -19,8 +19,16 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     $('#get-member-success').slideToggle(400).delay(3000).slideToggle(400);
-                    
 
+                    self.services([]);
+                    var newServices = data;
+                    ko.utils.arrayForEach(newServices, function (service) {
+                        self.services.push({
+                            serviceCode: service.ServiceCode,
+                            name: service.ServiceName,
+                            fee: service.ServiceFee
+                        });
+                    });
                 },
                 error: function (error) {
                     $('#get-member-error').slideToggle(400).delay(3000).slideToggle(400);
@@ -30,6 +38,7 @@ $(document).ready(function () {
                 }
             });
         };
+        self.refreshServices(); //Initial values
     };
 
     ko.applyBindings(new AllServicesViewModel());

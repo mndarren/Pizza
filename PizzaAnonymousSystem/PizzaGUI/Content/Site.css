@@ -191,3 +191,8 @@ input[type="checkbox"].input-validation-error {
         padding-top:3px;
         padding-bottom:3px;
     }
+
+.tool-form-content-table-container {
+    max-height:800px;
+    overflow-y:auto;
+}
