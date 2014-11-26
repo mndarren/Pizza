@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
     document.getElementById("delete-admin-reset").onclick = deleteAdminReset;
     document.getElementById("delete-admin-submit").onclick = deleteAdminSubmit;
+    alert();
+
 
     function deleteAdminReset() {
         event.preventDefault();
@@ -9,11 +11,11 @@
 
     function deleteAdminSubmit() {
         event.preventDefault();
-
+        alert();
         $.ajax({
             type: 'DELETE',
             crossDomain: true,
-            url: 'http://localhost:49890/api/accountmanager/account/admin',
+            url: 'http://localhost:49890/api/accountmanager/account/admin' + '/' + $('#delete-admin-ID').val(),
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
             beforeSend: function (xhr) {

@@ -36,8 +36,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/servicemanager/services")]
+        [HttpPost] //temp fix for CORS GET
+        [POST("api/servicemanager/get/services")]
         public List<Service> GetAllServices()
         {
             //var services = new List<Service>();
@@ -69,8 +69,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
-        [PUT("api/servicemanager/services/")]
+        [HttpPost] //temp fix for CORS PUT
+        [POST("api/servicemanager/put/services/")]
         public Service UpdateService([FromBody]Service newService)
         {
             return providerDirectory.UpdateService(newService);
@@ -85,8 +85,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/servicemanager/servicerecords/{serviceRecordID}")]
+        [HttpPost] //temp fix for CORS GET
+        [POST("api/servicemanager/get/servicerecords/{serviceRecordID}")]
         public ServiceRecord GetServiceRecord([FromUri]int serviceRecordID)
         {
             return serviceRecordList.GetServiceRecord(serviceRecordID);

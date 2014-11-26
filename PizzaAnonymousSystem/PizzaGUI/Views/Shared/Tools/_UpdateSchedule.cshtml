@@ -34,8 +34,8 @@
         </div>
 
         <div class="input-group tool-form-content-input">
-            <span class="input-group-addon" style="width:80px;">Date</span>
-            <input type="time" class="form-control" id="update-schedule" placeholder="" style="width:418px;max-width:500px;">
+            <span class="input-group-addon" style="width:80px;">Time</span>
+            <input type="time" class="form-control" id="update-schedule-time" placeholder="" style="width:418px;max-width:500px;">
         </div>
 
         <div class="row">
@@ -43,14 +43,26 @@
             <div class="col-md-6 tool-form-content-input">
                 <div class="input-group">
                     <span class="input-group-addon" style="width:70px;">Weekday</span>
-                    <select class="form-control" id="update-member-status">
+                    <select class="form-control" id="update-schedule-day">
                         <option value="1" selected="selected">Monday</option>
-                        <option value="2">Tesuday</option>
+                        <option value="2">Tuesday</option>
                         <option value="3">Wednesday</option>
                         <option value="4">Thursday</option>
                         <option value="5">Friday</option>
                         <option value="6">Saturday</option>
                         <option value="7">Sunday</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6 tool-form-content-input">
+                <div class="input-group">
+                    <span class="input-group-addon" style="width:70px;">report type</span>
+                    <select class="form-control" id="update-schedule-report-type">
+                        <option value="0" selected="selected">Member Report</option>
+                        <option value="1">Provider Report</option>
+                        <option value="2">EFT Report</option>
+                        <option value="3">Acct Payable Report</option>
                     </select>
                 </div>
             </div>
