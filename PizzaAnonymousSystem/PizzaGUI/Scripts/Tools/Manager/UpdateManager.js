@@ -2,7 +2,7 @@
 $(document).ready(function () {
     document.getElementById("update-manager-reset").onclick = updateManagerReset;
     document.getElementById("update-manager-submit").onclick = updateManagerSubmit;
-    alert();
+
     function updateManagerReset() {
         event.preventDefault();
         $('#update-manager-id').val("");
@@ -15,7 +15,6 @@ $(document).ready(function () {
 
     function updateManagerSubmit() {
         event.preventDefault();
-        alert();
         $.ajax({
             type: 'POST',
             crossDomain: true,
