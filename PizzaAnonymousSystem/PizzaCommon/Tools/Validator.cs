@@ -11,9 +11,9 @@ namespace PizzaCommon.Tools
 {
     public static class Validator
     {
-        private const string nameRegex = @"/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u";
-        private const string addressRegex = @"\d{1,3}.?\d{0,3}\s[a-zA-Z]{2,30}\s[a-zA-Z]{2,15}";
-        private const string cityRegex = @"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$";
+        private const string nameRegex = @"^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$";
+        private const string addressRegex = @"^[1-9a-zA-Z ,.'-]+$";
+        private const string cityRegex = @"^[a-zA-Z ,.'-]+$";
         private const string stateRegex = @"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$";
         private const string zipCodeRegex = @"^\d{5}(?:[-\s]\d{4})?$";
 
