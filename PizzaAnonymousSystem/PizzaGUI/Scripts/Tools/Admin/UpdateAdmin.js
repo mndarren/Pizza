@@ -19,7 +19,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'PUT',
             crossDomain: true,
-            url: 'http://localhost:49890/api/accountmanager/account/put/admin' + '/' + $('#update-admin-ID').val(),
+            url: 'http://localhost:49890/api/accountmanager/account/put/admin',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 ID:$('#update-admin-ID').val(""),
