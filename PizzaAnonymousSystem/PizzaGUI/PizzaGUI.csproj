@@ -229,6 +229,9 @@
     <Content Include="Scripts\Tools\Verification\VerifyProviderReportFee.js" />
     <Content Include="Scripts\Tools\Verification\VerifyProviderReportServices.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\Tools\_GetAdmin.cshtml" />
+    <Content Include="Views\Shared\Tools\_GetManager.cshtml" />
+    <None Include="Views\Shared\Tools\_GetMember.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

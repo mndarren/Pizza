@@ -211,20 +211,21 @@ namespace PizzaController.Controllers
          * validate member
          * **********************************/
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/validation/member/{memberID}")]
+        [HttpPost]
+        [POST("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
+            if (member == null) return "Invalid!";
             if (member.Status == -1) { return "Validate!"; }
-            else if (member.Status == 0) { return "invalid!"; }
+            else if (member.Status == 0) { return "Invalid!"; }
             else if (member.Status == 1) { return "Suspend!"; }
             else return null;
         }
 
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/validation/provider/{providerID}")]
+        [HttpPost]
+        [POST("api/accountmanager/validation/provider/{providerID}")]
         public string ValidateProvider([FromUri] int providerID)
         {
             var provider = providerList.GetProvider(providerID);
@@ -233,8 +234,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/member/{memberID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/member/{memberID}")]
         public Member GetMember([FromUri]int memberID)
         {
             var member = new Member();
@@ -256,8 +257,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/provider/{providerID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/provider/{providerID}")]
         public Provider GetProvider([FromUri]int providerID)
         {
             var provider = new Provider();
@@ -280,8 +281,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/manager/{managerID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/manager/{managerID}")]
         public Manager GetManager([FromUri]int managerID)
         {
             var manager = new Manager();
@@ -304,8 +305,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/admin/{adminID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/admin/{adminID}")]
         public Admin GetAdmin([FromUri]int adminID)
         {
             var admin = new Admin();

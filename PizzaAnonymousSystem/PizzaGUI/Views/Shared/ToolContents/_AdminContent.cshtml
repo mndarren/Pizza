@@ -9,6 +9,9 @@
     <li role="presentation">
         <a href="#delete-admin" aria-controls="delete-admin" role="tab" data-toggle="tab">delete admin</a>
     </li>
+    <li role="presentation">
+        <a href="#get-admin" aria-controls="get-admin" role="tab" data-toggle="tab">get admin</a>
+    </li>
 </ul>
 
 <!--sub-tab panes-->
@@ -19,14 +22,18 @@
         @Html.Partial("Tools/_AddAdmin")
     </div>
 
-    <!--add member tab-->
+    <!--update member tab-->
     <div role="tabpanel" class="tab-pane" id="update-admin">
         @Html.Partial("Tools/_UpdateAdmin")
     </div>
 
-    <!--add member tab-->
+    <!--delete member tab-->
     <div role="tabpanel" class="tab-pane" id="delete-admin">
         @Html.Partial("Tools/_DeleteAdmin")
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="get-admin">
+        @Html.Partial("Tools/_GetAdmin")
     </div>
 
 </div>

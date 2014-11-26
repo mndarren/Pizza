@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    document.getElementById("add-record-reset").onclick = addRecordReset;
-    document.getElementById("add-record-submit").onclick = addRecordSubmit;
+    document.getElementById("add-service-record-reset").onclick = addRecordReset;
+    document.getElementById("add-service-record-submit").onclick = addRecordSubmit;
 
     function addRecordReset() {
         event.preventDefault();
@@ -19,8 +19,9 @@
             url: 'http://localhost:49890/api/servicemanager/servicerecords/',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
+                ProviderNumber: user.id,
                 MemberNumber: $('#add-service-record-member-id').val(),
-                ServiceCode: $('#add-service-record-service-cod').val(),
+                ServiceCode: $('#add-service-record-service-code').val(),
                 DateProvided: $('#add-service-record-date').val(),
                 Comments: $('#add-service-record-comments').val(),
             }),

@@ -45,9 +45,12 @@
         verifyProviderReportServices: '@Model.VerifyProviderReportServices',
         verifyProviderReportFee     : '@Model.VerifyProviderReportFee'
     };
+    var user = {
+        id: '@ViewBag.ID'
+    };
 </script>
 
 @section scripts {
-    @Scripts.Render("~/bundles/tools/service")
+    @Scripts.Render("~/bundles/tools/verification")
     @Scripts.Render("~/bundles/tools/servicerecord")
 }
