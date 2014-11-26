@@ -2,7 +2,7 @@
  *@Author: Zhao Xie
  *@Date:11/6/2014
  *@File: ManageService.cs
- *@Description: this class contains service info
+ *@Description: this class control service and service record
  */
 using AttributeRouting.Web.Http;
 using PizzaModels.Models;

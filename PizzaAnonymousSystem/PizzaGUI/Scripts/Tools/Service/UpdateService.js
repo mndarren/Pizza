@@ -14,9 +14,9 @@ $(document).ready(function () {
         event.preventDefault();
 
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/servicemanager/services/',
+            url: 'http://localhost:49890/api/servicemanager/put/services/',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 ServiceName: $('#update-service-name').val(),
