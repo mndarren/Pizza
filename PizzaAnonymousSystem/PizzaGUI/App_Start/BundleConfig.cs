@@ -77,14 +77,17 @@ namespace PizzaGUI
                         "~/Scripts/Tools/ServiceRecord/AddServiceRecord.js",
                         "~/Scripts/Tools/ServiceRecord/ValidateMember.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+                        "~/Scripts/knockout-{version}.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/tools/verification").Include(
                         "~/Scripts/Tools/Verification/VerifyProviderReportFee.js",
                         "~/Scripts/Tools/Verification/VerifyProviderReportServices.js"));
 
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
         }
     }
 }

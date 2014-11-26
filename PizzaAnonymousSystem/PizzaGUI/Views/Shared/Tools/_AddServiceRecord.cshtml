@@ -107,7 +107,7 @@
                             <h4><strong class="color-blue">PROVIDER DIRECTORY</strong></h4>
                         </div>
                         <div class="col-md-4 text-right">
-                            <button class="btn btn-info" id="add-record-reset">refresh</button>
+                            <button class="btn btn-info" id="add-record-reset" data-bind="click: refreshServices">refresh</button>
                         </div>
                     </div>
                 </div>
@@ -123,12 +123,13 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr><td>100212</td><td>consult</td><td>$95.95</td></tr>
-                            <tr><td>100213</td><td>discuss</td><td>$95.95</td></tr>
-                            <tr><td>100214</td><td>pizza thrpy</td><td>$75.95</td></tr>
-                            <tr><td>100215</td><td>pizza patch</td><td>$50.95</td></tr>
-                            <tr><td>100216</td><td>pproni spply</td><td>$30.95</td></tr>
+                        <tbody data-bind="foreach: services">
+                            <tr>
+                                <td data-bind="text: serviceCode"></td>
+                                <td data-bind="text: name"></td>
+                                <td data-bind="text: fee"></td>
+                            </tr>
+                   
                         </tbody>
 
                     </table>
