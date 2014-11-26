@@ -12,7 +12,7 @@ namespace PizzaCommon.Tools
     public static class Validator
     {
         private const string nameRegex = @"^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$";
-        private const string addressRegex = @"^[1-9a-zA-Z ,.'-]+$";
+        private const string addressRegex = @"[A-Za-z0-9'\.\-\s\,]";
         private const string cityRegex = @"^[a-zA-Z ,.'-]+$";
         private const string stateRegex = @"^(?-i:A[LKSZRAEP]|C[AOT]|D[EC]|F[LM]|G[AU]|HI|I[ADLN]|K[SY]|LA|M[ADEHINOPST]|N[CDEHJMVY]|O[HKR]|P[ARW]|RI|S[CD]|T[NX]|UT|V[AIT]|W[AIVY])$";
         private const string zipCodeRegex = @"^\d{5}(?:[-\s]\d{4})?$";
@@ -21,15 +21,15 @@ namespace PizzaCommon.Tools
         {
             var exceptions = "";
 
-            if (person.StreetAddress !=null && (person.StreetAddress.Length > 25 || !Regex.IsMatch(person.StreetAddress, addressRegex)))
+            if (person.StreetAddress !="" && (person.StreetAddress.Length > 25 || !Regex.IsMatch(person.StreetAddress, addressRegex)))
                 exceptions += "newPerson street address is wrong (<25 characters, & no special characters)";
-            if (person.Name !=null && (person.Name.Length > 25 || !Regex.IsMatch(person.Name, nameRegex)))
+            if (person.Name !="" && (person.Name.Length > 25 || !Regex.IsMatch(person.Name, nameRegex)))
                 exceptions += "newPerson name is wrong (<25 characters, & no special characters)";
-            if (person.City != null && (person.City.Length > 14 || !Regex.IsMatch(person.City, cityRegex)))
+            if (person.City != "" && (person.City.Length > 14 || !Regex.IsMatch(person.City, cityRegex)))
                 exceptions += "newPerson city is wrong (<14 characters, & no special characters)";
-            if (person.City != null && (person.State.Length != 2 || !Regex.IsMatch(person.State, stateRegex)))
+            if (person.State != "" && (person.State.Length != 2 || !Regex.IsMatch(person.State, stateRegex)))
                 exceptions += "newPerson state is wrong (==2 characters, & no special characters)";
-            if (person.ZipCode != null &&(person.ZipCode.Length != 5 || !Regex.IsMatch(person.ZipCode, zipCodeRegex)))
+            if (person.ZipCode != "" &&(person.ZipCode.Length != 5 || !Regex.IsMatch(person.ZipCode, zipCodeRegex)))
                 exceptions += "newPerson ZipCode is wrong (==5 characters, & no special characters)";
 
             return exceptions;

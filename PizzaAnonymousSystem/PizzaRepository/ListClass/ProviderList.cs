@@ -110,12 +110,12 @@ namespace PizzaRepository.ListClass
                     foreach (var es in pizzaDB.Providers
                         .Where(es => es.ID == providerID))
                     {
-                        es.Name = name;
-                        es.StreetAddress = streetAddress;
-                        es.City = city;
-                        es.State = state;
-                        es.ZipCode = ZIPcode;
-                        es.BankAccount = bankAccount;
+                        es.Name = name != null && name != "" ? name : es.Name; ;
+                        es.StreetAddress = streetAddress != null && streetAddress != "" ? streetAddress : es.City;
+                        es.City = city != null && city != "" ? city : es.City;
+                        es.State = state != null && state != "" ? state : es.State;
+                        es.ZipCode = ZIPcode != null && ZIPcode != "" ? ZIPcode : es.ZipCode;
+                        es.BankAccount = bankAccount != null ? bankAccount : es.BankAccount;
                     }
                     pizzaDB.SaveChanges(); //Apply changes to DB
                     provider = null;

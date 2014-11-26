@@ -123,11 +123,11 @@ namespace PizzaRepository.ListClass
                 {
                     foreach (var es in pizzDB.Members.Where(es => es.ID == memberID))
                     {
-                        es.Name = name;
-                        es.StreetAddress = streetAddress;
-                        es.City = city;
-                        es.State = state;
-                        es.ZipCode = ZIPcode;
+                        es.Name = name != null && name != "" ? name : es.Name; ;
+                        es.StreetAddress = streetAddress != null && streetAddress != "" ? streetAddress : es.City;
+                        es.City = city != null && city != "" ? city : es.City;
+                        es.State = state != null && state != "" ? state : es.State;
+                        es.ZipCode = ZIPcode != null && ZIPcode != "" ? ZIPcode : es.ZipCode;
                         es.Status = (short)status;
                     }
                     pizzDB.SaveChanges();
