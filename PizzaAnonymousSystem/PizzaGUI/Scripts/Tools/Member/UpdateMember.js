@@ -1,10 +1,10 @@
 ﻿
 
 $(document).ready(function () {
-    document.getElementById("update-member-reset").onclick = addMemberReset;
-    document.getElementById("update-member-submit").onclick = addMemberSubmit;
+    document.getElementById("update-member-reset").onclick = updateMemberReset;
+    document.getElementById("update-member-submit").onclick = updateMemberSubmit;
 
-    function addMemberReset() {
+    function updateMemberReset() {
         event.preventDefault();
         $('#update-member-name').val("");
         $('#update-member-address').val("");
@@ -13,7 +13,7 @@ $(document).ready(function () {
         $('#update-member-zip').val("");
     }
 
-    function addMemberSubmit() {
+    function updateMemberSubmit() {
         event.preventDefault();
 
         $.ajax({
