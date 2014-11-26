@@ -17,9 +17,9 @@ $(document).ready(function () {
         event.preventDefault();
 
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/accountmanager/account/member',
+            url: 'http://localhost:49890/api/accountmanager/account/put/member',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 Name: $('#update-member-name').val(),
