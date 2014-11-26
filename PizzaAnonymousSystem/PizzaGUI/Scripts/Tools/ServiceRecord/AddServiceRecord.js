@@ -19,6 +19,7 @@
             url: 'http://localhost:49890/api/servicemanager/servicerecords/',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
+                ProviderNumber: user.id,
                 MemberNumber: $('#add-service-record-member-id').val(),
                 ServiceCode: $('#add-service-record-service-code').val(),
                 DateProvided: $('#add-service-record-date').val(),

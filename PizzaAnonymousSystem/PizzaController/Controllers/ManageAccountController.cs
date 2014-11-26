@@ -234,8 +234,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/member/{memberID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/member/{memberID}")]
         public Member GetMember([FromUri]int memberID)
         {
             var member = new Member();
@@ -257,8 +257,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/provider/{providerID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/provider/{providerID}")]
         public Provider GetProvider([FromUri]int providerID)
         {
             var provider = new Provider();
@@ -281,8 +281,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/manager/{managerID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/manager/{managerID}")]
         public Manager GetManager([FromUri]int managerID)
         {
             var manager = new Manager();
@@ -305,8 +305,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/accountmanager/account/admin/{adminID}")]
+        [HttpPost]
+        [POST("api/accountmanager/account/get/admin/{adminID}")]
         public Admin GetAdmin([FromUri]int adminID)
         {
             var admin = new Admin();
