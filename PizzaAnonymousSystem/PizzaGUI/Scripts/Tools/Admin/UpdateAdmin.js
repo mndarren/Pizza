@@ -2,7 +2,6 @@
 $(document).ready(function () {
     document.getElementById("update-admin-reset").onclick = updateAdminReset;
     document.getElementById("update-admin-submit").onclick = updateAdminSubmit;
-    alert();
 
     function updateAdminReset() {
         event.preventDefault();
@@ -17,7 +16,6 @@ $(document).ready(function () {
 
     function updateAdminSubmit() {
         event.preventDefault();
-        alert();
         $.ajax({
             type: 'POST',
             crossDomain: true,
