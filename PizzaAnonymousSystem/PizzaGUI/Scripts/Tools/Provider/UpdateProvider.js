@@ -18,11 +18,12 @@ $(document).ready(function () {
         event.preventDefault();
 
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/accountmanager/account/provider',
+            url: 'http://localhost:49890/api/accountmanager/account/put/provider',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
+                ID: $('#update-provider-id').val(),
                 Name: $('#update-provider-name').val(),
                 StreetAddress: $('#update-provider-address').val(),
                 City: $('#update-provider-city').val(),
