@@ -9,24 +9,30 @@
     <li role="presentation">
         <a href="#delete-manager" aria-controls="delete-manager" role="tab" data-toggle="tab">delete manager</a>
     </li>
+    <li role="presentation">
+        <a href="#get-manager" aria-controls="get-manager" role="tab" data-toggle="tab">get manager</a>
+    </li>
 </ul>
 
 <!--sub-tab panes-->
 <div class="tab-content tool-sub-content">
 
-    <!--add manager tab-->
+    <!--delete manager tab-->
     <div role="tabpanel" class="tab-pane active" id="add-manager">
         @Html.Partial("Tools/_AddManager")
     </div>
 
-    <!--add member tab-->
+    <!--delete member tab-->
     <div role="tabpanel" class="tab-pane" id="update-manager">
         @Html.Partial("Tools/_UpdateManager")
     </div>
 
-    <!--add member tab-->
+    <!--delete member tab-->
     <div role="tabpanel" class="tab-pane" id="delete-manager">
         @Html.Partial("Tools/_DeleteManager")
     </div>
 
+    <div role="tabpanel" class="tab-pane" id="get-manager">
+        @Html.Partial("Tools/_GetManager")
+    </div>
 </div>
