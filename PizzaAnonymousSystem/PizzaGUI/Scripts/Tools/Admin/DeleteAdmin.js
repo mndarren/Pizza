@@ -1,7 +1,6 @@
 ﻿$(document).ready(function () {
     document.getElementById("delete-admin-reset").onclick = deleteAdminReset;
     document.getElementById("delete-admin-submit").onclick = deleteAdminSubmit;
-    alert();
 
 
     function deleteAdminReset() {
@@ -11,7 +10,7 @@
 
     function deleteAdminSubmit() {
         event.preventDefault();
-        alert();
+        if ($('#delete-admin-ID') == user.ID) { alert("Admin id should not be itself!");}
         $.ajax({
             type: 'DELETE',
             crossDomain: true,
