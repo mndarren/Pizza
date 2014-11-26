@@ -1,1 +1,83 @@
 ﻿
+
+
+
+<form role="form" class="tool-form" id="tool-get-manager">
+
+    <div class="tool-form-content-loader">
+        <div id="get-manager-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+            <div class="progress-bar progress-bar-success active"
+                 role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                 style="width:100%;"></div>
+        </div>
+    </div>
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>GET MANAGER</strong></h4>
+        </div>
+        <div class="tool-form-header-desc">
+            get current manager information. please provide manager ID.
+        </div>
+    </div>
+
+    <div class="tool-form-content">
+
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="get-manager-success">
+                <strong>success!</strong> manager info is displayed.
+            </div>
+
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="get-manager-error">
+                <strong>error!</strong> unable to get manager info. please try again.
+            </div>
+        </div>
+
+        <div class="input-group tool-form-content-input">
+            <span class="input-group-addon" style="width:80px;">ID</span>
+            <input type="text" class="form-control" id="get-manager-id" placeholder="" style="width:418px;max-width:500px;">
+        </div>
+
+        <div class="tool-form-content-buttons tool-form-content-input text-right">
+            <button class="btn btn-danger" id="get-manager-reset">reset</button>
+            <button class="btn btn-primary" id="get-manager-submit">submit</button>
+        </div>
+
+        <div id="get-manager-content" class="tool-form-content-large display-none">
+            <div class="row">
+                <div class="col-xs-4"><strong>NAME</strong></div>
+                <div class="col-xs-1">:</div>
+                <div class="col-xs-6" id="get-manager-name"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4"><strong>ST ADDRESS</strong></div>
+                <div class="col-xs-1">:</div>
+                <div class="col-xs-6" id="get-manager-address"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4"><strong>CITY</strong></div>
+                <div class="col-xs-1">:</div>
+                <div class="col-xs-6" id="get-manager-city"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4"><strong>STATE</strong></div>
+                <div class="col-xs-1">:</div>
+                <div class="col-xs-6" id="get-manager-state"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4"><strong>ZIPCODE</strong></div>
+                <div class="col-xs-1">:</div>
+                <div class="col-xs-6" id="get-manager-zip"></div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+</script>

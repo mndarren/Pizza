@@ -84,8 +84,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
-        [PUT("api/accountmanager/account/member")]
+        [HttpPost] //Temp fix for CORS PUT
+        [POST("api/accountmanager/account/put/member")]
         public Member UpdateMember([FromBody]/*string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, int status*/ Member member)
         {
@@ -120,8 +120,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
-        [PUT("api/accountmanager/account/provider")]
+        [HttpPost] //Temp fix for CORS PUT
+        [POST("api/accountmanager/account/put/provider")]
         public Provider UpdateProvider([FromBody]/*string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode, long bankAccount*/ Provider provider)
         {
@@ -156,8 +156,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
-        [PUT("api/accountmanager/account/manager")]
+        [HttpPost] //Temp fix for CORS PUT
+        [POST("api/accountmanager/account/put/manager")]
         public Manager UpdateManager([FromBody]/*string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode*/ Manager manager)
         {
@@ -192,8 +192,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
-        [PUT("api/accountmanager/account/admin")]
+        [HttpPost] //Temp fix for CORS PUT
+        [POST("api/accountmanager/account/put/admin")]
         public Admin UpdateAdmin([FromBody]/*string name, int ID, string streetAddress,
                                      string city, string state, string ZIPcode*/Admin admin)
         {
@@ -234,7 +234,7 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPost]
+        [HttpPost] //Temp Fix for GET
         [POST("api/accountmanager/account/get/member/{memberID}")]
         public Member GetMember([FromUri]int memberID)
         {
@@ -257,7 +257,7 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPost]
+        [HttpPost] //Temp Fix for GET
         [POST("api/accountmanager/account/get/provider/{providerID}")]
         public Provider GetProvider([FromUri]int providerID)
         {
@@ -281,7 +281,7 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPost]
+        [HttpPost] //Temp Fix for GET
         [POST("api/accountmanager/account/get/manager/{managerID}")]
         public Manager GetManager([FromUri]int managerID)
         {
@@ -305,7 +305,7 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPost]
+        [HttpPost] //Temp Fix for GET
         [POST("api/accountmanager/account/get/admin/{adminID}")]
         public Admin GetAdmin([FromUri]int adminID)
         {
