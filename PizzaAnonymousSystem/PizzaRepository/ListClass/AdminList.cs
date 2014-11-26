@@ -1,10 +1,4 @@
-﻿/*@Class: CSCI531
- *@Author: Mo Chen
- *@Date:11/8/2014
- *@File: AdminList.cs
- *@Description: this class contains Admin List's info
- */
-using PizzaCommon.Tools;
+﻿using PizzaCommon.Tools;
 using PizzaModels.Models;
 using PizzaRepository.ListInterface;
 using System;
