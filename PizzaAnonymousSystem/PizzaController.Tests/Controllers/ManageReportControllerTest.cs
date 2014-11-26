@@ -20,7 +20,8 @@ namespace PizzaController.Tests.Controllers
         {
             var report = new ManageReportController(new MemberList(), new ProviderList(), new ProviderDirectory(), new ScheduleList(), new ServiceRecordList());
             int memberID = 1016;
-            int result = report.GetWeeklyOneMemberReport(memberID);
+            int result = 0;
+            report.GetWeeklyOneMemberReport(memberID);
             if (result == 0)
                 Assert.IsTrue((result == 0), "Successfully generate one member report.");
             else if (result == 1)

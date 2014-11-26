@@ -6,7 +6,7 @@
              style="width:100%;"></div>
     </div>
 </div>
-
+<!--
 <div class="tool-form-header">
 
     <div class="tool-form-alerts">
@@ -21,32 +21,36 @@
         </div>
     </div>
 </div>
-
+-->
 <div class="tool-form-header">
-    <div class="tool-form-header-title">
-        <form role="form" class="tool-form" id="get-report">
-            <button class="btn btn-primary" id="get-eft-report-submit">Get EFTReport</button>
-        </form>
-        <br/>
-        <br />
+    <div class="tool-form-header-title" style="position:relative;left:0px;width:300px">
         <form role="form" class="tool-form" id="get-member-report">
-            <div class="input-group tool-form-content-input">
-                <span class="input-group-addon" style="width:80px;">Please input a member ID:</span>
-                <input type="text" class="form-control" id="member-id" placeholder="" style="width:108px;max-width:200px;">
-                <button class="btn btn-primary" id="get-one-member-submit">Get Member Report</button>
+            <div class="input-group tool-form-content-input" style="width:400px;">
+                <b>member ID:</b><input type="text" class="form-control" id="member-id" placeholder="" style="width:100px;">
+                <button class="btn btn-primary" id="get-one-member-submit">Get Report</button>
             </div>
         </form>
         <br />
         <br />
         <form role="form" class="tool-form" id="get-provider-report">
-            <div class="input-group tool-form-content-input">
-                <span class="input-group-addon" style="width:80px;">Please input a provider ID:</span>
-                <input type="text" class="form-control" id="member-id" placeholder="" style="width:108px;max-width:200px;">
-                <button class="btn btn-primary" id="get-one-provider-submit">Get Provider Repsort</button>
+            <div class="input-group tool-form-content-input" style="width:400px;">
+                <b>provider ID:</b>
+                <input type="text" class="form-control" id="provider-id" placeholder="" style="width:100px;">
+                <button class="btn btn-primary" id="get-one-provider-submit">Get Repsort</button>
             </div>
         </form>
-    </div>
-    <div id="Report-Id">
+        <br />
+        <br />
+        <form role="form" class="tool-form" id="get-report">
+            <button class="btn btn-primary" id="get-eft-report-submit">Get EFTReport</button>
+        </form>
 
     </div>
+
+    <div id="Header-Report-Id" style="position:relative; left:550px; top:-220px; vertical-align:text-top">
+        <h4>Report Result:</h4>
+        <div id="Report-Id"></div>
+    </div>
+
 </div>
+

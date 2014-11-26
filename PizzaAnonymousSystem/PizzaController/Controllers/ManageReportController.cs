@@ -125,64 +125,59 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/reportmanager/reports/onememberreport/{memberID}")]
-        public int GetWeeklyOneMemberReport([FromUri]int memberID)
+        [HttpPost]
+        [POST("api/reportmanager/reports/onememberreport/{memberID}")]
+        public String GetWeeklyOneMemberReport([FromUri]int memberID)
         {
-            int result = 0; //0: success, 1: member is null, 2: serveList
+            String result = ""; //0: success, 1: member is null, 2: serveList
             try
             {
                 Schedule _schedule = scheduleList.GetSchedule(
                     ReportType.MemberReportType);
 
                 String _nowTime = DateTime.Now.ToString("hh:mm");
-                String _schTime = _schedule.Time.Hours.ToString() + ":" + _schedule.Time.Minutes.ToString();
 
-                String fileName;
                 Member _member = ml.GetMember(memberID);
                 if (_member != null)
                 {
                     //if (_nowTime.Equals(_schTime))
                     _nowTime = _nowTime.Replace(":", "_");
-                    fileName = _member.Name + "_" + _nowTime + ".txt";
                     string _status = "";
-                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName))
-                    {
-                        file.WriteLine("----------------------Member Report--------------------");
-                        file.WriteLine("Member ID: " + _member.ID);
-                        file.WriteLine("Member Name: " + _member.Name);
-                        file.WriteLine("State: " + _member.State);
-                        file.WriteLine("Street Address: " + _member.StreetAddress);
-                        file.WriteLine("Zipcode: " + _member.ZipCode);
-                        if (_member.Status == 0)
-                            _status = "Accepted";
-                        else if (_member.Status == 2)
-                            _status = "Suspened";
-                        else
-                            _status = "Invalid";
-                        file.WriteLine("Status: " + _status);
 
-                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
-                        if (serveList != null)
+                    result = "----------------------Member Report-------------------- <br />";
+                    result += "Member ID: " + _member.ID + "<br />";
+                    result += "Member Name: " + _member.Name + "<br />";
+                    result += "State: " + _member.State + "<br />";
+                    result += "Street Address: " + _member.StreetAddress + "<br />";
+                    result += "Zipcode: " + _member.ZipCode + "<br />";
+                    if (_member.Status == 0)
+                        _status = "Accepted";
+                    else if (_member.Status == 2)
+                        _status = "Suspened";
+                    else
+                        _status = "Invalid";
+                    result += "Status: " + _status + "<br />";
+
+                    List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
+                    if (serveList != null)
+                    {
+                        int counter = 0;
+                        foreach (ServiceRecord s in serveList)
                         {
-                            int counter = 0;
-                            foreach (ServiceRecord s in serveList)
-                            {
-                                counter++;
-                                int serviceCode = s.ServiceCode;
-                                Service service = providerDirectory.GetService(serviceCode);
-                                file.WriteLine("\nService:" + counter);
-                                file.WriteLine("Service Name: " + service.ServiceName);
-                                file.WriteLine("Service Code: " + service.ServiceCode);
-                                file.WriteLine("Service Fee: " + service.ServiceFee);
-                            }
+                            counter++;
+                            int serviceCode = s.ServiceCode;
+                            Service service = providerDirectory.GetService(serviceCode);
+                            result += "\nService:" + counter + "<br />";
+                            result += "Service Name: " + service.ServiceName + "<br />";
+                            result += "Service Code: " + service.ServiceCode + "<br />";
+                            result += "Service Fee: " + service.ServiceFee + "<br />";
                         }
-                        else
-                            result = 2;//serveList is null
                     }
+                    else
+                        result = "<br />serveList is null<br />";
+
                 }
-                else result = 1;//member is null
+                else result = "<br />member is null<br />";
             }
             catch (Exception e)
             {
@@ -296,11 +291,11 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/reportmanager/reports/oneproviderreport/{providerID}")]
-        public int GetWeeklyOneProviderReport([FromUri]int providerID)
+        [HttpPost]
+        [POST("api/reportmanager/reports/oneproviderreport/{providerID}")]
+        public String GetWeeklyOneProviderReport([FromUri]int providerID)
         {
-            int result = 0; //0: success, 1: member is null, 2: serveList
+            String result = ""; //0: success, 1: member is null, 2: serveList
             List<ProviderReport> providerReports = null;
             try
             {
@@ -309,46 +304,38 @@ namespace PizzaController.Controllers
                 Provider provider = providerList.GetProvider(providerID);
                 if (provider != null)
                 {
-                    String fileName;
                     //if (_nowTime.Equals(_schTime))
                     _nowTime = _nowTime.Replace(":", "_");
 
-                    fileName = provider.Name + "_" + _nowTime + ".txt";
-                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
-                    {
-                        file.WriteLine("----------------------Provider Report--------------------");
-                        file.WriteLine("Provider ID: " + provider.ID);
-                        file.WriteLine("Provider Name: " + provider.Name);
-                        file.WriteLine("City: " + provider.City);
-                        file.WriteLine("State: " + provider.State);
-                        file.WriteLine("Street Address: " + provider.StreetAddress);
-                        file.WriteLine("Zip Code: " + provider.ZipCode);
+                    result = "----------------------Provider Report--------------------<br />";
+                    result += "Provider ID: " + provider.ID + "<br />";
+                    result += "Provider Name: " + provider.Name + "<br />";
+                    result += "City: " + provider.City + "<br />";
+                    result += "State: " + provider.State + "<br />";
+                    result += "Street Address: " + provider.StreetAddress + "<br />";
+                    result += "Zip Code: " + provider.ZipCode + "<br />";
 
-                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
-                        if (serveList != null)
+                    List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
+                    if (serveList != null)
+                    {
+                        int counter = 0;
+                        foreach (ServiceRecord s in serveList)
                         {
-                            int counter = 0;
-                            foreach (ServiceRecord s in serveList)
+                            counter++;
+                            int serviceCode = s.ServiceCode;
+                            Service service = providerDirectory.GetService(serviceCode);
+                            if (service != null)
                             {
-                                counter++;
-                                int serviceCode = s.ServiceCode;
-                                Service service = providerDirectory.GetService(serviceCode);
-                                if (service != null)
-                                {
-                                    file.WriteLine("\nService:" + counter);
-                                    file.WriteLine("Service Name: " + service.ServiceName);
-                                    file.WriteLine("Service Code: " + service.ServiceCode);
-                                    file.WriteLine("Service Fee: " + service.ServiceFee);
-                                }
+                                result += "<br />Service:" + counter + "<br />";
+                                result += "Service Name: " + service.ServiceName + "<br />";
+                                result += "Service Code: " + service.ServiceCode + "<br />";
+                                result += "Service Fee: " + service.ServiceFee + "<br />";
                             }
                         }
-                        else
-                        {
-                            result = 2;//serveList is null;
-                            //break;
-                        }
-
+                    }
+                    else
+                    {
+                        result = "<br />serveList is null<br />";
                     }
                 }
 
@@ -681,21 +668,58 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
+        [HttpPost]
         [POST("api/reportmanager/reports/eftreport/file")]
-        //[POST("api/reportmanager/report/geteftreportlist")]
-        //getEFTList
-        public List<String> getWeeklyEFTReportsFile()
+        public string getWeeklyEFTReportsFile()
         {
-            // read the list of files in the directory. 
-            List<String> fileList = new List<String>();
-            string[] fileEntries = Directory.GetFiles("./");
-            foreach (string fileName in fileEntries)
+            //compare the current time with the time set
+            string result = "";
+            String _nowTime = DateTime.Now.ToString("hh:mm");
+
+            _nowTime = _nowTime.Replace(":", "_");
+
+            List<Provider> providers = providerList.GetAllProviders();
+            if (providers != null)
             {
-                if (fileName.Contains("EFT"))
-                    fileList.Add(fileName);
+                int providerNum = 0;
+                decimal totalFee = 0;
+
+                result += "----------------------EFT Report--------------------<br />";
+                foreach (Provider provider in providers)
+                {
+                    providerNum++;
+                    int serviceNum = 0;
+                    decimal sumFee = 0;
+                    result += "Bank account: " + provider.BankAccount;
+                    result += "<br />";
+                    List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
+                    if (serveList != null)
+                    {
+                        foreach (ServiceRecord s in serveList)
+                        {
+                            serviceNum++;
+                            int serviceCode = s.ServiceCode;
+                            Service service = providerDirectory.GetService(serviceCode);
+                            if (service != null)
+                            {
+                                sumFee += service.ServiceFee;
+                            }
+                            else
+                            {
+                                result = "<br />service is null<br />";//service is null
+                            }
+                        }
+                    }
+                    else
+                    {
+                        result = "<br />service list is null<br />";//service list is null
+                    }
+                    totalFee += sumFee;
+                    result += "The total fee: " + totalFee;
+                    result += "<br />";
+                }
             }
-            return fileList;
+            return result;
         }
     }
 }
