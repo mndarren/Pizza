@@ -21,15 +21,15 @@ namespace PizzaCommon.Tools
         {
             var exceptions = "";
 
-            if (person.StreetAddress.Length > 25 || !Regex.IsMatch(person.StreetAddress, addressRegex))
+            if (person.StreetAddress !=null && (person.StreetAddress.Length > 25 || !Regex.IsMatch(person.StreetAddress, addressRegex)))
                 exceptions += "newPerson street address is wrong (<25 characters, & no special characters)";
-            if (person.Name.Length > 25 || !Regex.IsMatch(person.Name, nameRegex))
+            if (person.Name !=null && (person.Name.Length > 25 || !Regex.IsMatch(person.Name, nameRegex)))
                 exceptions += "newPerson name is wrong (<25 characters, & no special characters)";
-            if (person.City.Length > 14 || !Regex.IsMatch(person.City, cityRegex))
+            if (person.City != null && (person.City.Length > 14 || !Regex.IsMatch(person.City, cityRegex)))
                 exceptions += "newPerson city is wrong (<14 characters, & no special characters)";
-            if (person.State.Length != 2 || !Regex.IsMatch(person.State, stateRegex))
+            if (person.City != null && (person.State.Length != 2 || !Regex.IsMatch(person.State, stateRegex)))
                 exceptions += "newPerson state is wrong (==2 characters, & no special characters)";
-            if (person.ZipCode.Length != 5 || !Regex.IsMatch(person.ZipCode, zipCodeRegex))
+            if (person.ZipCode != null &&(person.ZipCode.Length != 5 || !Regex.IsMatch(person.ZipCode, zipCodeRegex)))
                 exceptions += "newPerson ZipCode is wrong (==5 characters, & no special characters)";
 
             return exceptions;
