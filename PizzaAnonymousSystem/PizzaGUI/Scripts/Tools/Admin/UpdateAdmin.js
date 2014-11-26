@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     function updateAdminReset() {
         event.preventDefault();
+        $('#update-admin-ID').val("");
         $('#update-admin-name').val("");
         $('#update-admin-address').val("");
         $('#update-admin-city').val("");
@@ -18,9 +19,10 @@ $(document).ready(function () {
         $.ajax({
             type: 'PUT',
             crossDomain: true,
-            url: 'http://localhost:49890/api/accountmanager/account/admin',
+            url: 'http://localhost:49890/api/accountmanager/account/put/admin' + '/' + $('#update-admin-ID').val(),
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
+                ID:$('#update-admin-ID').val(""),
                 Name: $('#update-admin-name').val(),
                 StreetAddress: $('#update-admin-address').val(),
                 City: $('#update-admin-city').val(),
