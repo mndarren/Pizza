@@ -482,8 +482,9 @@ namespace PizzaController.Controllers
             return result;
         }
 
-        [HttpPut]
-        [PUT("api/reportmanager/schedules/memberreport")]
+        [EnableCors("*", "*", "*")]
+        [HttpPost] //temp fix for CORS POST
+        [POST("api/reportmanager/schedules/put/memberreport")]
         public bool UpdateMemberReportSchedule
             (int weekday, TimeSpan time)
         {
@@ -508,8 +509,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
-        [PUT("api/reportmanager/schedules/providerreport")]
+        [HttpPost]
+        [POST("api/reportmanager/schedules/put/providerreport")]
         public bool UpdateProviderReportSchedule
             (int weekday, TimeSpan time)
         {
@@ -535,8 +536,8 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpPut]
-        [PUT("api/reportmanager/schedules/eftreport")]
+        [HttpPost]
+        [POST("api/reportmanager/schedules/put/eftreport")]
         public bool UpdateEFTReportSchedule
             (int weekday, TimeSpan time)
         {
