@@ -5,7 +5,6 @@ $(document).ready(function () {
 
     function getEFTReport() {
         event.preventDefault();
-        alert("1");
 
         $.ajax({
             type: 'POST',
@@ -15,18 +14,18 @@ $(document).ready(function () {
             data: null,
             dataType: "json",
             beforeSend: function (xhr) {
-                alert("2");
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 $('#report-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
+               
                 $('#report-success').slideToggle(400).delay(3000).slideToggle(400);
                 $("#Report-Id").html('');
-                var divContent = '';
-                for (var i = 0; i < data.length; i++) {
-                    divContent += '<p>' + data[i].Name + '</p>'; //if Name is property of your Person object
-                }
-                $("#Report-Id").appent(divContent);
+               // alert(data);
+                var divContent = data;
+                $("#Report-Id").html(divContent);
+                //alert("data: " + divContent);
+                //$("#Report-Id").appent(divContent);
                 //window.location;
             },
             error: function (error) {
