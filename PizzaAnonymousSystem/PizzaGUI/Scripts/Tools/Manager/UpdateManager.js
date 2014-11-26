@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     function updateManagerReset() {
         event.preventDefault();
+        $('#update-manager-id').val("");
         $('#update-manager-name').val("");
         $('#update-manager-address').val("");
         $('#update-manager-city').val("");
@@ -14,19 +15,18 @@ $(document).ready(function () {
 
     function updateManagerSubmit() {
         event.preventDefault();
-
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/accountmanager/account/manager',
+            url: 'http://localhost:49890/api/accountmanager/account/put/manager',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
+                ID:$('#update-manager-id').val(),
                 Name: $('#update-manager-name').val(),
                 StreetAddress: $('#update-manager-address').val(),
                 City: $('#update-manager-city').val(),
                 State: $('#update-manager-state').val(),
                 ZipCode: $('#update-manager-zip').val(),
-                Status: 0 //default to accepted
             }),
             dataType: "json",
             beforeSend: function (xhr) {

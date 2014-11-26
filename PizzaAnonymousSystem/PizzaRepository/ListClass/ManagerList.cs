@@ -122,14 +122,6 @@ namespace PizzaRepository.ListClass
             try
             {
                 //first check if exist
-                Manager m2 = this.GetManager(manager.Name);
-                if (m2 == null) return null;
-
-                if (name == null || state == null || streetAddress == null || ZIPcode == null)
-                    return null;
-
-                if (name.Trim().Length == 0 || state.Trim().Length == 0 || streetAddress.Trim().Length == 0 || ZIPcode.Trim().Length == 0)
-                    return null;
 
                 currentManage.ID = managerID;
                 currentManage.Name = name;
@@ -149,11 +141,11 @@ namespace PizzaRepository.ListClass
                 {
                     foreach (var es in pizzDB.Managers.Where(es => es.ID == managerID))
                     {
-                        es.Name = name;
-                        es.StreetAddress = streetAddress;
-                        es.City = city;
-                        es.State = state;
-                        es.ZipCode = ZIPcode;
+                        es.Name = name != null && name != "" ? name : es.Name; ;
+                        es.StreetAddress = streetAddress != null && streetAddress != "" ? streetAddress : es.City;
+                        es.City = city != null && city != "" ? city : es.City;
+                        es.State = state != null && state != "" ? state : es.State;
+                        es.ZipCode = ZIPcode != null && ZIPcode != "" ? ZIPcode : es.ZipCode;
                     }
                     pizzDB.SaveChanges();
                     manager = GetManager(managerID);
