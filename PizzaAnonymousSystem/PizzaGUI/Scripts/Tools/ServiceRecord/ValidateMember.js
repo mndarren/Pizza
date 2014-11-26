@@ -27,7 +27,10 @@
                 if (data.toString() == "Validate!") {
                     $('#validate-member-status').addClass('color-green');
                     $('#add-service-record-submit').removeAttr("disabled");
-                } else $('#validate-member-status').addClass('color-red');
+                } else {
+                    $('#validate-member-status').addClass('color-red');
+                    $('#add-service-record-submit').attr("disabled", "disabled");
+                }
                 $('#validate-member-status').removeClass('visibility-hidden');
                 //vaildateMemberReset();
             },
