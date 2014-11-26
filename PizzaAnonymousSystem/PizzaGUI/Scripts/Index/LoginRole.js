@@ -39,7 +39,7 @@ $(document).ready(function () {
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#login-loader').removeClass("visibility-hidden");
+                $('#login-loader').removeClass("display-none");
             },
             success: function (data) {
                 window.location = login.adminPath + "?username=" + data.Name.toString() + "&id=" + data.ID.toString();
@@ -48,7 +48,7 @@ $(document).ready(function () {
                 $('#login-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#login-loader').addClass("visibility-hidden");
+                $('#login-loader').addClass("display-none");
             }
         });
     }
@@ -62,7 +62,7 @@ $(document).ready(function () {
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#login-loader').removeClass("visibility-hidden");
+                $('#login-loader').removeClass("display-none");
             },
             success: function (data) {
                 window.location = login.managerPath + "?username=" + data.Name.toString() + "&id=" + data.ID.toString();
@@ -71,7 +71,7 @@ $(document).ready(function () {
                 $('#login-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#login-loader').addClass("visibility-hidden");
+                $('#login-loader').addClass("display-none");
             }
         });
     }
@@ -85,7 +85,7 @@ $(document).ready(function () {
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#login-loader').removeClass("visibility-hidden");
+                $('#login-loader').removeClass("display-none");
             },
             success: function (data) {
                 window.location = login.providerPath + "?username=" + data.Name.toString() + "&id=" + data.ID.toString();
@@ -94,7 +94,7 @@ $(document).ready(function () {
                 $('#login-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#login-loader').addClass("visibility-hidden");
+                $('#login-loader').addClass("display-none");
             }
         });
     }

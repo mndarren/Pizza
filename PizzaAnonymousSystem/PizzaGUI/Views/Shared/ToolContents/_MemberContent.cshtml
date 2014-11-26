@@ -10,6 +10,9 @@
     <li role="presentation">
         <a href="#delete-member" aria-controls="delete-member" role="tab" data-toggle="tab">delete member</a>
     </li>
+    <li role="presentation">
+        <a href="#get-member" aria-controls="get-member" role="tab" data-toggle="tab">get member</a>
+    </li>
 </ul>
 
 <!--sub-tab panes-->
@@ -20,14 +23,19 @@
         @Html.Partial("Tools/_AddMember")
     </div>
 
-    <!--add member tab-->
+    <!--update member tab-->
     <div role="tabpanel" class="tab-pane" id="update-member">
         @Html.Partial("Tools/_UpdateMember")
     </div>
 
-    <!--add member tab-->
+    <!--delete member tab-->
     <div role="tabpanel" class="tab-pane" id="delete-member">
         @Html.Partial("Tools/_DeleteMember")
+    </div>
+
+    <!--get member tab-->
+    <div role="tabpanel" class="tab-pane" id="get-member">
+        @Html.Partial("Tools/_GetMember")
     </div>
 
 </div>
