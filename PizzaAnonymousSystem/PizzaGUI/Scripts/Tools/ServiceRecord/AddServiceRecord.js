@@ -35,7 +35,9 @@
                 $('#add-record-success').slideToggle(400).delay(3000).slideToggle(400);
                 addRecordReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#add-service-record-error-message').html(response.Message);
                 $('#add-record-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

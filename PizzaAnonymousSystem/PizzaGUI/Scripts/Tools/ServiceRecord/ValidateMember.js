@@ -36,7 +36,9 @@
                 $('#validate-member-status').removeClass('visibility-hidden');
                 //vaildateMemberReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#add-service-record-error-message').html(response.Message);
                 $('#add-service-record-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
