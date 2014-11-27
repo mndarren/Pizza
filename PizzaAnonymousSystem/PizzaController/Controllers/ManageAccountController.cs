@@ -98,6 +98,7 @@ namespace PizzaController.Controllers
             string ZIPcode = member.ZipCode;
             int status = member.Status;
             Member tempmember = new Member();
+
             try
             {
                 tempmember = memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
