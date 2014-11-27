@@ -293,7 +293,7 @@
     <Content Include="Views\Shared\Tools\_DeleteService.cshtml" />
     <Content Include="Views\Shared\ToolContents\_VerificationContent.cshtml" />
     <Content Include="Views\Shared\Tools\_GetProvider.cshtml" />
-    <Content Include="Views\Shared\Tools\_GetService.cshtml" />
+    <Content Include="Views\Shared\Tools\_GetAllServices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

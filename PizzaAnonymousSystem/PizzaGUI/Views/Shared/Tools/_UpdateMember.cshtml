@@ -29,7 +29,7 @@
             
             <!--error-->
             <div class="alert alert-danger display-none" role="alert" id="update-member-error">
-                <strong>error!</strong> please try again.
+                <strong>error!</strong> <strong id="update-member-error-message"></strong> nbsp;please try again.
             </div>
         </div>
 
@@ -73,10 +73,9 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width:80px;">status</span>
                     <select class="form-control" id="update-member-status">
-                        <option value="0" selected="selected">valid</option>
-                        <option value="1">invalid</option>
-                        <option value="2">suspended</option>
-                        <option value="3">suspended</option>
+                        <option value="1" selected="selected">valid</option>
+                        <option value="-1">invalid</option>
+                        <option value="0">suspended</option>
                     </select>
                 </div>
             </div>

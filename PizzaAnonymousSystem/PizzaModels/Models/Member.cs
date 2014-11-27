@@ -15,7 +15,7 @@ namespace PizzaModels.Models
         private int _status;
         #endregion
 
-        public Member() { _status = -1; }
+        public Member() { _status = 1; }
         public Member(string name, string streetAddress,  string city,string state, string zipCode)
         {
             Name = name;

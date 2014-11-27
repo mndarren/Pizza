@@ -15,10 +15,10 @@ $(document).ready(function () {
                 dataType: "json",
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                    $('#get-member-loader').removeClass("visibility-hidden");
+                    $('#get-all-services-loader').removeClass("visibility-hidden");
                 },
                 success: function (data) {
-                    $('#get-member-success').slideToggle(400).delay(3000).slideToggle(400);
+                    //$('#get-all-services-success').slideToggle(400).delay(3000).slideToggle(400);
 
                     self.services([]);
                     var newServices = data;
@@ -31,10 +31,10 @@ $(document).ready(function () {
                     });
                 },
                 error: function (error) {
-                    $('#get-member-error').slideToggle(400).delay(3000).slideToggle(400);
+                    $('#get-all-services-error').slideToggle(400).delay(3000).slideToggle(400);
                 },
                 complete: function () {
-                    $('#get-member-loader').addClass("visibility-hidden");
+                    $('#get-all-services-loader').addClass("visibility-hidden");
                 }
             });
         };

@@ -24,11 +24,13 @@
                 $('#add-service-record-success').slideToggle(400).delay(3000).slideToggle(400);
                 $('#validate-member-status').html(data);
 
-                if (data.toString() == "Validate!") {
+                if (data.toString() == "VALID") {
                     $('#validate-member-status').addClass('color-green');
+                    $('#validate-member-status').removeClass('color-red');
                     $('#add-service-record-submit').removeAttr("disabled");
                 } else {
                     $('#validate-member-status').addClass('color-red');
+                    $('#validate-member-status').removeClass('color-green');
                     $('#add-service-record-submit').attr("disabled", "disabled");
                 }
                 $('#validate-member-status').removeClass('visibility-hidden');

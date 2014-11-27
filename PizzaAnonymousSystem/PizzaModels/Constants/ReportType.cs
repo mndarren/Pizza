@@ -15,8 +15,8 @@ namespace PizzaModels.Constants
 
     public static class MemberStatus
     {
-        public const int ACCEPTED = 0;
-        public const int INVALID = 1;
-        public const int SUSPENDED = 2;
+        public const int ACCEPTED = 1;
+        public const int INVALID = -1;
+        public const int SUSPENDED = 0;
     }
 }

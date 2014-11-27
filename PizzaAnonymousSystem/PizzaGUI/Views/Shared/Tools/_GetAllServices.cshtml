@@ -1,0 +1,89 @@
+﻿
+
+
+<form role="form" class="tool-form" id="tool-get-service">
+
+    <div class="tool-form-content-loader">
+        <div id="get-service-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+            <div class="progress-bar progress-bar-success active"
+                 role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                 style="width:100%;"></div>
+        </div>
+    </div>
+
+    <div class="tool-form-header">
+        <div class="tool-form-header-title">
+            <h4><strong>GET ALL SERVICE</strong></h4>
+        </div>
+        
+    </div>
+
+    <div class="tool-form-content">
+
+        <!--alerts-->
+        <div class="tool-form-alerts">
+            <!--success-->
+            <div class="alert alert-success display-none" role="alert" id="get-service-success">
+                <strong>success!</strong> service has been got.
+            </div>
+
+            <!--error-->
+            <div class="alert alert-danger display-none" role="alert" id="get-service-error">
+                <strong>error!</strong> please try again.
+            </div>
+        </div>
+
+        
+        <div class="">
+
+            <div class="tool-form-content-loader">
+                <div id="get-all-services-loader" class="progress active progress-striped tool-form-progress visibility-hidden">
+                    <div class="progress-bar progress-bar-success active"
+                         role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                         style="width:100%;"></div>
+                </div>
+            </div>
+
+            <div class="tool-form-content-input">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4><strong class="color-blue">PROVIDER DIRECTORY</strong></h4>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button class="btn btn-info" id="add-record-reset" data-bind="click: refreshServices">refresh</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-form-content-table-container">
+                <table class="table table-striped tool-form-content-table">
+
+                    <thead>
+                        <tr>
+                            <th data-field="Service Code">Service Code</th>
+                            <th data-field="Service Name">Name</th>
+                            <th data-field="Service Fee">Fee</th>
+                        </tr>
+                    </thead>
+
+                    <tbody data-bind="foreach: services">
+                        <tr>
+                            <td data-bind="text: serviceCode"></td>
+                            <td data-bind="text: name"></td>
+                            <td data-bind="text: fee"></td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+       
+    </div>
+
+</form>
+
+<script type="text/javascript">
+
+</script>

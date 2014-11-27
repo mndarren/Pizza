@@ -70,7 +70,7 @@ namespace PizzaGUI
                         "~/Scripts/Tools/Service/AddService.js",
                         "~/Scripts/Tools/Service/DeleteService.js",
                         "~/Scripts/Tools/Service/GetAllServices.js",
-                        "~/Scripts/Tools/Service/UpdateServices.js"));
+                        "~/Scripts/Tools/Service/UpdateService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/tools/servicerecord").Include(
                         "~/Scripts/Tools/Service/GetAllServices.js",
