@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using PizzaModels.Models;
 using System.Web.Http.Cors;
+using PizzaModels.Constants;
 
 namespace PizzaController.Controllers
 {
@@ -229,10 +230,11 @@ namespace PizzaController.Controllers
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
             if (member == null) return "Invalid!";
-            if (member.Status == -1) { return "Validate!"; }
-            else if (member.Status == 0) { return "Invalid!"; }
-            else if (member.Status == 1) { return "Suspend!"; }
-            else return null;
+            if (member.Status == MemberStatus.ACCEPTED) { return "VALID"; }
+            else if (member.Status == MemberStatus.INVALID) { return "INVALID"; }
+            else if (member.Status == MemberStatus.SUSPENDED) { return "SUSPENDED"; }
+            else throw new HttpResponseException(
+                Request.CreateErrorResponse(HttpStatusCode.NotFound, "member not found"));
         }
 
 
