@@ -24,5 +24,10 @@ namespace PizzaCommon.Tools
         {
             return System.IO.Path.Combine(PathFactory.SolutionPath(), "PizzaRepository\\App_Data");
         }
+
+        public static string ReportPath()
+        {
+            return System.IO.Path.Combine(PathFactory.SolutionPath(), "Report_Files\\");
+        }
     }
 }

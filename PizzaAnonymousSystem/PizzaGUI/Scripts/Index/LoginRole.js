@@ -14,6 +14,13 @@ $(document).ready(function () {
         var role = parseInt($('#login-role').val());
 
         if ($('#login-id').val() != "") {
+            //start up the report server
+           
+            startupEFTReportServer();
+            startupMemberReportServer();
+            startupProviderReportServer();
+          
+
             if (role == 3) getAdmin();
             else if (role == 2) getManager();
             else getProvider();
@@ -72,6 +79,55 @@ $(document).ready(function () {
             },
             complete: function () {
                 $('#login-loader').addClass("display-none");
+            }
+        });
+    }
+
+    function startupEFTReportServer() {
+        $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: 'http://localhost:49890/api/reportmanager/reports/starupEFTreport',
+            contentType: 'application/json; charset=utf-8',
+            data: null,
+            dataType: "json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (data) {
+                alert("the eft report server starts up now!")
+            }
+        });
+    }
+
+    function startupMemberReportServer() {
+        $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: 'http://localhost:49890/api/reportmanager/reports/starupMemberReport',
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (data) {
+                alert("the member report server starts up now!")
+            }
+        });
+    }
+
+    function startupProviderReportServer() {
+        $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: 'http://localhost:49890/api/reportmanager/reports/starupProviderReport',
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (data) {
+                alert("the provider report server starts up now!")
             }
         });
     }

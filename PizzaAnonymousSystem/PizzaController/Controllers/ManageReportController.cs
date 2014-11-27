@@ -18,6 +18,8 @@ using System.Net.Http;
 using System.Web.Http;
 using PizzaModels.Models;
 using System.Web.Http.Cors;
+using System.Web.Http.Controllers;
+using PizzaCommon.Tools;
 
 namespace PizzaController.Controllers
 {
@@ -28,6 +30,8 @@ namespace PizzaController.Controllers
         private readonly IProviderDirectory providerDirectory;
         private readonly IScheduleList scheduleList;
         private readonly IServiceRecordList serviceRecordList;
+
+
 
         public ManageReportController(IMemberList ml, IProviderList providerList,
             IProviderDirectory providerDirectory, IScheduleList scheduleList, IServiceRecordList serviceRecordList)
@@ -69,7 +73,7 @@ namespace PizzaController.Controllers
                         fileName = "Account_Payable_" + _nowTime + ".txt";
                         int providerNum = 0;
                         decimal totalFee = 0;
-                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
                         {
                             file.WriteLine("----------------------Account Payable Report--------------------");
                             foreach (Provider provider in providers)
@@ -223,10 +227,10 @@ namespace PizzaController.Controllers
                             _nowTime = _nowTime.Replace(":", "_");
                             if (true)
                             {
-                                fileName = _member.Name + "_" + _nowTime + ".txt";
+                                fileName = "Member_" + _member.Name + "_" + _nowTime + ".txt";
                                 string _status = "";
                                 // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                                using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName))
+                                using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
                                 {
                                     file.WriteLine("----------------------Member Report--------------------");
                                     file.WriteLine("Member ID: " + _member.ID);
@@ -271,6 +275,7 @@ namespace PizzaController.Controllers
                         }
                     }
                     Thread.Sleep(1000 * 3600 * 24);
+                    //Thread.Sleep(30000);
                 }
 
             }
@@ -375,9 +380,9 @@ namespace PizzaController.Controllers
                             //if (_nowTime.Equals(_schTime))
                             _nowTime = _nowTime.Replace(":", "_");
 
-                            fileName = provider.Name + "_" + _nowTime + ".txt";
+                            fileName = "Provider_" + provider.Name + "_" + _nowTime + ".txt";
                             // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
                             {
                                 file.WriteLine("----------------------Provider Report--------------------");
                                 file.WriteLine("Provider ID: " + provider.ID);
@@ -422,6 +427,7 @@ namespace PizzaController.Controllers
                         //break;
                     }
                     Thread.Sleep(1000 * 3600 * 24);
+                    //Thread.Sleep(30000);
                 }
             }
             catch (Exception e)
@@ -466,7 +472,7 @@ namespace PizzaController.Controllers
                         fileName = "EFT_" + _nowTime + ".txt";
                         int providerNum = 0;
                         decimal totalFee = 0;
-                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
                         {
                             file.WriteLine("----------------------EFT Report--------------------");
                             foreach (Provider provider in providers)
@@ -506,7 +512,7 @@ namespace PizzaController.Controllers
                         }
                     }
                     else result = 1; //providers = null;
-
+                    //Thread.Sleep(30000);
                     Thread.Sleep(1000 * 3600 * 24);
                 }
 
@@ -677,7 +683,7 @@ namespace PizzaController.Controllers
                 fileName = "EFT_" + _nowTime + ".txt";
                 int providerNum = 0;
                 decimal totalFee = 0;
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@fileName))
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter("./" + fileName))
                 {
                     file.WriteLine("----------------------EFT Report--------------------");
                     foreach (Provider provider in providers)
@@ -774,6 +780,34 @@ namespace PizzaController.Controllers
                 }
             }
             return result;
+        }
+
+        [EnableCors("*", "*", "*")]
+        [HttpPost]
+        [POST("api/reportmanager/reports/starupEFTReport")]
+        public bool startUpEFTReport()
+        {
+            GetWeeklyEFTReports();
+            return true;
+        }
+
+        [EnableCors("*", "*", "*")]
+        [HttpPost]
+        [POST("api/reportmanager/reports/starupMemberReport")]
+        public bool startUpMemberReport()
+        {
+            GetWeeklyMemberReports();
+            return true;
+        }
+
+
+        [EnableCors("*", "*", "*")]
+        [HttpPost]
+        [POST("api/reportmanager/reports/starupProviderReport")]
+        public bool startUpProviderReport()
+        {
+            GetWeeklyProviderReports();
+            return true;
         }
     }
 }
