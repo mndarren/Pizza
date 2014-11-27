@@ -39,8 +39,9 @@ $(document).ready(function () {
                 $('#update-member-success').slideToggle(400).delay(3000).slideToggle(400);
                 addMemberReset();
             },
-            error: function (error) {
-                $('#update-member-error-message').html(error);
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#update-member-error-message').html(response.Message);
                 $('#update-member-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
