@@ -22,6 +22,7 @@ $(document).ready(function () {
             url: 'http://localhost:49890/api/accountmanager/account/put/member',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
+                ID: $('#update-member-id').val(),
                 Name: $('#update-member-name').val(),
                 StreetAddress: $('#update-member-address').val(),
                 City: $('#update-member-city').val(),
@@ -39,6 +40,7 @@ $(document).ready(function () {
                 addMemberReset();
             },
             error: function (error) {
+                $('#update-member-error-message').html(error);
                 $('#update-member-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
