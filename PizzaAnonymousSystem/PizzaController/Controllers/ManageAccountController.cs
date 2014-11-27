@@ -96,8 +96,21 @@ namespace PizzaController.Controllers
             string state = member.State;
             string ZIPcode = member.ZipCode;
             int status = member.Status;
-
-            return memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
+            Member tempmember = new Member();
+            try
+            {
+                tempmember = memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
+                if (null == tempmember) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "member not found"));
+            }
+            catch (Exception e)
+            {
+                tempmember = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return tempmember;
         }
         
         /********************************************
