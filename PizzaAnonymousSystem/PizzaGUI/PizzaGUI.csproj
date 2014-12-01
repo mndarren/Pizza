@@ -219,6 +219,7 @@
     <Content Include="Scripts\Tools\Report\GetWeeklyMemberReport.js" />
     <Content Include="Scripts\Tools\Report\GetWeeklyMemberReports.js" />
     <Content Include="Scripts\Tools\Report\GetWeeklyMemberReportsFile.js" />
+    <Content Include="Scripts\Tools\Report\GetWeeklyPayableReportsFile.js" />
     <Content Include="Scripts\Tools\Report\GetWeeklyProviderReports.js" />
     <Content Include="Scripts\Tools\Report\GetWeeklyProviderReportsFile.js" />
     <Content Include="Scripts\Tools\Schedule\UpdateEFTReportSchedule.js" />
