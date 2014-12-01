@@ -9,15 +9,6 @@
         </div>
     </div>
 
-    <div class="tool-form-header">
-        <div class="tool-form-header-title">
-            <h4><strong>VERIFY SERVICES PROVIDED</strong></h4>
-        </div>
-        <div class="tool-form-header-desc">
-            Verify service provided. please verify the service and fee.
-        </div>
-    </div>
-
     <div class="tool-form-content-larger">
 
         <!--alerts-->
@@ -26,18 +17,16 @@
             <div class="alert alert-success display-none" role="alert" id="verify-services-success">
                 <strong>success!</strong> services has been verified.
             </div>
+            <div class="alert alert-success display-none" role="alert" id="verify-fee-success">
+                <strong>success!</strong> fees has been verified.
+            </div>
 
             <!--error-->
             <div class="alert alert-danger display-none" role="alert" id="verify-services-error">
                 <strong>error!</strong> please try verify services again.
             </div>
-        </div>
-
-        <div class="input-group tool-form-content-input">
-            <span class="input-group-addon" style="width:80px;">Services Confirmation:</span>
-            <div class="tool-form-content-buttons text-right">
-                <button class="btn btn-danger" id="verification-deny">Deny</button>
-                <button class="btn btn-primary" id="verification-confirm">Confirm</button>
+            <div class="alert alert-danger display-none" role="alert" id="verify-fee-error">
+                <strong>error!</strong> please try verify fees again.
             </div>
         </div>
 
@@ -58,10 +47,34 @@
             </div>
 
             <div class="col-md-4 tool-form-content-buttons text-right pad-left-5">
-                <button class="btn btn-primary" id="verify-fee-submit">Verify</button>
+                <button class="btn btn-danger"  id="verify-fee-reset" >reset</button>
+                <button class="btn btn-primary" id="verify-fee-submit">submit</button>
             </div>
         </div>
         <!--verify fee end-->
+
+        <!--verify service start-->
+        <div class="tool-form-content-input">
+            <h4><strong>verify service</strong></h4>
+        </div>
+        <div class="row">
+
+            <div class="input-group col-md-4 tool-form-content-input pad-right-5">
+                <span class="input-group-addon">start date</span>
+                <input type="text" class="form-control" id="verify-service-start-date" placeholder="">
+            </div>
+
+            <div class="input-group col-md-4 tool-form-content-input pad-left-5 pad-right-5">
+                <span class="input-group-addon">end date</span>
+                <input type="text" class="form-control" id="verify-service-end-date" placeholder="">
+            </div>
+
+            <div class="col-md-4 tool-form-content-buttons text-right pad-left-5">
+                <button class="btn btn-danger" id="verify-service-reset">reset</button>
+                <button class="btn btn-primary" id="verify-service-submit">submit</button>
+            </div>
+        </div>
+        <!--verify service end-->
 
     </div>
 

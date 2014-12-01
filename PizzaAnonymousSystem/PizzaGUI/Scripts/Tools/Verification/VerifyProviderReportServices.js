@@ -1,38 +1,41 @@
 ﻿$(document).ready(function () {
-    document.getElementById("vaildate-service-reset").onclick = vaildateServiceReset;
-    document.getElementById("vaildate-service-submit").onclick = vaildateServiceSubmit;
+    document.getElementById("verify-service-reset").onclick = verifyServiceReset;
+    document.getElementById("verify-service-submit").onclick = verifyServiceSubmit;
     
-    function vaildateMemberReset() {
+    function verifyServiceReset() {
         event.preventDefault();
-        ProviderNumber: $('#Service-Record-ProviderID').val();
+        StartDate: $('#verify-fee-start-date').val("");
+        EndDate: $('#verify-fee-end-date').val("");
     }
     
-    function vaildateServiceSubmit() {
+    function verifyServiceSubmit() {
         event.preventDefault();
     
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/reportmanager/report/providerreport/verification/service',
+            url: 'http://localhost:49890/api/reportmanager/report/providerreport/verification/put/service',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
-                ProviderNumber: $('#Service-Record-ProviderID').val(),
+                ProviderNumber: user.id,
+                StartDate: $('#verify-service-start-date').val(),
+                EndDate: $('#verify-service-end-date').val(),
             }),
     
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#vaildate-service-loader').removeClass("visibility-hidden");
+                $('#verify-service-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#vaildate-service-success').slideToggle(400).delay(3000).slideToggle(400);
-                vaildateServiceReset();
+                $('#verify-service-success').slideToggle(400).delay(3000).slideToggle(400);
+                verifyServiceReset();
             },
             error: function (error) {
-                $('#vaildate-service-error').slideToggle(400).delay(3000).slideToggle(400);
+                $('#verify-service-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#vaildate-service-loader').addClass("visibility-hidden");
+                $('#verify-service-loader').addClass("visibility-hidden");
             }
         });
     }

@@ -58,6 +58,7 @@ namespace PizzaGUI
                         "~/Scripts/Tools/Report/GetWeeklyMemberReport.js",
                         "~/Scripts/Tools/Report/GetWeeklyMemberReports.js",
                         "~/Scripts/Tools/Report/GetWeeklyMemberReportsFile.js",
+                        "~/Scripts/Tools/Report/GetWeeklyPayableReportsFile.js",
                         "~/Scripts/Tools/Report/GetWeeklyProviderReports.js",
                         "~/Scripts/Tools/Report/GetWeeklyProviderReportsFile.js"));
 
