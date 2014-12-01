@@ -81,7 +81,9 @@ namespace PizzaController.Controllers
         [DELETE("api/servicemanager/services/{serviceCode}")]
         public bool DeleteService([FromUri]int serviceCode)
         {
-            return providerDirectory.DeleteService(serviceCode);
+            var success = providerDirectory.DeleteService(serviceCode);
+            if (!success) throw new Exception("unable to delete member.");
+            return success;
         }
 
         [EnableCors("*", "*", "*")]
