@@ -1,16 +1,15 @@
 ﻿
 $(document).ready(function () {
-    document.getElementById("get-one-provider-submit").onclick = getProviderReport;
+    document.getElementById("get-payable-report-submit").onclick = getAccountPayableReport;
     $("#Report-Id").html('');
 
-
-    function getProviderReport() {
+    function getAccountPayableReport() {
         event.preventDefault();
 
         $.ajax({
             type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/reportmanager/reports/oneproviderreport/' + $('#provider-id').val(),
+            url: 'http://localhost:49890/api/reportmanager/reports/accountPayableReport/',
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
             beforeSend: function (xhr) {

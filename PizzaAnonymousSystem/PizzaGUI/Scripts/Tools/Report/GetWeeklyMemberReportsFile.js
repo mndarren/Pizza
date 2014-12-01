@@ -1,6 +1,7 @@
 ﻿
 $(document).ready(function () {
     document.getElementById("get-one-member-submit").onclick = getMemberReport;
+   
 
 
     function getMemberReport() {
@@ -12,6 +13,7 @@ $(document).ready(function () {
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
             beforeSend: function (xhr) {
+                $("#Report-Id").html('No result!');
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 $('#report-loader').removeClass("visibility-hidden");
             },

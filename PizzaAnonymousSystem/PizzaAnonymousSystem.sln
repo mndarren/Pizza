@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaController", "PizzaController\PizzaController.csproj", "{3BEDA8C1-2027-4B7A-B05B-03109C4D0B3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaController.Tests", "PizzaController.Tests\PizzaController.Tests.csproj", "{C1C28F5E-C25C-4AC3-A4F3-A0731F53536F}"
