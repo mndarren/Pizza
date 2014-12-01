@@ -73,7 +73,9 @@ namespace PizzaController.Controllers
         [POST("api/servicemanager/put/services/")]
         public Service UpdateService([FromBody]Service newService)
         {
-            return providerDirectory.UpdateService(newService);
+            var success = providerDirectory.UpdateService(newService);
+            if (null != success) throw new Exception("unable to delete member.");
+            return success;
         }
 
         [EnableCors("*", "*", "*")]
