@@ -40,7 +40,9 @@ $(document).ready(function () {
                 $('#update-provider-success').slideToggle(400).delay(3000).slideToggle(400);
                 updateProviderReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#update-provider-error-message').html(response.Message);
                 $('#update-provider-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

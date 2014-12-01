@@ -23,6 +23,7 @@ namespace PizzaCommon.Tools
 
             if (person.StreetAddress !="" && (person.StreetAddress.Length > 25 || !Regex.IsMatch(person.StreetAddress, addressRegex)))
                 exceptions += "newPerson street address is wrong (<25 characters, & no special characters)";
+            if (person.Name == "") exceptions += "newPerson name can not be null";
             if (person.Name !="" && (person.Name.Length > 25 || !Regex.IsMatch(person.Name, nameRegex)))
                 exceptions += "newPerson name is wrong (<25 characters, & no special characters)";
             if (person.City != "" && (person.City.Length > 14 || !Regex.IsMatch(person.City, cityRegex)))
