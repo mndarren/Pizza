@@ -154,7 +154,7 @@ namespace PizzaController.Controllers
         public Boolean DeleteProvider([FromUri]int providerID)
         {
             var success = providerList.DeleteProvider(providerID);
-            if (!success) throw new Exception("unable to delete member.");
+            if (!success) throw new Exception("unable to delete provider.");
             return success;
         }
 
@@ -196,21 +196,7 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/manager")]
         public int? AddManager([FromBody]Manager manager)
         {
-            var managerId = new int?();
-            try
-            {
-                managerId = managerList.InsertManager(manager);
-            }
-            catch (Exception e)
-            {
-                managerId = null;
-                var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
-            }
-
-            return managerId;
-
+            return managerList.InsertManager(manager);
         }
 
         [EnableCors("*", "*", "*")]
@@ -219,7 +205,7 @@ namespace PizzaController.Controllers
         public Boolean DeleteManager([FromUri]int managerID)
         {
             var success = managerList.DeleteManager(managerID);
-            if (!success) throw new Exception("unable to delete member.");
+            if (!success) throw new Exception("unable to delete manager.");
             return success;
         }
 
@@ -236,21 +222,10 @@ namespace PizzaController.Controllers
             string state = manager.State;
             string ZIPcode = manager.ZipCode;
 
-            var result = new Manager();
-            try
-            {
-                result = managerList.UpdateManager(name, ID, streetAddress,
+            var success = managerList.UpdateManager(name, ID, streetAddress,
                                      city, state, ZIPcode);
-    
-            }
-            catch (Exception e)
-            {
-                result = null;
-                var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
-            }
-            return result;
+            if (null != success) throw new Exception("unable to update manager.");
+            return success;
         }
 
         /**********************
@@ -270,7 +245,7 @@ namespace PizzaController.Controllers
         public Boolean DeleteAdmin([FromUri]int adminID)
         {
             var success = adminList.DeleteAdmin(adminID);
-            if (!success) throw new Exception("unable to delete member.");
+            if (!success) throw new Exception("unable to delete admin.");
             return success;
         }
 
@@ -287,7 +262,9 @@ namespace PizzaController.Controllers
             string state = admin.State;
             string ZIPcode = admin.ZipCode;
 
-            return adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
+            var success = adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
+            if (null != success) throw new Exception("unable to update admin.");
+            return success;
         }
         
         /*************************************

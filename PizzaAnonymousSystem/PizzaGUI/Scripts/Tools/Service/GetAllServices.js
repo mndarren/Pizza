@@ -30,7 +30,9 @@ $(document).ready(function () {
                         });
                     });
                 },
-                error: function (error) {
+                error: function (jqXHR, status, error) {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#get-all-services-error-message').html(response.Message);
                     $('#get-all-services-error').slideToggle(400).delay(3000).slideToggle(400);
                 },
                 complete: function () {

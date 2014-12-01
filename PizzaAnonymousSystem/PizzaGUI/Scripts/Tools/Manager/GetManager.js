@@ -30,7 +30,9 @@ $(document).ready(function () {
                 $('#get-manager-state').html(data.State.toString());
                 $('#get-manager-zip').html(data.ZipCode.toString());
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#get-manager-error-message').html(response.Message);
                 $('#get-manager-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
