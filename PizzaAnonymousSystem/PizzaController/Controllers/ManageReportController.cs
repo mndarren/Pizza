@@ -377,7 +377,6 @@ namespace PizzaController.Controllers
 
                                 ProviderReport providerReport = new ProviderReport();
                                 String fileName;
-                                //if (_nowTime.Equals(_schTime))
                                 _nowTime = _nowTime.Replace(":", "_");
 
                                 fileName = "Provider_" + provider.Name + "_" + _nowTime + ".txt";
@@ -468,8 +467,6 @@ namespace PizzaController.Controllers
                     List<Provider> providers = providerList.GetAllProviders();
                     if (providers != null)
                     {
-
-
                         fileName = "EFT_" + _nowTime + ".txt";
                         int providerNum = 0;
                         decimal totalFee = 0;
