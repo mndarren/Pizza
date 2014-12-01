@@ -608,7 +608,7 @@ namespace PizzaController.Controllers
 
         [EnableCors("*", "*", "*")]
         [HttpPost]
-        [POST("api/reportmanager/report/providerreport/verification/service")]
+        [POST("api/reportmanager/report/providerreport/verification/put/service")]
         public bool VerifyProviderReportServices
             (int providerID, DateTime startDate, DateTime endDate)
         {
@@ -635,7 +635,7 @@ namespace PizzaController.Controllers
 
         [EnableCors("*", "*", "*")]
         [HttpPost]
-        [POST("api/reportmanager/report/providerreport/verification/fee")]
+        [POST("api/reportmanager/report/providerreport/verification/put/fee")]
         public bool VerifyProviderReportFees
             (int providerID, DateTime startDate, DateTime endDate)
         {
