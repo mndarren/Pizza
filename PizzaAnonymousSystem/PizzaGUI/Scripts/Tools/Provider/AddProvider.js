@@ -38,7 +38,9 @@ $(document).ready(function () {
                 $('#add-provider-success').slideToggle(400).delay(3000).slideToggle(400);
                 addProviderReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#add-provider-error-message').html(response.Message);
                 $('#add-provider-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
