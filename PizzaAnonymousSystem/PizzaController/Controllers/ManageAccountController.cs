@@ -79,6 +79,7 @@ namespace PizzaController.Controllers
             try
             {
                 success = memberList.DeleteMember(memberID);
+                if (!success) throw new Exception("unable to delete member.");
             }
             catch (Exception e)
             {
@@ -152,7 +153,9 @@ namespace PizzaController.Controllers
         [DELETE("api/accountmanager/account/provider/{providerID}")]
         public Boolean DeleteProvider([FromUri]int providerID)
         {
-            return providerList.DeleteProvider(providerID);
+            var success = providerList.DeleteProvider(providerID);
+            if (!success) throw new Exception("unable to delete member.");
+            return success;
         }
 
         [EnableCors("*", "*", "*")]
@@ -201,7 +204,9 @@ namespace PizzaController.Controllers
         [DELETE("api/accountmanager/account/manager/{managerID}")]
         public Boolean DeleteManager([FromUri]int managerID)
         {
-            return managerList.DeleteManager(managerID);
+            var success = managerList.DeleteManager(managerID);
+            if (!success) throw new Exception("unable to delete member.");
+            return success;
         }
 
         [EnableCors("*", "*", "*")]
@@ -237,7 +242,9 @@ namespace PizzaController.Controllers
         [DELETE("api/accountmanager/account/admin/{adminID}")]
         public Boolean DeleteAdmin([FromUri]int adminID)
         {
-            return adminList.DeleteAdmin(adminID);
+            var success = adminList.DeleteAdmin(adminID);
+            if (!success) throw new Exception("unable to delete member.");
+            return success;
         }
 
         [EnableCors("*", "*", "*")]
