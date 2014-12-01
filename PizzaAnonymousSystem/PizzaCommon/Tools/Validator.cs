@@ -9,8 +9,12 @@ using System.Text.RegularExpressions;
 
 namespace PizzaCommon.Tools
 {
+  
     public static class Validator
     {
+        public static Boolean OnlyRunOnceFlagForEFT = true;
+        public static Boolean OnlyRunOnceFlagForMember = true;
+        public static Boolean OnlyRunOnceFlagForProvider = true;
         private const string nameRegex = @"^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$";
         private const string addressRegex = @"[A-Za-z0-9'\.\-\s\,]";
         private const string cityRegex = @"^[a-zA-Z ,.'-]+$";

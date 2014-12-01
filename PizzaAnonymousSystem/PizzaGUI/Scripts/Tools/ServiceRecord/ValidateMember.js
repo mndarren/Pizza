@@ -21,7 +21,7 @@
                 $('#add-service-record-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#add-service-record-success').slideToggle(400).delay(3000).slideToggle(400);
+                //$('#add-service-record-success').slideToggle(400).delay(3000).slideToggle(400);
                 $('#validate-member-status').html(data);
 
                 if (data.toString() == "VALID") {

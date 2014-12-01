@@ -62,16 +62,21 @@ namespace PizzaRepository.ListClass
                 var pizzDB = new Entity.PizzaDBEntities();
                 AppDomain.CurrentDomain.SetData("DataDirectory", PathFactory.DatabasePath());
 
-                if (_serviceRecord != null)
+                var find = pizzDB.Services.Where(node =>node.ServiceCode == _serviceRecord.ServiceCode).FirstOrDefault();
+                if (find != null)
                 {
-                    var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == _serviceRecord.ID).FirstOrDefault();
-                    if (tempRecord == null)
+                    if (_serviceRecord != null)
                     {
-                        _serviceRecord.TimeStamp = DateTime.Now;
-                        var eServiceRecord = MapRecordToEntity(_serviceRecord);
-                        pizzDB.ServiceRecords.Add(eServiceRecord);
-                        pizzDB.SaveChanges();
-                        serviceRecordId = eServiceRecord.ID;
+                        var tempRecord = pizzDB.ServiceRecords.Where(node => node.ID == _serviceRecord.ID).FirstOrDefault();
+                        if (tempRecord == null)
+                        {
+                            _serviceRecord.TimeStamp = DateTime.Now;
+                            var eServiceRecord = MapRecordToEntity(_serviceRecord);
+                            pizzDB.ServiceRecords.Add(eServiceRecord);
+                            pizzDB.SaveChanges();
+                            serviceRecordId = eServiceRecord.ID;
+                        }
+                        else serviceRecordId = new int?();
                     }
                     else serviceRecordId = new int?();
                 }

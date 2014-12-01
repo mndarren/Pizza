@@ -57,7 +57,23 @@ namespace PizzaController.Controllers
         [POST("api/servicemanager/servicerecords/")]
         public int? AddServiceRecord([FromBody]ServiceRecord newServiceRecord) 
         {
-            return serviceRecordList.InsertServiceRecord(newServiceRecord);
+            var serviceRecordId = new int?();
+
+            try
+            {
+                serviceRecordId = serviceRecordList.InsertServiceRecord(newServiceRecord);
+                if (serviceRecordId == null) throw new Exception("Enable add service record!");
+            }
+            catch (Exception e)
+            {
+                serviceRecordId = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return serviceRecordId;
+
         }
 
         [EnableCors("*", "*", "*")]

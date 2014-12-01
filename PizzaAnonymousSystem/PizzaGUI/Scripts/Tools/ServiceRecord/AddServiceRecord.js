@@ -4,10 +4,12 @@
 
     function addRecordReset() {
         event.preventDefault();
-        MemberNumber: $('#add-service-record-member-id').val();
-        ServiceCode: $('#add-service-record-service-cod').val();
-        DateProvided: $('#add-service-record-date').val();
-        Comments: $('#add-service-record-comments').val();
+        MemberNumber: $('#add-service-record-member-id').val("");
+        ServiceCode: $('#add-service-record-service-code').val("");
+        DateProvided: $('#add-service-record-date').val("");
+        Comments: $('#add-service-record-comments').val("");
+        $('#validate-member-status').addClass('visibility-hidden');
+        $('#add-service-record-submit').attr("disabled", "disabled");
     }
 
     function addRecordSubmit() {
@@ -29,19 +31,19 @@
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#add-record-loader').removeClass("visibility-hidden");
+                $('#add-service-record-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#add-record-success').slideToggle(400).delay(3000).slideToggle(400);
+                $('#add-service-record-success').slideToggle(400).delay(3000).slideToggle(400);
                 addRecordReset();
             },
             error: function (jqXHR, status, error) {
                 var response = jQuery.parseJSON(jqXHR.responseText);
                 $('#add-service-record-error-message').html(response.Message);
-                $('#add-record-error').slideToggle(400).delay(3000).slideToggle(400);
+                $('#add-service-record-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#add-record-loader').addClass("visibility-hidden");
+                $('#add-service-record-loader').addClass("visibility-hidden");
             }
         });
     }
