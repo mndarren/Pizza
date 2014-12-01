@@ -59,7 +59,7 @@ namespace PizzaController.Controllers
                     Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
 
-            return memberList.InsertMember(member);
+            return memberId;
         }
 
         [EnableCors("*", "*", "*")]
@@ -123,7 +123,21 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/provider")]
         public int? AddProvider([FromBody]Provider provider)
         {
-            return providerList.AddProvider(provider);
+            var result = new int?();
+            try
+            {
+                result = providerList.AddProvider(provider);
+                if (null == result) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "provider not found"));
+            }
+            catch (Exception e)
+            {
+                result = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
         }
 
         [EnableCors("*", "*", "*")]
@@ -148,7 +162,20 @@ namespace PizzaController.Controllers
             string ZIPcode = provider.ZipCode;
             long bankAccount = provider.BankAccount;
 
-            var result = providerList.UpdateProvider(name,ID,streetAddress,city,state,ZIPcode,bankAccount);
+            var result = new Provider();
+            try
+            {
+                result = providerList.UpdateProvider(name, ID, streetAddress, city, state, ZIPcode, bankAccount);
+                if (null == result) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "provider not found"));
+            }
+            catch (Exception e)
+            {
+                result = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
             return result;
         }
         /********************************
