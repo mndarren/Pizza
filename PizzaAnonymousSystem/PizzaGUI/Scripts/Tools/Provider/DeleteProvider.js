@@ -25,7 +25,9 @@ $(document).ready(function () {
                 $('#delete-provider-success').slideToggle(400).delay(3000).slideToggle(400);
                 deleteProviderReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#delete-provider-error-message').html(response.Message);
                 $('#delete-provider-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

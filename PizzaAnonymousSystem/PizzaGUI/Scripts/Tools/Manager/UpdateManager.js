@@ -37,7 +37,9 @@ $(document).ready(function () {
                 $('#update-manager-success').slideToggle(400).delay(3000).slideToggle(400);
                 updateManagerReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#update-manager-error-message').html(response.Message);
                 $('#update-manager-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
