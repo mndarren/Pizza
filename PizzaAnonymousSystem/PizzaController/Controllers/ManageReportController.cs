@@ -616,9 +616,9 @@ namespace PizzaController.Controllers
             {
                 if (null != input)
                 {
-                    if (null != providerList.GetProvider(input.ProviderID))
+                    if (null != providerList.GetProvider(input.ProviderNumber))
                     {
-                        success = serviceRecordList.VerifyServiceRecords(input.ProviderID,
+                        success = serviceRecordList.VerifyServiceRecords(input.ProviderNumber,
                             input.StartDate, input.EndDate, null, true);
                     }
                     else throw new Exception("invalid provider");
@@ -646,9 +646,9 @@ namespace PizzaController.Controllers
             {
                 if (null != input)
                 {
-                    if (null != providerList.GetProvider(input.ProviderID))
+                    if (null != providerList.GetProvider(input.ProviderNumber))
                     {
-                        success = serviceRecordList.VerifyServiceRecords(input.ProviderID,
+                        success = serviceRecordList.VerifyServiceRecords(input.ProviderNumber,
                             input.StartDate, input.EndDate, true, null);
                     }
                     else throw new Exception("invalid provider");
