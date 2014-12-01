@@ -271,12 +271,12 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/validation/member/{memberID}")]
         public string ValidateMember([FromUri]int memberID){
             var member = memberList.GetMember(memberID);
-            if (member == null) return "Invalid!";
+            if (member == null) return "MEMBER NOT FOUND";
             if (member.Status == MemberStatus.ACCEPTED) { return "VALID"; }
             else if (member.Status == MemberStatus.INVALID) { return "INVALID"; }
             else if (member.Status == MemberStatus.SUSPENDED) { return "SUSPENDED"; }
             else throw new HttpResponseException(
-                Request.CreateErrorResponse(HttpStatusCode.NotFound, "member not found"));
+                Request.CreateErrorResponse(HttpStatusCode.NotFound, "MEMBER NOT FOUND"));
         }
 
 
