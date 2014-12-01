@@ -4,8 +4,8 @@
     
     function verifyServiceReset() {
         event.preventDefault();
-        StartDate: $('#verify-fee-start-date');
-        EndDate: $('#verify-fee-end-date');
+        StartDate: $('#verify-fee-start-date').val("");
+        EndDate: $('#verify-fee-end-date').val("");
     }
     
     function verifyServiceSubmit() {
@@ -18,8 +18,8 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 ProviderNumber: user.id,
-                StartDate: $('#verify-service-start-date'),
-                EndDate: $('#verify-service-end-date'),
+                StartDate: $('#verify-service-start-date').val(),
+                EndDate: $('#verify-service-end-date').val(),
             }),
     
             dataType: "json",
