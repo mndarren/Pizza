@@ -20,6 +20,7 @@ using PizzaModels.Models;
 using System.Web.Http.Cors;
 using System.Web.Http.Controllers;
 using PizzaCommon.Tools;
+using PizzaController.Models;
 
 namespace PizzaController.Controllers
 {
@@ -609,19 +610,22 @@ namespace PizzaController.Controllers
         [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/reportmanager/report/providerreport/verification/put/service")]
-        public bool VerifyProviderReportServices
-            (int providerID, DateTime startDate, DateTime endDate)
+        public bool VerifyProviderReportServices([FromBody]VerifyReportViewModel input)
         {
             bool success = false;
 
             try
             {
-                if (null != providerList.GetProvider(providerID))
+                if (null != input)
                 {
-                    success = serviceRecordList.VerifyServiceRecords(providerID,
-                        startDate, endDate, null, true);
+                    if (null != providerList.GetProvider(input.ProviderID))
+                    {
+                        success = serviceRecordList.VerifyServiceRecords(input.ProviderID,
+                            input.StartDate, input.EndDate, null, true);
+                    }
+                    else throw new Exception("invalid provider");
                 }
-                else throw new Exception("invalid provider");
+                else throw new Exception("invalid input");
             }
             catch (Exception e)
             {
@@ -636,19 +640,22 @@ namespace PizzaController.Controllers
         [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/reportmanager/report/providerreport/verification/put/fee")]
-        public bool VerifyProviderReportFees
-            (int providerID, DateTime startDate, DateTime endDate)
+        public bool VerifyProviderReportFees([FromBody]VerifyReportViewModel input)
         {
             bool success = false;
 
             try
             {
-                if (null != providerList.GetProvider(providerID))
+                if (null != input)
                 {
-                    success = serviceRecordList.VerifyServiceRecords(providerID,
-                        startDate, endDate, true, null);
+                    if (null != providerList.GetProvider(input.ProviderID))
+                    {
+                        success = serviceRecordList.VerifyServiceRecords(input.ProviderID,
+                            input.StartDate, input.EndDate, true, null);
+                    }
+                    else throw new Exception("invalid provider");
                 }
-                else throw new Exception("invalid provider");
+                else throw new Exception("invalid input");
             }
             catch (Exception e)
             {

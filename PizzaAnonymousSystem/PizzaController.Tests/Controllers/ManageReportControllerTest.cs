@@ -7,6 +7,7 @@ using PizzaModels.Report;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PizzaModels.Models;
 using PizzaModels.Constants;
+using PizzaController.Models;
 
 namespace PizzaController.Tests.Controllers
 {
@@ -175,7 +176,8 @@ namespace PizzaController.Tests.Controllers
             Assert.IsTrue(newServiceRecordId.HasValue, "unable to add service record");
 
             var serviceVerified = true;
-            var success = reportController.VerifyProviderReportServices(newProviderId.Value, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(1));
+            var verifyReportInput = new VerifyReportViewModel(newProviderId.Value, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(1));
+            var success = reportController.VerifyProviderReportServices(verifyReportInput);
 
             var serviceRecord = serviceController.GetServiceRecord(newServiceRecordId.Value);
 
@@ -234,7 +236,8 @@ namespace PizzaController.Tests.Controllers
             Assert.IsTrue(newServiceRecordId.HasValue, "unable to add service record");
 
             var feeVerified = true;
-            var success = reportController.VerifyProviderReportFees(newProviderId.Value, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(1));
+            var verifyReportInput = new VerifyReportViewModel(newProviderId.Value, DateTime.Today.AddDays(-2), DateTime.Today.AddDays(1));
+            var success = reportController.VerifyProviderReportFees(verifyReportInput);
 
             var serviceRecord = serviceController.GetServiceRecord(newServiceRecordId.Value);
 
