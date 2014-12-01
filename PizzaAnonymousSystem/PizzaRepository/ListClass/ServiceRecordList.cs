@@ -120,15 +120,21 @@ namespace PizzaRepository.ListClass
                 if (null == startDate) startDate = DateTime.Today;
                 if (null == endDate) endDate = DateTime.Today.AddDays(1);
 
+                if (startDate > endDate) throw new Exception("start date cannot exceed end date.");
+
+                var counter = 0;
                 foreach (var eServiceRecord in pizzDB.ServiceRecords
                     .Where(sr => sr.DateProvided >= startDate
                         && sr.DateProvided <= endDate && sr.ProviderID == providerID))
                 {
                     if (verifyService.HasValue) eServiceRecord.ServiceVerified = verifyService.Value;
                     if (verifyFee.HasValue) eServiceRecord.FeeVerified = verifyFee.Value;
+                    counter++;
                 }
                 pizzDB.SaveChanges();
 
+                if (counter == 0) throw new Exception("no service record available");
+                
                 success = true;
             }
             catch (Exception e)
