@@ -196,7 +196,21 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/manager")]
         public int? AddManager([FromBody]Manager manager)
         {
-            return managerList.InsertManager(manager);
+            var managerId = new int?();
+            try
+            {
+                managerId = managerList.InsertManager(manager);
+            }
+            catch (Exception e)
+            {
+                managerId = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return managerId;
+
         }
 
         [EnableCors("*", "*", "*")]
@@ -222,8 +236,21 @@ namespace PizzaController.Controllers
             string state = manager.State;
             string ZIPcode = manager.ZipCode;
 
-            return managerList.UpdateManager(name, ID, streetAddress,
+            var result = new Manager();
+            try
+            {
+                result = managerList.UpdateManager(name, ID, streetAddress,
                                      city, state, ZIPcode);
+    
+            }
+            catch (Exception e)
+            {
+                result = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
         }
 
         /**********************
