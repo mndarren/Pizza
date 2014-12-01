@@ -81,7 +81,9 @@ namespace PizzaController.Controllers
         [POST("api/servicemanager/services/")]
         public int? AddService([FromBody]Service newService)
         {
-            return providerDirectory.AddService(newService);
+            try { return providerDirectory.AddService(newService); }
+            catch (Exception e)
+            {  throw new HttpRequestException(e.Message);}
         }
 
         [EnableCors("*", "*", "*")]
@@ -89,9 +91,21 @@ namespace PizzaController.Controllers
         [POST("api/servicemanager/put/services/")]
         public Service UpdateService([FromBody]Service newService)
         {
-            var success = providerDirectory.UpdateService(newService);
-            if (null != success) throw new Exception("unable to delete member.");
-            return success;
+            var result = new Service();
+            try
+            {
+                result = providerDirectory.UpdateService(newService);
+                if (null == result) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "service not found"));
+            }
+            catch (Exception e)
+            {
+                result = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
         }
 
         [EnableCors("*", "*", "*")]
