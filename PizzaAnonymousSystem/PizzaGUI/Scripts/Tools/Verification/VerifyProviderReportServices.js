@@ -4,8 +4,8 @@
     
     function verifyServiceReset() {
         event.preventDefault();
-        StartDate: $('#verify-fee-start-date').val("");
-        EndDate: $('#verify-fee-end-date').val("");
+        StartDate: $('#verify-service-start-date').val("");
+        EndDate: $('#verify-service-end-date').val("");
     }
     
     function verifyServiceSubmit() {
@@ -25,17 +25,19 @@
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#verify-service-loader').removeClass("visibility-hidden");
+                $('#verify-report-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#verify-service-success').slideToggle(400).delay(3000).slideToggle(400);
+                $('#verify-services-success').slideToggle(400).delay(3000).slideToggle(400);
                 verifyServiceReset();
             },
-            error: function (error) {
-                $('#verify-service-error').slideToggle(400).delay(3000).slideToggle(400);
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#verify-services-error-message').html(response.Message);
+                $('#verify-services-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#verify-service-loader').addClass("visibility-hidden");
+                $('#verify-report-loader').addClass("visibility-hidden");
             }
         });
     }
