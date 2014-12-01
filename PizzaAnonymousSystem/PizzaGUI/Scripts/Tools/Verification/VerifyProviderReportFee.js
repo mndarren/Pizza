@@ -1,14 +1,14 @@
 ﻿$(document).ready(function () {
-    document.getElementById("vaildate-fee-reset").onclick = vaildateFeeReset;
-    document.getElementById("vaildate-fee-submit").onclick = vaildateFeeSubmit;
+    document.getElementById("verify-fee-reset").onclick = verifyFeeReset;
+    document.getElementById("verify-fee-submit").onclick = verifyFeeSubmit;
     
-    function vaildateFeeReset() {
+    function verifyFeeReset() {
         event.preventDefault();
-        StartDate: $('#verify-fee-start-date');
-        EndDate:$('#verify-fee-end-date');
+        StartDate: $('#verify-fee-start-date').val("");
+        EndDate:$('#verify-fee-end-date').val("");
     }
     
-    function vaildateFeeSubmit() {
+    function verifyFeeSubmit() {
         event.preventDefault();
     
         $.ajax({
@@ -18,24 +18,24 @@
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
                 ProviderNumber: user.id,
-                StartDate: $('#verify-fee-start-date'),
-                EndDate:$('#verify-fee-end-date'),
+                StartDate: $('#verify-fee-start-date').val(),
+                EndDate:$('#verify-fee-end-date').val(),
             }),
     
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#vaildate-fee-loader').removeClass("visibility-hidden");
+                $('#verify-report-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#vaildate-fee-success').slideToggle(400).delay(3000).slideToggle(400);
-                vaildateFeeReset();
+                $('#verify-fee-success').slideToggle(400).delay(3000).slideToggle(400);
+                verifyFeeReset();
             },
             error: function (error) {
-                $('#vaildate-fee-error').slideToggle(400).delay(3000).slideToggle(400);
+                $('#verify-fee-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#vaildate-fee-loader').addClass("visibility-hidden");
+                $('#verify-report-loader').addClass("visibility-hidden");
             }
         });
     }

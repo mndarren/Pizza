@@ -45,11 +45,11 @@ namespace PizzaController.Controllers
         }
 
         [EnableCors("*", "*", "*")]
-        [HttpGet]
-        [GET("api/reportmanager/reports/accountPayableReport")]
-        public int GetAccountPayableReport()
+        [HttpPost]
+        [POST("api/reportmanager/reports/accountPayableReport")]
+        public string GetAccountPayableReport()
         {
-            int result = 0;//0: success, 1: member is null, 2: serveList is null
+            String result = ""; //0: success, 1: member is null, 2: serveList is null
             List<AccountPayableReport> eftReports = new List<AccountPayableReport>();
             try
             {
@@ -70,19 +70,17 @@ namespace PizzaController.Controllers
                     _nowTime = _nowTime.Replace(":", "_");
                     //while(true)
                     if (true)
-                    {
-                        fileName = "Account_Payable_" + _nowTime + ".txt";
+                    {                  
                         int providerNum = 0;
                         decimal totalFee = 0;
-                        using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
-                        {
-                            file.WriteLine("----------------------Account Payable Report--------------------");
+
+                           result +="----------------------Account Payable Report--------------------<br/>";
                             foreach (Provider provider in providers)
                             {
                                 providerNum++;
                                 int serviceNum = 0;
                                 decimal sumFee = 0;
-                                file.WriteLine("Provider Name: " + provider.Name);
+                                result +="Provider Name: " + provider.Name + "<br/>";
 
                                 List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
                                 if (serveList != null)
@@ -94,31 +92,31 @@ namespace PizzaController.Controllers
                                         Service service = providerDirectory.GetService(serviceCode);
                                         if (service != null)
                                         {
-                                            file.WriteLine("Service Name: " + service.ServiceName);
-                                            file.WriteLine("Service fee: " + service.ServiceFee);
+                                           result += "Service Name: " + service.ServiceName+ "<br/>";
+                                           result += "Service fee: " + service.ServiceFee + "<br/>";
                                             sumFee += service.ServiceFee;
                                         }
                                         else
                                         {
-                                            result = 3;//service is null
+                                            result += "<br/>service is null<br/>";
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    result = 2;//service list is null
+                                    result += "<br/>service list is null.<br/>";
                                 }
-                                file.WriteLine("\nThe sum of fee for this provider: " + sumFee);
-                                file.WriteLine("The number of the services: " + serviceNum);
+                                result +="The sum of fee for this provider: " + sumFee + "<br/>";
+                                result +="The number of the services: " + serviceNum + "<br/>";
                                 totalFee += sumFee;
                             }
-                            file.WriteLine("\nThe total fee of all providers: " + totalFee);
-                            file.WriteLine("The number of the providers: " + providerNum);
-                            file.WriteLine("\n");
-                        }
-                    }
+                            result +="The total fee of all providers: " + totalFee+ "<br/>";
+                            result += "The number of the providers: " + providerNum + "<br/>";
+                            result += "<br/><br/>";
+                           
+                        }              
                 }
-                else result = 1; //providers = null;
+                else result += "<br/>providers are null.<br/>"; //providers = null;
             }
             catch (Exception e)
             {
@@ -179,10 +177,10 @@ namespace PizzaController.Controllers
                         }
                     }
                     else
-                        result = "<br />serveList is null<br />";
+                        result += "<br />serveList is null<br />";
 
                 }
-                else result = "<br />member is null<br />";
+                else result += "<br />member is null<br />";
             }
             catch (Exception e)
             {
@@ -331,10 +329,10 @@ namespace PizzaController.Controllers
                     }
                     else
                     {
-                        result = "<br />serveList is null<br />";
+                        result += "<br />serveList is null<br />";
                     }
                 }
-                else result = "<br />provider is null<br />";
+                else result += "<br />provider is null<br />";
 
             }
             catch (Exception e)
@@ -618,9 +616,9 @@ namespace PizzaController.Controllers
             {
                 if (null != input)
                 {
-                    if (null != providerList.GetProvider(input.ProviderID))
+                    if (null != providerList.GetProvider(input.ProviderNumber))
                     {
-                        success = serviceRecordList.VerifyServiceRecords(input.ProviderID,
+                        success = serviceRecordList.VerifyServiceRecords(input.ProviderNumber,
                             input.StartDate, input.EndDate, null, true);
                     }
                     else throw new Exception("invalid provider");
@@ -648,9 +646,9 @@ namespace PizzaController.Controllers
             {
                 if (null != input)
                 {
-                    if (null != providerList.GetProvider(input.ProviderID))
+                    if (null != providerList.GetProvider(input.ProviderNumber))
                     {
-                        success = serviceRecordList.VerifyServiceRecords(input.ProviderID,
+                        success = serviceRecordList.VerifyServiceRecords(input.ProviderNumber,
                             input.StartDate, input.EndDate, true, null);
                     }
                     else throw new Exception("invalid provider");

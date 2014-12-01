@@ -1,6 +1,7 @@
 ﻿
 $(document).ready(function () {
     document.getElementById("get-eft-report-submit").onclick = getEFTReport;
+    $("#Report-Id").html('');
 
 
     function getEFTReport() {
@@ -14,6 +15,7 @@ $(document).ready(function () {
             data: null,
             dataType: "json",
             beforeSend: function (xhr) {
+                $("#Report-Id").html('No result!');
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 $('#report-loader').removeClass("visibility-hidden");
             },
