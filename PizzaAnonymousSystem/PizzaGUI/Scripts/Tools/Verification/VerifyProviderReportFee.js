@@ -4,19 +4,22 @@
     
     function vaildateFeeReset() {
         event.preventDefault();
-        ProviderNumber: $('#Service-Record-ProviderID').val();
+        StartDate: $('#verify-fee-start-date');
+        EndDate:$('#verify-fee-end-date');
     }
     
     function vaildateFeeSubmit() {
         event.preventDefault();
     
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             crossDomain: true,
-            url: 'http://localhost:49890/api/reportmanager/report/providerreport/verification/fee',
+            url: 'http://localhost:49890/api/reportmanager/report/providerreport/verification/put/fee',
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
-                ProviderNumber: $('#Service-Record-ProviderID').val(),
+                ProviderNumber: user.id,
+                StartDate: $('#verify-fee-start-date'),
+                EndDate:$('#verify-fee-end-date'),
             }),
     
             dataType: "json",

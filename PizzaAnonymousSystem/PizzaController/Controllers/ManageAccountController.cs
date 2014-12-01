@@ -1,4 +1,11 @@
-﻿using AttributeRouting.Web.Http;
+﻿/**
+ *@Author: Cheng Luo
+ *@Date:11/5/2014
+ *@File: ManageAccountController.cs
+ *@Description: management all account for the system
+*/
+
+using AttributeRouting.Web.Http;
 using PizzaRepository.ListInterface;
 using System;
 using System.Collections.Generic;
