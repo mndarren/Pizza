@@ -68,53 +68,51 @@ namespace PizzaController.Controllers
                     String fileName;
                     //if (_nowTime.Equals(_schTime))
                     _nowTime = _nowTime.Replace(":", "_");
-                    //while(true)
-                    if (true)
+
+                    int providerNum = 0;
+                    decimal totalFee = 0;
+
+                    result += "----------------------Account Payable Report--------------------<br/>";
+                    foreach (Provider provider in providers)
                     {
-                        int providerNum = 0;
-                        decimal totalFee = 0;
+                        providerNum++;
+                        int serviceNum = 0;
+                        decimal sumFee = 0;
+                        result += "Provider Name: " + provider.Name + "<br/>";
 
-                        result += "----------------------Account Payable Report--------------------<br/>";
-                        foreach (Provider provider in providers)
+                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
+                        if (serveList != null)
                         {
-                            providerNum++;
-                            int serviceNum = 0;
-                            decimal sumFee = 0;
-                            result += "Provider Name: " + provider.Name + "<br/>";
-
-                            List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
-                            if (serveList != null)
+                            foreach (ServiceRecord s in serveList)
                             {
-                                foreach (ServiceRecord s in serveList)
+                                serviceNum++;
+                                int serviceCode = s.ServiceCode;
+                                Service service = providerDirectory.GetService(serviceCode);
+                                if (service != null)
                                 {
-                                    serviceNum++;
-                                    int serviceCode = s.ServiceCode;
-                                    Service service = providerDirectory.GetService(serviceCode);
-                                    if (service != null)
-                                    {
-                                        result += "Service Name: " + service.ServiceName + "<br/>";
-                                        result += "Service fee: " + service.ServiceFee + "<br/>";
-                                        sumFee += service.ServiceFee;
-                                    }
-                                    else
-                                    {
-                                        result += "<br/>service is null<br/>";
-                                    }
+                                    result += "Service Name: " + service.ServiceName + "<br/>";
+                                    result += "Service fee: " + service.ServiceFee + "<br/>";
+                                    sumFee += service.ServiceFee;
+                                }
+                                else
+                                {
+                                    result += "<br/>service is null<br/>";
                                 }
                             }
-                            else
-                            {
-                                result += "<br/>service list is null.<br/>";
-                            }
-                            result += "The sum of fee for this provider: " + sumFee + "<br/>";
-                            result += "The number of the services: " + serviceNum + "<br/>";
-                            totalFee += sumFee;
-
-                            result += "<br/>-------------------------------<br/>";
                         }
-                        result += "The total fee of all providers: " + totalFee + "<br/>";
-                        result += "The number of the providers: " + providerNum + "<br/>";
+                        else
+                        {
+                            result += "<br/>service list is null.<br/>";
+                        }
+                        result += "The sum of fee for this provider: " + sumFee + "<br/>";
+                        result += "The number of the services: " + serviceNum + "<br/>";
+                        totalFee += sumFee;
+
+                        result += "<br/>-------------------------------<br/>";
                     }
+                    result += "The total fee of all providers: " + totalFee + "<br/>";
+                    result += "The number of the providers: " + providerNum + "<br/>";
+
                 }
                 else result += "<br/>providers are null.<br/>"; //providers = null;
             }
@@ -224,56 +222,54 @@ namespace PizzaController.Controllers
                                 memberReports.Add(memberReport);
                                 String fileName;
                                 _nowTime = _nowTime.Replace(":", "_");
-                                if (true)
-                                {
-                                    fileName = "Member_" + _member.Name + "_" + _nowTime + ".txt";
-                                    string _status = "";
-                                    // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
-                                    {
-                                        file.WriteLine("----------------------Member Report--------------------");
-                                        file.WriteLine("Member ID: " + _member.ID);
-                                        file.WriteLine("Member Name: " + _member.Name);
-                                        file.WriteLine("State: " + _member.State);
-                                        file.WriteLine("Street Address: " + _member.StreetAddress);
-                                        file.WriteLine("Zipcode: " + _member.ZipCode);
-                                        if (_member.Status == 0)
-                                            _status = "Accepted";
-                                        else if (_member.Status == 2)
-                                            _status = "Suspened";
-                                        else
-                                            _status = "Invalid";
-                                        file.WriteLine("Status: " + _status);
 
-                                        List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
-                                        if (serveList != null)
+                                fileName = "Member_" + _member.Name + "_" + _nowTime + ".txt";
+                                string _status = "";
+                                // System.IO.File.WriteAllText(@"WriteText.txt", text);
+                                using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
+                                {
+                                    file.WriteLine("----------------------Member Report--------------------");
+                                    file.WriteLine("Member ID: " + _member.ID);
+                                    file.WriteLine("Member Name: " + _member.Name);
+                                    file.WriteLine("State: " + _member.State);
+                                    file.WriteLine("Street Address: " + _member.StreetAddress);
+                                    file.WriteLine("Zipcode: " + _member.ZipCode);
+                                    if (_member.Status == 0)
+                                        _status = "Accepted";
+                                    else if (_member.Status == 2)
+                                        _status = "Suspened";
+                                    else
+                                        _status = "Invalid";
+                                    file.WriteLine("Status: " + _status);
+
+                                    List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForMember(_member.ID);
+                                    if (serveList != null)
+                                    {
+                                        int counter = 0;
+                                        foreach (ServiceRecord s in serveList)
                                         {
-                                            int counter = 0;
-                                            foreach (ServiceRecord s in serveList)
+                                            counter++;
+                                            int serviceCode = s.ServiceCode;
+                                            Service service = providerDirectory.GetService(serviceCode);
+                                            if (service != null)
                                             {
-                                                counter++;
-                                                int serviceCode = s.ServiceCode;
-                                                Service service = providerDirectory.GetService(serviceCode);
-                                                if (service != null)
-                                                {
-                                                    file.WriteLine("\nService:" + counter);
-                                                    file.WriteLine("Service Name: " + service.ServiceName);
-                                                    file.WriteLine("Service Code: " + service.ServiceCode);
-                                                    file.WriteLine("Service Fee: " + service.ServiceFee);
-                                                }
+                                                file.WriteLine("\nService:" + counter);
+                                                file.WriteLine("Service Name: " + service.ServiceName);
+                                                file.WriteLine("Service Code: " + service.ServiceCode);
+                                                file.WriteLine("Service Fee: " + service.ServiceFee);
                                             }
                                         }
-                                        else
-                                        {
-                                            result = 2; //servicelist is null;
-                                            //break;
-                                        }
+                                    }
+                                    else
+                                    {
+                                        result = 2; //servicelist is null;
+                                        //break;
                                     }
                                 }
+
                                 memberReports.Add(memberReport);
                             }
                         }
-                        //Thread.Sleep(1000 * 3600 * 24);
 
                     }
                     Thread.Sleep(10000);
@@ -370,66 +366,69 @@ namespace PizzaController.Controllers
                     String _nowTime = nTime.Hour.ToString() + ":" + nTime.Minute.ToString();
                     String _schTime = _schedule.Time.Hours.ToString() + ":" + _schedule.Time.Minutes.ToString();
                     Console.WriteLine("now -> system: " + _nowTime + "->" + _schTime);
-                    providerReports = new List<ProviderReport>();
-                    List<Provider> providers = providerList.GetAllProviders();
-                    if (providers != null)
+                    if (_nowTime.Equals(_schTime))
                     {
-                        foreach (Provider provider in providers)
+                        providerReports = new List<ProviderReport>();
+                        List<Provider> providers = providerList.GetAllProviders();
+                        if (providers != null)
                         {
-
-                            ProviderReport providerReport = new ProviderReport();
-                            String fileName;
-                            //if (_nowTime.Equals(_schTime))
-                            _nowTime = _nowTime.Replace(":", "_");
-
-                            fileName = "Provider_" + provider.Name + "_" + _nowTime + ".txt";
-                            // System.IO.File.WriteAllText(@"WriteText.txt", text);
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
+                            foreach (Provider provider in providers)
                             {
-                                file.WriteLine("----------------------Provider Report--------------------");
-                                file.WriteLine("Provider ID: " + provider.ID);
-                                file.WriteLine("Provider Name: " + provider.Name);
-                                file.WriteLine("City: " + provider.City);
-                                file.WriteLine("State: " + provider.State);
-                                file.WriteLine("Street Address: " + provider.StreetAddress);
-                                file.WriteLine("Zip Code: " + provider.ZipCode);
 
-                                List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
-                                if (serveList != null)
+                                ProviderReport providerReport = new ProviderReport();
+                                String fileName;
+                                //if (_nowTime.Equals(_schTime))
+                                _nowTime = _nowTime.Replace(":", "_");
+
+                                fileName = "Provider_" + provider.Name + "_" + _nowTime + ".txt";
+                                // System.IO.File.WriteAllText(@"WriteText.txt", text);
+                                using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
                                 {
-                                    int counter = 0;
-                                    foreach (ServiceRecord s in serveList)
+                                    file.WriteLine("----------------------Provider Report--------------------");
+                                    file.WriteLine("Provider ID: " + provider.ID);
+                                    file.WriteLine("Provider Name: " + provider.Name);
+                                    file.WriteLine("City: " + provider.City);
+                                    file.WriteLine("State: " + provider.State);
+                                    file.WriteLine("Street Address: " + provider.StreetAddress);
+                                    file.WriteLine("Zip Code: " + provider.ZipCode);
+
+                                    List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
+                                    if (serveList != null)
                                     {
-                                        counter++;
-                                        int serviceCode = s.ServiceCode;
-                                        Service service = providerDirectory.GetService(serviceCode);
-                                        if (service != null)
+                                        int counter = 0;
+                                        foreach (ServiceRecord s in serveList)
                                         {
-                                            file.WriteLine("\nService:" + counter);
-                                            file.WriteLine("Service Name: " + service.ServiceName);
-                                            file.WriteLine("Service Code: " + service.ServiceCode);
-                                            file.WriteLine("Service Fee: " + service.ServiceFee);
+                                            counter++;
+                                            int serviceCode = s.ServiceCode;
+                                            Service service = providerDirectory.GetService(serviceCode);
+                                            if (service != null)
+                                            {
+                                                file.WriteLine("\nService:" + counter);
+                                                file.WriteLine("Service Name: " + service.ServiceName);
+                                                file.WriteLine("Service Code: " + service.ServiceCode);
+                                                file.WriteLine("Service Fee: " + service.ServiceFee);
+                                            }
                                         }
                                     }
-                                }
-                                else
-                                {
-                                    result = 2;//serveList is null;
-                                    //break;
-                                }
+                                    else
+                                    {
+                                        result = 2;//serveList is null;
+                                        //break;
+                                    }
 
 
+                                }
+                                providerReports.Add(providerReport);
                             }
-                            providerReports.Add(providerReport);
+                        }
+                        else
+                        {
+                            result = 1;//providers is null;
+                            //break;
                         }
                     }
-                    else
-                    {
-                        result = 1;//providers is null;
-                        //break;
-                    }
-                    Thread.Sleep(1000 * 3600 * 24);
-                    //Thread.Sleep(30000);
+                    Thread.Sleep(30000);
+
                 }
             }
             catch (Exception e)
@@ -464,8 +463,8 @@ namespace PizzaController.Controllers
                     Console.WriteLine("now -> system: " + _nowTime + "->" + _schTime);
 
                     String fileName;
-                    //if (_nowTime.Equals(_schTime))
-                    _nowTime = _nowTime.Replace(":", "_");
+                    if (_nowTime.Equals(_schTime))
+                        _nowTime = _nowTime.Replace(":", "_");
                     List<Provider> providers = providerList.GetAllProviders();
                     if (providers != null)
                     {
@@ -514,8 +513,7 @@ namespace PizzaController.Controllers
                         }
                     }
                     else result = 1; //providers = null;
-                    //Thread.Sleep(30000);
-                    Thread.Sleep(1000 * 3600 * 24);
+                    Thread.Sleep(10000);
                 }
 
             }
