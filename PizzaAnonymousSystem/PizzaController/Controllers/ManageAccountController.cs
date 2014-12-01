@@ -222,10 +222,22 @@ namespace PizzaController.Controllers
             string state = manager.State;
             string ZIPcode = manager.ZipCode;
 
-            var success = managerList.UpdateManager(name, ID, streetAddress,
+            var result = new Manager();
+            try
+            {
+                result = managerList.UpdateManager(name, ID, streetAddress,
                                      city, state, ZIPcode);
-            if (null != success) throw new Exception("unable to update manager.");
-            return success;
+                if (null == result) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "manager not found"));
+            }
+            catch (Exception e)
+            {
+                result = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
         }
 
         /**********************
@@ -262,9 +274,21 @@ namespace PizzaController.Controllers
             string state = admin.State;
             string ZIPcode = admin.ZipCode;
 
-            var success = adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
-            if (null != success) throw new Exception("unable to update admin.");
-            return success;
+            var result = new Admin();
+            try
+            {
+                result = adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
+                if (null == result) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "admin not found"));
+            }
+            catch (Exception e)
+            {
+                result = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
         }
         
         /*************************************
