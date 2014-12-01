@@ -32,7 +32,9 @@ $(document).ready(function () {
                 $('#add-service-success').slideToggle(400).delay(3000).slideToggle(400);
                 addServiceReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#add-service-error-message').html(response.Message);
                 $('#add-service-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

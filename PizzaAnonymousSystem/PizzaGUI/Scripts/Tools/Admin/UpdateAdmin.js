@@ -38,7 +38,9 @@ $(document).ready(function () {
                 $('#update-admin-success').slideToggle(400).delay(3000).slideToggle(400);
                 updateAdminReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#update-admin-error-message').html(response.Message);
                 $('#update-admin-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
