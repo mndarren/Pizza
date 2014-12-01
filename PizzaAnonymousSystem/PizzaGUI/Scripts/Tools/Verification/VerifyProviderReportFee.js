@@ -31,7 +31,9 @@
                 $('#verify-fee-success').slideToggle(400).delay(3000).slideToggle(400);
                 verifyFeeReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#verify-fee-error-message').html(response.Message);
                 $('#verify-fee-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

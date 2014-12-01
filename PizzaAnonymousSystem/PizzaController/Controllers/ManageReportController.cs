@@ -620,6 +620,7 @@ namespace PizzaController.Controllers
                     {
                         success = serviceRecordList.VerifyServiceRecords(input.ProviderNumber,
                             input.StartDate, input.EndDate, null, true);
+                        if (!success) throw new Exception("unable to verify provider report services.");
                     }
                     else throw new Exception("invalid provider");
                 }
@@ -650,6 +651,7 @@ namespace PizzaController.Controllers
                     {
                         success = serviceRecordList.VerifyServiceRecords(input.ProviderNumber,
                             input.StartDate, input.EndDate, true, null);
+                        if (!success) throw new Exception("unable to verify provider report fees.");
                     }
                     else throw new Exception("invalid provider");
                 }
