@@ -31,7 +31,7 @@
             dataType: "json",
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-                $('#add-record-loader').removeClass("visibility-hidden");
+                $('#add-service-record-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
                 $('#add-service-record-success').slideToggle(400).delay(3000).slideToggle(400);
@@ -43,7 +43,7 @@
                 $('#add-service-record-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
-                $('#add-record-loader').addClass("visibility-hidden");
+                $('#add-service-record-loader').addClass("visibility-hidden");
             }
         });
     }
