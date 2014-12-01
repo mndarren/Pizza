@@ -174,7 +174,11 @@ input[type="checkbox"].input-validation-error {
     }
 
     .tool-form .tool-form-content-large {
+        
+    }
 
+    .tool-form .tool-form-content-larger {
+        width:700px;
     }
 
     .tool-form .tool-form-content-input {
