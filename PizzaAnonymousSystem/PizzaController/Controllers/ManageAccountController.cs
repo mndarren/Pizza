@@ -222,8 +222,10 @@ namespace PizzaController.Controllers
             string state = manager.State;
             string ZIPcode = manager.ZipCode;
 
-            return managerList.UpdateManager(name, ID, streetAddress,
+            var success = managerList.UpdateManager(name, ID, streetAddress,
                                      city, state, ZIPcode);
+            if (null != success) throw new Exception("unable to delete member.");
+            return success;
         }
 
         /**********************
@@ -260,7 +262,9 @@ namespace PizzaController.Controllers
             string state = admin.State;
             string ZIPcode = admin.ZipCode;
 
-            return adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
+            var success = adminList.UpdateAdmin(name,ID,streetAddress,city,state,ZIPcode);
+            if (null != success) throw new Exception("unable to delete member.");
+            return success;
         }
         
         /*************************************
