@@ -34,7 +34,7 @@
                 $('#add-record-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
-                $('#add-record-success').slideToggle(400).delay(3000).slideToggle(400);
+                $('#add-service-record-success').slideToggle(400).delay(3000).slideToggle(400);
                 addRecordReset();
             },
             error: function (jqXHR, status, error) {
