@@ -1,86 +1,159 @@
+/* Delete all table rows */
+
+DELETE FROM ServiceRecords;
+DELETE FROM ReportSchedules;
+DELETE FROM Members;
+DELETE FROM Providers;
+DELETE FROM Admins;
+DELETE FROM Managers;
+DELETE FROM Services;
+
+/* Reseed all tables */
+
+ALTER TABLE [Admins] ALTER COLUMN [ID] IDENTITY(1,1);
+ALTER TABLE [Managers] ALTER COLUMN [ID] IDENTITY(10,1);
+ALTER TABLE [Providers] ALTER COLUMN [ID] IDENTITY(100,1);
+ALTER TABLE [Members] ALTER COLUMN [ID] IDENTITY(1000,1);
+ALTER TABLE [ReportSchedules] ALTER COLUMN [ID] IDENTITY(1,1);
+ALTER TABLE [ServiceRecords] ALTER COLUMN [ID] IDENTITY(1,1);
+ALTER TABLE [Services] ALTER COLUMN [ID] IDENTITY(1,1);
+
 /* Admins */
 
 INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Steve Rogers", "1000 12 Ave E", "Washington D.C", "WA", "00001");
+VALUES ('Carl Kasell', '1255 15th Ave S', 'Boring', 'OR', '10234');
 
 INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Tony Stark", "200 14th St", "New York", "NY", "10001");
+VALUES ('Bill Kurtis', '100 Main Street', 'New York', 'NY', '55232');
 
 INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Bruce Banner", "121 20th St South", "Washington D.C", "WA", "00002");
+VALUES ('Peter Sagal', '12th St South', 'Washington D.C', 'WA', '12333');
 
 INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Natalia Romanova", "300 10th Ave N", "New York", "NY", "10002");
+VALUES ('Wednesday Addams', '300 10th Ave N', 'New York', 'NY', '56337');
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ('Anna Roth', '1245 West Blvd', 'Chicago', 'NY', '21344');
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ('Leslie Malone', '355 West Rd', 'St. Paul', 'MN', '56343');
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ('Mo Rocca', '10 TriStar Bldg', '12 Ave S', 'NY', '10201');
+
+INSERT INTO Admins (Name, StreetAddress, City, State, ZipCode)
+VALUES ('Paula Poundstone', '12 Road East', 'New York', 'NY', '20244');
 
 /* Managers */
 
 INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Reed Richards", "121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+VALUES ('Roy Blount, Jr.', '1255 15th Ave S', 'Boring', 'OR', '10234');
 
 INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Susan Storm Richards", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+VALUES ('Tom Bodett', '100 Main Street', 'New York', 'NY', '55232');
 
 INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Jonathan Richards", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+VALUES ('Amy Dickinsion', '12th St South', 'Washington D.C', 'WA', '12333');
 
 INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
-VALUES ("Ben Grimm", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122");
+VALUES ('Adam Felber', '300 10th Ave N', 'New York', 'NY', '56337');
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ('Kyrie O''Connor', '1245 West Blvd', 'Chicago', 'NY', '21344');
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ('P.J. O''Rourke', '355 West Rd', 'St. Paul', 'MN', '56343');
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ('Charlie Pierce', '10 TriStar Bldg', '12 Ave S', 'NY', '10201');
+
+INSERT INTO Managers (Name, StreetAddress, City, State, ZipCode)
+VALUES ('Roxanne Roberts', '12 Road East', 'New York', 'NY', '20244');
 
 /* Providers */
 
 INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
-VALUES ("Stark Industries", "121 20th St South", "Washington D.C", "WA", "00002", 1231231231);
+VALUES ('Pizza, Health, and You', '121 20th St South', 'Washington D.C', 'WA', '00002', 1231231231);
 
 INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
-VALUES ("Avengers Tower", "300 10th Ave N", "New York", "NY", "10002", 3213213211);
+VALUES ('Eat ''Till You Drop', '300 10th Ave N', 'New York', 'NY', '10002', 3213213211);
 
 INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
-VALUES ("Fours Freedom Inc.", "3121 Four Freedoms Plaza", "Washington D.C", "WA", "12122", 1112223334);
+VALUES ('Pizzario', '3121 Four Freedoms Plaza', 'Washington D.C', 'WA', '12122', 1112223334);
+
+INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
+VALUES ('Food For Thought', '12 Road East', 'New York', 'NY', '20244', 1112223334);
+
+INSERT INTO Providers (Name, StreetAddress, City, State, ZipCode, BankAccount)
+VALUES ('House of Pizzaholics', '10 TriStar Bldg', '12 Ave S', 'NY', '10201', 1112223334);
 
 /* Members */
 
 INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
-VALUES ("Peter 'StarLord' Quill", "21 Jump Street", "Chicago", "IL", "25322", 0);
+VALUES ('Brian Babylon', '21 Jump Street', 'Chicago', 'IL', '25322', 1);
 
 INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
-VALUES ("Gamora", "21 Jump Street", "Chicago", "IL", "25322", 0);
+VALUES ('Alonzo Bodden', '21 Jump Street', 'Chicago', 'IL', '25322', 1);
 
 INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
-VALUES ("Rocket Racoon", "21 Jump Street", "Chicago", "IL", "25322", 0);
+VALUES ('Luke Burbank', '21 Jump Street', 'Chicago', 'IL', '25322', 1);
 
 INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
-VALUES ("Drax The Destroyer", "21 Jump Street", "Chicago", "IL", "25322", 0);
+VALUES ('Bobcat Goldthwait', '21 Jump Street', 'Chicago', 'IL', '25322', 1);
 
 INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
-VALUES ("Groot", "21 Jump Street", "Chicago", "IL", "25322", 0);
+VALUES ('Peter Grosz', '21 Jump Street', 'Chicago', 'IL', '25322', 1);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ('Maz Jobrani', '21 Jump Street', 'Chicago', 'IL', '25322', 0);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ('Jessi Klein', '21 Jump Street', 'Chicago', 'IL', '25322', 0);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ('Faith Salie', '21 Jump Street', 'Chicago', 'IL', '25322', 0);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ('Firoozeh Dumas', '21 Jump Street', 'Chicago', 'IL', '25322', -1);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ('Sue Ellicott', '21 Jump Street', 'Chicago', 'IL', '25322', -1);
+
+INSERT INTO Members (Name, StreetAddress, City, State, ZipCode, Status)
+VALUES ('Aamer Haleem', '21 Jump Street', 'Chicago', 'IL', '25322', -1);
 
 /* Report Schedules */
 
 INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
-VALUES (0, 5, "11:59:59 AM");
+VALUES (0, 5, 1417573636);
 
 INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
-VALUES (1, 5, "11:59:59 AM");
+VALUES (1, 5, 1417573636);
 
 INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
-VALUES (2, 5, "11:59:59 AM");
+VALUES (2, 5, 1417573636);
 
 INSERT INTO ReportSchedules (ReportType, WeekDay, Time)
-VALUES (3, 5, "11:59:59 AM");
+VALUES (3, 5, 1417573636);
 
 /* Services */
 
 INSERT INTO Services (ServiceCode, Name, Fee)
-VALUES (100001, "1 On 1 Consultation", 150.00);
+VALUES (100001, '1 On 1 Consultation', 150.00);
 
 INSERT INTO Services (ServiceCode, Name, Fee)
-VALUES (100002, "Group Consultation", 50.00);
+VALUES (100002, 'Group Consultation', 50.00);
 
 INSERT INTO Services (ServiceCode, Name, Fee)
-VALUES (100003, "Cheese Resupply", 200.99);
+VALUES (100003, 'Cheese Resupply', 200.99);
 
 INSERT INTO Services (ServiceCode, Name, Fee)
-VALUES (100004, "0Cal Pizza Resupply", 45.99);
+VALUES (100004, '0Cal Pizza Resupply', 45.99);
 
 INSERT INTO Services (ServiceCode, Name, Fee)
-VALUES (100005, "Self Help Books Lib", 39.99);
+VALUES (100005, 'Self Help Books Lib', 39.99);
+
+/* Service Records */
+
+INSERT INTO ServiceRecords (ServiceCode, ProviderID, MemberID, Comments, DateProvided, TimeStamp, ServiceVerified, FeeVerified)
+VALUES (100001, 1
