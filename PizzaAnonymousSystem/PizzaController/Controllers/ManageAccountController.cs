@@ -75,7 +75,6 @@ namespace PizzaController.Controllers
         public Boolean DeleteMember([FromUri]int memberID)
         {
             var success = false;
-
             try
             {
                 success = memberList.DeleteMember(memberID);
@@ -88,7 +87,6 @@ namespace PizzaController.Controllers
                 throw new HttpResponseException(
                     Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
-
             return success;
         }
 
@@ -106,7 +104,6 @@ namespace PizzaController.Controllers
             string ZIPcode = member.ZipCode;
             int status = member.Status;
             Member tempmember = new Member();
-
             try
             {
                 tempmember = memberList.UpdateMember(name, ID, streetAddress, city, state, ZIPcode, status);
@@ -171,7 +168,6 @@ namespace PizzaController.Controllers
             string state = provider.State;
             string ZIPcode = provider.ZipCode;
             long bankAccount = provider.BankAccount;
-
             var result = new Provider();
             try
             {
@@ -188,9 +184,8 @@ namespace PizzaController.Controllers
             }
             return result;
         }
-        /********************************
-         * Manager
-         * ************************************/
+
+
         [EnableCors("*", "*", "*")]
         [HttpPost]
         [POST("api/accountmanager/account/manager")]
@@ -211,7 +206,6 @@ namespace PizzaController.Controllers
                     Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
             return result;
-        
         }
 
         [EnableCors("*", "*", "*")]
@@ -264,7 +258,6 @@ namespace PizzaController.Controllers
         public int? addAdmin([FromBody] Admin admin)
         {
             var adminId = new int?();
-
             try
             {
                 adminId = adminList.AddAdmin(admin);
@@ -276,7 +269,6 @@ namespace PizzaController.Controllers
                 throw new HttpResponseException(
                     Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
             }
-
             return adminId;
         }
 
