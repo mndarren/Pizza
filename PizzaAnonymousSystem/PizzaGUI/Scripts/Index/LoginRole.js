@@ -146,7 +146,7 @@ $(document).ready(function () {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
             },
             success: function (data) {
-                alert("the provider report payable starts up now!")
+               // alert("the provider report payable starts up now!")
             }
         });
     }
