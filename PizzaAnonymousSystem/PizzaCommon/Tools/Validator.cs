@@ -119,7 +119,6 @@ namespace PizzaCommon.Tools
             if (exceptions != "") throw new Exception(exceptions);
         }
 
-
         public static void ValidateServiceRecord(ServiceRecord serviceRecord) {
             
             var exceptions = "";
