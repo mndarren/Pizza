@@ -16,7 +16,8 @@ $(document).ready(function () {
         var reportType = $('#update-schedule-report-type').val();
         if (reportType == 0) updateMemberSchedule();
         else if (reportType == 1) updateProviderSchedule();
-        else updateEFTSchedule();
+        else if (reportType == 2) updateEFTSchedule();
+        else updatePayableSchedule();
     }
 
     function updateMemberSchedule() {
@@ -81,6 +82,33 @@ $(document).ready(function () {
             type: 'POST',
             crossDomain: true,
             url: 'http://localhost:49890/api/reportmanager/schedules/put/eftreport' + '?weekday=' + weekday + '&time=' + time,
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+                $('#update-schedule-loader').removeClass("visibility-hidden");
+            },
+            success: function (data) {
+                $('#update-schedule-success').slideToggle(400).delay(3000).slideToggle(400);
+                updateScheduleReset();
+            },
+            error: function (error) {
+                $('#update-schedule-error').slideToggle(400).delay(3000).slideToggle(400);
+            },
+            complete: function () {
+                $('#update-schedule-loader').addClass("visibility-hidden");
+            }
+        });
+    }
+
+    function updatePayableSchedule() {
+        var weekday = $('#update-schedule-day').val().toString();
+        var time = $('#update-schedule-time').val().toString();
+
+        $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: 'http://localhost:49890/api/reportmanager/schedules/put/payablereport' + '?weekday=' + weekday + '&time=' + time,
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
             beforeSend: function (xhr) {
