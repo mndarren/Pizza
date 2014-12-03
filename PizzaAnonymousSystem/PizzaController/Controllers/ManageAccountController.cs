@@ -196,7 +196,22 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/manager")]
         public int? AddManager([FromBody]Manager manager)
         {
-            return managerList.InsertManager(manager);
+            var result = new int?();
+            try
+            {
+                result = managerList.InsertManager(manager);
+                if (null == result) throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.NotFound, "manager not found"));
+            }
+            catch (Exception e)
+            {
+                result = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+            return result;
+        
         }
 
         [EnableCors("*", "*", "*")]
@@ -248,7 +263,21 @@ namespace PizzaController.Controllers
         [POST("api/accountmanager/account/admin")]
         public int? addAdmin([FromBody] Admin admin)
         {
-            return adminList.AddAdmin(admin);
+            var adminId = new int?();
+
+            try
+            {
+                adminId = adminList.AddAdmin(admin);
+            }
+            catch (Exception e)
+            {
+                adminId = null;
+                var error = e.Message;
+                throw new HttpResponseException(
+                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+            }
+
+            return adminId;
         }
 
         [EnableCors("*", "*", "*")]
