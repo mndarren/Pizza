@@ -26,9 +26,14 @@ $(document).ready(function () {
                 deleteManagerReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#delete-manager-message').html(response.Message);
-                $('#delete-manager-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#delete-manager-message').html(response.Message);
+                } catch (err) {
+                    $('#delete-manager-message').html("");
+                } finally {
+                    $('#delete-manager-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#delete-manager-loader').addClass("visibility-hidden");

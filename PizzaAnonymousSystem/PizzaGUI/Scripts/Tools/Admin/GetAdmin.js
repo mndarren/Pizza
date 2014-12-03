@@ -31,9 +31,14 @@ $(document).ready(function () {
                 $('#get-admin-zip').html(data.ZipCode.toString());
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#get-admin-error-message').html(response.Message);
-                $('#get-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#get-admin-error-message').html(response.Message);
+                } catch (err) {
+                    $('#get-admin-error-message').html("");
+                } finally {
+                    $('#get-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#get-admin-loader').addClass("visibility-hidden");

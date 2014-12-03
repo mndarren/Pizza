@@ -26,9 +26,14 @@
                 addAdminReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#delete-admin-error-message').html(response.Message);
-                $('#delete-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#delete-admin-error-message').html(response.Message);
+                } catch (err) {
+                    $('#delete-admin-error-message').html("");
+                } finally {
+                    $('#delete-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#delete-admin-loader').addClass("visibility-hidden");

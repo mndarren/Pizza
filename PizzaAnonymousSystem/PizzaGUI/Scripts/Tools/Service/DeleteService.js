@@ -26,9 +26,14 @@ $(document).ready(function () {
                 deleteServiceReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#delete-service-error-message').html(response.Message);
-                $('#delete-service-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#delete-service-error-message').html(response.Message);
+                } catch (err) {
+                    $('#delete-service-error-message').html("");
+                } finally {
+                    $('#delete-service-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#delete-service-loader').addClass("visibility-hidden");

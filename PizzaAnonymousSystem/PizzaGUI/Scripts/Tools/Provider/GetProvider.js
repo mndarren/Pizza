@@ -32,9 +32,14 @@ $(document).ready(function () {
                 $('#get-provider-bankaccount').html(data.BankAcount.toString());
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#get-provider-error-message').html(response.Message);
-                $('#get-provider-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#get-provider-error-message').html(response.Message);
+                } catch (err) {
+                    $('#get-provider-error-message').html("");
+                } finally {
+                    $('#get-provider-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#get-provider-loader').addClass("visibility-hidden");

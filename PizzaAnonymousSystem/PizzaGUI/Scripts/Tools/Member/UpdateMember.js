@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     function updateMemberReset() {
         event.preventDefault();
+        $('#update-member-id').val("");
         $('#update-member-name').val("");
         $('#update-member-address').val("");
         $('#update-member-city').val("");
@@ -40,9 +41,14 @@ $(document).ready(function () {
                 addMemberReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#update-member-error-message').html(response.Message);
-                $('#update-member-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#update-member-error-message').html(response.Message);
+                } catch (err) {
+                    $('#update-member-error-message').html("");
+                } finally {
+                    $('#update-member-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#update-member-loader').addClass("visibility-hidden");

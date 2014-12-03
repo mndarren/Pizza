@@ -39,9 +39,14 @@ $(document).ready(function () {
                 updateAdminReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#update-admin-error-message').html(response.Message);
-                $('#update-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#update-admin-error-message').html(response.Message);
+                } catch (err) {
+                    $('#update-admin-error-message').html("");
+                } finally {
+                    $('#update-admin-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#update-admin-loader').addClass("visibility-hidden");

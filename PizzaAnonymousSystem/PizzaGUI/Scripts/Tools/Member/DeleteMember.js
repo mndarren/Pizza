@@ -26,9 +26,14 @@ $(document).ready(function () {
                 deleteMemberReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#delete-member-error-message').html(response.Message);
-                $('#delete-member-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#delete-member-error-message').html(response.Message);
+                } catch (err) {
+                    $('#delete-member-error-message').html("");
+                } finally {
+                    $('#delete-member-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#delete-member-loader').addClass("visibility-hidden");

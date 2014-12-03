@@ -32,9 +32,14 @@
                 verifyServiceReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#verify-services-error-message').html(response.Message);
-                $('#verify-services-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#verify-services-error-message').html(response.Message);
+                } catch (err) {
+                    $('#verify-services-error-message').html("");
+                } finally {
+                    $('#verify-services-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#verify-report-loader').addClass("visibility-hidden");

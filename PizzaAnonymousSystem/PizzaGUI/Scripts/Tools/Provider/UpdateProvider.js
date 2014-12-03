@@ -41,9 +41,14 @@ $(document).ready(function () {
                 updateProviderReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#update-provider-error-message').html(response.Message);
-                $('#update-provider-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#update-provider-error-message').html(response.Message);
+                } catch (err) {
+                    $('#update-provider-error-message').html("");
+                } finally {
+                    $('#update-provider-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#update-provider-loader').addClass("visibility-hidden");

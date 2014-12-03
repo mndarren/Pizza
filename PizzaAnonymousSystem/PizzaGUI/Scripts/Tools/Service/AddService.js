@@ -33,9 +33,14 @@ $(document).ready(function () {
                 addServiceReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#add-service-error-message').html(response.Message);
-                $('#add-service-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#add-service-error-message').html(response.Message);
+                } catch (err) {
+                    $('#add-service-error-message').html("");
+                } finally {
+                    $('#add-service-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#add-service-loader').addClass("visibility-hidden");

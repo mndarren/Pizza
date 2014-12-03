@@ -26,9 +26,14 @@ $(document).ready(function () {
                 deleteProviderReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#delete-provider-error-message').html(response.Message);
-                $('#delete-provider-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#delete-provider-error-message').html(response.Message);
+                } catch (err) {
+                    $('#delete-provider-error-message').html("");
+                } finally {
+                    $('#delete-provider-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#delete-provider-loader').addClass("visibility-hidden");

@@ -38,9 +38,14 @@ $(document).ready(function () {
                 addManagerReset();
             },
             error: function (jqXHR, status, error) {
-                var response = jQuery.parseJSON(jqXHR.responseText);
-                $('#add-manager-error-message').html(response.Message);
-                $('#add-manager-error').slideToggle(400).delay(3000).slideToggle(400);
+                try {
+                    var response = jQuery.parseJSON(jqXHR.responseText);
+                    $('#add-manager-error-message').html(response.Message);
+                } catch (err) {
+                    $('#add-manager-error-message').html("");
+                } finally {
+                    $('#add-manager-error').slideToggle(400).delay(3000).slideToggle(400);
+                }
             },
             complete: function () {
                 $('#add-manager-loader').addClass("visibility-hidden");
