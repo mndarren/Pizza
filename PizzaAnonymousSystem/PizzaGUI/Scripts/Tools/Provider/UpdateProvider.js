@@ -5,7 +5,7 @@ $(document).ready(function () {
 
     function updateProviderReset() {
         event.preventDefault();
-        $('update-provider-id').val("");
+        $('#update-provider-id').val("");
         $('#update-provider-name').val("");
         $('#update-provider-address').val("");
         $('#update-provider-city').val("");
