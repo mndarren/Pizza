@@ -576,12 +576,13 @@ namespace PizzaController.Controllers
                             {
                                 fileName = "EFT_" + _nowTime + ".txt";
                                 int providerNum = 0;
-                                decimal totalFee = 0;
+                      
                                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(PathFactory.ReportPath() + fileName))
                                 {
                                     file.WriteLine("----------------------EFT Report--------------------");
                                     foreach (Provider provider in providers)
                                     {
+                                        decimal totalFee = 0;
                                         providerNum++;
                                         int serviceNum = 0;
                                         decimal sumFee = 0;
@@ -817,7 +818,7 @@ namespace PizzaController.Controllers
             if (providers != null)
             {
                 int providerNum = 0;
-                decimal totalFee = 0;
+                
 
                 result += "----------------------EFT Report--------------------<br />";
                 foreach (Provider provider in providers)
@@ -825,6 +826,7 @@ namespace PizzaController.Controllers
                     providerNum++;
                     int serviceNum = 0;
                     decimal sumFee = 0;
+                    decimal totalFee = 0;
                     result += "Bank account: " + provider.BankAccount;
                     result += "<br />";
                     List<ServiceRecord> serveList = serviceRecordList.GetAllServiceRecordForProvider(provider.ID);
