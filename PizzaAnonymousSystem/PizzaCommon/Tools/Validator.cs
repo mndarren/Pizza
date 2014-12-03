@@ -15,6 +15,7 @@ namespace PizzaCommon.Tools
         public static Boolean OnlyRunOnceFlagForEFT = true;
         public static Boolean OnlyRunOnceFlagForMember = true;
         public static Boolean OnlyRunOnceFlagForProvider = true;
+        public static Boolean OnlyRunOnceFlagForPayable = true;
         private const string nameRegex = @"^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$";
         private const string addressRegex = @"[A-Za-z0-9'\.\-\s\,]";
         private const string cityRegex = @"^[a-zA-Z ,.'-]+$";
@@ -109,7 +110,7 @@ namespace PizzaCommon.Tools
 
             if (service.ServiceCode > 999999 || service.ServiceCode < 0)
                 exceptions += "service code is wrong [0,999999]. ";
-            if (service.ServiceName.Length > 25)// || !Regex.IsMatch(service.ServiceName, nameRegex))
+            if (service.ServiceName.Length > 25 || !Regex.IsMatch(service.ServiceName, nameRegex))
                 exceptions += "service name is wrong (<25 characters, & no special characters). ";
             if (service.ServiceFee < 0m || service.ServiceFee > 999.99m)
                 exceptions += "service fee is wrong [0,999.99]. ";

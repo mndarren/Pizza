@@ -19,6 +19,7 @@ $(document).ready(function () {
             startupEFTReportServer();
             startupMemberReportServer();
             startupProviderReportServer();
+            startUpPayableReportServer();
           
 
             if (role == 3) getAdmin();
@@ -95,7 +96,7 @@ $(document).ready(function () {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
             },
             success: function (data) {
-                alert("the eft report server starts up now!")
+                //alert("the eft report server starts up now!")
             }
         });
     }
@@ -111,7 +112,7 @@ $(document).ready(function () {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
             },
             success: function (data) {
-                alert("the member report server starts up now!")
+                //alert("the member report server starts up now!")
             }
         });
     }
@@ -127,7 +128,25 @@ $(document).ready(function () {
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
             },
             success: function (data) {
-                alert("the provider report server starts up now!")
+                //alert("the provider report server starts up now!")
+            }
+        });
+    }
+
+    function startUpPayableReportServer() {
+        //alert("here0");
+        $.ajax({
+            type: 'POST',
+            crossDomain: true,
+            url: 'http://localhost:49890/api/reportmanager/reports/starupPayableReport',
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            beforeSend: function (xhr) {
+                //alert("here1");
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            },
+            success: function (data) {
+                alert("the provider report payable starts up now!")
             }
         });
     }
