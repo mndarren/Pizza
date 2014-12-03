@@ -30,7 +30,9 @@ $(document).ready(function () {
                 $('#get-member-state').html(data.State.toString());
                 $('#get-member-zip').html(data.ZipCode.toString());
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#get-member-error-message').html(response.Message);
                 $('#get-member-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

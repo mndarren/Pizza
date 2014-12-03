@@ -25,7 +25,9 @@ $(document).ready(function () {
                 $('#delete-manager-success').slideToggle(400).delay(3000).slideToggle(400);
                 deleteManagerReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#delete-manager-message').html(response.Message);
                 $('#delete-manager-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

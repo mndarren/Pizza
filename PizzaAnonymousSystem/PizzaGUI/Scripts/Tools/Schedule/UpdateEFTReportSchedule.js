@@ -38,7 +38,9 @@ $(document).ready(function () {
                 $('#update-schedule-success').slideToggle(400).delay(3000).slideToggle(400);
                 updateScheduleReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#update-schedule-error-message').html(response.Message);
                 $('#update-schedule-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
@@ -65,7 +67,9 @@ $(document).ready(function () {
                 $('#update-schedule-success').slideToggle(400).delay(3000).slideToggle(400);
                 updateScheduleReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#update-schedule-error-message').html(response.Message);
                 $('#update-schedule-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
@@ -92,7 +96,9 @@ $(document).ready(function () {
                 $('#update-schedule-success').slideToggle(400).delay(3000).slideToggle(400);
                 updateScheduleReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#update-schedule-error-message').html(response.Message);
                 $('#update-schedule-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

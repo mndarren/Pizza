@@ -25,7 +25,9 @@ $(document).ready(function () {
                 $('#delete-member-success').slideToggle(400).delay(3000).slideToggle(400);
                 deleteMemberReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#delete-member-error-message').html(response.Message);
                 $('#delete-member-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

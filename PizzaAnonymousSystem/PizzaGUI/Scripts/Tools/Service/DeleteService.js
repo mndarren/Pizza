@@ -25,7 +25,9 @@ $(document).ready(function () {
                 $('#delete-service-success').slideToggle(400).delay(3000).slideToggle(400);
                 deleteServiceReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#delete-service-error-message').html(response.Message);
                 $('#delete-service-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {

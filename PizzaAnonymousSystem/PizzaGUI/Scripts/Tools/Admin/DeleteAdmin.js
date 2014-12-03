@@ -25,7 +25,9 @@
                 $('#delete-admin-success').slideToggle(400).delay(3000).slideToggle(400);
                 addAdminReset();
             },
-            error: function (error) {
+            error: function (jqXHR, status, error) {
+                var response = jQuery.parseJSON(jqXHR.responseText);
+                $('#delete-admin-error-message').html(response.Message);
                 $('#delete-admin-error').slideToggle(400).delay(3000).slideToggle(400);
             },
             complete: function () {
