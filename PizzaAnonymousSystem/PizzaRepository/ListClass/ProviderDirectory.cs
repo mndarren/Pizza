@@ -31,7 +31,8 @@ namespace PizzaRepository.ListClass
         public int? AddService(Service newService)
         {
             Validator.ValidateService(newService); //check input data format
-
+            if (null != GetService(newService.ServiceCode))
+                throw new Exception("Service exists already.");
             var serviceId = new int?();
 
             try
