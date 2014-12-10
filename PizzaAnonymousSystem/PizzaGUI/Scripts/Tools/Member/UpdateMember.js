@@ -37,6 +37,7 @@ $(document).ready(function () {
                 $('#update-member-loader').removeClass("visibility-hidden");
             },
             success: function (data) {
+                $('#update-member-loader').addClass("visibility-hidden");
                 $('#update-member-success').slideToggle(400).delay(3000).slideToggle(400);
                 addMemberReset();
             },
