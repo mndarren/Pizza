@@ -19,4 +19,9 @@ namespace PizzaModels.Constants
         public const int INVALID = -1;
         public const int SUSPENDED = 0;
     }
+
+    public static class DBDate
+    {
+        public static DateTime MINDATE = new DateTime(1753, 1, 1);
+    }
 }

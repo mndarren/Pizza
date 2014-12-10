@@ -1,4 +1,5 @@
 ﻿using PizzaCommon.Tools;
+using PizzaModels.Constants;
 /*
  Author:Cheng Luo
  */
@@ -125,6 +126,8 @@ namespace PizzaRepository.ListClass
                 if (null == startDate) startDate = DateTime.Today;
                 if (null == endDate) endDate = DateTime.Today.AddDays(1);
 
+                if (startDate < DBDate.MINDATE || endDate < DBDate.MINDATE)
+                    throw new Exception("invalid date");
                 if (startDate > endDate) throw new Exception("start date cannot exceed end date.");
 
                 var counter = 0;

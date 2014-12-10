@@ -48,7 +48,10 @@ namespace PizzaController.Controllers
             }
             catch (Exception e)
             {
-                throw new HttpRequestException(e.Message);
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
         }
 
@@ -68,8 +71,10 @@ namespace PizzaController.Controllers
             {
                 serviceRecordId = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
 
             return serviceRecordId;
@@ -102,8 +107,10 @@ namespace PizzaController.Controllers
             {
                 result = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return result;
         }
