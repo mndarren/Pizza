@@ -62,8 +62,10 @@ namespace PizzaController.Controllers
             {
                 memberId = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
 
             return memberId;
@@ -84,8 +86,10 @@ namespace PizzaController.Controllers
             {
                 success = false;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return success;
         }
@@ -114,8 +118,10 @@ namespace PizzaController.Controllers
             {
                 tempmember = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return tempmember;
         }
@@ -139,8 +145,10 @@ namespace PizzaController.Controllers
             {
                 result = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return result;
         }
@@ -179,8 +187,10 @@ namespace PizzaController.Controllers
             {
                 result = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return result;
         }
@@ -202,8 +212,10 @@ namespace PizzaController.Controllers
             {
                 result = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return result;
         }
@@ -243,8 +255,10 @@ namespace PizzaController.Controllers
             {
                 result = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return result;
         }
@@ -266,8 +280,10 @@ namespace PizzaController.Controllers
             {
                 adminId = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return adminId;
         }
@@ -306,8 +322,10 @@ namespace PizzaController.Controllers
             {
                 result = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
             return result;
         }
@@ -355,8 +373,10 @@ namespace PizzaController.Controllers
             catch (Exception e)
             {
                 member = null;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
 
             return member;
@@ -379,8 +399,10 @@ namespace PizzaController.Controllers
             {
                 provider = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
 
             return provider;
@@ -403,8 +425,10 @@ namespace PizzaController.Controllers
             {
                 manager = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
 
             return manager;
@@ -427,8 +451,10 @@ namespace PizzaController.Controllers
             {
                 admin = null;
                 var error = e.Message;
-                throw new HttpResponseException(
-                    Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                if (e.GetType() != typeof(HttpResponseException))
+                    throw new HttpResponseException(
+                        Request.CreateErrorResponse(HttpStatusCode.BadRequest, e.Message));
+                else throw e;
             }
 
             return admin;
