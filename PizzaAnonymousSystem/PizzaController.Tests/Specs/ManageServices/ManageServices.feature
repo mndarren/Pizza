@@ -5,7 +5,12 @@
 
 @mytag
 Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
+	Given I have entered <num1> into the calculator
+	And I have entered <num2> into the calculator
 	When I press add
-	Then the result should be 120 on the screen
+	Then the result should be <result> on the screen
+	And the error message <shouldOrShouldNot> be shown
+Examples:
+	| num1 | num2 | result | shouldOrShouldNot |
+	| 50   | 70   | 120    | should not        |
+	| 60   | 70   | 110    | should            |
