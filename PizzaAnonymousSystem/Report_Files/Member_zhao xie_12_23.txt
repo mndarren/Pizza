@@ -1,0 +1,7 @@
+----------------------Member Report--------------------
+Member ID: 1012
+Member Name: zhao xie
+State: MN
+Street Address: saint cloud
+Zipcode: 56301
+Status: Invalid

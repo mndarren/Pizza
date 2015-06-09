@@ -1,0 +1,17 @@
+----------------------Member Report--------------------
+Member ID: 1001
+Member Name: Alonzo Bodden
+State: IL
+Street Address: 21 Jump Street
+Zipcode: 25322
+Status: Invalid
+
+Service:1
+Service Name: Self Help Books Lib
+Service Code: 100005
+Service Fee: 39.99
+
+Service:2
+Service Name: Group Consultation
+Service Code: 100002
+Service Fee: 50.00

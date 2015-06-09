@@ -1,0 +1,22 @@
+----------------------Member Report--------------------
+Member ID: 1000
+Member Name: Brian Babylon
+State: IL
+Street Address: 21 Jump Street
+Zipcode: 25322
+Status: Invalid
+
+Service:1
+Service Name: 1 On 1 Consultation
+Service Code: 100001
+Service Fee: 150.00
+
+Service:2
+Service Name: Self Help Books Lib
+Service Code: 100005
+Service Fee: 39.99
+
+Service:3
+Service Name: Self Help Books Lib
+Service Code: 100005
+Service Fee: 39.99

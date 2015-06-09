@@ -1,0 +1,7 @@
+----------------------Provider Report--------------------
+Provider ID: 103
+Provider Name: Food For Thought
+City: New York
+State: NY
+Street Address: 12 Road East
+Zip Code: 20244

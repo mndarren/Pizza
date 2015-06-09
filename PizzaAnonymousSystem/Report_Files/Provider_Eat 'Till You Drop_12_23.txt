@@ -1,0 +1,7 @@
+----------------------Provider Report--------------------
+Provider ID: 101
+Provider Name: Eat 'Till You Drop
+City: New York
+State: NY
+Street Address: 300 10th Ave N
+Zip Code: 10002

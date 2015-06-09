@@ -1,0 +1,37 @@
+----------------------Provider Report--------------------
+Provider ID: 100
+Provider Name: Pizza, Health, and You
+City: Washington D.C
+State: WA
+Street Address: 121 20th St South
+Zip Code: 00002
+
+Service:1
+Service Name: 1 On 1 Consultation
+Service Code: 100001
+Service Fee: 150.00
+
+Service:2
+Service Name: Self Help Books Lib
+Service Code: 100005
+Service Fee: 39.99
+
+Service:3
+Service Name: 1 On 1 Consultation
+Service Code: 100001
+Service Fee: 150.00
+
+Service:4
+Service Name: Group Consultation
+Service Code: 100002
+Service Fee: 50.00
+
+Service:5
+Service Name: Self Help Books Lib
+Service Code: 100005
+Service Fee: 39.99
+
+Service:6
+Service Name: Self Help Books Lib
+Service Code: 100005
+Service Fee: 39.99

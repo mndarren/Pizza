@@ -1,0 +1,7 @@
+----------------------Member Report--------------------
+Member ID: 1009
+Member Name: Sue Ellicott
+State: IL
+Street Address: 21 Jump Street
+Zipcode: 25322
+Status: Invalid

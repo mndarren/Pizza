@@ -1,0 +1,7 @@
+----------------------Provider Report--------------------
+Provider ID: 104
+Provider Name: House of Pizzaholics
+City: 12 Ave S
+State: NY
+Street Address: 10 TriStar Bldg
+Zip Code: 10201

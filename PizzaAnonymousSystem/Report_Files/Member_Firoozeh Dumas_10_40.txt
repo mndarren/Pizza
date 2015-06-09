@@ -1,0 +1,7 @@
+----------------------Member Report--------------------
+Member ID: 1008
+Member Name: Firoozeh Dumas
+State: IL
+Street Address: 21 Jump Street
+Zipcode: 25322
+Status: Invalid

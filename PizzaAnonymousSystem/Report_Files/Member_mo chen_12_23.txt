@@ -1,0 +1,7 @@
+----------------------Member Report--------------------
+Member ID: 1014
+Member Name: mo chen
+State: MN
+Street Address: 123 3th Ave S
+Zipcode: 56301
+Status: Accepted

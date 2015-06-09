@@ -1,0 +1,7 @@
+----------------------Member Report--------------------
+Member ID: 1003
+Member Name: Bobcat Goldthwait
+State: IL
+Street Address: 21 Jump Street
+Zipcode: 25322
+Status: Invalid
